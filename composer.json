@@ -1,0 +1,7 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "phpoffice/phpexcel": "^1.8",
+        "icanboogie/inflector": "^1.4"
+    }
+}

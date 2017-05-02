@@ -1,0 +1,51 @@
+name = Globular
+description = A flexible, responsibve theme.
+version = 7.x-1.0
+core = 7.x
+
+stylesheets[all][] = css/font-awesome.min.css
+stylesheets[all][] = css/responsiveGlobus.css
+stylesheets[all][] = css/search.min.fc840bcfe06d14b5a86bb8554031bafcfb8b5f97.css
+stylesheets[all][] = css/bigFishClientSkin.css
+stylesheets[all][] = css/bigFishRwdAdjustments.css
+stylesheets[all][] = css/fb.css
+stylesheets[all][] = css/jquery.bxslider.css
+stylesheets[all][] = css/jquery.mCustomScrollbar.min.css
+stylesheets[all][] = css/globular.css
+stylesheets[all][] = css/jquery.modal.css
+stylesheets[all][] = css/jquery.modal.min.css
+
+stylesheets[all][] = css/owl.carousel.min.css
+stylesheets[all][] = css/owl.theme.default.min.css
+stylesheets[all][] = css/jcarousel.connected-carousels.css
+;stylesheets[all][] = css/bootstrap.min.css
+stylesheets[all][] = css/slider1.css
+stylesheets[all][] = css/slider2.css
+;stylesheets[all][] = css/slider4.css
+stylesheets[all][] = css/slider3.css
+scripts[] = js/jquery-ui.js
+scripts[] = js/prototype.min.js
+; scripts[] = js/search.min.3912074c64259f9e87149e0e11751e870db8064f.js
+scripts[] = js/jquery.jqzoom-core.js
+scripts[] = js/jquery.fitvids.min.js
+scripts[] = js/sticky-kit.min.js
+scripts[] = js/registrationPage.js
+scripts[] = js/pincodeSearch.js
+scripts[] = js/pdpPopup.js
+scripts[] = js/siteNavigation.js
+scripts[] = js/jquery.bxslider.min.js
+scripts[] = js/jquery.mCustomScrollbar.concat.min.js
+scripts[] = js/common.js
+scripts[] = js/jquery.modal.js
+scripts[] = js/jquery.modal.min.js
+
+scripts[] = js/carousel.js
+scripts[] = js/jquery.jcarousel.min.js
+scripts[] = js/jcarousel.connected-carousels.js
+scripts[] = js/bootstrap.min.js
+
+
+regions[content] = Content
+regions[search_filter_sidebar] = Search Filter Sidebar
+regions[social_sharing] = Social Sharing
+

@@ -1,0 +1,99 @@
+.order-mobile{display:none;}
+.orderdetail-mobile{display:none;}
+.order-desk{display:block;}
+.orderdetail-desk{display:block;}
+.cartimage-desk{display:block;}
+.OrderBack-btn{display:block;}
+.mOrderBack-btn{display:none;}
+.OrderCancel-btn{display:block;}
+.mOrderCancel-btn{display:none;}
+@media (max-width:767px){
+	.order-mobile{display:block;}
+	.order-desk{display:none !important;}
+	.orderdetail-mobile{display:block; margin-top:15px;}
+	.orderdetail-mobile span a{text-transform:uppercase; color:#434343; font-weight:500;}
+	.orderdetail-desk{display:none !important;}
+	.order-mobile .cartimage-desk{display:none !important;}
+	.OrderBack-btn{display:none !important;}
+	.mOrderBack-btn{display:block;}
+	/* .OrderCancel-btn{display:none !important;} */
+	.mOrderCancel-btn{display:block;}
+	.order-mobile .od-summry{width:100%; margin:0;}
+	.order-mobile .od-summry .displayDetail div.align-center{text-align:left; padding:5px 15px 0 15px; color:#6E6E6E; font-weight:normal;}
+	.order-mobile .od-timemonth{padding-top:0px !important; font-size:12px;}
+	.order-mobile .od-summry .displayDetail div.align-center.od-num{margin-top:5px; width:53%; float:left; padding-right:5px; text-align:right; color:#434343; font-size:16px; font-weight:bold; margin-bottom:20px;}
+	.order-mobile .od-summry .displayDetail div.align-center.od-id{margin-top:11px; width:40%; float:left; padding:5px 0; color:#434343; font-weight:bold; font-weight:bold; font-size:16px;}
+	.order-mobile .od-summry .displayDetail .od-name.paid-amount{float:right; width:auto;}
+	.order-mobile .od-summry .displayDetail .od-name.customer{width:auto; float:left; margin-bottom:15px;}
+	.order-mobile .od-summry .displayDetail .od-name.customer label, .order-mobile .od-summry .displayDetail .od-name.customer span{width:100%; text-align:left; margin-top: 0; font-weight:normal; line-height: 18px; color:#6E6E6E;}
+	.order-mobile .od-summry .displayDetail .od-name.paid-amount label, .order-mobile .od-summry .displayDetail .od-name.paid-amount span{width:100%; color:#434343; padding-right:0px; margin:0; float:right; text-align:right;}
+	.order-mobile .od-summry .displayDetail .od-name.paid-amount span{font-weight:bold; font-size:15px;}
+	.order-mobile .od-summry .displayDetail .od-name.paid-amount label{text-transform:capitalize; font-size:14px;color: #6E6E6E;}
+	.order-mobile .od-summry .displayDetail div.align-center.od-date.dateNew{width:auto; text-transform:none !important; font-size:14px; color:#6E6E6E;}
+	.order-mobile .od-summry .displayDetail .od-name{padding:0; padding:5px 15px 0 15px;}
+	.order-mobile .od-summry .displayDetail .od-name.paidAmount label, .order-mobile .od-summry .displayDetail .od-name.paidAmount span{font-size:17px; color:#434343; font-weight:bold;}
+	.order-mobile .od-summry .displayDetail .od-name label{width:auto; text-align:left; color:#000; font-weight:normal;}
+	.order-mobile .od-summry .displayDetail .od-name span{margin:5px 0 0 0; text-align:right; float:right; width:auto; color:#000;}
+	.order-mobile div.itemStatus{float:left; width:100%; margin-top:20px;}
+	.order-mobile .mOrderBack-btn, .order-mobile .mOrderCancel-btn{width:auto !important;}
+	.order-mobile .desk-status h4{text-align:left !important;}
+	.order-mobile div.itemStatus .displayBox h4{font-size:16px; text-align:center; padding:10px 0 0 15px; text-transform:uppercase; border-top:1px solid #D6D6D6;}
+	.order-mobile #eCommerceOrderDetail, .shippingGroupList.OrderDetailShippingGroup{margin:0px 15px !important; width:95%;}
+	.order-mobile .ordrstatus-qty label{width:auto;}
+	.order-mobile .od-summry .displayDetail{margin-bottom:30px;}
+	.order-mobile .od-summry .displayDetail h4{ padding-left:15px; padding:15px 0 15px 15px;}
+	.order-mobile .od-summry .displayDetail h4.mOrder{color:#fff; font-size:20px;}
+	.order-mobile .od-summry .displayDetail h4.mOrder span{background:url('/osafe_theme/images/user_content/images/your-order.png') no-repeat top left; padding-left:25px;}
+	.order-mobile .right-order-status{margin:0px 0 10px 0; width:100%; border-top:0 !important; float:left; padding:0px 0 10px 0 !important;}
+	.order-mobile .right-order-status h4{font-size:15px; text-transform:uppercase; padding:0 15px !important; color:#434343; text-align:center;}
+	.order-mobile .resShipping{margin-bottom:10px; border-bottom:1px solid #CECECE; padding:15px 15px 20px 15px !important; border-top:1px solid #cecece;}
+	.order-mobile .pd20.resShipping{margin-bottom:0;}
+	.order-mobile .order-detailbtn{width:96%; float:left; padding:0 15px; margin-bottom:20px;}
+	.order-mobile .resShipping .od-address{font-size:16px; text-transform:uppercase; margin:3px 0 5px 0; color:#434343;}
+	.order-mobile .displayDetail li div{padding:0; color:#434343;}
+	.order-mobile .size-swatch, .order-mobile .ordrstatus-qty, .order-mobile .color-swatch{line-height:14px;}
+	.order-mobile .ordrstatus-price span, .order-mobile .ordrstatus-offprice span{font-size:14px;}
+	.order-mobile .oderstatus-li{margin:5px 0;}
+	.order-mobile .size-swatch, .order-mobile .ordrstatus-qty{margin-right:5px; border-right:1px solid #434343; padding-right:7px !important;}
+	.order-mobile .color-swatch .color-code{margin-top:2px !important;}
+	#eCommerceOrderDetail .order-mobile .boxListItemTabular{padding:0 3%; width:94%;}
+    .boxListItemTabular.orderItem .group2{float:left;}
+    .boxListItemTabular.orderItem .group2 .displayList .orderdetail-mobile>li{float:left !important;}
+    .boxListItemTabular.orderItem .group2 .displayList .orderdetail-mobile li.mOrder-details{clear:none;}
+	#eCommerceOrderDetail .order-mobile .orderDetailShippingGroupOrderItemsItemName{margin-top:10px;}
+	#eCommerceOrderDetail .order-mobile .mobOrder-price{width:auto; float:right; margin-top:10px; clear:none; margin-left:10px;}
+	#eCommerceOrderDetail .order-mobile .mobOrder-price .ordrstatus-price, #eCommerceOrderDetail .order-mobile .mobOrder-price .ordrstatus-offprice{float:left; width:auto; flaot:left; margin-right:15px;}
+	.right-order-status h4{text-align:left;}
+	.order-mobile .od-shippngadd li{font-size:16px; color:#000;}
+	.order-mobile .OrderDetailShippingGroupOrderItems.group.group2{padding:0 !important;}
+	
+	.order-mobile .displayDetail div.od-heading{background-color:#444; margin-bottom:7px;}
+	.your-order{float:left; width:100%;}
+	.order-mobile .right-order-status span{color:#000; float:left; margin-left:15px; text-transform:uppercase; font-size:14px;}
+	.order-mobile .od-summry .displayDetail .od-name.customer label {float:left;}
+	.order-mobile .od-summry .displayDetail .od-name.customer span#rescustomer-name {width:auto; float:left;}
+}
+@media only screen and (min-width:480px) and (max-width: 535px){
+	#eCommerceOrderDetail .order-mobile .boxListItemTabular{width:95%; padding:0 10px;}
+}
+@media only screen and (min-width:400px) and (max-width: 479px){
+	#eCommerceOrderDetail .order-mobile .mobOrder-price {margin-left:4px;}
+	#eCommerceOrderDetail .order-mobile .boxListItemTabular{width:92%; padding:0 10px;}
+	/*.oderstatus-li .size-swatch{margin:0 !important;}
+	.order-mobile .ordrstatus-qty{margin-right:0 !important;}*/
+}
+@media only screen and (min-width:320px) and (max-width: 399px){
+	#eCommerceOrderDetail .order-mobile .mobOrder-price {margin:0;}
+	#eCommerceOrderDetail .order-mobile .boxListItemTabular{width:87%; padding:0 10px;}
+	#eCommerceOrderDetail .order-mobile .orderDetailShippingGroupOrderItemsItemName{width:37% !important; padding-right:0;}
+	.order-mobile .size-swatch{padding-right:4px !important;}
+	/*.order-mobile .ordrstatus-qty{padding-right:4px !important; margin-left:4px; margin-right:0; border:0;}*/
+	.oderstatus-li .size-swatch{margin:0 !important;}
+}
+@media only screen and (min-width:320px) and (max-width: 480px){
+	.orderdetail-mobile li img{height:105px !important; width:90px !important;}
+	#eCommerceOrderDetail .order-mobile .orderDetailShippingGroupOrderItemsItemName.mOrder-details{width:63% !important;}
+}
+@media only screen and (max-width:480px){
+	#eCommercePageBody{width:90% !important;}
+}

@@ -1,0 +1,27 @@
+diff --git a/modules/block/block.module b/modules/block/block.module
+index ca41da7..5b5903f 100644
+--- a/modules/block/block.module
++++ b/modules/block/block.module
+@@ -824,6 +824,22 @@ function block_block_list_alter(&$blocks) {
+         $path = drupal_strtolower(drupal_get_path_alias($_GET['q']));
+         // Compare the lowercase internal and lowercase path alias (if any).
+         $page_match = drupal_match_path($path, $pages);
++        // Brick N' Click Hack - Start.
++        // Allow for Query Strings in matched paths.
++        if (!$page_match AND !empty($_SERVER['QUERY_STRING'])) {
++          $path_with_query = trim($path . '?' . urldecode($_SERVER['QUERY_STRING']));
++          $all_pages = explode("\n", urldecode($block->pages));
++          foreach ($all_pages as $this_page) {
++            $this_page = trim($this_page);
++            if (strpos($path_with_query, $this_page) !== FALSE) {
++              $page_match = TRUE;
++              break;
++            }
++          }
++        }
++        // Uncomment to debug:
++        // dsm(compact('path', 'pages', 'page_match') + array('urldecode($block->pages)' => urldecode($block->pages), 'calculated $path' => $path_with_query, '_GET[q]' => $_GET['q'], '_SERVER' => $_SERVER));
++        // Brick N' Click Hack - End.
+         if ($path != $_GET['q']) {
+           $page_match = $page_match || drupal_match_path($_GET['q'], $pages);
+         }

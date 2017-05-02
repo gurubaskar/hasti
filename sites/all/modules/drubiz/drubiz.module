@@ -1,0 +1,945 @@
+<?php
+
+/**
+ * @file
+ * Enables the use of Ofbiz APIs with Drupal.
+ */
+
+require_once 'vendor/autoload.php';
+require_once 'drubiz.helpers.inc';
+
+define('DRUBIZ_DEMO_OFBIZ_URL', 'https://182.72.231.54:8543/');
+
+global $drubiz_demo_theme_options;
+$drubiz_demo_theme_options = array(
+  'globular' => array(
+    'name'      => 'Fashion',
+    'catalog'   => 'globus',
+    'theme'     => 'globular',
+    'homepage'  => 4244, // Node ID of the homepage
+    'dev'       => FALSE,
+  ),
+  'craftschool' => array(
+    'name'      => 'Craftschool',
+    'catalog'   => 'handloom',
+    'theme'     => 'weavingschool',
+    'homepage'  => 4244, // Node ID of the homepage
+    'dev'       => FALSE,
+  ),
+  'handicraft'  => array(
+    'name'      => 'Handicraft',
+    'catalog'   => 'industree',
+    'theme'     => 'WClothing',
+    'homepage'  => 4244, // Node ID of the homepage
+    'dev'       => FALSE,
+  ),
+  'cosmetics'   => array(
+    'name'      => 'Cosmetics',
+    'catalog'   => 'hng',
+    'theme'     => 'glowing',
+    'homepage'  => 4244, // Node ID of the homepage
+    'dev'       => FALSE,
+  ),
+);
+
+/**
+ * Implements hook_boot().
+ */
+function drubiz_boot() {
+  drubiz_setup_domain_context();
+  drubiz_setup_demo_context();
+  $param = variable_get('locale_language_negotiation_session_param', 'language');
+  $language_default = variable_get('language_default', (object)array('language' => 'en'));
+  if (!empty($_COOKIE[$param])) {
+    $_SESSION[$param] = $_COOKIE[$param];
+  }
+  else {
+    $_SESSION[$param] = $language_default->language;
+  }
+}
+
+function drubiz_user_presave(&$edit, $account, $category) {
+  drubiz_user_integration($edit, $account);
+}
+
+function drubiz_user_login(&$edit, $account) {
+  if ($account->uid == 1) {
+    // Don't do anything for 'admin'.
+    return;
+  }
+  drubiz_user_integration($edit, $account, TRUE);
+}
+
+function drubiz_user_integration(&$edit, $account, $skip_logged_in_check = FALSE) {
+  global $user;
+
+  if (!empty($GLOBALS['drubiz_skip_user_integration']) || (!$skip_logged_in_check && !empty($user->uid))) {
+    // Skip or user is already logged in.
+    return;
+  }
+  // else, user is not logged in.
+  // /eCommerceSocialLogin?emailId=ramesh6@gmail.com
+  $client = drubiz_api_client();
+  $request = 'eCommerceSocialLogin?' . http_build_query(array(
+    'emailId' => $account->mail,
+  ));
+  $response = $client->get($request);
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  // Log the response for debugging.
+  watchdog(__FUNCTION__, print_r(compact('request', 'data'), 1));
+   
+  if (empty($account->field_party_id[LANGUAGE_NONE][0]['value']) && !empty($data['partyId'])) {
+    // Set the party ID the first time around.
+    $edit['field_party_id'][LANGUAGE_NONE][0]['value'] = $data['partyId'];
+  }
+
+  if (!empty($account->uid)) {
+    if (!$skip_logged_in_check) {
+      $user = user_load($account->uid);
+      user_login_finalize();
+    }
+    if (empty($data['_ERROR_MESSAGE_'])) {
+      $raw_headers = $response->getHeaders();
+      $_SESSION['drubiz']['headers'] = $raw_headers;
+      $_SESSION['drubiz']['session'] = $data;
+    }
+    else {
+      watchdog(__FUNCTION__, 'error logging in the user');
+      $user = user_load(0);
+      unset($_SESSION['drubiz']);
+      drupal_session_regenerate();
+    }
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function drubiz_init() {
+  setup_krumo();
+
+  // TESTING STUFF: (TODO: ignore & delete when done!)
+  // krumo($_SESSION);
+
+  // Add CSS.
+  drupal_add_css(drupal_get_path('module', 'drubiz') . '/css/drubiz.css');
+
+  // Add JS.
+  $language_param = variable_get('locale_language_negotiation_session_param', 'language');
+  drupal_add_js('var language_param = "' . $language_param . '";', 'inline');
+  drupal_add_js(drupal_get_path('module', 'drubiz') . '/js/js.cookie.js');
+  drupal_add_js(drupal_get_path('module', 'drubiz') . '/js/accounting.min.js');
+  drupal_add_js(drupal_get_path('module', 'drubiz') . '/js/drubiz.js');
+  drupal_add_js('var drubiz_ofbiz_url = "' . variable_get('drubiz_ofbiz_url', '') . '";', 'inline');
+  
+  // Inject FBConnect button
+  if (empty($GLOBALS['user']->uid)) {
+    $attr = array();
+    if (variable_get('fbconnect_fast_reg', 0) && variable_get('fbconnect_reg_options', 0)) {
+      $attr = array('perms' => 'email');
+    }
+    //$GLOBALS['fbconnect_login_button'] = fbconnect_login_render_button($attr);
+    $GLOBALS['user_login_form'] = drupal_get_form('user_login');
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function drubiz_menu() {
+  $items['homepage'] = array(
+    'title'             => 'Homepage',
+    'description'       => "Homepage",
+    'page callback'     => 'drubiz_homepage',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['sonata/ofbiz-retail-brochure'] = array(
+    'title'             => 'Download Ofbiz Retail Brochure',
+    'page callback'     => 'download_file',
+    'file'              => 'drubiz.pages.inc',
+    'access callback'   => TRUE
+  );
+  $items['sonata/help'] = array(
+    'title'             => 'Sonata Help',
+    'description'       => "Sonata Help",
+    'page callback'     => 'sonata_contact_us',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['sonata/SonataLogo_1_48'] = array(
+    'title'             => 'Sonata Help',
+    'description'       => "Sonata Help",
+    'page callback'     => 'sonata_logo_1',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['sonata/SonataLogo_2_216'] = array(
+    'title'             => 'Sonata Help',
+    'description'       => "Sonata Help",
+    'page callback'     => 'sonata_logo_2',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
+  $items['sonata/screenShot1'] = array(
+    'title'             => 'Sonata Help',
+    'description'       => "Sonata Help",
+    'page callback'     => 'screenShot1',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['sonata/screenShot2'] = array(
+    'title'             => 'Sonata Help',
+    'description'       => "Sonata Help",
+    'page callback'     => 'screenShot2',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['sonata/screenShot3'] = array(
+    'title'             => 'Sonata Help',
+    'description'       => "Sonata Help",
+    'page callback'     => 'screenShot3',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['sonata/privacy-policy'] = array(
+    'title'             => 'Sonata Privacy Policy',
+    'description'       => "Sonata Privacy Policy",
+    'page callback'     => 'sonata_privacy_policy',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['drubiz/user'] = array(
+    'title'             => 'User Login',
+    'description'       => "User Login",
+    'page callback'     => 'drubiz_user',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/user-register'] = array(
+    'title'             => 'User Registration',
+    'description'       => "User Registration",
+    'page callback'     => 'drubiz_user_register',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/apply-promo'] = array(
+  'title'             => 'Apply Promocode',
+  'description'       => "Apply Promocode",
+  'page callback'     => 'drubiz_apply_promocode',
+  'access arguments'  => array('access content'),
+  'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/view-promo'] = array(
+  'title'             => 'View Promocode',
+  'description'       => "View Promocode",
+  'page callback'     => 'drubiz_view_promocode',
+  'access arguments'  => array('access content'),
+  'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/view-loyalty'] = array(
+  'title'             => 'View Loyalpoints',
+  'description'       => "View Loyaltypoints",
+  'page callback'     => 'drubiz_view_loyalty',
+  'access arguments'  => array('access content'),
+  'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/redeem-loyalty'] = array(
+  'title'             => 'Redeem Loyalpoints',
+  'description'       => "Redeem Loyaltypoints",
+  'page callback'     => 'drubiz_redeem_loyalty',
+  'access arguments'  => array('access content'),
+  'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/remove-loyalty'] = array(
+  'title'             => 'Remove Loyalty',
+  'description'       => "Remove Loyalty",
+  'page callback'     => 'drubiz_remove_loyalty',
+  'access arguments'  => array('access content'),
+  'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/demo-user-register'] = array(
+    'title'             => 'Demo User Registration',
+    'description'       => "Demo User Registration",
+    'page callback'     => 'drubiz_demo_user_register',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/user-change-password'] = array(
+    'title'             => 'User Change Password',
+    'description'       => "User Change Password",
+    'page callback'     => 'drubiz_user_change_password',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/add-to-cart'] = array(
+    'title'             => 'Add to Cart',
+    'description'       => "Add to Cart",
+    'page callback'     => 'drubiz_add_to_cart',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/modify-item'] = array(
+    'title'             => 'Modify Item',
+    'description'       => "Modify Item",
+    'page callback'     => 'drubiz_modify_item',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/delete-item'] = array(
+    'title'             => 'Delete Item',
+    'description'       => "Delete Item",
+    'page callback'     => 'drubiz_delete_item',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/mini-cart'] = array(
+    'title'             => 'Mini Cart',
+    'description'       => "Mini Cart",
+    'page callback'     => 'drubiz_mini_cart',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['cart'] = array(
+    'title'             => 'Shopping Cart',
+    'description'       => "Shopping Cart",
+    'page callback'     => 'drubiz_cart',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['cart-wclothing'] = array(
+    'title'             => 'Shopping Cart',
+    'description'       => "Shopping Cart",
+    'page callback'     => 'drubiz_cart_wclothing',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['weaving/signin'] = array(
+    'title'             => 'Sign In',
+    'description'       => "Sign In",
+    'page callback'     => 'drubiz_sign_in',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['checkout'] = array(
+    'title'             => 'Checkout - Address',
+    'description'       => "Checkout - Address",
+    'page callback'     => 'drubiz_checkout',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['checkout/update-cart-address'] = array(
+    'title'             => 'Checkout - Update Cart Address',
+    'description'       => "Checkout - Update Cart Address",
+    'page callback'     => 'drubiz_update_cart_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['checkout-payment'] = array(
+    'title'             => 'Checkout - Payment',
+    'description'       => "Checkout - Payment",
+    'page callback'     => 'drubiz_checkout_payment',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['checkout-final'] = array(
+    'title'             => 'Checkout - Final',
+    'description'       => "Checkout - Final",
+    'page callback'     => 'drubiz_checkout_final',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/add-address'] = array(
+    'title'             => 'Add Address',
+    'description'       => "Add Address",
+    'page callback'     => 'drubiz_add_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['weaving/signup'] = array(
+    'title'             => 'Sign Up',
+    'description'       => "Sign Up",
+    'page callback'     => 'drubiz_sign_up',
+      'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
+  $items['weaving/add-new-address'] = array(
+    'title'             => 'Add New Address',
+    'description'       => "Add New Address",
+    'page callback'     => 'drubiz_sign_up',
+      'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['view-order/%'] = array(
+    'title'             => 'View Order',
+    'description'       => "View Order",
+    'page callback'     => 'drubiz_view_order',
+    'page arguments'    => array(1),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
+  $items['account/dashboard'] = array(
+    'title'             => 'My Account Dashboard',
+    'description'       => "My Account Dashboard",
+    'page callback'     => 'myaccount_dashboard',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['account/orders'] = array(
+    'title'             => 'My Account Orders',
+    'description'       => "My Account Orders",
+    'page callback'     => 'myaccount_orders',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/orders-details/%'] = array(
+    'title'             => 'My Account Order Details',
+    'description'       => "My Account Order Details",
+    'page callback'     => 'myaccount_order_detail',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/profile'] = array(
+    'title'             => 'My Account Profile Settings',
+    'description'       => "My Account Profile Settings",
+    'page callback'     => 'myaccount_profile',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/update-profile'] = array(
+    'title'             => 'My Account Update Profile Settings',
+    'description'       => "My Account Update Profile Settings",
+    'page callback'     => 'myaccount_update_profile',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['account/address-book'] = array(
+    'title'             => 'My Account Address Book',
+    'description'       => "My Account Address Book",
+    'page callback'     => 'myaccount_address_book',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['account/add-address'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'myaccount_add_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/submit-add-address'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'myaccount_submit_add_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/edit-address/%'] = array(
+    'title'             => 'My Account Edit Address',
+    'description'       => "My Account Edit Address",
+    'page callback'     => 'myaccount_edit_address',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/edit-address-checkout/%'] = array(
+    'title'             => 'Checkout Edit Address',
+    'description'       => "Checkout Edit Address",
+    'page callback'     => 'checkout_edit_address',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/submit-edit-address'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'myaccount_submit_edit_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+    $items['checkout/edit-address/%'] = array(
+    'title'             => 'Checkout Edit Address',
+    'description'       => "Checkout Edit Address",
+    'page callback'     => 'checkout_edit_address',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+    $items['submit-checkout-edit-address'] = array(
+    'title'             => 'Checkout Edit Address',
+    'description'       => "Checkout Edit Address",
+    'page callback'     => 'checkoutws_submit_edit_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/change-password'] = array(
+    'title'             => 'My Account Change Password',
+    'description'       => "My Account Change Password",
+    'page callback'     => 'myaccount_change_password',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['account/loyalty-info'] = array(
+    'title'             => 'My Account Loyalty Info',
+    'description'       => "My Account Loyalty Info",
+    'page callback'     => 'myaccount_loyalty',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+ $items['account/storecredit-info'] = array(
+    'title'             => 'My Account StoreCredit Info',
+    'description'       => "My Account StoreCredit Info",
+    'page callback'     => 'myaccount_storecredit',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['account/change-user-info'] = array(
+    'title'             => 'My Account Change user Info',
+    'description'       => "My Account Change user Info",
+    'page callback'     => 'myaccount_change_userinfo',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['product/reviews'] = array(
+    'title'             => 'Product Reviews',
+    'description'       => "Product Reviews",
+    'page callback'     => 'product_reviews',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['wclothing/signin'] = array(
+      'title'             => 'Sign In',
+      'description'       => "Sign In",
+      'page callback'     => 'drubiz_wclothing_signin',
+      'access arguments'  => array('access content'),
+      'file'              => 'drubiz.pages.inc',
+    );
+  $items['wclothing/signup'] = array(
+      'title'             => 'Sign Up',
+      'description'       => "Sign Up",
+      'page callback'     => 'drubiz_wclothing_signup',
+      'access arguments'  => array('access content'),
+      'file'              => 'drubiz.pages.inc',
+    );
+  $items['wclothing-checkout'] = array(
+    'title'               => 'Checkout',
+    'description'         => 'Checkout',
+    'page callback'       => 'drubiz_wclothing_checkout',
+    'access arguments'    => array('access content'),
+    'file'                => 'drubiz.pages.inc',
+  );
+  $items['wclothing/add-address']  = array(
+    'title'               => 'Add New Address',
+    'description'         => 'Add New Address',
+    'page callback'       => 'drubiz_wclothing_add_address',
+    'access arguments'    => array('access content'),
+    'file'                => 'drubiz.pages.inc',
+  );
+  $items['wclothing/view-order/%'] = array(
+    'title'             => 'View Order',
+    'description'       => "View Order",
+    'page callback'     => 'drubiz_wclothing_view_order',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/wclothing-address-book'] = array(
+    'title'             => 'Address Book',
+    'description'       => "Address Book",
+    'page callback'     => 'myaccount_wclothing_address_book',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['wclothing/account-add-address']  =array(
+    'title'             => 'Add Address from account page',
+    'description'       => "Add Address from account page",
+    'page callback'     => 'myaccount_wclothing_account_address_book',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/wclothing/submit-edit-address-myaccount'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'myaccount_wclothing_submit_edit_address_myaccount',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/wclothing/submit-edit-address-checkout'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'myaccount_wclothing_submit_edit_address_checkout',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['drubiz/add-to-love-list'] = array(
+    'title'             => 'Product Reviews',
+    'description'       => "Product Reviews",
+    'page callback'     => 'drubiz_add_to_love_list',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['account/love-list'] = array(
+    'title'             => 'Product Reviews',
+    'description'       => "Product Reviews",
+    'page callback'     => 'myaccount_love_list',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['weaving/add-address-checkout'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'add_address_checkout',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['gift-message'] = array(
+    'title'             => 'Giftcard Message',
+    'description'       => "Giftcard Message",
+    'page callback'     => 'drubiz_set_gift_message',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['delete-wishlist'] = array(
+    'title'             => 'My Account Add Address',
+    'description'       => "My Account Add Address",
+    'page callback'     => 'myaccount_wishlist_remove_item',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
+//for store credit
+  $items['drubiz/store-credit'] = array(
+    'title'             => 'Store Credit',
+    'description'       => "Store Credit",
+    'page callback'     => 'drubiz_store_credit',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['drubiz/remove-store-credit'] = array(
+    'title'             => 'Remove Store Credit',
+    'description'       => "Remove Store Credit",
+    'page callback'     => 'drubiz_remove_store_credit',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  // Multivariate integration
+  $items['admin/config/multivariate/setup'] = array(
+    'title' => 'Setup',
+    'description' => 'Setup Multivariate.',
+    'page callback' => 'drupal_goto',
+    'page arguments' => array('multivariate'),
+    'access arguments' => array('administer site configuration'),
+  );
+  $items['saveGiftMessage'] =array(
+    'title'             => 'Save Giftcard Message',
+    'description'       => "Save Giftcard Message",
+    'page callback'     => 'drubiz_save_gift_message',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+   $items['drubiz/lookbook'] =array(
+    'title'             => 'Subscribe',
+    'description'       => "Subscribe",
+    'page callback'     => 'drubiz_look_book',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+   
+   $items['drubiz/plp-check-inventory'] =array(
+    'title'             => 'Drubiz plp-check-inventory',
+    'description'       => "Drubiz plp-check-inventory",
+    'page callback'     => 'drubiz_plp_check_inventory',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function drubiz_theme() {
+  $drubiz_path = drupal_get_path('module', 'drubiz') . '/templates';
+  return array(
+    'drubiz_mini_cart'  => array(
+      'variables'       => array(
+        'cart'          => NULL,
+      ),
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_mini_cart',
+    ),
+    'drubiz_cart'       => array(
+      'variables'       => array(
+        'cart'          => NULL,
+      ),
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_cart',
+    ),
+    'drubiz_view_order' => array(
+      'variables'       => array(
+        'order'         => NULL,
+      ),
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_view_order',
+    ),
+    'drubiz_checkout'   => array(
+      'variables'       => array(
+        'cart'          => NULL,
+      ),
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_checkout',
+    ),
+    'drubiz_checkout_payment' => array(
+      'variables'       => array(
+        'cart'          => NULL,
+      ),
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_checkout_payment',
+    ),
+
+    'drubiz_search_sort' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_search_sort',
+    ),
+
+    'drubiz_sign_in'  => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_sign_in',
+    ),
+    'drubiz_sign_up'  => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_sign_up',
+    ),
+    'myaccount_dashboard' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_dashboard',
+    ),
+    'myaccount_address_book' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_address_book',
+    ),
+    'myaccount_add_address' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_add_address',
+    ),
+     'add_address_checkout' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'add_address_checkout',
+    ),
+     'myaccount_edit_address' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_edit_address',
+    ),
+     'checkout_edit_address' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'checkout_edit_address',
+    ),
+    'myaccount_change_password' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_change_password',
+    ),
+    'myaccount_menu' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_menu',
+    ),
+    'myaccount_orders' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_orders',
+    ),
+     'myaccount_order_detail' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_order_detail',
+    ),
+     'myaccount_loyalty' => array(
+     'path'            => $drubiz_path,
+     'template'        => 'myaccount_loyalty',
+    ),
+      'myaccount_storecredit' => array(
+     'path'            => $drubiz_path,
+     'template'        => 'myaccount_storecredit',
+    ),
+    'myaccount_profile' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_profile',
+    ),
+    'myaccount_product_reviews' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_product_reviews',
+    ),
+    'drubiz_wclothing_sign_up'  => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_wclothing_sign_up',
+    ),
+    'drubiz_wclothing_sign_in'  => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_wclothing_sign_in',
+    ),
+    'drubiz_cart_wclothing' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_cart_wclothing',
+    ),
+    'drubiz_wclothing_checkout' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_wclothing_checkout',
+    ),
+    'drubiz_wclothing_add_address' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_wclothing_add_address',
+    ),
+    'drubiz_wclothing_checkout_final'  => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_wclothing_checkout_final',
+    ),
+    'drubiz_wclothing_view_order' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_wclothing_view_order',
+    ),
+    'myaccount_wclothing_account_address_book' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_wclothing_account_address_book',
+    ),
+    'myaccount_change_userinfo' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_change_userinfo',
+    ),
+    'myaccount_love_list' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_love_list',
+    ),
+    'drubiz_set_gift_message' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_set_gift_message',
+    ),
+    'drubiz_save_gift_message' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_save_gift_message',
+    ),
+    'drubiz_us_states' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_us_states',
+    ),
+    'drubiz_theme_switch' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_theme_switch',
+    ),
+    'drubiz_ofbiz_login' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_ofbiz_login',
+    ),
+    'sonata_contact_us_template' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'sonata_contact_us_template',
+    ),
+    'sonata_privacy_policy_template' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'sonata_privacy_policy_template',
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function drubiz_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['#node_edit_form']) AND $form['#node']->type == 'product') {
+    $overridable_fields = array(
+      'field_image',
+      'field_page_builder',
+    );
+    $form['title']['#access'] = FALSE;
+    foreach ($form as $field_name => $field_data) {
+      if (strpos($field_name, 'field_') === 0 AND !in_array($field_name, $overridable_fields)) {
+        $form[$field_name]['#access'] = FALSE;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function drubiz_block_view_alter(&$data, $block) {
+  // dsm($data); dsm($block);
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+function drubiz_custom_theme() {
+  global $drubiz_domain;
+  return $drubiz_domain['theme'];
+}
+
+/**
+ * Implements hook_apachesolr_query_alter().
+ */
+function drubiz_apachesolr_query_alter(DrupalSolrQueryInterface $query) {
+  global $drubiz_domain;
+  $query->addFilter('sm_field_catalog', $drubiz_domain['catalog']);
+
+  // Setup Sorts
+  $query->setAvailableSort('fss_field_price', array('title' => t('Price'), 'default' => 'asc'));
+  $query->setAvailableSort('fss_field_discount', array('title' => t('Discount'), 'default' => 'desc'));
+}
+
+/**
+ * Implements hook_apachesolr_index_document_build().
+ */
+function drubiz_apachesolr_index_document_build(ApacheSolrDocument $document, $entity, $entity_type, $env_id) {
+  if ($entity_type == 'node' && $entity->type == 'product') {
+    $system_data = json_decode($entity->field_system_data[LANGUAGE_NONE][0]['value']);
+    $list_price = (float)$system_data->product_raw->list_price;
+    $sales_price = (float)$system_data->product_raw->sales_price;
+    $discount = 0.0;
+    if ($list_price != $sales_price) {
+      $discount = ($list_price - $sales_price) * 100 / $list_price;
+    }
+    $document->addField('fss_field_price', $sales_price);
+    $document->addField('fss_field_discount', $discount);
+    $document->setField('content', $entity->title);
+  }
+}

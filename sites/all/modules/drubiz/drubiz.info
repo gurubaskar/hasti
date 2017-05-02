@@ -1,0 +1,7 @@
+name = "Drubiz"
+description = "Drupal and Ofbiz Integration module."
+package = Sonata
+core = 7.x
+dependencies[] = drubiz_features
+version = "7.x-1.0"
+project = "drubiz"
