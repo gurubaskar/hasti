@@ -1,128 +1,93 @@
 <?php
 
-/**
- * @file
- * Default theme implementation for displaying a single search result.
- *
- * This template renders a single search result and is collected into
- * search-results.tpl.php. This and the parent template are
- * dependent to one another sharing the markup for definition lists.
- *
- * Available variables:
- * - $url: URL of the result.
- * - $title: Title of the result.
- * - $snippet: A small preview of the result. Does not apply to user searches.
- * - $info: String of all the meta information ready for print. Does not apply
- *   to user searches.
- * - $info_split: Contains same data as $info, split into a keyed array.
- * - $module: The machine-readable name of the module (tab) being searched, such
- *   as "node" or "user".
- * - $title_prefix (array): An array containing additional output populated by
- *   modules, intended to be displayed in front of the main title tag that
- *   appears in the template.
- * - $title_suffix (array): An array containing additional output populated by
- *   modules, intended to be displayed after the main title tag that appears in
- *   the template.
- *
- * Default keys within $info_split:
- * - $info_split['module']: The module that implemented the search query.
- * - $info_split['user']: Author of the node linked to users profile. Depends
- *   on permission.
- * - $info_split['date']: Last update of the node. Short formatted.
- * - $info_split['comment']: Number of comments output as "% comments", %
- *   being the count. Depends on comment.module.
- *
- * Other variables:
- * - $classes_array: Array of HTML class attribute values. It is flattened
- *   into a string within the variable $classes.
- * - $title_attributes_array: Array of HTML attributes for the title. It is
- *   flattened into a string within the variable $title_attributes.
- * - $content_attributes_array: Array of HTML attributes for the content. It is
- *   flattened into a string within the variable $content_attributes.
- *
- * Since $info_split is keyed, a direct print of the item is possible.
- * This array does not apply to user searches so it is recommended to check
- * for its existence before printing. The default keys of 'type', 'user' and
- * 'date' always exist for node searches. Modules may provide other data.
- * @code
- *   <?php if (isset($info_split['comment'])): ?>
- *     <span class="info-comment">
- *       <?php print $info_split['comment']; ?>
- *     </span>
- *   <?php endif; ?>
- * @endcode
- *
- * To check for all available data within $info_split, use the code below.
- * @code
- *   <?php print '<pre>'. check_plain(print_r($info_split, 1)) .'</pre>'; ?>
- * @endcode
- *
- * @see template_preprocess()
- * @see template_preprocess_search_result()
- * @see template_process()
- *
- * @ingroup themeable
- */
-  $nid = $variables['result']['node']->entity_id;
-  $node = node_load($nid);
-  $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
-  $product = $system_data->product_raw;
-  $selected_features = get_selected_features($product);
-  $facet_values = get_facet_values($system_data);
-  $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
- //krumo($node);
-?>
-<!-- starts -->
-<!-- <div id="content" class="plp"> -->
-    <!-- <div class="container-fluid"> -->
-      <!-- <div class="row"> -->
-        <!-- <div class="col-xs-12 col-sm-9 col-md-9 plp-right"> -->
-          <!-- <div class="row"> -->
-            <!-- <div class="col-xs-12 col-sm-12 col-md-12 sortby">
-              <div class="sort-wrap">
-                <span>Sort By</span>
-                <select>
-                  <option>Best Selling</option>
-                </select>
-              </div>
-            </div> -->
-            <div class="col-xs-12 col-sm-4 col-md-3">
-              <div class="box">
-                <div class="img-wrap">
-                  <a class="pdpUrl" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
-                    <img alt="<?php echo htmlentities($node->title) ?>" title="<?php echo htmlentities($node->title) ?>" src="<?php print current_theme_path() .'/images/img1.jpg'; ?>" onmouseover="src='<?php print current_theme_path() .'/images/img2.jpg'; ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php print current_theme_path() .'/images/img1.jpg'; ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
-                    <div class="select-wrap">
-                      <a href="#" alt="cart"><span class="addcart"></span></a>
-                      <a href="#" alt="wishlist"><span class="wishlist"></span></a>
-                    </div>
-                  </a>
-                </div>
-                <div class="title"><?php echo htmlentities($node->title) ?></div>
-                <div class="price">Rs. <?php echo format_money($product->sales_price) ?></div>
-              </div>
-            </div>
-          <!-- </div> -->
-        <!-- </div> -->
-        <!-- </div> -->
-    <!-- </div> -->
-  <!-- </div> -->
-<!-- ends -->
-<!--<div class="boxListItemGrid productItem PLP <?php print $classes; ?>"<?php print $attributes; ?>>
-  <ul class="displayList productItemList PLP">
-    <li id="<?php echo $product->product_id ?>" class="image thumbImage plpThumbImage">
-      <div class="js_eCommerceThumbNailHolder eCommerceThumbNailHolder">
-        <div class="js_swatchProduct">
-          <a class="pdpUrl" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
-          <img alt="<?php echo htmlentities($node->title) ?>" title="<?php echo htmlentities($node->title) ?>" src="<?php echo drubiz_image($product->plp_image) ?>" class="productThumbnailImage" height="187" width="140" onmouseover="src='<?php echo drubiz_image($product->plp_image_alt) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product->plp_image) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
-          </a>
-        </div>
-      </div>
-    </li>
-    <div id="fb-root"></div>
-    <div class="wishList_social_share" style="display: block;">
-      <span>
-      <a title="Add to wishlist" href="javascript:void(0);" onclick="javascript:showPlpSizeGuide1('PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" class="wishlist_share" inactiveaddtowishlist"="" id="js_addToWishlist_PLP_<?php echo $product->product_id ?>"></a>
-      </span>
+/**  * @file  * Default theme implementation for displaying a single search
+result.  *  * This template renders a single search result and is collected
+into  * search-results.tpl.php. This and the parent template are  * dependent
+to one another sharing the markup for definition lists.  *  * Available
+variables:  * - $url: URL of the result.  * - $title: Title of the result.  *
+- $snippet: A small preview of the result. Does not apply to user searches.  *
+- $info: String of all the meta information ready for print. Does not apply  *
+to user searches.  * - $info_split: Contains same data as $info, split into a
+keyed array.  * - $module: The machine-readable name of the module (tab) being
+searched, such  * as "node" or "user".  * - $title_prefix (array): An array
+containing additional output populated by  *   modules, intended to be
+displayed in front of the main title tag that  *   appears in the template.  *
+- $title_suffix (array): An array containing additional output populated by  *
+modules, intended to be displayed after the main title tag that appears in  *
+the template.  *  * Default keys within $info_split:  * -
+$info_split['module']: The module that implemented the search query.  * -
+$info_split['user']: Author of the node linked to users profile. Depends  * on
+permission.  * - $info_split['date']: Last update of the node. Short
+formatted.  * - $info_split['comment']: Number of comments output as "%
+comments", %  *   being the count. Depends on comment.module.  *  * Other
+variables:  * - $classes_array: Array of HTML class attribute values. It is
+flattened  *   into a string within the variable $classes. * -
+$title_attributes_array: Array of HTML attributes for the title. It is  *
+flattened into a string within the variable $title_attributes.  * -
+$content_attributes_array: Array of HTML attributes for the content. It is *
+flattened into a string within the variable $content_attributes.  *  * Since
+$info_split is keyed, a direct print of the item is possible.  * This array
+does not apply to user searches so it is recommended to check  * for its
+existence before printing. The default keys of 'type', 'user' and  * 'date'
+always exist for node searches. Modules may provide other data.  * @code  *
+<?php if (isset($info_split['comment'])): ?>  *     <span class="info-
+comment">  *       <?php print $info_split['comment']; ?>  *     </span>  *
+<?php endif; ?>  * @endcode  *  * To check for all available data within
+$info_split, use the code below.  * @code  *   <?php print '<pre>'.
+check_plain(print_r($info_split, 1)) .'</pre>'; ?> * @endcode  *  * @see
+template_preprocess()  * @see template_preprocess_search_result()  * @see
+template_process()  *  * @ingroup themeable  */ $nid =
+$variables['result']['node']->entity_id;   $node = node_load($nid);
+$system_data =
+json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);   $product =
+$system_data->product_raw; //krumo($system_data);   $selected_features =
+get_selected_features($product);   $facet_values =
+get_facet_values($system_data);   $share_url = url('node/' . $node->nid,
+array('absolute' => TRUE));   //krumo($node); ?> <!-- starts --> <!-- <div
+id="content" class="plp"> -->     <!-- <div class="container-fluid"> --> <!--
+<div class="row"> --> <!-- <div class="col-xs-12 col-sm-9 col- md-9 plp-
+right"> -->           <!-- <div class="row"> --> <!-- <div class="col-xs-12
+col-sm-12 col-md-12 sortby">               <div class ="sort-wrap"> <span>Sort
+By</span> <select> <option>Best Selling</option> </select> </div> </div> -->
+<div class="col-xs-12 col- sm-4 col-md-3"> <div class="box"> <div class="img-
+wrap">                   <a class="pdpUrl" title="<?php echo
+htmlentities($product->product_name) ?>" href="<?php echo url('node/' .
+$node->nid) ?>" id="<?php echo $product->product_id ?>"> <img alt="<?php echo
+drubiz_image($product->plp_image_alt); ?>" title="<?php echo
+htmlentities($node->title) ?>" src="<?php echo
+drubiz_image($product->plp_image); ?>" onmouseover="src='<?php echo
+drubiz_image($product->plp_image_alt); ?>';
+jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});"
+onmouseout="src='<?php echo drubiz_image($product->plp_image); ?>';
+jQuery(this).error(function(){onImgError(this, 'PLP- Thumb');});"
+onerror="onImgError(this, 'PLP-Thumb');">                     <div class
+="select- wrap"> <a href="#" alt="cart"><span class="addcart"></span></a> <a
+href="#" alt="wishlist"><span class="wishlist"></span></a> </div> </a> </div>
+<div class="title"><?php echo htmlentities($product->product_name); ?></div>
+<div class="price">Rs. <?php echo format_money($product->sales_price) ?></div>
+</div> </div>           <!-- </div> --> <!-- </div> --> <!-- </div> --> <!--
+</div> -->   <!-- </div> --> <!-- ends --> <!--<div class="boxListItemGrid
+productItem PLP <?php print $classes; ?>"<?php print $attributes; ?>>   <ul
+class="displayList productItemList PLP"> <li id="<?php echo
+$product->product_id ?>" class="image thumbImage plpThumbImage"> <div
+class="js_eCommerceThumbNailHolder eCommerceThumbNailHolder"> <div
+class="js_swatchProduct"> <a class="pdpUrl" title="<?php echo
+htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>"
+id="<?php echo $product->product_id ?>"> <img alt="<?php echo
+htmlentities($node->title) ?>" title="<?php echo htmlentities($node->title)
+?>" src="<?php echo drubiz_image($product->plp_image) ?>"
+class="productThumbnailImage" height="187" width="140" onmouseover="src='<?php
+echo drubiz_image($product->plp_image_alt) ?>';
+jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});"
+onmouseout="src='<?php echo drubiz_image($product->plp_image) ?>';
+jQuery(this).error(function(){onImgError(this, 'PLP- Thumb');});"
+onerror="onImgError(this, 'PLP-Thumb');">           </a>         </div> </div>
+</li>     <div id="fb-root"></div> <div class="wishList_social_share"
+style="display: block;"> <span>       <a title="Add to wishlist"
+href="javascript:void(0);" onclick="javascript:showPlpSizeGuide1('PLP_<?php
+echo $product->product_id ?>', '<?php echo $product->product_id ?>');"
+class="wishlist_share" inactiveaddtowishlist"=""
+id="js_addToWishlist_PLP_<?php echo $product->product_id ?>"></a> </span>
   
     </div>
     <li class="container selectableFeature plpSelectableFeature" style="display:none" id="js_selectableFeature_li_PLP_<?php echo $product->product_id ?>">
