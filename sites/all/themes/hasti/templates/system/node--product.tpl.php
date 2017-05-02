@@ -122,33 +122,32 @@
         <div class="size">
           <span class="available">Available Sizes</span>
           <!-- varients -->
-           <?php foreach ($facet_values as $facet_name => $this_facet_values): ?>
+          <ul>
+            <?php foreach ($facet_values as $facet_name => $this_facet_values): ?>
               <li class="string selectableFeature pdpSelectableFeature">
-                <?php if(strtolower($facet_name) == 'size' || strtolower($facet_name) == 'color') { ?>
-                  <label><?php echo($facet_name) . ':'; ?></label>
-                    <div class="pdpSelectableFeature">
-                      <div class="selectableFeatures <?php echo strtoupper($facet_name) ?>">
-                        <div id="size-wrapper">
-                          <div class="forgot-area">
-                            <ul class="js_selectableFeature_1">
-                            <?php $countFacet=0; ?>
-                              <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
-                                
-                                <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
-                                  <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
-                                </li>
-                                
-                              <?php endforeach; ?>
-                            </ul>
-                          </div>
+                <?php if(strtolower($facet_name) == 'size') { ?>
+                  <!-- <label><?php echo($facet_name) . ':'; ?></label> -->
+                  <div class="pdpSelectableFeature">
+                    <div class="selectableFeatures <?php echo strtoupper($facet_name) ?>">
+                      <div id="size-wrapper">
+                        <div class="forgot-area">
+                          <ul class="js_selectableFeature_1">
+                          <?php $countFacet=0; ?>
+                            <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
+                              <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
+                                <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
                         </div>
                       </div>
                     </div>
+                  </div>
                 <?php } ?>
               </li>
             <?php endforeach; ?>
-
-          <ul>
+          </ul>
+          <!-- <ul>
             <li>
               <input type="checkbox">
               <label>S</label>
@@ -169,19 +168,45 @@
               <input type="checkbox">
               <label>XXL</label>
             </li>
-          </ul>
+          </ul> -->
           <div class="sizechart"><p>Not Sure? <span><a href="#">See Size Chart</a></span></p></div>
           <p>The mode (height 5'8". chest 33" and wast 28")</p>
         </div>
+        <!-- Colors -->
         <div class="color">
           <span class="available">Available Colors</span>
           <ul>
+            <?php foreach ($facet_values as $facet_name => $this_facet_values): ?>
+              <li class="string selectableFeature pdpSelectableFeature">
+                <?php if(strtolower($facet_name) == 'color') { ?>
+                  <!-- <label><?php echo($facet_name) . ':'; ?></label> -->
+                  <div class="pdpSelectableFeature">
+                    <div class="selectableFeatures <?php echo strtoupper($facet_name) ?>">
+                      <div id="size-wrapper">
+                        <div class="forgot-area">
+                          <ul class="js_selectableFeature_1">
+                          <?php $countFacet=0; ?>
+                            <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
+                              <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
+                                <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php } ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+          <!-- <ul>
             <li class="white"></li>
             <li class="black"></li>
             <li class="red"></li>
             <li class="blue"></li>
             <li class="green"></li>
-          </ul>
+          </ul> -->
         </div>
         <div class="btns-wrap">
           <span><a href="#" class="wish-icon">Add to wish list</a></span>
