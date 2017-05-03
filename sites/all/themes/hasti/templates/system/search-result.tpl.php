@@ -86,16 +86,16 @@
         <a href="#" alt="cart"><span onclick="showVariants(this,'PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
         <a href="#" alt="wishlist"><span onclick="showWishlistVariants(this);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
       </div>
-      <div class="cart-options variant-<?php echo $product->product_id; ?>">
+      <div class="cart-options variant-<?php echo $product->product_id; ?>" style="display:none">
         <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />
-        <ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
-            <?php if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
-              <li class="<?php echo strtolower($color); ?>" value="<?php echo $variant_product_id ?>">
-                <a href="#" class="plp-add-to-cart"  data-product-id="<?php echo $variant_product_id ?>">
+        <!--<ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php //echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
+            <?php //if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
+              <li class="<?php //echo strtolower($color); ?>" value="<?php //echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-cart"  data-product-id="<?php //echo $variant_product_id ?>">
                 </a>
               </li>
-            <?php endforeach; ?>
-        </ul>
+            <?php //endforeach; ?>
+        </ul>-->
         <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
             <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
               <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
@@ -106,7 +106,7 @@
             <?php endforeach; ?>
         </ul>
       </div>
-      <div class="wishlist-options wishlist-variant-<?php echo $product->product_id; ?>">
+      <div class="wishlist-options wishlist-variant-<?php echo $product->product_id; ?>" style="display:none">
         <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />
         <ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
             <?php if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
