@@ -81,6 +81,7 @@
  */
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
+  //krumo($product);
   $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
   $category_names_from_catalog = $drubiz_category_names['globus'];
   $get_category_names = explode(',', $product->product_category_id);
@@ -106,7 +107,7 @@
             <img src="<?php print current_theme_path() .'/images/pdp-thumb1.jpg'; ?>" class="img-responsive" />
           </div>
           <div class="col-xs-10 col-sm-10 col-md-10 pleft pright zoom-img">
-            <img src="<?php print current_theme_path() .'/images/pdp-zoom1.jpg'; ?>" class="img-responsive" />
+            <img src="<?php echo drubiz_image($product->pdp_regular_image); ?>" class="img-responsive" />
           </div>
         </div>
         <div class="price-wrap">

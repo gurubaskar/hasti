@@ -123,7 +123,7 @@ global $drubiz_domain;
                     </form>
                   </div>
                   <div class="cart">
-                    <p><span class="count">0</span> Items <span class="cost">Rs. 0.00</span></p>
+                    <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p>
                   </div>
                 </div>
               </div>
