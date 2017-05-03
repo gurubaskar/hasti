@@ -81,6 +81,7 @@
  */
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
+  //krumo($product);
   $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
   $category_names_from_catalog = $drubiz_category_names['globus'];
   $get_category_names = explode(',', $product->product_category_id);
@@ -106,7 +107,7 @@
             <img src="<?php print current_theme_path() .'/images/pdp-thumb1.jpg'; ?>" class="img-responsive" />
           </div>
           <div class="col-xs-10 col-sm-10 col-md-10 pleft pright zoom-img">
-            <img src="<?php echo drubiz_image($product->plp_image); ?>" class="img-responsive" />
+            <img src="<?php echo drubiz_image($product->pdp_regular_image); ?>" class="img-responsive" />
           </div>
         </div>
         <div class="price-wrap">
@@ -147,34 +148,12 @@
               <!-- </li> -->
             <?php endforeach; ?>
           </ul>
-         <!--  <ul>
-            <li>
-              <input type="checkbox">
-              <label>S</label>
-            </li>
-            <li>
-              <input type="checkbox">
-              <label>M</label>
-            </li>
-            <li>
-              <input type="checkbox">
-              <label>L</label>
-            </li>
-            <li>
-              <input type="checkbox">
-              <label>XL</label>
-            </li>
-            <li>
-              <input type="checkbox">
-              <label>XXL</label>
-            </li>
-          </ul> -->
           <div class="sizechart"><p>Not Sure? <span><a href="#">See Size Chart</a></span></p></div>
           <p>The mode (height 5'8". chest 33" and wast 28")</p>
         </div>
+        <!-- Colors -->
         <div class="color">
           <span class="available">Available Colors</span>
-          <!-- Colors -->
           <ul>
             <?php foreach ($facet_values as $facet_name => $this_facet_values): ?>
               <?php if(strtolower($facet_name) == 'color') { ?>
@@ -200,13 +179,6 @@
               <?php } ?>
             <?php endforeach; ?>
           </ul>
-          <!-- <ul>
-            <li class="white"></li>
-            <li class="black"></li>
-            <li class="red"></li>
-            <li class="blue"></li>
-            <li class="green"></li>
-          </ul> -->
         </div>
         <div class="btns-wrap">
           <span><a href="#" class="wish-icon">Add to wish list</a></span>
@@ -228,12 +200,10 @@
                 <img src="<?php print current_theme_path() .'/images/pdp-rimg2.jpg'; ?>" class="img-responsive" />
                 <img src="<?php print current_theme_path() .'/images/pdp-rimg6.jpg'; ?>" class="img-responsive" />
               </div>
-              
               <div class="video">
                 <a href="#"><img src="<?php print current_theme_path() .'/images/pdp-rvedio.jpg'; ?>" class="img-responsive" /></a>
                 <img src="<?php print current_theme_path() .'/images/pdp-rimg5.jpg'; ?>" class="img-responsive" />
               </div>
-              
             </div>
             <div class="btns-wrap">
               <span><a href="#">Share this story</a></span>

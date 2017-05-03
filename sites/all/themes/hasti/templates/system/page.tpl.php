@@ -88,7 +88,17 @@ global $drubiz_domain;
         <p>Have your greatest experience with us and support the Women of India.</p>
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
-        <?php print render($page['topnav']); ?>
+          <ul>
+            <?php if($GLOBALS['user']->uid != 0):?>
+              <li><a href="#">My Account</a></li>
+            <?php endif; ?>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Wish List</a></li>
+            <?php if($GLOBALS['user']->uid == 0):?>
+              <li><a href="#">Sign Up</a></li>
+              <li><a href="#">Sign In</a></li>
+            <?php endif; ?>
+          </ul>
       </div>
     </div>
   </div>
@@ -123,7 +133,8 @@ global $drubiz_domain;
                     </form>
                   </div>
                   <div class="cart">
-                    <p><span class="count">0</span> Items <span class="cost">Rs. 0.00</span></p>
+                    <a href="<?php echo url('cart') ?>" title="My Cart">
+                    <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p>
                   </div>
                 </div>
               </div>
