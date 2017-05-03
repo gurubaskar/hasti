@@ -69,35 +69,61 @@
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
   //krumo($product);
-  $selected_features = get_selected_features($product);
+  //$selected_features = get_selected_features($product);
   $facet_values = get_facet_values($system_data);
-  krumo($selected_features);
+  //krumo($system_data);
+  //krumo($facet_values);
   $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
  //krumo($node);
 ?>
 <div class="col-xs-12 col-sm-4 col-md-3">
   <div class="box">
     <div class="img-wrap">
-      <img alt="<?php echo drubiz_image($product->plp_image_alt); ?>" title="<?php echo htmlentities($node->title) ?>" src="<?php echo drubiz_image($product->plp_image); ?>" onmouseover="src='<?php echo drubiz_image($product->plp_image_alt); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product->plp_image); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP- Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
+      <a class="pdpUrl" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
+        <img alt="<?php echo drubiz_image($product->plp_image_alt); ?>" title="<?php echo htmlentities($node->title) ?>" src="<?php echo drubiz_image($product->plp_image); ?>" onmouseover="src='<?php echo drubiz_image($product->plp_image_alt); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product->plp_image); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP- Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
+    </a>
       <div class="select-wrap">
-        <a href="#" alt="cart"><span onclick="showVariants(this);" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
-        <a href="#" alt="wishlist"><span class="wishlist"></span></a>
+        <a href="#" alt="cart"><span onclick="showVariants(this,'PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
+        <a href="#" alt="wishlist"><span onclick="showWishlistVariants(this);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
       </div>
       <div class="cart-options variant-<?php echo $product->product_id; ?>">
         <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />
-        <ul class="color">
-          <li class="white"><a href="#"></a></li>
-          <li class="black"><a href="#"></a></li>
-          <li class="red"><a href="#"></a></li>
-          <li class="blue"><a href="#"></a></li>
-          <li class="green"><a href="#"></a></li>
+        <ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
+            <?php if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
+              <li class="<?php echo strtolower($color); ?>" value="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-cart"  data-product-id="<?php echo $variant_product_id ?>">
+                </a>
+              </li>
+            <?php endforeach; ?>
         </ul>
-        <ul class="size">
-          <li><a href="#">L</a></li>
-          <li><a href="#">M</a></li>
-          <li><a href="#">S</a></li>
-          <li><a href="#">XL</a></li>
-          <li><a href="#">XXL</a></li>
+        <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
+            <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
+              <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-cart"  data-product-id="<?php echo $variant_product_id ?>">
+                  <?php echo $size ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+        </ul>
+      </div>
+      <div class="wishlist-options wishlist-variant-<?php echo $product->product_id; ?>">
+        <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />
+        <ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
+            <?php if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
+              <li class="<?php echo strtolower($color); ?>" value="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-wishlist"  data-product-id="<?php echo $variant_product_id ?>">
+                </a>
+              </li>
+            <?php endforeach; ?>
+        </ul>
+        <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
+            <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
+              <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-wishlist"  data-product-id="<?php echo $variant_product_id ?>">
+                  <?php echo $size ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
         </ul>
       </div>
     </div>

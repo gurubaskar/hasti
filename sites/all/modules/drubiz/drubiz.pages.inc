@@ -1043,7 +1043,7 @@ function drubiz_remove_store_credit(){
   function drubiz_plp_check_inventory(){
     $client = drubiz_api_client();
     $productId = @$_POST['productId'];
-    $response = $client->get('inventoryCheckNew?' . http_build_query(array(
+    $response = $client->get('inventoryCheck?' . http_build_query(array(
       'productId' => $productId,//'500900',
     )));
     $raw_json = $response->getBody();
