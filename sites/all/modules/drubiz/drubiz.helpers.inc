@@ -886,6 +886,7 @@ function size_sort($array) {
  * Get all the possible facet value options for product variants.
  */
 function get_facet_values($system_data, $eliminate_facets_without_options = TRUE) {
+  global $drubiz_domain;
   $facet_values = array();
   foreach ($system_data->product_variants as $product_variant) {
     $selected_features = get_selected_features($product_variant);
@@ -902,16 +903,16 @@ function get_facet_values($system_data, $eliminate_facets_without_options = TRUE
       $facet_values[$facet_name] = $facet_value;
     }
   }
-
   if ($eliminate_facets_without_options) {
     // Eliminate $facet_values without multiple options
-    foreach ($facet_values as $facet_name => $this_facet_values) {
-      if (count($this_facet_values) <= 1) {
-        unset($facet_values[$facet_name]);
+    if($drubiz_domain['catalog'] != 'hasti'){
+      foreach ($facet_values as $facet_name => $this_facet_values) {
+        if (count($this_facet_values) <= 1) {
+          unset($facet_values[$facet_name]);
+        }
       }
     }
   }
-
   return $facet_values;
 }
 
@@ -1057,7 +1058,7 @@ function update_cart_address($contact_mech_id) {
  * Get Shopping Cart of currently logged in user.
  */
 function get_user_cart() {
-  $endpoint = 'eCommerceShowcartNew';
+  $endpoint = 'eCommerceShowcart';
   $params = array();
   $party_id = get_user_party_id();
   if (empty($GLOBALS['user']->uid)) {
@@ -1088,7 +1089,7 @@ function get_user_cart() {
  * Add item to currently logged in user's cart.
  */
 function add_item_to_cart($product_id, $quantity) {
-  $endpoint = 'addItemToCartNew';
+  $endpoint = 'addItemToCart';
   $params = array(
     'add_product_id'  => $product_id,
     'quantity'        => $quantity,

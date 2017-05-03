@@ -122,6 +122,7 @@ p{margin-bottom:7px; line-height:22px;}
 .cart-options ul.size li a{color:#000; font-weight:bold; padding:5px; float:left;}
 .cart-options ul.color li, .color ul li{float:left; background:#fff; border:1px solid #afafaf; margin-right:7px; line-height:14px; margin-bottom:10px;}
 .cart-options ul.color li a{color:#000; font-weight:bold; float:left;}
+
 .black{background:#000 !important;}
 .red{background:#e0050a !important;}
 .blue{background:#0005c5 !important;}
@@ -323,3 +324,12 @@ p{margin-bottom:7px; line-height:22px;}
 .ui-corner-right {  -moz-border-radius-topright: 12px/*{cornerRadius}*/; -webkit-border-top-right-radius: 12px/*{cornerRadius}*/; border-top-right-radius: 12px/*{cornerRadius}*/; -moz-border-radius-bottomright: 12px/*{cornerRadius}*/; -webkit-border-bottom-right-radius: 12px/*{cornerRadius}*/; border-bottom-right-radius: 12px/*{cornerRadius}*/; }
 .ui-corner-left { -moz-border-radius-topleft: 12px/*{cornerRadius}*/; -webkit-border-top-left-radius: 12px/*{cornerRadius}*/; border-top-left-radius: 12px/*{cornerRadius}*/; -moz-border-radius-bottomleft: 12px/*{cornerRadius}*/; -webkit-border-bottom-left-radius: 12px/*{cornerRadius}*/; border-bottom-left-radius: 12px/*{cornerRadius}*/; }
 .ui-corner-all { -moz-border-radius: 12px/*{cornerRadius}*/; -webkit-border-radius: 12px/*{cornerRadius}*/; border-radius: 12px/*{cornerRadius}*/; }
+
+/*Kiran PLP Wishlist*/
+.wishlist-options{float:left; width:100%; background:#fff; position:absolute; bottom:0;}
+.wishlist-options ul{float:left; width:100%; position:relative;}
+.wishlist-options ul li{width:35px; height:25px;}
+.wishlist-options ul.size li{float:left; background:#fff; border:1px solid #afafaf; margin-right:7px; line-height:14px;}
+.wishlist-options ul.size li a{color:#000; font-weight:bold; padding:5px; float:left;}
+.wishlist-options ul.color li, .color ul li{float:left; background:#fff; border:1px solid #afafaf; margin-right:7px; line-height:14px; margin-bottom:10px;}
+.wishlist-options ul.color li a{color:#000; font-weight:bold; float:left;}
