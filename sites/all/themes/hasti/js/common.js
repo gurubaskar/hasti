@@ -73,9 +73,9 @@ function hideVariants(e){
 
 /************** plp left panel code **************/
 function hidefacet(e){
-  var id = $(e).closest("div").attr("id");
-  $("#"+id+"-wrap").toggle(function(){
-    $(e).toggleClass("plus minus");
+  var id = jQuery(e).closest("div").attr("id");
+  jQuery("#filter_"+id).toggle(function(){
+    jQuery(e).toggleClass("plus minus");
   });
   
 }

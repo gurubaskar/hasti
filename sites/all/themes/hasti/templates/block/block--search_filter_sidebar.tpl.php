@@ -48,10 +48,12 @@
 <li>
   <?php //print render($title_prefix); ?>
   <?php if ($block->subject): ?>
-    <h3<?php print $title_attributes; ?>>
-    	<?php print $block->subject ?>
-    	<span class="minus" onclick="hidefacet(<?php echo $id;?>);" id="filterToggle_<?php echo $id;?>"></span>
-    </h3>
+    <div id="<?php echo $id;?>">
+      <h3<?php print $title_attributes; ?>>
+      	<?php print $block->subject ?>
+      	<span class="minus" onclick="hidefacet(<?php echo 'this';?>);" id="filterToggle_<?php echo $id;?>"></span>
+      </h3>
+    </div>
   <?php endif;?>
   <?php //print render($title_suffix); ?>
   <div class="content"<?php print $content_attributes; ?> id="filter_<?php echo $id;?>">
