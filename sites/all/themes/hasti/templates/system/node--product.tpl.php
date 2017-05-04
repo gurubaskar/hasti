@@ -138,7 +138,7 @@
                                 <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
                                   <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
                                 </li>
-                              <?php $size = $size + 1; endforeach; ?>
+                              <?php endforeach; ?>
                             </ul>
                           </div>
                         </div>
