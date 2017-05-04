@@ -325,6 +325,10 @@ p{margin-bottom:7px; line-height:22px;}
 .ui-corner-left { -moz-border-radius-topleft: 12px/*{cornerRadius}*/; -webkit-border-top-left-radius: 12px/*{cornerRadius}*/; border-top-left-radius: 12px/*{cornerRadius}*/; -moz-border-radius-bottomleft: 12px/*{cornerRadius}*/; -webkit-border-bottom-left-radius: 12px/*{cornerRadius}*/; border-bottom-left-radius: 12px/*{cornerRadius}*/; }
 .ui-corner-all { -moz-border-radius: 12px/*{cornerRadius}*/; -webkit-border-radius: 12px/*{cornerRadius}*/; border-radius: 12px/*{cornerRadius}*/; }
 
+.selectableFeatures ul li.selected a {
+  border: 1px solid darkgray;
+}
+
 /*Kiran PLP Wishlist*/
 .wishlist-options{float:left; width:100%; background:#fff; position:absolute; bottom:0;}
 .wishlist-options ul{float:left; width:100%; position:relative;}

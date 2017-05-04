@@ -93,7 +93,7 @@
   $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
   $out_of_stock_info = pdp_out_of_stock_info($node->field_product_id[LANGUAGE_NONE][0]['value']);
   $out_of_stock = $out_of_stock_info->availableQuantity;
-  // krumo($node);
+  // krumo($out_of_stock_info);
   // krumo($out_of_stock_info->availableQuantity , $facet_values);
   // krumo($sku);
 ?>
@@ -138,7 +138,7 @@
                                 <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
                                   <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
                                 </li>
-                              <?php endforeach; ?>
+                              <?php $size = $size + 1; endforeach; ?>
                             </ul>
                           </div>
                         </div>
@@ -166,9 +166,9 @@
                             <ul class="js_selectableFeature_1">
                             <?php $countFacet1=0; ?>
                               <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
-                                <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>">
-                                  <li style="background: <?php echo strtolower($this_facet_value) ?>" id="selectableFeature_<?php echo ++$countFacet1; ?>"></li>
-                                </a>
+                                <li class="<?php echo $this_facet_value ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>">
+                                  <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
+                                </li>
                               <?php endforeach; ?>
                             </ul>
                           </div>
@@ -182,12 +182,8 @@
         </div>
         <div class="btns-wrap">
           <span><a href="#" class="wish-icon">Add to wish list</a></span>
-          <?php if($out_of_stock <= 0) { ?>
-            <span><a href="#" class="add-bag">Add to Bag disabled</a></span>
-          <?php } else { ?>
-          <span><a href="#" class="add-bag">Add to Bag</a></span>
-          <?php } ?>
-          <span><a href="#" class="buy-now">Buy Now</a></span>
+          <span><a href="#" class="add-bag" id="js_addToCart">Add to Bag</a></span>
+          <span><a href="#" class="buy-now" id="js_addToCart_buynow">Buy Now</a></span>
         </div>
         <p><?php echo $body[0]['safe_value'] ?></p>
         <div class="story-wrap">
