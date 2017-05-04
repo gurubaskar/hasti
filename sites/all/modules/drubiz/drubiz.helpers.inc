@@ -968,7 +968,7 @@ function setup_krumo() {
  */
 function drubiz_image($path) {
   global $drubiz_domain;
-  $drubiz_ofbiz_url = variable_get('drubiz_ofbiz_url', '');
+  /*$drubiz_ofbiz_url = variable_get('drubiz_ofbiz_url', '');
   if (!empty($drubiz_domain['dev'])) {
     // Development env.
     $catalog = ''; // No need to add catalog for dev env.
@@ -977,8 +977,9 @@ function drubiz_image($path) {
   else {
     // Non-development env.
     $catalog = $drubiz_domain['catalog'] . '/';
-  }
-  return $drubiz_ofbiz_url . 'osafe_theme/images/catalog/' . $catalog . $path;
+  }*/
+  $drubiz_image_url = variable_get('drubiz_image_url','');
+  return current_theme_path() . '/images/' .$path;
 }
 
 /**
