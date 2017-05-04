@@ -79,3 +79,46 @@ function hidefacet(e){
   });
   
 }
+
+function onImgError(elem,type) {
+  var imgUrl = drubiz_ofbiz_url + "/osafe_theme/images/user_content/images/";
+  var imgName= "NotFoundImage.jpg";
+  switch (type) {
+    case "PLP-Thumb":
+      imgName="NotFoundImagePLPThumb.jpg";
+      break;
+    case "PLP-Swatch":
+      imgName="NotFoundImagePLPSwatch.jpg";
+      break;
+    case "PDP-Large":
+      imgName="NotFoundImagePDPLarge.jpg";
+      break;
+    case "PDP-Alt":
+      imgName="NotFoundImagePDPAlt.jpg";
+      break;
+    case "PDP-Detail":
+      imgName="NotFoundImagePDPDetail.jpg";
+      break;
+    case "PDP-Swatch":
+      imgName="NotFoundImagePDPSwatch.jpg";
+      break;
+    case "CLP-Thumb":
+      imgName="NotFoundImageCLPThumb.jpg";
+      break;
+    case "MANU-Image":
+      imgName="NotFoundImage.jpg";
+      break;
+  }
+  elem.src = imgUrl + imgName;
+  elem.onmouseout="";
+  elem.onmouseover="";
+  elem.onerror = "";
+
+  if(type == "PDP-Alt"){
+     jQuery("#"+elem.id+"Link_li").css("display","none");
+     jQuery("#addImageLink_li").css("display","none");
+    var imgUrl = "";
+    var imgName= "";
+    }
+  return true;
+}
