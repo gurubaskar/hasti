@@ -6,7 +6,7 @@
 
 // Ofbiz Webservices.
 $ofbiz_webservice_urls = array(
-  'DEV'     => 'http://bg4ws0386/', // Development
+  'DEV'     => 'http://bg4ws0386:8080/', // Development
   'LAPTOP'  => 'http://localhost:8080/', // Laptop
 );
 
