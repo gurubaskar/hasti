@@ -181,7 +181,7 @@
           </ul>
         </div>
         <div class="btns-wrap">
-          <span><a href="#" class="wish-icon">Add to wish list</a></span>
+          <span><a href="#" class="wish-icon" id="js_addToWishlist">Add to wish list</a></span>
           <span><a href="#" class="add-bag" id="js_addToCart">Add to Bag</a></span>
           <span><a href="#" class="buy-now" id="js_addToCart_buynow">Buy Now</a></span>
         </div>

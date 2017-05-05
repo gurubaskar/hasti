@@ -977,7 +977,7 @@ function drubiz_add_to_love_list(){
   $product_id = $_POST['product_id']; 
   $quantity = $_POST['quantity'];
   $client = drubiz_api_client();
-  $response = $client->get('addItemToWishListNew?' . http_build_query(array(
+  $response = $client->get('addItemToWishList?' . http_build_query(array(
     'add_product_id'  => $product_id,
     'quantity'        => $quantity,
     'partyId'         => get_user_party_id(),
