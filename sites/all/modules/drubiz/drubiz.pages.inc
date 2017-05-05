@@ -64,6 +64,34 @@ function drubiz_update_cart_address() {
   echo json_encode($update_address);
 }
 
+function drubiz_search_suggest() {
+  $return = array();
+  $term = @$_GET['term'];
+  $results = array();
+  $sql = db_query("SELECT DISTINCT {node}.title FROM {node} WHERE {node}.status = 1 AND {node}.type = 'product' AND {node}.title LIKE :term LIMIT 5", array(':term' => db_like($term) . '%'));
+  foreach ($sql as $result) {
+    $results[] = $result->title;
+  }
+
+  if (empty($results)) {
+    $return[] = array(
+      'label' => '<span class="apachesolr_autocomplete message">No suggestions.</span>',
+      'value' => '',
+    );
+  }
+  else {
+    foreach ($results as $result) {
+      $return[] = array(
+        'label' => "<a><div class=\"apachesolr_autocomplete suggestion\" style=\"float: none;\">$result</div><div class='apachesolr_autocomplete message' style='float:right'></div><br style='clear:both'></a>",
+        'value' => $result,
+      );
+    }
+  }
+
+  header('Content-Type: application/json');
+  echo json_encode($return);
+}
+
 /**
  * Page callback for /view-order/%
  */

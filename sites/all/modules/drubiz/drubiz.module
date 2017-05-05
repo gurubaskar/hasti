@@ -148,6 +148,13 @@ function drubiz_init() {
  * Implements hook_menu().
  */
 function drubiz_menu() {
+  $items['drubiz-search-suggest'] = array(
+    'title'             => 'Search Suggestions',
+    'description'       => "Search Suggestions from Hasti",
+    'page callback'     => 'drubiz_search_suggest',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   $items['homepage'] = array(
     'title'             => 'Homepage',
     'description'       => "Homepage",
