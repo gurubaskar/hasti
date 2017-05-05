@@ -17,7 +17,76 @@
            $(".select-wrap", this).hide();
     });
     
+  $('#searchText').keyup(function(e) {
+      // console.log(e.which);
+      var special_keys = [37, 38, 39, 40, 16, 17, 18, 91, 33, 34, 35, 36, 45, 144, 145, 20];
+      if ($.inArray(e.which, special_keys) != -1) {
+        // Special keys used; don't do anything!
+        return;
+      }
+
+      if (e.which == 13) {
+        // Enter key.
+        $('#custom-search-button').click();
+      }
+      else {
+        var text = $(this).val().replace(/[^a-z0-9\s\.'"]+/ig, '');
+        if (text.length > 0) {
+          //$('#solr-suggestions').html('<small><em><img src="'+ Drupal.settings.basePath + 'misc/throbber-active.gif"> ' + Drupal.t('Loading suggestions...') + '</em></small>');
+          $.ajax({
+            type: "GET",
+            // url: Drupal.settings.basePath + 'apachesolr_autocomplete_callback/apachesolr_search_page/core_search',
+            url: Drupal.settings.basePath + 'drubiz-search-suggest',
+            data: 'term=' + encodeURIComponent(text),
+            success: function(data) {
+              var latest_text = $('#searchText').val();
+              if (data.length > 0) {
+                if (latest_text == text) {
+                  $('#solr-suggestions').html('');
+                  var count = 1;
+                  for (key in data) {
+                    //alert(data[key].value);
+                    var label = data[key].label.replace('<a>', '<a href="' + Drupal.settings.basePath + 'search/site/' + data[key].value + '">');
+                    label = label.
+                      replace("<br style='clear:both'>", '').
+                      replace('</a>', "<br style='clear:both'><br style='clear:both'></a>"); //.
+                      //replace(/count'>([0-9]+)<\/div>/g, 'count\'>$1 results</div>');
+                    $('#solr-suggestions').append(label);
+                    if (++count > 5) break;
+                  }
+                }
+              }
+              else {
+                $('#solr-suggestions').html('<small><em>' + Drupal.t('No suggestions.') + '</em></small>');
+              }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              $('#solr-suggestions').html('<small><em>Error fetching suggestions.</em></small>');
+              console.log(textStatus + ': ' + errorThrown);
+            },
+            dataType: 'json'
+          });
+        }
+        else {
+          $('#solr-suggestions').html('<small><em>' + Drupal.t('Please type some keywords.') + '</em></small>');
+        }
+      }
+    });
+
+    $('#searchText').click(function(e) {
+      e.preventDefault();
+      var search_text = $('#searchText').val().replace(/[^a-z0-9\s\.'"]+/ig, '');
+      if (search_text.length == 0) {
+        //alert(Drupal.t('Please enter some search terms'));
+        $('#searchText').focus();
+      }
+      else {
+        document.location = Drupal.settings.basePath + 'search/site/' + encodeURIComponent(search_text);
+      }
+    });
   });
+
+
 })(jQuery);
 
 /************** plp box hover code **************/
@@ -73,6 +142,7 @@ function hideVariants(e){
 
 /************** plp left panel code **************/
 function hidefacet(e){
+  jQuery('filterToggle').hide();
   var id = jQuery(e).closest("div").attr("id");
   jQuery("#filter_"+id).toggle(function(){
     jQuery(e).toggleClass("plus minus");

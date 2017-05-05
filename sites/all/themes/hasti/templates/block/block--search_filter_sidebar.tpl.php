@@ -51,12 +51,12 @@
     <div id="<?php echo $id;?>">
       <h3<?php print $title_attributes; ?>>
       	<?php print $block->subject ?>
-      	<span class="minus" onclick="hidefacet(<?php echo 'this';?>);" id="filterToggle_<?php echo $id;?>"></span>
+      	<span class="plus filterClick" onclick="hidefacet(<?php echo 'this';?>);"></span>
       </h3>
     </div>
   <?php endif;?>
   <?php //print render($title_suffix); ?>
-  <div class="content"<?php print $content_attributes; ?> id="filter_<?php echo $id;?>">
+  <div class="filterToggle" <?php print $content_attributes; ?> id="filter_<?php echo $id;?>" style="display:none">
     <?php print $content ?>
   </div>
  </li>
