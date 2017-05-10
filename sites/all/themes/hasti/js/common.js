@@ -192,3 +192,38 @@ function onImgError(elem,type) {
     }
   return true;
 }
+
+/*************** Forgot Password ******************/
+function checkEmail() {
+  var email = jQuery("#emailid").val();
+  var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if (email == "") {
+      alert("Please Enter your Email");
+      return false;
+  }
+  if (!filter.test(email)) {
+      alert("Please enter a valid email address");
+      return false;
+  }
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + '/forgotPassword',
+    data: 'userEmail=' + email,
+    success: function(data) {
+      if (data['isError'] == 'False') {
+        alert(data['_EVENT_MESSAGE_']);
+        close_loading();
+      }
+      else {
+        alert(data['_ERROR_MESSAGE_LIST_'][0]['message']);
+        close_loading();
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });
+}

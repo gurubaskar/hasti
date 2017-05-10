@@ -702,6 +702,14 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+   $items['forgotPassword'] =array(
+    'title'             => 'Drubiz forgot-password',
+    'description'       => "Drubiz forgot-password",
+    'page callback'     => 'drubiz_forgot_password',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+   
   return $items;
 }
 
