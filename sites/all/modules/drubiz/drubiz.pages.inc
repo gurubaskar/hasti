@@ -544,7 +544,7 @@ function drubiz_user_register() {
  */
 function drubiz_forgot_password() {
   $client = drubiz_api_client();
-  $response = $client->get('validateForgotPassword?' . http_build_query(array(
+  $response = $client->get('validateForgotPasswordResponse?' . http_build_query(array(
       'USERNAME' => @$_POST['userEmail'],
       'EMAIL_PASSWORD' => 'Y',
   )));
@@ -557,7 +557,7 @@ function drubiz_forgot_password() {
  * Page callback for /drubiz/mini-cart
  */
 function drubiz_mini_cart() {
-  echo theme('drubiz_mini_cart', array('cart' => get_user_cart()));
+  echo json_encode(get_user_cart());
 }
 
 /**

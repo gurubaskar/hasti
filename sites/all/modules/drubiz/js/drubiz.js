@@ -500,7 +500,7 @@ $(document).ready(function() {
       url: Drupal.settings.basePath + 'drubiz/add-to-cart',
       data: 'product_id=' + product_id + '&quantity=' + quantity,
       success: function(data) {
-        // console.log(data);
+        console.log(data);
         if (data['isError'] == 'false') {
           if (action == 'buy_now') {
             document.location = Drupal.settings.basePath + 'checkout';
@@ -1029,14 +1029,15 @@ function update_mini_cart() {
     type: "GET",
     url: Drupal.settings.basePath + 'drubiz/mini-cart',
     success: function(data) {
-      $('#lightCart_inner, #cartLightform').html(data);
-      $('#mini-cart-count').html($('#cartLightform .lightBoxOrderItemsItemName').length);
+      console.log(data);
+      $('.cost').html('&#8377.'+ data['cartSubTotal']);
+      $('#mini-cart-count').html(Object.keys(data['cartItemDetails']).length);
       close_loading();
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus + ': ' + errorThrown);
     },
-    dataType: 'html'
+    dataType: 'json'
   });
 }
 

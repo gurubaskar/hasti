@@ -1059,7 +1059,7 @@ function update_cart_address($contact_mech_id) {
  * Get Shopping Cart of currently logged in user.
  */
 function get_user_cart() {
-  $endpoint = 'eCommerceShowcart';
+  $endpoint = 'eCommerceShowcartResponse';
   $params = array();
   $party_id = get_user_party_id();
   if (empty($GLOBALS['user']->uid)) {
@@ -1082,7 +1082,7 @@ function get_user_cart() {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
   return $data;
 }
 
@@ -1090,7 +1090,7 @@ function get_user_cart() {
  * Add item to currently logged in user's cart.
  */
 function add_item_to_cart($product_id, $quantity) {
-  $endpoint = 'addItemToCart';
+  $endpoint = 'addItemToCartResponse';
   $params = array(
     'add_product_id'  => $product_id,
     'quantity'        => $quantity,

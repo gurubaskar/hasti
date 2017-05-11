@@ -5,6 +5,20 @@
     $(".wishlist-options").hide();
   });
 
+
+  $(document).ready(function () {
+    $('.checkout-left ul li:first').addClass('active');
+    $('.tab-content:not(:first)').hide();
+    $('.checkout-left ul li a').click(function (event) {
+        event.preventDefault();
+        var content = $(this).attr('href');
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+        $(content).show();
+        $(content).siblings('.tab-content').hide();
+    });
+  });
+
   $(document).ready(function(){
 
     /************** plp box hover code **************/
