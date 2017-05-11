@@ -540,6 +540,20 @@ function drubiz_user_register() {
 }
 
 /**
+ * Page callback for /drubiz_forgot_password
+ */
+function drubiz_forgot_password() {
+  $client = drubiz_api_client();
+  $response = $client->get('validateForgotPassword?' . http_build_query(array(
+      'USERNAME' => @$_POST['userEmail'],
+      'EMAIL_PASSWORD' => 'Y',
+  )));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  echo json_encode($data);
+}
+
+/**
  * Page callback for /drubiz/mini-cart
  */
 function drubiz_mini_cart() {
