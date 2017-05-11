@@ -1213,15 +1213,15 @@ function get_user_profile() {
  * Login User.
  */
 function ofbiz_login($username, $password) {
-  // /eCommerceLoginNew?USERNAME=test2@example.com&PASSWORD=sonata123
+  // /validateLoginResponse?USERNAME=nikhitha945@gmail.com&PASSWORD=123456
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceLoginNew?' . http_build_query(array(
+  $response = $client->get('validateLoginResponse?' . http_build_query(array(
     'USERNAME' => $username,
     'PASSWORD' => $password,
   )));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, 'test login ' . 'eCommerceLoginNew?' . http_build_query(array(
+  watchdog(__FUNCTION__, 'test login ' . 'validateLoginResponse?' . http_build_query(array(
     'USERNAME' => $username,
     'PASSWORD' => $password,
   )) . ' $data = ' . print_r($data, 1));

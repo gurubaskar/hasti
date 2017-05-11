@@ -89,6 +89,69 @@
 
 })(jQuery);
 
+/*********************Sign UP**************************/
+function hastiSignIn(){
+  var data_firstName                  = jQuery('#signUpForm').find('[name=firstName]:first').val();
+  var data_lastName                   = jQuery('#signUpForm').find('[name=lastName]:first').val();
+  var data_PHONE_MOBILE_CONTACT_OTHER = jQuery('#signUpForm').find('[name=PHONE_MOBILE_CONTACT_OTHER]:first').val();
+  var data_userLoginId                = jQuery('#signUpForm').find('[name=userLoginId]:first').val();
+  var data_currentPassword            = jQuery('#signUpForm').find('[name=currentPassword]:first').val();
+  var data_currentPasswordVerify      = jQuery('#signUpForm').find('[name=currentPasswordVerify]:first').val();
+  var data = 'firstName=' + encodeURIComponent(data_firstName) + '&lastName=' + encodeURIComponent(data_lastName) + '&PHONE_MOBILE_CONTACT_OTHER=' + encodeURIComponent(data_PHONE_MOBILE_CONTACT_OTHER) + '&userLoginId=' + encodeURIComponent(data_userLoginId) + '&currentPassword=' + encodeURIComponent(data_currentPassword) + '&currentPasswordVerify=' + encodeURIComponent(data_currentPasswordVerify);
+
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'drubiz/user-register',
+    data: data,
+    success: function(data) {
+      console.log(data);
+      if (!data['error']) {
+        document.location = data['destination'];
+      }
+      else {
+        alert(data['error_messages'].join("\n"));
+        close_loading();
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });
+}
+
+/*******************Sign IN*************************/
+function signInHasti(){
+  var data_USERNAME = jQuery('#signInForm').find('[name=USERNAME]:first').val();
+  var data_PASSWORD = jQuery('#signInForm').find('[name=PASSWORD]:first').val();
+
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'drubiz/user',
+    data: 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD),
+    success: function(data) {
+      // console.log(data);
+      if (!data['error']) {
+        document.location = data['destination'];
+      }
+      else {
+        alert(data['error_messages'].join("\n"));
+        close_loading();
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });
+}
+
 /************** plp box hover code **************/
 function showVariants(e ,selectFeatureDiv , productId){
     jQuery(".cart-options").hide();

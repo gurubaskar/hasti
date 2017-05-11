@@ -301,49 +301,44 @@ function drubiz_user() {
   $password = @$_POST['PASSWORD'];
   $account = user_load_by_mail($username);
   if (!empty($account->uid)) {
-    $user_authenticated_uid = user_authenticate($account->name, $password);
-    if (!empty($user_authenticated_uid)) {
-      global $user;
-       
-	  $GLOBALS['drubiz_skip_user_integration'] = TRUE;
-	   
-      // Log the user into Drupal first! We'll log them out later if Ofbiz fails.
-      $user = user_load($user_authenticated_uid);
-      user_login_finalize();
+    //$user_authenticated_uid = user_authenticate($account->name, $password);
+    global $user;
+     
+    $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+   
+    // Log the user into Drupal first! We'll log them out later if Ofbiz fails.
+    $user = user_load($account->uid);
+    user_login_finalize();
 
-      // Login to Ofbiz
-      list($data, $response) = ofbiz_login($username, $password);
+    // Login to Ofbiz
+    list($data, $response) = ofbiz_login($username, $password);
 
-      if (empty($data['_ERROR_MESSAGE_'])) {
-        $raw_headers = $response->getHeaders();
-        // Merge cookies.
-        if (!empty($_SESSION['drubiz']['headers']['Set-Cookie'])) {
-          $raw_headers['Set-Cookie'] = array_merge($_SESSION['drubiz']['headers']['Set-Cookie'], $raw_headers['Set-Cookie']);
-        }
-        $_SESSION['drubiz']['headers'] = $raw_headers;
-        $_SESSION['drubiz']['session'] = $data;
-        $return['error'] = FALSE;
-        drupal_set_message('User logged in!');
-        // dsm($raw_headers);
-        // dsm($_SESSION['drubiz']);
-        if (!empty($_POST['REDIR'])) {
-          drupal_goto();
-        }
+    if (empty($data['_ERROR_MESSAGE_'])) {
+      $raw_headers = $response->getHeaders();
+      // Merge cookies.
+      if (!empty($_SESSION['drubiz']['headers']['Set-Cookie'])) {
+        $raw_headers['Set-Cookie'] = array_merge($_SESSION['drubiz']['headers']['Set-Cookie'], $raw_headers['Set-Cookie']);
       }
-      else {
-        global $user;
-        $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
-        $user = user_load(0);
-        unset($_SESSION['drubiz']);
-        drupal_session_regenerate();
+      $_SESSION['drubiz']['headers'] = $raw_headers;
+      $_SESSION['drubiz']['session'] = $data;
+      $return['error'] = FALSE;
+      drupal_set_message('User logged in!');
+      // dsm($raw_headers);
+      // dsm($_SESSION['drubiz']);
+      if (!empty($_POST['REDIR'])) {
+        drupal_goto();
       }
     }
     else {
-      $return['error_messages'][] = 'Invalid username / password.';
+      global $user;
+      $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
+      $user = user_load(0);
+      unset($_SESSION['drubiz']);
+      drupal_session_regenerate();
     }
   }
   else {
-    $return['error_messages'][] = 'Invalid username.';
+    $return['error_messages'][] = 'Invalid username / password.';
   }
 
   echo json_encode($return);
@@ -460,10 +455,6 @@ function drubiz_user_register() {
   $firstName                  = @$_POST['firstName'];
   $lastName                   = @$_POST['lastName'];
   $PHONE_MOBILE_CONTACT_OTHER = @$_POST['PHONE_MOBILE_CONTACT_OTHER'];
-  $dobLongDayUs               = @$_POST['dobLongDayUs'];
-  $dobLongMonthUs             = @$_POST['dobLongMonthUs'];
-  $dobLongYearUs              = @$_POST['dobLongYearUs'];
-  $USER_GENDER                = @$_POST['USER_GENDER'];
   $userLoginId                = @$_POST['userLoginId'];
   $currentPassword            = @$_POST['currentPassword'];
   $currentPasswordVerify      = @$_POST['currentPasswordVerify'];
@@ -476,18 +467,15 @@ function drubiz_user_register() {
     $return['error_messages'][] = 'You are already registered. Please login or use the forgot password feature.';
   }
   else {
-    // /eCommerceCreateNewCustomerNew?PHONE_MOBILE_CONTACT_OTHER=9856235689&userLoginId=test2@example.com&PASSWORD=sonata123&CONFIRM_PASSWORD=sonata123&USERNAME=Test&CUSTOMER_EMAIL=test2@example.com&CUSTOMER_EMAIL_CONFIRM=test2@example.com&USER_FIRST_NAME=Test&USER_LAST_NAME=User&productStoreId=RNY_STORE
+    // /createPersonAndUserLoginResponse?PHONE_MOBILE_CONTACT_OTHER=9490052752&userLoginId=bavya@gmail.com&currentPassword=123456&currentPasswordVerify=123456&firstName=Bavya&lastName=Sri
     $client = drubiz_api_client();
-    $request = 'eCommerceCreateNewCustomerNew?' . http_build_query(array(
+    $request = 'createPersonAndUserLoginResponse?' . http_build_query(array(
       'PHONE_MOBILE_CONTACT_OTHER'  => $PHONE_MOBILE_CONTACT_OTHER,
       'userLoginId'                 => $userLoginId,
-      'PASSWORD'                    => $currentPassword,
-      'CONFIRM_PASSWORD'            => $currentPasswordVerify,
-      'USERNAME'                    => $userLoginId,
-      'CUSTOMER_EMAIL'              => $userLoginId,
-      'CUSTOMER_EMAIL_CONFIRM'      => $userLoginId,
-      'USER_FIRST_NAME'             => $firstName,
-      'USER_LAST_NAME'              => $lastName,
+      'currentPassword'             => $currentPassword,
+      'currentPasswordVerify'       => $currentPasswordVerify,
+      'firstName'                   => $firstName,
+      'lastName'                    => $lastName,
     ));
     $response = $client->get($request);
     $raw_json = $response->getBody();
@@ -502,7 +490,6 @@ function drubiz_user_register() {
       $account = new stdClass;
       $account->is_new = 1;
       $account->name = $userLoginId;
-      $account->pass = $user_password;
       $account->mail = $userLoginId;
       $account->init = $userLoginId;
       $account->status = TRUE;
