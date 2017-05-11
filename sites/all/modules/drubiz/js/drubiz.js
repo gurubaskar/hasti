@@ -478,8 +478,9 @@ $(document).ready(function() {
   $('.product-choose-facet').click(function(e) {
     e.preventDefault();
     var product_id = $(this).data('product-id');
-    $(this).closest('ul').find('li.selected').removeClass('selected');
-    $(this).closest('li').addClass('selected');
+    $(this).closest('ul').find('a.selected').removeClass('selected');
+    $(this).closest('a').addClass('selected');
+    $(this).closest('a').find('li').css("border", "red solid 1px");
   });
   $('#js_addToCart, #js_addToCart_buynow, .plp-add-to-cart').click(function(e) {
     e.preventDefault();
@@ -488,7 +489,7 @@ $(document).ready(function() {
       var quantity = 1;
     }
     else {
-      var product_id = $('.pdpSelectableFeature li.selected:first a').data('product-id');
+      var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');
       var quantity = $('#js_quantity1').val();
     }
 
@@ -500,7 +501,7 @@ $(document).ready(function() {
       url: Drupal.settings.basePath + 'drubiz/add-to-cart',
       data: 'product_id=' + product_id + '&quantity=' + quantity,
       success: function(data) {
-        console.log(data);
+        // console.log(data);
         if (data['isError'] == 'false') {
           if (action == 'buy_now') {
             document.location = Drupal.settings.basePath + 'checkout';
@@ -525,19 +526,13 @@ $(document).ready(function() {
   
   $('#js_addToWishlist, .plp-add-to-wishlist').click(function(e) {
     e.preventDefault();
-    if ($(this).hasClass('plp-add-to-wishlist')) {
-      var product_id = $(this).data('product-id');
-      var quantity = 1;
-    }
-    else {
-      var product_id = $('.pdpSelectableFeature li.selected:first a').data('product-id');
-      var quantity =  $('#js_quantity1').val();
-    }
+    var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');
+    var quantity =  1;
     if(product_id == undefined || product_id == null){
       alert('Please select a variant');
       return;
     }
-    // alert(action + ' - ' + product_id + ' | ' + quantity);
+    // alert(product_id+'--'+quantity);
     loading();
     $.ajax({
       type: "POST",
@@ -545,8 +540,8 @@ $(document).ready(function() {
       data: 'product_id=' + product_id + '&quantity=' + quantity,
       success: function(data) {
              //console.log(data);
-        if (data['isError'] == 'false') {
-          document.location = Drupal.settings.basePath + 'account/love-list';
+        if (data['isError'] == 'False') {
+          alert("Successfully added to your wishlist");
           close_loading();
         }
         else {

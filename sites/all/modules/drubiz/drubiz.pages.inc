@@ -978,12 +978,27 @@ function drubiz_add_to_love_list(){
   $product_id = $_POST['product_id']; 
   $quantity = $_POST['quantity'];
   $client = drubiz_api_client();
-  $response = $client->get('addItemToWishList?' . http_build_query(array(
-    'add_product_id'  => $product_id,
-    'quantity'        => $quantity,
-    'partyId'         => get_user_party_id(),
-  )));
-  $raw_json = $response->getBody();
+  // addItemToWishListResponse;jsessionid=A3FA8123D97CE9D85AE936D40823423F.jvm1?add_product_id=100044-1&quantity=1');
+  $params = array(
+    'add_product_id' => $product_id,
+    'quantity' => $quantity,
+  );
+  $endpoint = 'addItemToWishListResponse';
+    $jsessionid = '5478946B61A9706419BC70EFD8301473.jvm1';
+  // if (empty($GLOBALS['user']->uid)) {
+    // $jsessionid = get_user_jsessionid();
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
+  // }
+  // else {
+    // Logged in user
+    // /eCommerceOrderDetailNew?orderId=RNYCO10190&partyId=10010
+    // Party ID is already added above.
+  // }
+
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json =  $response->getBody();
   $data = json_decode($raw_json, TRUE);
   echo json_encode($data);
 }
