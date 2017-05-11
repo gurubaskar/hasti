@@ -30,5 +30,9 @@ regions[footer_social]  = 'Footer Social'
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/jquery.mobile-1.4.5.min.css
+stylesheets[all][] = css/bootstrap.min.css
 
 scripts[] = js/common.js
+scripts[] = js/jquery.mobile-1.4.5.min.js
+scripts[] = js/bootstrap.min.js
