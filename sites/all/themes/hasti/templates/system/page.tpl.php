@@ -104,26 +104,26 @@ global $drubiz_domain;
   </div>
 </div>
 <div data-role="popup" id="positionWindow" class="ui-content signin" style="max-width:700px">
-      <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-      <h3>Sign up</h3>
-      <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">
-        <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" id="">
-        <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
-        <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
-        <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
-        <input type="text" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
-        <input type="text" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
-      </form> 
-      <div class="signin-btn">
-        <input type="button" value="Save" id="signin" onclick="hastiSignIn();">
-      </div>
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+  <h3>Sign up</h3>
+  <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">
+    <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" id="">
+    <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
+    <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
+    <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
+    <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
+    <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
+  </form> 
+  <div class="signin-btn">
+    <input type="button" value="Save" id="signin" onclick="hastiSignIn();">
+  </div>
 </div>
 <div data-role="popup" id="signInWindow" class="ui-content signin" style="max-width:700px">
       <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
       <h3>Sign in</h3>
       <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
         <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
-        <input type="text" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
+        <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
       </form>
       <span class="remember"><a href="#">Remember Me</a></span>
       <div class="signin-btn">
