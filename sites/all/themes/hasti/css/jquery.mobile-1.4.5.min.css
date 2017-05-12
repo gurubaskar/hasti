@@ -10,7 +10,7 @@
 	.ui-content{padding:10px 25px 10px 25px;}
 .signin{background-color:#00b04c; color:#fff;  height:100%; width:400px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; -o-border-radius:5px;}
 .signin h3{font-size:30px; font-weight:300;}
-.signin input[type="text"]{width:100%; border-radius:0; background:#fff; color:#6d6e70; margin:15px 0 7px 0; padding:10px;}
+.signin input[type="text"], .signin input[type="password"]{width:100%; border-radius:0; background:#fff; color:#6d6e70; margin:15px 0 7px 0; padding:10px;}
 .remember{background:url('./../images/main-img.png') no-repeat -4px -502px; position:relative; padding:11px; width:378px !important; float:left; margin-top:10px;}
 .signin a, .signin a:hover{color:#fff; text-decoration:none; font-weight:normal;}
 .signin .remember a{padding-left:30px;}

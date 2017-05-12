@@ -108,14 +108,14 @@
       </div>
       <div class="wishlist-options wishlist-variant-<?php echo $product->product_id; ?>" style="display:none">
         <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />
-        <ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
-            <?php if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
-              <li class="<?php echo strtolower($color); ?>" value="<?php echo $variant_product_id ?>">
-                <a href="#" class="plp-add-to-wishlist"  data-product-id="<?php echo $variant_product_id ?>">
+        <!--<ul class="color plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php //echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
+            <?php //if (!empty($facet_values['Color'])) foreach ($facet_values['Color'] as $color => $variant_product_id): ?>
+              <li class="<?php //echo strtolower($color); ?>" value="<?php //echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-wishlist"  data-product-id="<?php //echo $variant_product_id ?>">
                 </a>
               </li>
-            <?php endforeach; ?>
-        </ul>
+            <?php //endforeach; ?>
+        </ul>-->
         <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
             <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
               <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
