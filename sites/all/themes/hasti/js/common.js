@@ -291,6 +291,7 @@ function checkEmail() {
       if (data['isError'] == 'False') {
         alert(data['_EVENT_MESSAGE_']);
         close_loading();
+        document.location = Drupal.settings.basePath;        
       }
       else {
         alert(data['_ERROR_MESSAGE_LIST_'][0]['message']);
