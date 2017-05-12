@@ -984,23 +984,23 @@ function drubiz_add_to_love_list(){
     'quantity' => $quantity,
   );
   $endpoint = 'addItemToWishListResponse';
-    $jsessionid = '5478946B61A9706419BC70EFD8301473.jvm1';
-  // if (empty($GLOBALS['user']->uid)) {
-    // $jsessionid = get_user_jsessionid();
+    // $jsessionid = '5478946B61A9706419BC70EFD8301473.jvm1';
+  if (!empty($GLOBALS['user']->uid)) {
+    $jsessionid = get_user_jsessionid();
     if (!empty($jsessionid)) {
       $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+      $response = $client->get($endpoint . '?' . http_build_query($params));
+      $raw_json =  $response->getBody();
+      $data = json_decode($raw_json, TRUE);
+      echo json_encode($data);
     }
-  // }
-  // else {
+  }
+  else {
+    echo "Not logged in";
     // Logged in user
     // /eCommerceOrderDetailNew?orderId=RNYCO10190&partyId=10010
     // Party ID is already added above.
-  // }
-
-  $response = $client->get($endpoint . '?' . http_build_query($params));
-  $raw_json =  $response->getBody();
-  $data = json_decode($raw_json, TRUE);
-  echo json_encode($data);
+  }
 }
 
 function drubiz_set_gift_message(){

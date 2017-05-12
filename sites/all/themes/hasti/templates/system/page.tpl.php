@@ -104,36 +104,48 @@ global $drubiz_domain;
   </div>
 </div>
 <div data-role="popup" id="positionWindow" class="ui-content signin" style="max-width:700px">
-      <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-      <h3>Sign up</h3>
-      <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">
-        <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" id="">
-        <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
-        <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
-        <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
-        <input type="text" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
-        <input type="text" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
-      </form> 
-      <div class="signin-btn">
-        <input type="button" value="Save" id="signin" onclick="hastiSignIn();">
-      </div>
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+  <h3>Sign up</h3>
+  <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">
+    <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" id="">
+    <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
+    <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
+    <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
+    <input type="text" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
+    <input type="text" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
+  </form> 
+  <div class="signin-btn">
+    <input type="button" value="Save" id="signin" onclick="hastiSignIn();">
+  </div>
 </div>
 <div data-role="popup" id="signInWindow" class="ui-content signin" style="max-width:700px">
-      <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-      <h3>Sign in</h3>
-      <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
-        <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
-        <input type="text" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
-      </form>
-      <span class="remember"><a href="#">Remember Me</a></span>
-      <div class="signin-btn">
-        <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
-        <span class="forgot-pwd"><a href="#">Forgot Password?</a></span>
-        <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
-      </div>
-      <span class="facebook"><a href="#">SIGN IN WITH FACEBOOK</a></span>
-      <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
-    </div>
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+  <h3>Sign in</h3>
+  <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
+    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
+    <input type="text" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
+  </form>
+  <span class="remember"><a href="#">Remember Me</a></span>
+  <div class="signin-btn">
+    <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
+    <span class="forgot-pwd"><a href="#" >Forgot Password?</a></span>
+    <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
+  </div>
+  <span class="facebook"><a href="#">SIGN IN WITH FACEBOOK</a></span>
+  <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
+</div>
+
+<div data-role="popup" id="forgotWindow" class="ui-content signin" style="max-width:700px">
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+  <h3>Forgot Password</h3>
+  <p>Enter your Email Address here to receive a new password</p>
+  <input type="text" id="emailid" placeholder="* Email Id">
+  <div class="forgot-btn">
+    <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
+    <input type="button" value="Back" id="back">
+  </div>
+</div>
+
 <!-- header -->
 <div id="header">
   <div class="container-fluid">
