@@ -526,7 +526,7 @@ $(document).ready(function() {
   
   $('#js_addToWishlist, .plp-add-to-wishlist').click(function(e) {
     e.preventDefault();
-    var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');
+    var product_id = $(this).data('product-id');
     var quantity =  1;
     if(product_id == undefined || product_id == null){
       alert('Please select a variant');
@@ -541,7 +541,6 @@ $(document).ready(function() {
       success: function(data) {
              //console.log(data);
         if (data['isError'] == 'False') {
-          alert("Successfully added to your wishlist");
           close_loading();
         }
         else {

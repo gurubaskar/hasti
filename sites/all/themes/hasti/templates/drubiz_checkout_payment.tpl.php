@@ -11,6 +11,13 @@
 <div class="col-xs-12 col-sm-8 col-md-9 checkout-right">
 <div id="checkout-login" class="tab-content">
   <div class="col-xs-12 col-sm-12 col-md-8">
+    <?php if($GLOBALS['user']->uid){?>
+      <span class="logged-user" id="logged-user"><?php echo t('Username') ?>:</span>
+      <span class=""><?php echo $GLOBALS['user']->mail ?></span>
+      <div class="checkoutbtn-wrap-logout">
+        <a href="<?php echo url('user/logout'); ?>"><input type="button" value="Logout" id="logout"></a>
+      </div>
+    <?php }else{ ?>
     <h3>Sign In</h3>
     <input type="text" placeholder="* User Name" id="">
     <input type="text" placeholder="* Password" id="">
@@ -28,6 +35,7 @@
       <input type="button" value="Sign Up" id="signin">
     </div>
   </div>
+  <?php } ?>
   <div class="col-xs-12 col-sm-12 col-md-4"></div>
 </div>
 <!--login end -->
