@@ -248,22 +248,26 @@ function drubiz_user_change_password() {
   );
 
   global $user;
-  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+  // require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
   $current_password     = $_POST['OLD_PASSWORD'];
   $new_password         = $_POST['NEW_PASSWORD'];
   $confirm_new_password = $_POST['CONFIRM_PASSWORD']; 
 
-  $password_validated = user_check_password($current_password, $user);
+  /*$password_validated = user_check_password($current_password, $user);
 
   if ($password_validated == "") {
     $return['error'] = TRUE;
     $return['error_messages'][] = 'Current Password is incorrect!';
-  }
+  }*/
   if($current_password == $new_password) {
     $return['error'] = TRUE;
     $return['error_messages'][] = 'Current and New Password are same!';
   }
   if (strlen($new_password) > 0 || strlen($confirm_new_password) > 0) {
+    if (strlen($new_password) < 6) {
+      $return['error'] = TRUE;
+      $return['error_messages'][] = 'Passwords should be minimum six characters';
+    } 
     if ($new_password != $confirm_new_password) {
       $return['error'] = TRUE;
       $return['error_messages'][] = 'The specified passwords do not match!';
@@ -274,17 +278,13 @@ function drubiz_user_change_password() {
     $return['error_messages'][] = 'Password fields are required!';
   }
 
-  if (!$return['error']) {
-    $updated_password = user_hash_password($confirm_new_password);
-    $user->pass = $updated_password;
-    user_save($user);
-
-    // Update password on Ofbiz.
-    drubiz_change_password($current_password, $new_password);
-
-    drupal_set_message('Password Updated Successfully.');
+  $update_password = drubiz_change_password($current_password, $new_password);
+  if($update_password['isError'] == 'False') {
+    $return['error_messages'][] = 'Password Updated Successfully.';
+  } else {
+    $return['error'] = TRUE;
+    $return['error_messages'][] = $update_password['_ERROR_MESSAGE_'];
   }
-
   echo json_encode($return);
 }
 
@@ -321,12 +321,17 @@ function drubiz_user() {
       }
       $_SESSION['drubiz']['headers'] = $raw_headers;
       $_SESSION['drubiz']['session'] = $data;
-      $return['error'] = FALSE;
-      drupal_set_message('User logged in!');
-      // dsm($raw_headers);
-      // dsm($_SESSION['drubiz']);
-      if (!empty($_POST['REDIR'])) {
-        drupal_goto();
+      if(isset($data['requirePasswordChange']) == 'Y') {
+        $return['error'] = FALSE;
+        $return['destination'] = url('/account/change-password');
+      } else {
+        $return['error'] = FALSE;
+        drupal_set_message('User logged in!');
+        // dsm($raw_headers);
+        // dsm($_SESSION['drubiz']);
+        if (!empty($_POST['REDIR'])) {
+          drupal_goto();
+        }
       }
     }
     else {

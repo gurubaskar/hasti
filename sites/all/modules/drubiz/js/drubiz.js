@@ -841,7 +841,6 @@ $(document).ready(function() {
     var data_NEW_PASSWORD     = $('[name=NEW_PASSWORD]:first').val();
     var data_CONFIRM_PASSWORD = $('[name=CONFIRM_PASSWORD]:first').val();
 
-
     var post_data = 'OLD_PASSWORD=' + encodeURIComponent(data_OLD_PASSWORD) + '&NEW_PASSWORD=' + encodeURIComponent(data_NEW_PASSWORD) + '&CONFIRM_PASSWORD=' + encodeURIComponent(data_CONFIRM_PASSWORD);
     loading();
     $.ajax({
@@ -854,7 +853,8 @@ $(document).ready(function() {
           alert("Error updating password!\n" + data['error_messages'].join("\n"));
         }
         else {
-          document.location = Drupal.settings.basePath + 'account/change-password';
+          alert(data['error_messages']);
+          document.location = Drupal.settings.basePath;
         }
         close_loading();
       },

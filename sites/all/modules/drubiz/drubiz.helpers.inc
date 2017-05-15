@@ -59,20 +59,20 @@ function get_user_jsessionid() {
  */
 function drubiz_change_password($current_password, $new_password) {
   // /changePassword?CUSTOMER_EMAIL=ramesh@gmail.com&partyId=10010&PASSWORD=sonata&CONFIRM_PASSWORD=sonata&OLD_PASSWORD=ofbiz&USERNAME=ramesh
+
   global $user;
   $client = drubiz_api_client();
-  $request = 'changePassword?' . http_build_query(array(
-    'partyId' => get_user_party_id(),
-    'USERNAME' => $user->mail,
-    'CUSTOMER_EMAIL' => $user->mail,
-    'OLD_PASSWORD' => $current_password,
-    'PASSWORD' => $new_password,
-    'CONFIRM_PASSWORD' => $new_password,
+  $request = 'eCommerceLoginChangePasswordResponse?' . http_build_query(array(
+    'USERNAME' => 'baskaran.b@sonata-software.com',
+    'PASSWORD' => $current_password,
+    'newPassword' => $new_password,
+    'newPasswordVerify' => $new_password,
+    'requirePasswordChange' => 'Y',
   ));
   $response = $client->get($request);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  // $party_id = get_user_party_id(); watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
   return $data;
 }
 
