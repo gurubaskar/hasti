@@ -96,7 +96,7 @@ global $drubiz_domain;
             <li><a href="#">Wish List</a></li>
             <?php if($GLOBALS['user']->uid == 0):?>
               <li><a href="#positionWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
-              <li><a href="#signInWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign In</a></li>
+              <li><a href="#signInWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
             <?php endif; ?>
           </ul>
       </div>
@@ -119,6 +119,7 @@ global $drubiz_domain;
   </div>
 </div>
 <div data-role="popup" id="signInWindow" class="ui-content signin" style="max-width:700px">
+  <div id="signInPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Sign in</h3>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
@@ -128,14 +129,13 @@ global $drubiz_domain;
   <span class="remember"><a href="#">Remember Me</a></span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
-    <span class="forgot-pwd"><a href="#" >Forgot Password?</a></span>
+    <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
   <span class="facebook"><a href="#">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
-</div>
-
-<div data-role="popup" id="forgotWindow" class="ui-content signin" style="max-width:700px">
+  </div>
+  <div id="forgotPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Forgot Password</h3>
   <p>Enter your Email Address here to receive a new password</p>
@@ -143,6 +143,7 @@ global $drubiz_domain;
   <div class="forgot-btn">
     <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
     <input type="button" value="Back" id="back">
+  </div>
   </div>
 </div>
 

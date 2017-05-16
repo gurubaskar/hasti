@@ -305,3 +305,15 @@ function checkEmail() {
     dataType: 'json'
   });
 }
+
+function openForgotPassword() {
+  jQuery("#signInPopup").hide();
+  jQuery("#forgotPopup").show();
+  jQuery("#emailid").val("");
+}
+
+function openSignIn() {
+ jQuery("#signInPopup").show();
+ jQuery("#forgotPopup").hide(); 
+ jQuery("#emailid").val("");
+}
