@@ -1122,7 +1122,7 @@ function add_item_to_cart($product_id, $quantity) {
   }
 
   $data = json_decode($raw_json, TRUE);
-  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data', 'raw_headers'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data', 'raw_headers'), 1) . '</pre>');
   return $data;
 }
 

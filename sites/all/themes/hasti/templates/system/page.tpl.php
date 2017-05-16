@@ -111,14 +111,15 @@ global $drubiz_domain;
     <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
     <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
     <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
-    <input type="text" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
-    <input type="text" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
+    <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
+    <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
   </form> 
   <div class="signin-btn">
     <input type="button" value="Save" id="signin" onclick="hastiSignIn();">
   </div>
 </div>
 <div data-role="popup" id="signInWindow" class="ui-content signin" style="max-width:700px">
+
   <div id="signInPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Sign in</h3>
@@ -136,6 +137,7 @@ global $drubiz_domain;
   <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">
+
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Forgot Password</h3>
   <p>Enter your Email Address here to receive a new password</p>
@@ -146,7 +148,6 @@ global $drubiz_domain;
   </div>
   </div>
 </div>
-
 <!-- header -->
 <div id="header">
   <div class="container-fluid">
