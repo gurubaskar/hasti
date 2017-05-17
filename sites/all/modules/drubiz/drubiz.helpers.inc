@@ -63,7 +63,7 @@ function drubiz_change_password($current_password, $new_password) {
   global $user;
   $client = drubiz_api_client();
   $request = 'eCommerceLoginChangePasswordResponse?' . http_build_query(array(
-    'USERNAME' => 'baskaran.b@sonata-software.com',
+    'USERNAME' => $user->mail,
     'PASSWORD' => $current_password,
     'newPassword' => $new_password,
     'newPasswordVerify' => $new_password,

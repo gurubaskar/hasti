@@ -145,7 +145,7 @@ global $drubiz_domain;
   <input type="text" id="emailid" placeholder="* Email Id">
   <div class="forgot-btn">
     <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
-    <input type="button" value="Back" id="back">
+    <input type="button" value="Back" id="back" onclick="closeForgot();">
   </div>
   </div>
 </div>
