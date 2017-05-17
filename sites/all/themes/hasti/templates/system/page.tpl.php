@@ -90,7 +90,9 @@ global $drubiz_domain;
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
             <li><a href="#"><?php echo t('Track Order');?></a></li>
-            <li><a href="#"><?php echo t('Wish List');?></a></li>
+            <?php if($GLOBALS['user']->uid != 0):?>
+              <li><a href="<?php echo url('account/love-list')?>">Wish List</a></li>
+            <?php endif; ?>
             <?php if($GLOBALS['user']->uid != 0):?>
               <li><a href="#"><?php echo t('Hi ');?><?php echo $GLOBALS['user']->mail; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>">LOGOUT</a></li>
@@ -145,7 +147,7 @@ global $drubiz_domain;
   <input type="text" id="emailid" placeholder="* Email Id">
   <div class="forgot-btn">
     <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
-    <input type="button" value="Back" id="back" onclick="closeForgot();">
+    <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
   </div>
   </div>
 </div>

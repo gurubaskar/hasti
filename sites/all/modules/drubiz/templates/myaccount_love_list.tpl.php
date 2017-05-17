@@ -1,42 +1,64 @@
+
 <?php //krumo($wishlist)?>
 <div id="eCommerceShowWishList" class="eCommerceShowWishList">
-  <form method="post" class="cartForm" action="https://182.72.231.54:8443/modifyWishList" id="wishListform" name="wishListform" onsubmit="return updateWishlist()">
-    <input type="hidden" id="checkoutpage" name="checkoutpage" value="">
-    <input type="hidden" name="csrfPreventionSalt" value="Bi19MTx7v1JLDlBEYSWP">
-    <input type="hidden" name="partyId" value="10230">
-    <input type="hidden" name="productStoreId" value="GS_STORE">
-    <input type="hidden" name="removeSelected" value="false">
-    <input type="hidden" name="add_item_id" id="js_add_item_id" value="">
-    <h1> my wishlist</h1>
-    <?php if(empty($wishlist['wishList'])){?>
+  <!-- <form method="post" class="cartForm" action="https://182.72.231.54:8443/modifyWishList" id="wishListform" name="wishListform" onsubmit="return updateWishlist()"> -->
+    <?php if(empty($wishlist['wishListItemDetails'])){?>
       <div class="no-items-wishlist">
         No Items in your Wishlist
       </div>
     <?php }else{?>
-      <div class="boxList cartList">
-        <table class="wishlistTable">
-          <thead>
-            <tr class="first last">
-              <th></th>
-              <th>Product Details and Comment</th>
-              <th>Add to Cart</th>
-              <th></th>
-            </tr>
-          </thead>
-        </table>
+        <div class="col-xs-12 col-sm-12 col-md-12 myaccount-right wishlist">
+        <h3>My Wishlist</h3>
         <?php 
-          foreach ($wishlist['wishList']  as $wishList_key => $wishList_value) :
+          foreach ($wishlist['wishListItemDetails']  as $wishList_key => $wishList_value) :
         ?>
         <?php
-          $nid = get_nid_from_variant_product_id($wishList_value['productID']);
+          $nid = get_nid_from_variant_product_id($wishList_value['productId']);
           $node = node_load($nid);
           $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
           $product = $system_data->product_raw;
-          $product_variant = $system_data->product_variants->{$wishList_value['productID']};
-          //krumo($product);
-          //krumo($product_variant);
+          $product_variant = $system_data->product_variants->{$wishList_value['productId']};
+          // krumo($product);
+          // krumo($product_variant);
         ?>
-        <div class="boxListItemTabular cartItem ShowWishlistOrderItems">
+<!--  -->
+        
+        <div class="col-xs-12 col-sm-6 col-md-6 cartbox">
+          <div class="col-xs-12 col-sm-3 col-md-3 img-wrap">
+            <a href="<?php echo url('node/' . $nid) ?>">
+              <img alt="<?php echo $product->product_name ?>" src="<?php echo drubiz_image($product_variant->plp_image) ?>" class="productCartListImage" height="140" width="105" onmouseover="src='<?php echo drubiz_image($product_variant->plp_image_alt) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product_variant->plp_image) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-9 col-md-9 cart-details pright">
+            <?php $selected_features = get_selected_features($product_variant); ?>
+            <div class="col-xs-6 col-sm-8 col-md-8 details-left">
+              <a href="<?php echo url('node/' . $nid) ?>" id="image_">
+                <h4>
+                 <?php echo $product->product_name;?>
+                </h4>
+              </a>
+              <div class="cartrow"><label>Qty:</label><span class="qty"><?php echo $wishList_value['quantity'];?></span></div>
+              <div class="cartrow"><label>Price:</label><span>Rs. <?php echo format_money($product->list_price); ?></span></div>
+              <div class="cartrow"><label>Size:</label><span class="size"><?php echo @$selected_features['Size'] ?></span></div>
+              <div class="cartrow"><label>Color:</label><span class="color"><?php echo @$selected_features['Color'] ?></span></div>
+              <div class="cartrow"><span>In Stock</span></div>
+            </div>
+            <div class="details-right">
+              <a href="#" class="remove">Remove</a>
+            </div>
+            <div class="btns-wrap">
+              <span>
+                <a class="standardBtn addToCart addToCartFromWishlistGlobular" data-delete-id="delete_<?php echo $wishList_value['shoppingListItemSeqId'];?>" data-product-id= "<?php echo $product_variant->product_id; ?>" data-quantity="<?php echo round($wishList_value['quantity']);?>" title="Add to Cart">
+                Add to Bag</a>
+                </span>
+            </div>
+          </div>
+        </div>
+     
+
+<!--  -->
+
+        <!--<div class="boxListItemTabular cartItem ShowWishlistOrderItems">
           <div class="ShowWishlistOrderItems group group1">
             <ul class="displayList cartItemList ShowWishlistOrderItems">
               <li class="image itemImage showWishlistOrderItemsItemImage firstRow cartimage-desk">
@@ -130,14 +152,14 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div>-->
       <?php endforeach; ?>
-        <input type="hidden" name="product_name_0" id="js_productName_00001" value="Globus Men Party Wear Shirts -500205">
+       </div>
+        <!-- <input type="hidden" name="product_name_0" id="js_productName_00001" value="Globus Men Party Wear Shirts -500205"> -->
         <!--<a class="clear-wishlistitems" href="https://182.72.231.54:8443/clearWishList">Clear WishList</a>-->
-      </div>
       <div class="action previousButton showWishlistPreviousButton">
         <a href="<?php echo url('');?>" class="standardBtn negative"><span>Continue Shopping</span></a>
       </div>
     <?php }?>
-  </form>
+  <!-- </form> -->
 </div>
