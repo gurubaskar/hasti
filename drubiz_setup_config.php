@@ -6,14 +6,14 @@
 
 // Ofbiz Webservices.
 $ofbiz_webservice_urls = array(
-  'DEV'     => 'http://bg4ws0386:8080/', // Development
+  'DEV'     => 'http:/hasti.sonata-software.com:8080/', // Development
   'LAPTOP'  => 'http://localhost:8080/', // Laptop
 );
 
 // Domain Configuration.
 $domain_configs = array(
   'DEV' => array(
-    'www.hasti.dev' => array(
+    'hasti.sonata-software.com' => array(
       'dev'       => TRUE,
       'catalog'   => 'hasti',
       'theme'     => 'hasti',
