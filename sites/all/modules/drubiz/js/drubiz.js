@@ -492,6 +492,10 @@ $(document).ready(function() {
       var product_id = $('.js_selectableFeature_1 a.selected').data('product-id');
       var quantity = $('#quantity').val();
     }
+    if(product_id == null || product_id == undefined){
+      alert('Please select a size of your choice');
+      return;
+    }
 
     var action = $(this).attr('id') == 'js_addToCart_buynow' ? 'buy_now' : 'add';
     // alert(action + ' - ' + product_id + ' | ' + quantity);

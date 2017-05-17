@@ -170,8 +170,13 @@
                             <ul class="js_selectableFeature_1">
                             <?php $countFacet1=0; ?>
                               <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
+                                  <?php 
+                                  $product_nid = get_nid_from_variant_product_id($this_facet_product_id);
+                                  ?>
                                   <a class="product-choose-facet" href="#">
-                                  <li class="<?php echo $this_facet_value ?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>"></li></a>
+                                    <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>">
+                                    </li>
+                                  </a>
                               <?php endforeach; ?>
                             </ul>
                           </div>
