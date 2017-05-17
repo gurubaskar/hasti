@@ -89,6 +89,7 @@ global $drubiz_domain;
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
+            <?php echo $GLOBALS['user']->mail;?>
             <?php if($GLOBALS['user']->uid != 0):?>
               <li><a href="#">My Account</a></li>
             <?php endif; ?>
@@ -125,7 +126,7 @@ global $drubiz_domain;
   <h3>Sign in</h3>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
     <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
-    <input type="text" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
+    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
   </form>
   <span class="remember"><a href="#">Remember Me</a></span>
   <div class="signin-btn">
