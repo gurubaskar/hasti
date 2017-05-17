@@ -854,7 +854,7 @@ $(document).ready(function() {
         }
         else {
           alert(data['error_messages']);
-          document.location = Drupal.settings.basePath;
+          document.location = Drupal.settings.basePath + 'user/logout';
         }
         close_loading();
       },
