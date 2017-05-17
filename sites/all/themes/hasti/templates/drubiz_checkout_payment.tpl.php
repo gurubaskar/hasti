@@ -34,13 +34,13 @@
     <div class="checkoutbtn-wrap">
       <input type="button" value="Sign Up" id="signin">
     </div>
+    <?php } ?>
   </div>
-  <?php } ?>
   <div class="col-xs-12 col-sm-12 col-md-4"></div>
 </div>
 <!--login end -->
 
-<div id="order-summary" class="tab-content">
+<div id="order-summary" class="tab-content" style="display: none;">
   <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="heading-bar">
       <h2>Order Summary</h2>
@@ -88,43 +88,75 @@
 </div>
 <!--order summary end -->
 
-<div id="delivery-address" class="tab-content">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="heading-bar">
-      <h2>Delivery Address</h2>
-    </div>
-    <div class="cartbox">
-      <div class="col-xs-8 col-sm-8 col-md-8 pleft">
-        <h4>Name</h4>
-
-        <div class="cartrow"><label>Mob No:</label><span>1234567899</span></div>
+<div id="delivery-address" class="tab-content" style="display: none;">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="heading-bar">
+            <h2>Delivery Address</h2>
+          </div>
+          <div class="addressbox">
+            <div class="col-xs-8 col-sm-6 col-md-6 pleft address">
+              <h4>Name</h4>
+              <span>House No 1</span>
+              <span>X Road, 3rd Block,</span>
+              <span>J P Nagar</span>
+              <span>Bangalore.</span>
+              <span>Pin 560 001</span>
+              <div class="phno"><label>Mob No:</label><span>1234567899</span></div>
+            </div>
+            <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
+              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="plus"></span></a>
+              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="edit"></span></a>
+              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="delete"></span></a>
+            </div>
+          </div>
+          <div class="addressbox">
+            <div class="col-xs-8 col-sm-6 col-md-6 pleft address">
+              <h4>Name</h4>
+              <span>House No 1</span>
+              <span>X Road, 3rd Block,</span>
+              <span>J P Nagar</span>
+              <span>Bangalore.</span>
+              <span>Pin 560 001</span>
+              <div class="phno"><label>Mob No:</label><span>1234567899</span></div>
+            </div>
+            <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
+              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="plus"></span></a>
+              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="edit"></span></a>
+              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="delete"></span></a>
+            </div>
+          </div>
+          
+          <div class="btns-wrap">
+            <span><a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Continue</a></span>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-4 col-sm-4 col-md-4"></div>
-    </div>
-    
-    <div class="btns-wrap">
-      <span><a href="#" class="buy-now">Continue</a></span>
-    </div>
-  </div>
-</div>
 <!--delivery address end -->
 
-<div id="payment-method" class="tab-content">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div class="heading-bar">
-      <h2>Payment Method</h2>
-    </div>
-    <div class="cartbox">
-      <div class="col-xs-12 col-sm-12 col-md-12 pleft">
-        <h4>Name</h4>
-        
+      <div id="payment-method" class="tab-content" style="display: none;">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="heading-bar">
+            <h2>Payment Method</h2>
+          </div>
+          <div class="cartbox">
+            <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
+              <span>
+                <input type="radio" name="radiobtn" checked=""><label>COD</label>
+                <div class="btns-wrap">
+                  <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Continue</a>
+                </div>
+              </span>
+              <span>
+                <input type="radio" name="radiobtn"><label>Online Payment</label>
+                <div class="btns-wrap">
+                  <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Proceed to Payment</a>
+                </div>
+              </span>
+            </div>
+          </div>
+          
+          
+        </div>
       </div>
-    </div>
-    
-    <div class="btns-wrap">
-      <span><a href="#" class="buy-now">Continue</a></span>
-    </div>
-  </div>
-</div>
 <!--payment method end -->
 </div>

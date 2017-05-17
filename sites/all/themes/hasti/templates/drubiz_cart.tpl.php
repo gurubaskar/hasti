@@ -37,7 +37,11 @@
           <div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
             <div class="col-xs-6 col-sm-6 col-md-5 details-left">
               <h4><?php echo $cart_value['internalName']; ?></h4>
-              <div class="cartrow"><label>Qty:</label><span class="qty"><?php echo $cart_value['quantity']; ?></span></div>
+              <div class="cartrow"><label>Qty:</label>
+                <span class="qty-minus" data-index="<?php echo $index;?>"></span>
+                <span class="qty"><?php echo $cart_value['quantity']; ?></span>
+                <span class="qty-plus" data-index="<?php echo $index;?>"></span>
+              </div>
               <div class="cartrow"><label>Price:</label><span>&#8377. <?php echo format_money($cart_value['listPrice']);?></span></div>
               <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
               <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $node->field_color[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
@@ -50,7 +54,6 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 edit">
               <div class="col-xs-6 col-sm-6 col-md-5 edit-wrap nopad">
-                <a href="#" class="update">Update</a>
                 <a href="#" class="remove" data-delete-id="<?php echo $index;?>" >Remove</a>
                 <?php $index++;?>
               </div>

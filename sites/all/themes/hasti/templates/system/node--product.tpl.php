@@ -150,6 +150,10 @@
           </ul>
           <div class="sizechart"><p>Not Sure? <span><a href="#">See Size Chart</a></span></p></div>
           <p>The mode (height 5'8". chest 33" and wast 28")</p>
+          <div class="quantity">
+            <span class="available">Qty:</span>
+            <input type="text" id="quantity" value="1">
+        </div>
         </div>
         <!-- Colors -->
         <div class="color">
