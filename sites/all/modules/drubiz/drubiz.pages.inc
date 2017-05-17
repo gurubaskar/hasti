@@ -586,7 +586,7 @@ function drubiz_sign_up(){
  * Page callback for /drubiz/modify-item
  */
 function drubiz_modify_item() {
-  $mod_response = modify_item_in_cart($_POST['product_id'], $_POST['quantity']);
+  $mod_response = modify_item_in_cart($_POST['index'], $_POST['quantity']);
   if ($mod_response['isError'] == 'false') {
     drupal_set_message('Item modified!');
   }
@@ -600,7 +600,7 @@ function drubiz_modify_item() {
  * Page callback for /drubiz/delete-item
  */
 function drubiz_delete_item() {
-  $del_response = delete_item_from_cart($_POST['product_id']);
+  $del_response = delete_item_from_cart($_POST['index']);
   if ($del_response['isError'] == 'false') {
     drupal_set_message('Item deleted!');
   }

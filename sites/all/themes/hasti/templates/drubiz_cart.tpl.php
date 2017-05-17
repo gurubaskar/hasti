@@ -1,7 +1,7 @@
 <?php //krumo($_SESSION['drubiz']['promoCodeFlag']) ;?>
 <?php //krumo($cart['cartItemDetails']) ;?>
 <?php //krumo($cart) ;?>
-<?php //krumo($viewPromo) ;?>
+<?php $index = 0;?>
 <?php $cartItems = $cart['cartItemDetails']; ?>
 
 <?php if (empty($cart['cartItemDetails'])) { ?>
@@ -51,7 +51,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12 edit">
               <div class="col-xs-6 col-sm-6 col-md-5 edit-wrap nopad">
                 <a href="#" class="update">Update</a>
-                <a href="#" class="remove">Remove</a>
+                <a href="#" class="remove" data-delete-id="<?php echo $index;?>" >Remove</a>
+                <?php $index++;?>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-7 total">
                 <div><label>Amount Payable:</label><span>&#8377. <?php echo format_money($cart_value['quantity'] * $cart_value['listPrice']);?></span></div>

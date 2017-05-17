@@ -556,14 +556,14 @@ $(document).ready(function() {
     });
   });
 
-  $('.cart-product-delete').click(function(e) {
+  $('.remove').click(function(e) {
     e.preventDefault();
-    var product_id = $(this).closest('.cartItem').data('product-id');
+    var index = $(this).data('delete-id');
     loading();
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/delete-item',
-      data: 'product_id=' + product_id,
+      data: 'index=' + index,
       success: function(data) {
         // console.log(data);
         if (data['isError'] == 'false') {
@@ -592,19 +592,19 @@ $(document).ready(function() {
     $(this).closest('.cartItem').find('.qty-number').hide();
   });
 
-  $('.cart-product-update').click(function(e) {
+  $('.update').click(function(e) {
     e.preventDefault();
-    var product_id = $(this).closest('.cartItem').data('product-id');
-    var quantity = $(this).closest('.cartItem').find('.item-qt select').val();
-    $(this).hide();
+    var index = $(this).data('index');
+    var quantity = $(this).find('.item-qt select').val();
+    /*$(this).hide();
     $(this).closest('.cartItem').find('.cart-product-edit').show();
     $(this).closest('.cartItem').find('.item-qt').hide();
-    $(this).closest('.cartItem').find('.qty-number').show();
+    $(this).closest('.cartItem').find('.qty-number').show();*/
     loading();
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/modify-item',
-      data: 'product_id=' + product_id + '&quantity=' + quantity,
+      data: 'index=' + index + '&quantity=' + quantity,
       success: function(data) {
         // console.log(data);
         if (data['isError'] == 'false') {
