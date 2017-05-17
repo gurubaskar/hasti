@@ -89,12 +89,12 @@ global $drubiz_domain;
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
-            <?php echo $GLOBALS['user']->mail;?>
+            <li><a href="#"><?php echo t('Track Order');?></a></li>
+            <li><a href="#"><?php echo t('Wish List');?></a></li>
             <?php if($GLOBALS['user']->uid != 0):?>
-              <li><a href="#">My Account</a></li>
+              <li><a href="#"><?php echo t('Hi ');?><?php echo $GLOBALS['user']->mail; ?></a></li>
+              <li><a href="<?php echo url('user/logout');?>">LOGOUT</a></li>
             <?php endif; ?>
-            <li><a href="#">Track Order</a></li>
-            <li><a href="#">Wish List</a></li>
             <?php if($GLOBALS['user']->uid == 0):?>
               <li><a href="#positionWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
               <li><a href="#signInWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
