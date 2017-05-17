@@ -1159,7 +1159,7 @@ function delete_item_from_cart($index) {
  * Edit item currently in logged in user's cart.
  */
 function modify_item_in_cart($index, $quantity) {
-  $endpoint = 'modifycartnew';
+  $endpoint = 'modifycartResponse';
   $params = array(
     'update_'.$index => $quantity,
   );
@@ -1180,6 +1180,7 @@ function modify_item_in_cart($index, $quantity) {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, print_r(compact('params', 'data'), 1));
   return $data;
 }
 
