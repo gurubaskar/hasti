@@ -285,7 +285,7 @@ function checkEmail() {
   loading();
   jQuery.ajax({
     type: "POST",
-    url: Drupal.settings.basePath + '/forgotPassword',
+    url: Drupal.settings.basePath + 'forgotPassword',
     data: 'userEmail=' + email,
     success: function(data) {
       if (data['isError'] == 'False') {
