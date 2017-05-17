@@ -59,20 +59,20 @@ function get_user_jsessionid() {
  */
 function drubiz_change_password($current_password, $new_password) {
   // /changePassword?CUSTOMER_EMAIL=ramesh@gmail.com&partyId=10010&PASSWORD=sonata&CONFIRM_PASSWORD=sonata&OLD_PASSWORD=ofbiz&USERNAME=ramesh
+
   global $user;
   $client = drubiz_api_client();
-  $request = 'changePassword?' . http_build_query(array(
-    'partyId' => get_user_party_id(),
-    'USERNAME' => $user->mail,
-    'CUSTOMER_EMAIL' => $user->mail,
-    'OLD_PASSWORD' => $current_password,
-    'PASSWORD' => $new_password,
-    'CONFIRM_PASSWORD' => $new_password,
+  $request = 'eCommerceLoginChangePasswordResponse?' . http_build_query(array(
+    'USERNAME' => 'baskaran.b@sonata-software.com',
+    'PASSWORD' => $current_password,
+    'newPassword' => $new_password,
+    'newPasswordVerify' => $new_password,
+    'requirePasswordChange' => 'Y',
   ));
   $response = $client->get($request);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  // $party_id = get_user_party_id(); watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
   return $data;
 }
 
@@ -1129,14 +1129,14 @@ function add_item_to_cart($product_id, $quantity) {
 /**
  * Delete item currently in logged in user's cart.
  */
-function delete_item_from_cart($product_id) {
-  $endpoint = 'deleteFromCartnew';
+function delete_item_from_cart($index) {
+  $endpoint = 'deleteFromCartResponse';
   $params = array(
-    'productId' => $product_id,
+    'delete_'.$index => $index,
   );
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
-    // /deleteFromCartnew;jsessionid=2520572C9D11330989E0C1998400BE39.jvm1?&productId=2643900
+    // /deleteFromCartResponse;jsessionid=EEFEA9CBC3BB425D91461004C4F62E51.jvm1?delete_i=i
     $jsessionid = get_user_jsessionid();
     if (!empty($jsessionid)) {
       $endpoint .= (';jsessionid=' . urlencode($jsessionid));
@@ -1149,23 +1149,23 @@ function delete_item_from_cart($product_id) {
   }
   $client = drubiz_api_client();
   $response = $client->get($endpoint . '?' . http_build_query($params));
-  $raw_json = $response->getBody();
+  $raw_json = $response->getBody();  
   $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, print_r(compact('request', 'data'), 1));
   return $data;
 }
 
 /**
  * Edit item currently in logged in user's cart.
  */
-function modify_item_in_cart($product_id, $quantity) {
+function modify_item_in_cart($index, $quantity) {
   $endpoint = 'modifycartnew';
   $params = array(
-    'productId' => $product_id,
-    'itemquan'  => $quantity,
+    'update_'.$index => $quantity,
   );
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
-    // /modifycartnew;jsessionid=2520572C9D11330989E0C1998400BE39.jvm1?productId=2643900&itemquan=3
+    // /modifycartResponse;jsessionid=6C1A020269975B6E32AB5DEC14081104.jvm1?update_i=qnty
     $jsessionid = get_user_jsessionid();
     if (!empty($jsessionid)) {
       $endpoint .= (';jsessionid=' . urlencode($jsessionid));
