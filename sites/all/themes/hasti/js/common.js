@@ -148,7 +148,7 @@ function signInHasti(){
     url: Drupal.settings.basePath + 'drubiz/user',
     data: 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD),
     success: function(data) {
-      // console.log(data);
+      console.log(data);
       if (!data['error']) {
         document.location = data['destination'];
       }
@@ -285,7 +285,7 @@ function checkEmail() {
   loading();
   jQuery.ajax({
     type: "POST",
-    url: Drupal.settings.basePath + '/forgotPassword',
+    url: Drupal.settings.basePath + 'forgotPassword',
     data: 'userEmail=' + email,
     success: function(data) {
       if (data['isError'] == 'False') {
