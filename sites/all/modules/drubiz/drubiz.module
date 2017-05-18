@@ -142,6 +142,16 @@ function drubiz_init() {
     //$GLOBALS['fbconnect_login_button'] = fbconnect_login_render_button($attr);
     $GLOBALS['user_login_form'] = drupal_get_form('user_login');
   }
+
+  // Redirect to Change password for first time user who login with generated password and unset the session variable in logout.
+  if (arg(1) == 'logout') {
+    unset($_SESSION['drubiz']['requirePasswordChange']);
+  }
+  if (!empty($_SESSION['drubiz']['requirePasswordChange']) && $_SESSION['drubiz']['requirePasswordChange'] == 'Y') {
+      if (arg(1) != 'change-password' and arg(1) != 'user-change-password') {
+        drupal_goto('account/change-password');
+      }
+  }
 }
 
 /**
