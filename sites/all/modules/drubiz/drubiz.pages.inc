@@ -235,7 +235,7 @@ function drubiz_checkout_payment() {
   )));
   $raw_json = $response->getBody();
   $storeCredit = json_decode($raw_json,TRUE);
-return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'storeCredit' => $storeCredit));
+return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'storeCredit' => $storeCredit,'addresses'=>get_user_addresses()));
 }
 
 /**

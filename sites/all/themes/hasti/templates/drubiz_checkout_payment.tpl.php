@@ -1,4 +1,4 @@
-<?php //krumo($cart);?>
+<?php //krumo($addresses);?>
 <div class="col-xs-12 col-sm-4 col-md-3 checkout-left">
 <h2>Placing Order</h2>
 <ul>
@@ -93,15 +93,15 @@
           <div class="heading-bar">
             <h2>Delivery Address</h2>
           </div>
+          <?php foreach ($addresses['postalAddressList'] as $postal_key => $postal_value) { ?>
           <div class="addressbox">
             <div class="col-xs-8 col-sm-6 col-md-6 pleft address">
-              <h4>Name</h4>
-              <span>House No 1</span>
-              <span>X Road, 3rd Block,</span>
-              <span>J P Nagar</span>
-              <span>Bangalore.</span>
-              <span>Pin 560 001</span>
-              <div class="phno"><label>Mob No:</label><span>1234567899</span></div>
+              <h4><?php echo $postal_value['toName']?></h4>
+              <span><?php echo $postal_value['address1']?></span>
+              <span><?php echo $postal_value['address2']?></span>
+              <span><?php echo $postal_value['city']?></span>
+              <span><?php echo $postal_value['postalCode']?></span>
+              <div class="phno"><label>Mob No:</label><span><?php echo $postal_value['contactNumber']?></span></div>
             </div>
             <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
               <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="plus"></span></a>
@@ -109,23 +109,7 @@
               <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="delete"></span></a>
             </div>
           </div>
-          <div class="addressbox">
-            <div class="col-xs-8 col-sm-6 col-md-6 pleft address">
-              <h4>Name</h4>
-              <span>House No 1</span>
-              <span>X Road, 3rd Block,</span>
-              <span>J P Nagar</span>
-              <span>Bangalore.</span>
-              <span>Pin 560 001</span>
-              <div class="phno"><label>Mob No:</label><span>1234567899</span></div>
-            </div>
-            <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
-              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="plus"></span></a>
-              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="edit"></span></a>
-              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="delete"></span></a>
-            </div>
-          </div>
-          
+          <?php } ?>
           <div class="btns-wrap">
             <span><a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Continue</a></span>
           </div>
