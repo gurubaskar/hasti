@@ -318,7 +318,7 @@ function openSignIn() {
  jQuery("#emailid").val("");
 }
 
-function closeForgot() {
+function closeForgotPassword() {
  jQuery("#forgotPopup").hide();
  jQuery("#signInPopup").show(); 
 }

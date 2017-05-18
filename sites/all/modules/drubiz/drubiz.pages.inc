@@ -235,7 +235,7 @@ function drubiz_checkout_payment() {
   )));
   $raw_json = $response->getBody();
   $storeCredit = json_decode($raw_json,TRUE);
-return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'storeCredit' => $storeCredit));
+return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'storeCredit' => $storeCredit,'addresses'=>get_user_addresses()));
 }
 
 /**
@@ -321,9 +321,11 @@ function drubiz_user() {
       }
       $_SESSION['drubiz']['headers'] = $raw_headers;
       $_SESSION['drubiz']['session'] = $data;
+      $_SESSION['drubiz']['requirePasswordChange'] = 'N';
       if(isset($data['requirePasswordChange']) == 'Y') {
         $return['error'] = FALSE;
         $return['destination'] = url('/account/change-password');
+        $_SESSION['drubiz']['requirePasswordChange'] = 'Y';
       } else {
         $return['error'] = FALSE;
         drupal_set_message('User logged in!');
