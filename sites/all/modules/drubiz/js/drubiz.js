@@ -600,7 +600,7 @@ $(document).ready(function() {
     e.preventDefault();
     var index = $(this).data('index');
     var class_name =  $(this).attr('class');
-    var quantity = $('.qty').html();
+    var quantity = $(this).siblings('.qty').html();
       if(class_name == "qty-plus"){
         quantity = Number(quantity) + 1;
       }else{
