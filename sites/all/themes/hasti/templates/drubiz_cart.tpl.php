@@ -1,7 +1,6 @@
 <?php //krumo($_SESSION['drubiz']['promoCodeFlag']) ;?>
 <?php //krumo($cart['cartItemDetails']) ;?>
 <?php //krumo($cart) ;?>
-<?php $index = 0;?>
 <?php $cartItems = $cart['cartItemDetails']; ?>
 
 <?php if (empty($cart['cartItemDetails'])) { ?>
@@ -38,9 +37,9 @@
             <div class="col-xs-6 col-sm-6 col-md-5 details-left">
               <h4><?php echo $cart_value['internalName']; ?></h4>
               <div class="cartrow"><label>Qty:</label>
-                <span class="qty-minus" data-index="<?php echo $index;?>"></span>
+                <span class="qty-minus" data-index="<?php echo $cart_key;?>"></span>
                 <span class="qty"><?php echo $cart_value['quantity']; ?></span>
-                <span class="qty-plus" data-index="<?php echo $index;?>"></span>
+                <span class="qty-plus" data-index="<?php echo $cart_key;?>"></span>
               </div>
               <div class="cartrow"><label>Price:</label><span>&#8377. <?php echo format_money($cart_value['listPrice']);?></span></div>
               <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
@@ -54,8 +53,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 edit">
               <div class="col-xs-6 col-sm-6 col-md-5 edit-wrap nopad">
-                <a href="#" class="remove" data-delete-id="<?php echo $index;?>" >Remove</a>
-                <?php $index++;?>
+                <a href="#" class="remove" data-delete-id="<?php echo $cart_key;?>" >Remove</a>
               </div>
               <div class="col-xs-6 col-sm-6 col-md-7 total">
                 <div><label>Amount Payable:</label><span>&#8377. <?php echo format_money($cart_value['quantity'] * $cart_value['listPrice']);?></span></div>

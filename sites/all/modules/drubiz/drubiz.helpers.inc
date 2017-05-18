@@ -1132,7 +1132,7 @@ function add_item_to_cart($product_id, $quantity) {
 function delete_item_from_cart($index) {
   $endpoint = 'deleteFromCartResponse';
   $params = array(
-    'delete_'.$index => $index,
+    'deleteproduct_'.$index => '',
   );
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
@@ -1151,7 +1151,7 @@ function delete_item_from_cart($index) {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();  
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, print_r(compact('request', 'data'), 1));
+  watchdog(__FUNCTION__, print_r(compact('params', 'data'), 1));
   return $data;
 }
 
@@ -1161,7 +1161,7 @@ function delete_item_from_cart($index) {
 function modify_item_in_cart($index, $quantity) {
   $endpoint = 'modifycartResponse';
   $params = array(
-    'update_'.$index => $quantity,
+    'updateproduct_'.$index => $quantity,
   );
   $jsessionid = get_user_jsessionid();
   if (!empty($jsessionid)) {
