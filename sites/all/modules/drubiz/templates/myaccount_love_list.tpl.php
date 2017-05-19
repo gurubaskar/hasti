@@ -1,6 +1,5 @@
 
-<!-- <?php //krumo($wishlist)?>100074-1 -->
-<?php echo "as ". get_user_party_id().'--'.get_user_jsessionid();?>
+ <?php //krumo($wishlist)?>
 <div id="eCommerceShowWishList" class="eCommerceShowWishList">
   <?php if(empty($wishlist['wishListItemDetails'])){?>
     <div class="no-items-wishlist">
