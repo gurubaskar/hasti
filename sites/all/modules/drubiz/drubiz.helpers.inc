@@ -1062,13 +1062,13 @@ function get_user_cart() {
   $endpoint = 'eCommerceShowcartResponse';
   $params = array();
   $party_id = get_user_party_id();
-  $jsessionid = get_user_jsessionid();
-  if (!empty($jsessionid)) {
-    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-  }
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
     // /eCommerceShowcartNew;jsessionid=807E961CDA1FE828F6DA4E92C032DD79.jvm1
+    $jsessionid = get_user_jsessionid();
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
     if (!empty($party_id)) {
       $params['partyId'] = $party_id;
     }
@@ -1132,7 +1132,7 @@ function add_item_to_cart($product_id, $quantity) {
 function delete_item_from_cart($index) {
   $endpoint = 'deleteFromCartResponse';
   $params = array(
-    'deleteproduct_'.$index => '',
+    'delete_'.$index => $index,
   );
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
@@ -1151,7 +1151,7 @@ function delete_item_from_cart($index) {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();  
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, print_r(compact('params', 'data'), 1));
+  watchdog(__FUNCTION__, print_r(compact('request', 'data'), 1));
   return $data;
 }
 
@@ -1161,15 +1161,15 @@ function delete_item_from_cart($index) {
 function modify_item_in_cart($index, $quantity) {
   $endpoint = 'modifycartResponse';
   $params = array(
-    'updateproduct_'.$index => $quantity,
+    'update_'.$index => $quantity,
   );
-  $jsessionid = get_user_jsessionid();
-  if (!empty($jsessionid)) {
-    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-  }
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
     // /modifycartResponse;jsessionid=6C1A020269975B6E32AB5DEC14081104.jvm1?update_i=qnty
+    $jsessionid = get_user_jsessionid();
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
   }
   else {
     // Logged in user
@@ -1180,7 +1180,7 @@ function modify_item_in_cart($index, $quantity) {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, print_r(compact('endpoint','params', 'data'), 1));
+  watchdog(__FUNCTION__, print_r(compact('params', 'data'), 1));
   return $data;
 }
 
@@ -1235,7 +1235,7 @@ function ofbiz_login($username, $password) {
 function get_user_addresses() {
   // /multiPageCustomerAddressNew?partyId=10010
   $client = drubiz_api_client();
-  $response = $client->get('displayPostalAddress?' . http_build_query(array(
+  $response = $client->get('multiPageCustomerAddressNew?' . http_build_query(array(
     'partyId' => get_user_party_id(),
   )));
   $raw_json = $response->getBody();
