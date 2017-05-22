@@ -99,7 +99,7 @@
         <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
             <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
               <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
-                <a href="#" class="plp-add-to-cart"  data-product-id="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-cart"  data-product-id="<?php echo $variant_product_id ?>" onclick="addItemToCart(<?php echo $variant_product_id ?>);">
                   <?php echo $size ?>
                 </a>
               </li>
