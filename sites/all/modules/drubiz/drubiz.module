@@ -383,6 +383,14 @@ function drubiz_menu() {
     'file'              => 'drubiz.pages.inc',
   );
 
+  $items['checkout-address'] = array(
+    'title'             => 'Checkout Address',
+    'description'       => "Checkout Address",
+    'page callback'     => 'drubiz_checkout_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
   $items['checkout-final'] = array(
     'title'             => 'Checkout - Final',
     'description'       => "Checkout - Final",

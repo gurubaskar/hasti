@@ -67,7 +67,7 @@
         </div>
 
         <div class="btns-wrap">
-          <span><a href="<?php echo url('checkout-payment');?>" class="place-order">Place Order</a></span>
+          <span><a href="#" class="place-order">Place Order</a></span>
           <span><a href="<?php echo url();?>" class="continue">Continue Shopping</a></span>
           <div class="checkpin"><input type="text" placeholder="Enter Your Pin"><a href="#" class="check">Check</a></div>
         </div>

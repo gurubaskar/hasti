@@ -98,6 +98,34 @@
         document.location = Drupal.settings.basePath + 'search/site/' + encodeURIComponent(search_text);
       }
     });
+
+    $('.plus').click(function(){
+      var conatctMechId = $(this).data('contactmechid');
+      loading();
+      $.ajax({
+            type: "POST",
+            url: Drupal.settings.basePath + 'checkout-address',
+            data: 'contactMechId=' + conatctMechId,
+            success: function(data) {
+              close_loading();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+              console.log(textStatus + ': ' + errorThrown);
+              close_loading();
+            },
+            dataType: 'json'
+          });
+    });
+    $('.place-order').click(function(){
+      document.location = Drupal.settings.basePath + 'checkout-payment';
+    });
+    $('.cart').click(function(){
+      document.location = Drupal.settings.basePath + 'cart';
+    });
+    $('.navbar-btn').click(function(){
+      document.location = Drupal.settings.basePath;
+    })
   });
 
 
