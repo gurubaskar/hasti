@@ -490,7 +490,7 @@ $(document).ready(function() {
     }
     else {
       var product_id = $('.js_selectableFeature_1 a.selected').data('product-id');
-      var quantity = $('#quantity').val();
+      var quantity = 1; // commented due to no quantity selectable. $('#quantity').val();
     }
     if(product_id == null || product_id == undefined){
       alert('Please select a size of your choice');
@@ -600,7 +600,7 @@ $(document).ready(function() {
     e.preventDefault();
     var index = $(this).data('index');
     var class_name =  $(this).attr('class');
-    var quantity = $(this).siblings('.qty').html();
+    var quantity = $('.qty').html();
       if(class_name == "qty-plus"){
         quantity = Number(quantity) + 1;
       }else{
