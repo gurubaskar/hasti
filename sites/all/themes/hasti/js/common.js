@@ -117,15 +117,6 @@
             dataType: 'json'
           });
     });
-    $('.place-order').click(function(){
-      document.location = Drupal.settings.basePath + 'checkout-payment';
-    });
-    $('.cart').click(function(){
-      document.location = Drupal.settings.basePath + 'cart';
-    });
-    $('.navbar-btn').click(function(){
-      document.location = Drupal.settings.basePath;
-    })
   });
 
 
