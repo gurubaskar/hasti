@@ -1235,7 +1235,7 @@ function ofbiz_login($username, $password) {
 function get_user_addresses() {
   // /multiPageCustomerAddressNew?partyId=10010
   $client = drubiz_api_client();
-  $response = $client->get('multiPageCustomerAddressNew?' . http_build_query(array(
+  $response = $client->get('displayPostalAddress?' . http_build_query(array(
     'partyId' => get_user_party_id(),
   )));
   $raw_json = $response->getBody();
