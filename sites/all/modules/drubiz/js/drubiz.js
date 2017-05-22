@@ -742,7 +742,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#js_submitOrderBtn').click(function(e) {
+  $('#js_submitOrderBtn, .hastiCOD').click(function(e) {
     e.preventDefault();
     loading();
     $.ajax({

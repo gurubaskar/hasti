@@ -183,7 +183,7 @@ global $drubiz_domain;
                     </form>
                   </div>
                   <div class="cart">
-                    <a href="<?php echo url('cart') ?>" title="My Cart">
+                    <a href="#" title="My Cart">
                     <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ global $drubiz_domain;
         <div class="row">
           <div class="col-xs-2 col-sm-2 col-md-2">
             <?php if ($logo): ?>
-              <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+              <a class="logo navbar-btn pull-left" href="#" title="<?php print t('Home'); ?>">
                 <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
               </a>
             <?php endif; ?>

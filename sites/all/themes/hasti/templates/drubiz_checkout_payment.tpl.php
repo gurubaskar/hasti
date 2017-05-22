@@ -104,14 +104,14 @@
               <div class="phno"><label>Mob No:</label><span><?php echo $postal_value['contactNumber']?></span></div>
             </div>
             <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
-              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="plus"></span></a>
-              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="edit"></span></a>
-              <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#"><span class="delete"></span></a>
+              <a href="#"><span class="plus" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>"></span></a>
+              <a href="#"><span class="edit"></span></a>
+              <a href="#"><span class="delete"></span></a>
             </div>
           </div>
           <?php } ?>
           <div class="btns-wrap">
-            <span><a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Continue</a></span>
+            <span><a href="#" class="buy-now">Continue</a></span>
           </div>
         </div>
       </div>
@@ -127,13 +127,13 @@
               <span>
                 <input type="radio" name="radiobtn" checked=""><label>COD</label>
                 <div class="btns-wrap">
-                  <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Continue</a>
+                  <a href="#" class="buy-now hastiCOD">Continue</a>
                 </div>
               </span>
               <span>
                 <input type="radio" name="radiobtn"><label>Online Payment</label>
                 <div class="btns-wrap">
-                  <a href="file://bg4ws1081/HASTI-NEW%20-backup/checkout.html#" class="buy-now">Proceed to Payment</a>
+                  <a href="#" class="buy-now ccavenue" style="display:none">Proceed to Payment</a>
                 </div>
               </span>
             </div>
