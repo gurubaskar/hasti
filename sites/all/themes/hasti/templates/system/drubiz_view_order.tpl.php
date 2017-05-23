@@ -18,6 +18,7 @@
               <?php echo $order['shippingAddress'][0]['toName'] ?><br />
               <?php echo $order['shippingAddress'][0]['address1'] . ' ' . $order['shippingAddress'][0]['address2'] ?>,<br />
               <?php echo $order['shippingAddress'][0]['city'] ?>.<br/>
+              <?php echo $order['shippingAddress'][0]['stateProvinceGeoId'] ?>.<br />
               <?php echo t('Pin : '); ?><?php echo $order['shippingAddress'][0]['postalCode'] ?><br/><br/>
               <?php echo t('Mob No :'); ?> <?php echo $order['shippingAddress'][0]['contactNumber'] ?>
               </span></p>

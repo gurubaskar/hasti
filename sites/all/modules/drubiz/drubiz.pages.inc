@@ -1002,7 +1002,8 @@ function drubiz_add_to_love_list(){
     }
   }
   else {
-    echo "Not logged in";
+    $errorMsg = array('isError'=>'True','_EVENT_MESSAGE_'=>'Please login to add product in wishlist.');
+    echo json_encode($errorMsg);
     // Logged in user
     // /eCommerceOrderDetailNew?orderId=RNYCO10190&partyId=10010
     // Party ID is already added above.
