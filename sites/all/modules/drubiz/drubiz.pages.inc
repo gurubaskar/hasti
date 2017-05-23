@@ -137,22 +137,21 @@ function drubiz_view_order($order_id) {
  */
 function drubiz_checkout_final() {
   $params = array(
-    'productStoreId' => 'RNY_STORE',
     'paymentMethodTypeId' => 'EXT_COD', // TODO: This is hard coded for now.
   );
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
   if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
     // /anonMultiPageGenerateOrderNew;jsessionid=807ee961cda1fe828f6da4e92c032dd79.jvm1?paymentMethodTypeId=EXT_COD
     $endpoint = 'anonMultiPageGenerateOrderNew';
-    $jsessionid = get_user_jsessionid();
-    if (!empty($jsessionid)) {
-      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-    }
   }
   else {
     // Logged in user
-    // /multiPageGenerateOrderNew?partyId=10010
-    $endpoint = 'multiPageGenerateOrderNew';
+    // /singlePageSubmitOrderNew?partyId=10010
+    $endpoint = 'singlePageSubmitOrderNew';
     $params['partyId'] = get_user_party_id();
   }
 
@@ -1003,7 +1002,8 @@ function drubiz_add_to_love_list(){
     }
   }
   else {
-    echo "Not logged in";
+    $errorMsg = array('isError'=>'True','_EVENT_MESSAGE_'=>'Please login to add product in wishlist.');
+    echo json_encode($errorMsg);
     // Logged in user
     // /eCommerceOrderDetailNew?orderId=RNYCO10190&partyId=10010
     // Party ID is already added above.
@@ -1152,6 +1152,28 @@ function drubiz_apply_promocode(){
   $data = json_decode($raw_json);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('response', 'raw_json', 'data'), 1) . '</pre>');
   echo json_encode($data);
+}
+
+function drubiz_checkout_address(){
+  // /postalAddressSelect?id=10462
+  $endpoint = 'postalAddressSelect';
+  $contactMechId = @$_POST['contactMechId'];
+  $params = array();
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params['partyId'] = get_user_party_id();
+  $params['id'] = $contactMechId;
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+
+  echo json_encode($data);
+
 }
 
 function drubiz_view_promocode(){

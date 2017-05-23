@@ -548,7 +548,7 @@ $(document).ready(function() {
           close_loading();
         }
         else {
-          alert('Error adding item.');
+          alert(data['_EVENT_MESSAGE_']+' Error adding item.');
           close_loading();
         }
       },
@@ -742,7 +742,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#js_submitOrderBtn').click(function(e) {
+  $('#js_submitOrderBtn, .hastiCOD').click(function(e) {
     e.preventDefault();
     loading();
     $.ajax({
