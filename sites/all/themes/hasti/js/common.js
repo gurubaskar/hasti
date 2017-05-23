@@ -118,8 +118,9 @@
           });
     });
   });
-
-
+  $(window).load(function(){
+    $('.ui-link').attr('data-ajax','false');
+  });
 })(jQuery);
 
 /*********************Sign UP**************************/
