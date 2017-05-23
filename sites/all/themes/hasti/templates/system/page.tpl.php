@@ -98,8 +98,8 @@ global $drubiz_domain;
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid == 0):?>
-              <li><a href="#positionWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
-              <li><a href="#signInWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
+              <li><a href="#positionWindow" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
+              <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
             <?php endif; ?>
           </ul>
       </div>
