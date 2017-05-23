@@ -120,6 +120,7 @@
   });
   $(window).load(function(){
     $('.ui-link').attr('data-ajax','false');
+    $('#signUpPop,#signInPop').attr('data-ajax','');
   });
 })(jQuery);
 
