@@ -91,11 +91,11 @@ global $drubiz_domain;
           <ul>
             <li><a href="#"><?php echo t('Track Order');?></a></li>
             <?php if($GLOBALS['user']->uid != 0):?>
-              <li><a href="<?php echo url('account/love-list')?>">Wish List</a></li>
+              <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid != 0):?>
               <li><a href="#"><?php echo t('Hi ');?><?php echo $GLOBALS['user']->mail; ?></a></li>
-              <li><a href="<?php echo url('user/logout');?>">LOGOUT</a></li>
+              <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid == 0):?>
               <li><a href="#positionWindow" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
@@ -183,7 +183,7 @@ global $drubiz_domain;
                     </form>
                   </div>
                   <div class="cart">
-                    <a href="<?php echo url('cart') ?>" title="My Cart">
+                    <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">
                     <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ global $drubiz_domain;
         <div class="row">
           <div class="col-xs-2 col-sm-2 col-md-2">
             <?php if ($logo): ?>
-              <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+              <a class="logo navbar-btn pull-left" data-ajax="false" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
                 <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
               </a>
             <?php endif; ?>
