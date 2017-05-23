@@ -133,6 +133,7 @@ a:focus{text-decoration:none !important;}
 .sort-wrap{float:right; width:auto; margin-bottom:30px;}
 .sort-wrap span{font-size:17px; color:0081c5; font-weight:bold; margin-right:10px;}
 .sort-wrap select{width:160px; padding:5px; background:url('./../images/main-img.png') no-repeat 139px -419px;}
+.disabled{background:#E8E8E8; color:#bababa !important;}
 
 /************************* PDP starts ***********************/
 .pdp .breadcrumb{background:none;}
