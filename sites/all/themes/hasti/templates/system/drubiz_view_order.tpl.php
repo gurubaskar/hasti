@@ -10,12 +10,12 @@
             <p>Thank you for shopping with us. We would like to let you know that Hasti has received your order and is preparing for its shipment. Your order delivery details are stated below.</p>
             <p>If you would like to view the status of your order or make any changes to it, please visit '<a href="#">Track order</a>'</p>
             <div class="col-xs-12 col-sm-6 col-md-6 pleft delivery-wrap">
-              <p>Your Estimated Delivery date is (Static): <br/><span calss="delivery-details">Thursday, May 30 2017 - Friday May 31, 2017</span></p>
+              <p>Your Estimated Delivery date is : <br/><span calss="delivery-details">Thursday, May 30 2017 - Friday May 31, 2017</span></p>
               <p>Your Purchase invoice has been sent to your email id which is:<br/> <span calss="delivery-details"><?php echo $GLOBALS['user']->mail;?></span></p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 pleft pright delivery-wrap">
               <p>Your order was sent to:<br/> <span calss="delivery-details">
-              <?php echo $order['shippingAddress'][0]['toName'] ?><br />
+              <?php echo $order['shippingAddress'][0]['toName'] ?>,<br />
               <?php echo $order['shippingAddress'][0]['address1'] . ' ' . $order['shippingAddress'][0]['address2'] ?>,<br />
               <?php echo $order['shippingAddress'][0]['city'] ?>.<br/>
               <?php echo $order['shippingAddress'][0]['stateProvinceGeoId'] ?>.<br />
@@ -59,16 +59,22 @@
                       <div class="cartrow"><label><?php echo t('Color:'); ?></label><span class="color"><?php echo $selected_feature_value ?></span></div>
                   <?php endif; ?>
                 <?php endforeach; ?>
-                <div class="cartrow"><label>Seller:</label><span>Mother Earth (Static)</span></div>
+                <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12 edit">
                 <div class="col-xs-6 col-sm-6 col-md-7 total">
-                  <div><label>Amount Payable:</label><span>&#8377. <?php echo format_money($cart_product['orderGrandTotal']) ?></span></div>
+                  <?php
+                    $unitPrice = $cart_product['unitPrice'] * (int)$cart_product['quantity'];
+                  ?>
+                  <div><label>Amount Payable:</label><span>&#8377. <?php echo format_money($unitPrice) ?></span></div>
                 </div>
               </div>
             </div>
             <?php endforeach; ?>
           </div>
+        </div>
+        <div class="alltotal">
+          <label>Total:</label><span>&#8377. <?php echo format_money($cart_product['orderGrandTotal']) ?></span>
         </div>
         <div class="icon-wrap">
           <div class="icon-container">

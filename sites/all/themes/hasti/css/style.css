@@ -152,6 +152,11 @@ a:focus{text-decoration:none !important;}
 .pdp .sizechart p a{color:#000; font-weight:bold;}
 .pdp .color ul{float:left;}
 .pdp .color ul li{width:20px; height:20px;}
+.pdp .stock{float:left; width:100%; margin-top:15px;}
+.pdp .stock ul li{float:left; margin-right:20px;}
+.pdp .stock ul li .instock{background:#00b04c; width:20px; height:15px; float:left; margin-right:5px;}
+.pdp .stock ul li .lowstock{background:#afd89e; width:20px; height:15px; float:left; margin-right:5px;}
+.pdp .stock ul li .outstock{background:#E8E8E8; width:20px; height:15px; float:left; margin-right:5px;}
 .pdp .btns-wrap{float:left; width:100%; margin:30px 0 15px 0;}
 .pdp .btns-wrap span, #cart .btns-wrap span{background:#00b04c; width:184px; float:left; margin-right:10px;}
 .pdp .btns-wrap span a, #cart .btns-wrap span a, .checkpin a, .checkout .btns-wrap span a, .payment-method .btns-wrap a{text-align:center; color:#fff; float:left; width:100%; padding:10px 0; font-size:16px;}
@@ -190,9 +195,9 @@ a:focus{text-decoration:none !important;}
 .remove{background:url('./../images/main-img.png') no-repeat -5px -446px; padding:10px 28px;}
 .update{background:url('./../images/main-img.png') no-repeat -5px -477px; padding:10px 28px;}
 .edit{margin:10px 0; padding-right:0;}
-#subtotal{float:right; width:100%; text-align:right; margin:15px 0;}
-#subtotal label{ color:#6d6e70; font-size:28px; font-weight:bold; margin-right:5px;}
-#subtotal span{color:#0081c5; font-size:28px; font-weight:bold;}
+#subtotal, .alltotal{float:right; width:100%; text-align:right; margin:15px 0;}
+#subtotal label, .alltotal label{ color:#6d6e70; font-size:28px; font-weight:bold; margin-right:5px;}
+#subtotal span, .alltotal span{color:#0081c5; font-size:28px; font-weight:bold;}
 #cart .btns-wrap{margin:20px 0; float:right; width:100%;}
 #cart .btns-wrap span{float:right; margin-left:10px; margin-right:0;}
 .checkpin{float:right; width:420px;}
@@ -429,6 +434,7 @@ a:focus{text-decoration:none !important;}
     .icon-wrap .icon-container ul li img{max-width:75%; height:auto;}
     .myorders .tabing-wrap .tabing-btns{font-size:16px;}
     .myorders .tabing-wrap .tab-active{padding:7px 10px;}
+    .pdp .stock ul li{width:100%; margin-bottom:10px;}
 }
 
 @media (max-width:400px){
@@ -443,6 +449,7 @@ a:focus{text-decoration:none !important;}
     .cartbox{padding:15px 15px 20px 15px;}
     #changepwd h3{font-size:27px;}
     .myorders .tabing-wrap .tabing-btns{font-size:12px;}
+    .pdp  .pdp-left .price-wrap h2{font-size:26px;}
 }
 /********************** popup responsive code ***********************/
 @media (max-width:520px){
