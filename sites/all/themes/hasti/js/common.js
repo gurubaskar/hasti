@@ -99,7 +99,7 @@
       }
     });
 
-    $('.plus').click(function(){
+    $('.address-select').click(function(){
       var conatctMechId = $(this).data('contactmechid');
       loading();
       $.ajax({

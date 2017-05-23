@@ -104,7 +104,7 @@
               <div class="phno"><label>Mob No:</label><span><?php echo $postal_value['contactNumber']?></span></div>
             </div>
             <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
-              <a href="#"><span class="plus" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>"></span></a>
+              <a href="#"><span class="plus address-select" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>"></span></a>
               <a href="#"><span class="edit"></span></a>
               <a href="#"><span class="delete"></span></a>
             </div>
