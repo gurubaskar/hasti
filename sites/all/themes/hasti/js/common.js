@@ -99,7 +99,7 @@
       }
     });
 
-    $('.plus').click(function(){
+    $('.address-select').click(function(){
       var conatctMechId = $(this).data('contactmechid');
       loading();
       $.ajax({
@@ -118,8 +118,9 @@
           });
     });
   });
-
-
+  $(window).load(function(){
+    $('.ui-link').attr('data-ajax','false');
+  });
 })(jQuery);
 
 /*********************Sign UP**************************/
