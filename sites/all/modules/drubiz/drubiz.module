@@ -738,6 +738,10 @@ function drubiz_menu() {
 function drubiz_theme() {
   $drubiz_path = drupal_get_path('module', 'drubiz') . '/templates';
   return array(
+    'myaccount_menu_links'  => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_menu_links',
+    ),
     'drubiz_mini_cart'  => array(
       'variables'       => array(
         'cart'          => NULL,

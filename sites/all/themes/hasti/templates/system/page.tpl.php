@@ -76,9 +76,8 @@
 global $drubiz_domain;
   $language_param = variable_get('locale_language_negotiation_session_param', 'language');
   $main_menu_suffix = (empty($_SESSION[$language_param]) || @$_SESSION[$language_param] == 'en') ? '-en' : '-' . $_SESSION[$language_param];
-  $main_menu_name = 'main-menu-' . $drubiz_domain['catalog'];//. $main_menu_suffix;
+  $main_menu_name = 'main-menu-' . $drubiz_domain['catalog'] . $main_menu_suffix;
   $menu_tree = menu_tree_output(menu_tree_all_data($main_menu_name));
-
   $search_filter_sidebar = !empty($page['search_filter_sidebar']);
 ?>
 <div id="topnav">
@@ -94,7 +93,7 @@ global $drubiz_domain;
               <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid != 0):?>
-              <li><a href="#"><?php echo t('Hi ');?><?php echo $GLOBALS['user']->mail; ?></a></li>
+              <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $GLOBALS['user']->mail; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid == 0):?>
@@ -202,7 +201,7 @@ global $drubiz_domain;
               <!-- <img src="images/logo.png" alt="hasti" title="hasti" /> -->
           </div>
           <div class="col-xs-10 col-sm-10 col-md-10 menu">
-            <?php print render($page['header']); ?>      
+            <?php //print render($page['header']); ?>      
               <!-- <ul>
                 <li><a href="#">Women</a></li>
                 <li><a href="#">Men</a></li>
@@ -211,6 +210,44 @@ global $drubiz_domain;
                 <li><a href="#">Food</a></li>
                 <li><a href="#">Craft</a></li>
               </ul> -->
+              <ul id="eCommerceNavBarMenu">
+              <?php foreach ($menu_tree as $menu_id => $menu): if (!is_numeric($menu_id)) continue; ?>
+                <li class="topLevel topCatalogLi">
+                  <a class="topLevel topCatlog" href="<?php echo url($menu['#href'], array('query' => @$menu['#localized_options']['query'])) ?>">
+                    <?php echo $menu['#title'] ?>
+                  </a>
+                  <?php if (!empty($menu['#below'])): ?>
+                    <div class="mainDiv" style="display:none;">
+                      <div class="menuimgDiv" style="display:none;"><!-- <img src="<?php echo current_theme_path() ?>/images/Women_-Banner_1.jpg" alt="banner"> --></div>
+                      <div class="subUlDiv">
+                        <ul class="subCategoryNav" style="display: none;">
+                          <?php foreach ($menu['#below'] as $sub_menu_id => $sub_menu): if (!is_numeric($sub_menu_id)) continue; ?>
+                            <li class="subLevel topCatalogLi">
+                              <a class="subLevel topCatlog" href="<?php echo url($sub_menu['#href'], array('query' => @$sub_menu['#localized_options']['query'])) ?>">
+                                <?php echo $sub_menu['#title'] ?>
+                              </a>
+                              <?php if (!empty($sub_menu['#below'])): ?>
+                                <ul class="subCategoryNav" style="display: none;">
+                                  <?php foreach ($sub_menu['#below'] as $sub_sub_menu_id => $sub_sub_menu): if (!is_numeric($sub_sub_menu_id)) continue; ?>
+                                    <li class="subLevel topCatalogLi navfirstitem">
+                                      <a class="subLevel topCatlog" href="<?php echo url($sub_sub_menu['#href'], array('query' => @$sub_sub_menu['#localized_options']['query'])) ?>">
+                                        <?php echo $sub_sub_menu['#title'] ?>
+                                      </a>
+                                    </li>
+                                  <?php endforeach; ?>
+                                </ul>
+                              <?php endif; ?>
+
+                            </li>
+                          <?php endforeach; ?>
+                        </ul>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+
+                </li>
+              <?php endforeach; ?>
+            </ul>
           </div>
         </div>
       </div>

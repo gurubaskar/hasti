@@ -117,6 +117,19 @@
             dataType: 'json'
           });
     });
+    $(".topLevel.topCatalogLi").mouseover(function(){
+      $(this).find("ul").css("display","block");
+      $(this).find(".mainDiv").css("display","block");
+      $(this).find(".imgDivClass").remove();
+      var subUlDiv=$(this).find(".subUlDiv");
+      var str='<div class="imgDivClass">'+$(this).find(".menuimgDiv").html()+'</div>';
+      // $(str).insertAfter(subUlDiv);
+    });
+    $(".topLevel.topCatalogLi").mouseout(function(){
+      $(this).find(".mainDiv").css("display","none");
+      $(this).find("ul").css("display","none");
+      $(this).find(".imgDivClass").remove();
+    });
   });
   $(window).load(function(){
     $('.ui-link').attr('data-ajax','false');
