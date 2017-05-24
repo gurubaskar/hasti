@@ -184,10 +184,35 @@
             <?php endforeach; ?>
           </ul>
         </div>
+        <?php
+          $stockClass = '';
+          $addToCart = 'js_addToCart';
+          $buyNow = 'js_addToCart_buynow';
+          if($out_of_stock_info->inventory == 'No') :
+            $stockClass = 'disabled';
+            $addToCart = '';
+            $buyNow = '';
+          elseif($out_of_stock_info->inventory == 'Yes' && $out_of_stock < $out_of_stock_info->bufferInventory) : 
+            $stockClass = "lowstock";
+          endif;
+        ?>
+        <div class="stock">
+          <ul>
+            <li>
+              <span class="instock"></span>In Stock
+            </li>
+            <li>
+              <span class="lowstock"></span>Low Stock
+            </li>
+            <li>
+              <span class="outstock"></span>Out of Stock
+            </li>
+          </ul>
+        </div>
         <div class="btns-wrap">
           <span><a href="#" class="wish-icon" id="js_addToWishlist">Add to wish list</a></span>
-          <span><a href="#" class="add-bag" id="js_addToCart">Add to Bag</a></span>
-          <span><a href="#" class="buy-now" id="js_addToCart_buynow">Buy Now</a></span>
+          <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="<?php echo $addToCart;?>">Add to Bag</a></span>
+          <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>">Buy Now</a></span>
         </div>
         <p><?php echo $body[0]['safe_value'] ?></p>
         <div class="story-wrap">
