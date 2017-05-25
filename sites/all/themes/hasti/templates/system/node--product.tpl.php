@@ -102,14 +102,13 @@
     <!-- <div class="row"> -->
       <div class="col-xs-12 col-sm-12 col-md-12 breadcrumb"><h3>Women / Clothing / Women Long Kurti</h3></div>
       <div class="col-xs-12 col-sm-6 col-md-5 pdp-left">
-        <div class="zoom-wrap">
+        <!-- <div class="zoom-wrap"> -->
           <div class="col-xs-2 col-sm-2 col-md-2 pleft thumb-wrap">
             <img src="<?php print current_theme_path() .'/images/pdp-thumb1.jpg'; ?>" class="img-responsive" />
           </div>
           <div class="col-xs-10 col-sm-10 col-md-10 pleft pright zoom-img">
             <img src="<?php echo drubiz_image($product->pdp_regular_image); ?>" class="img-responsive" />
           </div>
-        </div>
         <div class="price-wrap">
           <h2>Transparent Price</h2>
           <p>We believe customers have the right to know what their products costs to make</p>
@@ -217,17 +216,17 @@
         <p><?php echo $body[0]['safe_value'] ?></p>
         <div class="story-wrap">
           <h2>Story</h2>
-          <p><?php echo $body[0]['safe_value'] ?></p>
+          <?php $storyInfo = pdp_story_info($product->product_id); 
+            if($storyInfo->isError == 'false') :
+          ?>
+          <p><?php echo $storyInfo->storyDescription[0]; ?></p>
           <div class="storyimg-wrap">
             <div class="col-xs-12 col-sm-12 col-md-12 pleft pright-five">
               <div class="img-wrap">
-                <img src="<?php print current_theme_path() .'/images/pdp-rimg1.jpg'; ?>" class="img-responsive" />
-                <img src="<?php print current_theme_path() .'/images/pdp-rimg2.jpg'; ?>" class="img-responsive" />
-                <img src="<?php print current_theme_path() .'/images/pdp-rimg6.jpg'; ?>" class="img-responsive" />
+                <img src="http://bg4ws0386:8080<?php print $storyInfo->ImageUrl[0] ?>" class="img-responsive" />
               </div>
               <div class="video">
                 <a href="#"><img src="<?php print current_theme_path() .'/images/pdp-rvedio.jpg'; ?>" class="img-responsive" /></a>
-                <img src="<?php print current_theme_path() .'/images/pdp-rimg5.jpg'; ?>" class="img-responsive" />
               </div>
             </div>
             <div class="btns-wrap">
@@ -235,6 +234,9 @@
               <span><a href="#">Your Feedback</a></span>
             </div>
           </div>
+          <?php else : ?>
+            <?php echo $storyInfo->_ERROR_MESSAGE_;?>
+          <?php endif;?>
         </div>
       </div>
     <!-- </div> -->
