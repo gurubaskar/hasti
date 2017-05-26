@@ -3,7 +3,7 @@
 	<li>
 		<h3>Orders</h3>
 		<ul>
-			<li><a href="#">My Order</a></li>
+			<li><a href="<?php echo url('account/orders');?>" data-ajax="false">My Order</a></li>
 			<li><a href="#">Track Order</a></li>
 		</ul>
 	</li>

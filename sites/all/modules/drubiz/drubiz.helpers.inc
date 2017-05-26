@@ -1190,7 +1190,9 @@ function modify_item_in_cart($index, $quantity) {
 function get_user_orders() {
   // /eCommerceOrderHistoryNew
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceOrderHistoryNew');
+  $response = $client->get('eCommerceOrderHistoryNew?' . http_build_query(array(
+    'partyId' => get_user_party_id(),
+  )));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   return $data;
