@@ -1354,6 +1354,16 @@ function pdp_out_of_stock_info($masterProductId){
     return $data;
 }
 
+function pdp_story_info($masterProductId) {
+  $client = drubiz_api_client();
+  $response = $client->get('industreeStory?' . http_build_query(array(
+    'productId' => $masterProductId,//'500900',
+  )));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json);
+  return $data;
+}
+
 function drubiz_get_demo_administrator_role() {
   return db_query("SELECT rid FROM role WHERE name = :role", array(':role' => 'demo administrator'))->fetchField();
 }
