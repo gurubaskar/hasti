@@ -1204,7 +1204,7 @@ function get_user_orders() {
 function get_user_profile() {
   // /eCommerceEditCustomerInfoNew?partyId=10010
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceEditCustomerInfoNew?' . http_build_query(array(
+  $response = $client->get('eCommerceEditGetPersonalInfo?' . http_build_query(array(
     'partyId' => get_user_party_id(),
   )));
   $raw_json = $response->getBody();
