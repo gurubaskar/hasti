@@ -119,16 +119,16 @@
     });
     $(".topLevel.topCatalogLi").mouseover(function(){
       $(this).find("ul").css("display","block");
-      $(this).find(".mainDiv").css("display","block");
-      $(this).find(".imgDivClass").remove();
-      var subUlDiv=$(this).find(".subUlDiv");
-      var str='<div class="imgDivClass">'+$(this).find(".menuimgDiv").html()+'</div>';
+      //$(this).find(".mainDiv").css("display","block");
+      //$(this).find(".imgDivClass").remove();
+      //var subUlDiv=$(this).find(".subUlDiv");
+      //var str='<div class="imgDivClass">'+$(this).find(".menuimgDiv").html()+'</div>';
       // $(str).insertAfter(subUlDiv);
     });
     $(".topLevel.topCatalogLi").mouseout(function(){
-      $(this).find(".mainDiv").css("display","none");
+      //$(this).find(".mainDiv").css("display","none");
       $(this).find("ul").css("display","none");
-      $(this).find(".imgDivClass").remove();
+      //$(this).find(".imgDivClass").remove();
     });
   });
   $(window).load(function(){
@@ -356,3 +356,90 @@ function closeForgotPassword() {
  jQuery("#forgotPopup").hide();
  jQuery("#signInPopup").show(); 
 }
+
+
+/*************** mega menu *****************/
+
+jQuery(document).ready(function(){
+if (jQuery(window).width() >= 768) 
+{
+    jQuery("#eCommerceNavBarMenu li").mouseover(function() {
+    jQuery(this).find('ul').show();         
+    var posMainPanel = jQuery("#eCommercePageBody").offset();  
+    var posMenuWidth = jQuery(this).first('ul').offset();
+    var left = (posMainPanel.left - posMenuWidth.left) + "px";
+    jQuery(this).find('ul').css({left:left});       
+      });
+      jQuery("#eCommerceNavBarMenu li").mouseleave(function() {
+        jQuery(this).find('ul').hide();
+      });
+}else{  jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
+      jQuery("#eCommerceNavBarMenu li>ul").css({"width":"300px"});
+    jQuery("#eCommerceNavBarMenu li").find('ul').css({left:""});  
+    jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":"100%"});
+    jQuery("#eCommerceNavBarMenu li").off('mouseover');
+        jQuery("#eCommerceNavBar > ul > li").mouseleave(function() {
+           jQuery(this).children("ul").slideUp();
+           jQuery('#eCommerceNavBar > ul > li:has( > ul)').removeClass('menu-drop-icon').addClass('menu-dropdown-icon');
+        });
+        jQuery("#eCommerceNavBar > ul > li").click(function () {
+          jQuery(this).has( "ul" ).toggleClass('menu-drop-icon');
+          jQuery(this).children("ul").slideToggle(150);
+          jQuery('html, body').animate({
+                scrollTop: jQuery(this).offset().top
+            }, 100);
+      });
+
+}
+  
+jQuery(window).resize(function () {
+    if (jQuery(window).width() < 768) {
+      jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
+        jQuery("#js_eCommerceProductAddImage > ul  li:gt(2)").hide();
+      jQuery("#eCommerceNavBarMenu li>ul").css({"width":"300px"});
+      jQuery("#eCommerceNavBarMenu li").find('ul').css({left:""});
+      jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":"100%"});
+      jQuery("#eCommerceNavBarMenu li").off('mouseover');
+          jQuery("#eCommerceNavBar > ul > li").mouseleave(function() {
+        jQuery(this).children("ul").slideUp();
+        jQuery('#eCommerceNavBar > ul > li:has( > ul)').removeClass('menu-drop-icon').addClass('menu-dropdown-icon');
+        });
+          jQuery("#eCommerceNavBar > ul > li").click(function () {
+              jQuery(this).has( "ul" ).toggleClass('menu-drop-icon');
+              jQuery(this).children("ul").slideToggle(150);
+              jQuery('html, body').animate({
+                    scrollTop: jQuery(this).offset().top
+                }, 100);
+          });
+    }
+    else{
+      jQuery("#eCommerceNavBarMenu li").mouseover(function() {
+        jQuery(this).find('ul').css({"width":"1240px"});
+        jQuery(this).find('ul').show();
+        jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":""});
+          var posMainPanel = jQuery("#eCommercePageBody").offset();  
+          var posMenuWidth = jQuery(this).first('ul').offset();
+          var left = (posMainPanel.left - posMenuWidth.left) + "px";
+          jQuery(this).find('ul').css({left:left});
+        });
+        jQuery("#eCommerceNavBarMenu li").mouseleave(function() {
+          jQuery(this).find('ul').hide();
+          });
+        jQuery("#eCommerceNavBar > ul > li").off('click');
+        jQuery("#eCommerceNavBar > ul").removeClass('show-on-mobile');
+        
+    }
+});
+
+
+jQuery('#eCommerceNavBar > ul > li:has( > ul)').addClass('menu-dropdown-icon');
+
+jQuery("#eCommerceNavBar > ul").before("<a href=\"#\" class=\"menu-mobile\"></a>");
+
+jQuery(".menu-mobile").click(function (e) {
+  jQuery("#eCommerceNavBar > ul").toggleClass('show-on-mobile');
+  jQuery("#eCommercePageBody").toggleClass('mob-active');
+  e.preventDefault();
+});
+
+});

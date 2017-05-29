@@ -153,128 +153,105 @@ global $drubiz_domain;
 <!-- header -->
 <div id="header">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="col-xs-0 col-sm-0 col-md-8 col-lg-8"></div>
-          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-            <div class="row">
-              <div class="search-wrap col-xs-12 col-sm-12 col-md-12">
-                <div class="row">
+    <div class="col-xxs-12 col-xs-12 col-sm-5 col-md-8 col-lg-7" id="navbar">
+        <div class="mob-nav"></div>
+        <?php if ($logo): ?>
+          <a class="logo navbar-btn pull-left" data-ajax="false" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+            <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+            </a>
+        <?php endif; ?>
+        <div class="menu">
+          <ul id="eCommerceNavBarMenu">
+            <?php foreach ($menu_tree as $menu_id => $menu): if (!is_numeric($menu_id)) continue; ?>
+              <li class="topLevel">
+                <a class="topLevel" href="<?php echo url($menu['#href'], array('query' => @$menu['#localized_options']['query'])) ?>">
+                  <?php echo $menu['#title'] ?>
+                </a>
+                <?php if (!empty($menu['#below'])): ?>
+                  <!--<div class="mainDiv" style="display:none;">-->
+                    <ul class="subCategoryNav" style="display: none;">
+                      <?php foreach ($menu['#below'] as $sub_menu_id => $sub_menu): if (!is_numeric($sub_menu_id)) continue; ?>
+                        <li class="subLevel">
+                          <a class="subLevel" href="<?php echo url($sub_menu['#href'], array('query' => @$sub_menu['#localized_options']['query'])) ?>">
+                            <?php echo $sub_menu['#title'] ?>
+                          </a>
+                          <?php if (!empty($sub_menu['#below'])): ?>
+                            <ul class="subCategoryNav">
+                              <?php foreach ($sub_menu['#below'] as $sub_sub_menu_id => $sub_sub_menu): if (!is_numeric($sub_sub_menu_id)) continue; ?>
+                                <li class="subLevel">
+                                  <a class="subLevel" href="<?php echo url($sub_sub_menu['#href'], array('query' => @$sub_sub_menu['#localized_options']['query'])) ?>">
+                                    <?php echo $sub_sub_menu['#title'] ?>
+                                  </a>
+                                </li>
+                              <?php endforeach; ?>
+                            </ul>
+                          <?php endif; ?>
 
-                  <div class="search">
-                    <form id="frmSearchForm" name="frmSearchForm" method="get">
-                      <!-- <fieldset class="formstyle" title="Search this site..."> -->
-                        <div id="searchContainer" class="targetMobile" style="display: block;">
-                          <div id="searchField">
-                            <input type="text" placeholder="<?php echo t('search website');?>" name="searchText" id="searchText" class="ui-autocomplete-input" autocomplete="on">
-                            <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-                            <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
-                          </div>
-                          <!-- <div id="searchButton">
-                            <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
-                          </div> -->
-                        </div>
-                        <div id="solr-suggestions" class="input-group">
-                        </div>
-                      <!-- </fieldset> -->
-                      <div class="searchErrorMsg" style="color:red"></div>
-                      <div class="searchAutoComplete" id="searchAutoComplete"></div>
-                    </form>
-                  </div>
-                  <div class="cart">
-                    <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">
-                    <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-12" id="navbar">
-        <div class="row">
-          <div class="col-xs-2 col-sm-2 col-md-2">
-            <?php if ($logo): ?>
-              <a class="logo navbar-btn pull-left" data-ajax="false" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-              </a>
-            <?php endif; ?>
-              <!-- <img src="images/logo.png" alt="hasti" title="hasti" /> -->
-          </div>
-          <div class="col-xs-10 col-sm-10 col-md-10 menu">
-            <?php //print render($page['header']); ?>      
-              <!-- <ul>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Kids</a></li>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Food</a></li>
-                <li><a href="#">Craft</a></li>
-              </ul> -->
-              <ul id="eCommerceNavBarMenu">
-              <?php foreach ($menu_tree as $menu_id => $menu): if (!is_numeric($menu_id)) continue; ?>
-                <li class="topLevel topCatalogLi">
-                  <a class="topLevel topCatlog" href="<?php echo url($menu['#href'], array('query' => @$menu['#localized_options']['query'])) ?>">
-                    <?php echo $menu['#title'] ?>
-                  </a>
-                  <?php if (!empty($menu['#below'])): ?>
-                    <div class="mainDiv" style="display:none;">
-                      <div class="menuimgDiv" style="display:none;"><!-- <img src="<?php echo current_theme_path() ?>/images/Women_-Banner_1.jpg" alt="banner"> --></div>
-                      <div class="subUlDiv">
-                        <ul class="subCategoryNav" style="display: none;">
-                          <?php foreach ($menu['#below'] as $sub_menu_id => $sub_menu): if (!is_numeric($sub_menu_id)) continue; ?>
-                            <li class="subLevel topCatalogLi">
-                              <a class="subLevel topCatlog" href="<?php echo url($sub_menu['#href'], array('query' => @$sub_menu['#localized_options']['query'])) ?>">
-                                <?php echo $sub_menu['#title'] ?>
-                              </a>
-                              <?php if (!empty($sub_menu['#below'])): ?>
-                                <ul class="subCategoryNav" style="display: none;">
-                                  <?php foreach ($sub_menu['#below'] as $sub_sub_menu_id => $sub_sub_menu): if (!is_numeric($sub_sub_menu_id)) continue; ?>
-                                    <li class="subLevel topCatalogLi navfirstitem">
-                                      <a class="subLevel topCatlog" href="<?php echo url($sub_sub_menu['#href'], array('query' => @$sub_sub_menu['#localized_options']['query'])) ?>">
-                                        <?php echo $sub_sub_menu['#title'] ?>
-                                      </a>
-                                    </li>
-                                  <?php endforeach; ?>
-                                </ul>
-                              <?php endif; ?>
-
-                            </li>
-                          <?php endforeach; ?>
-                        </ul>
-                      </div>
-                    </div>
-                  <?php endif; ?>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                    <!--<div class="menuimgDiv" style="display:none;">--><!-- <img src="<?php echo current_theme_path() ?>/images/Women_-Banner_1.jpg" alt="banner"> </div>-->
+                    <!--<div class="subUlDiv">-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <?php endif; ?>
 
                 </li>
               <?php endforeach; ?>
             </ul>
-          </div>
         </div>
       </div>
-    </div>
+      <div class="col-xxs-12 col-xs-12 col-sm-7 col-md-4 col-lg-5 search-section">
+        <div class="cart">
+          <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">
+          <!-- <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p> -->
+        </div>
+        <div class="search">
+          <form id="frmSearchForm" name="frmSearchForm" method="get">
+            <!-- <fieldset class="formstyle" title="Search this site..."> -->
+              <div id="searchContainer" class="targetMobile" style="display: block;">
+                <div id="searchField">
+                  <input type="text" placeholder="<?php echo t('search website');?>" name="searchText" id="searchText" class="ui-autocomplete-input" autocomplete="on">
+                  <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                  <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
+                </div>
+                <!-- <div id="searchButton">
+                  <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
+                </div> -->
+              </div>
+              <div id="solr-suggestions" class="input-group">
+              </div>
+            <!-- </fieldset> -->
+            <div class="searchErrorMsg" style="color:red"></div>
+            <div class="searchAutoComplete" id="searchAutoComplete"></div>
+          </form>
+        </div>
+      </div>
   </div>
 </div>
 <!-- content -->
-<?php //print_r($drubiz_domain);?>
-<?php if ($breadcrumb): ?>
-  <div id="breadcrumb"><?php print clean_breadcrumb($breadcrumb); ?></div>
-<?php endif; ?>
-<div id="content" class="plp">
-  <div class="container-fluid">
+<div id="eCommercePageBody">
+  <?php //print_r($drubiz_domain);?>
+  <?php if ($breadcrumb): ?>
+    <div id="breadcrumb"><?php print clean_breadcrumb($breadcrumb); ?></div>
+  <?php endif; ?>
+  <div id="content" class="plp">
+    <div class="container-fluid">
 
-  <?php if ($search_filter_sidebar): ?>
-      <div id="" style="display: block;">
-        <div class="col-xs-0 col-sm-3 col-md-3 plp-left">
-        <div class="left-wrap">
-          <ul>
-            <?php echo render($page['search_filter_sidebar']) ?>
-          </ul>
+    <?php if ($search_filter_sidebar): ?>
+        <div id="" style="display: block;">
+          <div class="col-xs-0 col-sm-3 col-md-3 plp-left">
+          <div class="left-wrap">
+            <ul>
+              <?php echo render($page['search_filter_sidebar']) ?>
+            </ul>
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
-    <?php endif; ?>
+      <?php endif; ?>
 
-    <?php print render($page['content']); ?>      
+      <?php print render($page['content']); ?>      
+    </div>
   </div>
 </div> 
 <!-- Footer -->
