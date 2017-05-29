@@ -29,8 +29,8 @@ regions[footer_social]  = 'Footer Social'
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
 
-stylesheets[all][] = css/bigFishClientSkin.css
-stylesheets[all][] = css/bigFishRwdAdjustments.css
+;stylesheets[all][] = css/bigFishClientSkin.css
+;stylesheets[all][] = css/bigFishRwdAdjustments.css
 stylesheets[all][] = css/jquery.bxslider.css
 stylesheets[all][] = css/jquery.mCustomScrollbar.min.css
 stylesheets[all][] = css/style.css
