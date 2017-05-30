@@ -342,11 +342,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12 pleft pright-five">
               <div class="img-wrap">
                 <?php if(!empty($storyInfo->Image1[0]) and $storyInfo->Image1[0] != null) { ?>
-                  <img src="http://bg4ws0386:8080<?php print $storyInfo->Image1[0] ?>" class="img-responsive" />
+                  <img src="<?php print current_theme_path() . $storyInfo->Image1[0] ?>" class="img-responsive" />
                 <?php } if(!empty($storyInfo->Image2[0]) and $storyInfo->Image2[0] != null) {?>
-                  <img src="http://bg4ws0386:8080<?php print $storyInfo->Image2[0] ?>" class="img-responsive" />
+                  <img src="<?php print current_theme_path() . $storyInfo->Image2[0] ?>" class="img-responsive" />
                 <?php } if(!empty($storyInfo->Image3[0]) and $storyInfo->Image3[0] != null) {?>
-                  <img src="http://bg4ws0386:8080<?php print $storyInfo->Image3[0] ?>" class="img-responsive" />
+                  <img src="<?php print current_theme_path() . $storyInfo->Image3[0] ?>" class="img-responsive" />
                 <?php } ?>
               </div>
               <div class="video">
@@ -357,7 +357,7 @@
                   Your browser does not support the video tag.
                 </video>
                 <?php } if(!empty($storyInfo->Image4[0]) and $storyInfo->Image4[0] != null) {?>
-                <img src="http://bg4ws0386:8080<?php print $storyInfo->Image4[0] ?>" class="img-responsive" />
+                <img src="<?php print current_theme_path() . $storyInfo->Image4[0] ?>" class="img-responsive" />
                 <?php } ?>
               </div>
             </div>
