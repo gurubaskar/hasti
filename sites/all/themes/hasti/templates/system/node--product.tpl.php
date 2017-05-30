@@ -335,14 +335,30 @@
           <?php $storyInfo = pdp_story_info($product->product_id); 
             if($storyInfo->isError == 'false') :
           ?>
+          <?php if(!empty($storyInfo->storyDescription[0]) and $storyInfo->storyDescription[0] != null) { ?>
           <p><?php echo $storyInfo->storyDescription[0]; ?></p>
+          <?php } ?>
           <div class="storyimg-wrap">
             <div class="col-xs-12 col-sm-12 col-md-12 pleft pright-five">
               <div class="img-wrap">
-                <img src="http://bg4ws0386:8080<?php print $storyInfo->ImageUrl[0] ?>" class="img-responsive" />
+                <?php if(!empty($storyInfo->Image1[0]) and $storyInfo->Image1[0] != null) { ?>
+                  <img src="<?php print current_theme_path() . $storyInfo->Image1[0] ?>" class="img-responsive" />
+                <?php } if(!empty($storyInfo->Image2[0]) and $storyInfo->Image2[0] != null) {?>
+                  <img src="<?php print current_theme_path() . $storyInfo->Image2[0] ?>" class="img-responsive" />
+                <?php } if(!empty($storyInfo->Image3[0]) and $storyInfo->Image3[0] != null) {?>
+                  <img src="<?php print current_theme_path() . $storyInfo->Image3[0] ?>" class="img-responsive" />
+                <?php } ?>
               </div>
               <div class="video">
-                <a href="#"><img src="<?php print current_theme_path() .'/images/pdp-rvedio.jpg'; ?>" class="img-responsive" /></a>
+                <?php 
+                if(!empty($storyInfo->storyVideo[0]) and $storyInfo->storyVideo[0] != null) {?>
+                <video width="250" height="240" controls class="img-responsive">
+                  <source src="http://bg4ws0386:8080/<?php print $storyInfo->storyVideo[0];?>" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <?php } if(!empty($storyInfo->Image4[0]) and $storyInfo->Image4[0] != null) {?>
+                <img src="<?php print current_theme_path() . $storyInfo->Image4[0] ?>" class="img-responsive" />
+                <?php } ?>
               </div>
             </div>
             <div class="btns-wrap">
