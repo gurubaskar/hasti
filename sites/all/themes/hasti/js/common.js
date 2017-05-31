@@ -3,9 +3,18 @@
     $(".select-wrap") .hide();
     $(".cart-options").hide();
     $(".wishlist-options").hide();
+    $(".mob-search").hide();
   });
 
 
+    $(document).ready(function(){
+      $(".mobsearch-icon").click(function(){
+        $(".mob-search").slideToggle('medium', function(){
+          if ($(this).is(':visible'))
+                $(this).css('display','block');
+        });
+      });
+    });
   $(document).ready(function () {
     $('.checkout-left ul li:first').addClass('active');
     $('.tab-content:not(:first)').hide();
@@ -589,3 +598,8 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
      }
       });
   }
+
+jQuery(document).ready(function(){
+  jQuery('#block-menu-menu-footer-menu-1-hasti- > ul').removeClass('menu nav');
+  jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
+});
