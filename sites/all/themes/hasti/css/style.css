@@ -56,32 +56,29 @@ p{margin-bottom:7px; line-height:22px;}
 a:focus{text-decoration:none !important;}
 .nopad{padding:0;}
 #topnav{width:100%; float:left; background:#009989; padding:10px 0;}
-#topnav p{color:#fff;}
-.siteHeaderLinks ul{float:right;}
+#topnav p{color:#fff; margin-bottom:7px;}
+.siteHeaderLinks ul{float:right; margin-bottom:0;}
 .siteHeaderLinks ul li{border-right:none; float:left; padding:0 0 0 10px;}
 .siteHeaderLinks ul li a{ color: #fff; font-size: 10px !important;  text-transform:uppercase; font-weight: bold; padding: 0 7px 0 0 !important; border-right: 1px solid #fff !important; border:0; text-shadow: 0; box-shadow:none;}
 .siteHeaderLinks ul li a:hover{color:#ccc; text-decoration:none;}
 
-#header{width:100%; float:left; border-bottom:1px solid #00b04c; margin:40px 0 25px 0;}
+#header{width:100%; float:left; border-bottom:1px solid #00b04c; margin:40px 0 25px 0; position:relative;}
 #header .search-wrap{float:right;}
 #header .search{float:right; padding:20px; cursor:pointer; position:relative; width:70%; margin-right:15px;}
 #header .search .ui-input-text{width:auto !important; float:right;}
 #header .search .searchSubmit{float:right; position:absolute; right:20px;}
 #header .search input[type="text"]{border-top:0; border-right:0; border-left:1px solid #000; border-bottom:1px solid #000; padding:5px; margin-right:4px; float:right; width:250px; margin-left:5px;}
-#header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px;}
+#header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:17px; width:35px;}
 #header .cart p{padding-left:33px;}
 #header .cart span{font-weight:bold;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
-/*#navbar{margin-bottom:20px;}*/
+#navbar{margin-bottom:20px;}
 #navbar img{float:left;}
-#navbar .navbar-btn{margin-top:5px; margin-bottom:0;}
-.menu{float:left; margin-top:32px; margin-left:20px;}
+#navbar a.logo{margin:0;}
+.menu{float:left; margin-top:32px;}
 .menu ul li{float:left;}
 .menu ul li a{padding:10px 20px; color:#000; text-decoration:none; font-size:14px;}
 .menu ul li a:hover{text-decoration:none;}
-.menu .topLevel{width:auto; float:left; /*padding:10px 20px;*/}
-
-
 #content{float:left; width:100%; margin-bottom:20px;}
 
 #footer{width:100%; float:left; background:url('./../images/footer-bg.jpg') no-repeat top left; padding:20px 0; position:relative; text-align:center;}
@@ -109,6 +106,8 @@ a:focus{text-decoration:none !important;}
    #eCommerceNavBarMenu li.topLevel{
         float: left;
         position: relative;
+        border:1px solid #fff;
+       /* border-bottom:0 !important;*/
    }
    #eCommerceNavBarMenu li.topLevel > a{
         padding: 10px 20px !important;
@@ -116,6 +115,7 @@ a:focus{text-decoration:none !important;}
         font-size: 14px !important;
         text-align:center; font-weight:normal;
    }
+   #eCommerceNavBarMenu li.topLevel > a:hover{background:#fff;}
    #eCommerceNavBarMenu ul{
         border: 1px solid #AFAFAF;
         border-top: none;
@@ -141,20 +141,24 @@ a:focus{text-decoration:none !important;}
     }
     #eCommerceNavBar > ul > li > ul > li > ul > li{float:none;}
     #eCommercePageBody{
-        width: 1300px;
+        width: 1370px;
         margin: 0 auto;
         display: block;
         clear: both;
         z-index: 1;
     }
-    .subCategoryNav{margin-top:40px;}
+    .subCategoryNav{margin-top:41px;}
     .subCategoryNav li ul.subCategoryNav{margin-top:0px;}
     #eCommerceNavBarMenu li:hover>ul{
-        width: 1300px;
+        width: 1370px;
         border: none;
-        background: #00b04c;
+        background: #fff;
         padding: 10px;
         min-height: 400px;
+        opacity: 0.9;
+        border-bottom:1px solid #00b04c;
+        border-left:1px solid #00b04c;
+        border-right:1px solid #00b04c;
     }
     #eCommerceNavBarMenu li:hover>ul li.subLevel{
         width: 19%;
@@ -163,7 +167,7 @@ a:focus{text-decoration:none !important;}
         border: none;
     }
     #eCommerceNavBarMenu li:hover>ul li.subLevel>a{
-        color: #fff;
+        color: #000;
         font-weight: bold; font-size:15px;
     }
     #eCommerceNavBarMenu li:hover>ul li.subLevel>ul{
@@ -180,15 +184,19 @@ a:focus{text-decoration:none !important;}
         float: left;
     }
     #eCommerceNavBarMenu li:hover>ul li.subLevel>ul>li a{
-        color: #fff;
+        color: #000;
         font-size: 14px !important;
         width: auto; font-weight:normal;
     }
     #eCommerceNavBarMenu li.topLevel:hover{
-        background: #00b04c;
+        border:1px solid #00b04c;
+        border-bottom:1px solid #fff !important;
+        background:#fff;
+        position:relative;
+        top:1px;
     }
     #eCommerceNavBarMenu li.topLevel:hover a{
-        color:#fff;
+        color:#0081c5;
     }
 
 
@@ -235,7 +243,7 @@ a:focus{text-decoration:none !important;}
 .sort-wrap{float:right; width:auto; margin-bottom:30px;}
 .sort-wrap span{font-size:17px; color:0081c5; font-weight:bold; margin-right:10px;}
 .sort-wrap select{width:160px; padding:5px; background:url('./../images/main-img.png') no-repeat 139px -419px;}
-.disabled{background:#E8E8E8; color:#bababa !important;}
+.disabled{background:#E8E8E8 !important; color:#bababa !important;}
 
 /************************* PDP starts ***********************/
 .pdp .breadcrumb{background:none;}
@@ -400,6 +408,12 @@ a:focus{text-decoration:none !important;}
 .basic-btn{background:#00b04c; color:#fff; padding:10px 40px; font-size:15px;}
 
 
+.search-section{position:relative;}
+.mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
+.mob-search input[type="text"]{width:94% !important; padding:10px; border:0;}
+.mobsearch-icon{float:right; margin-top:15px; margin-right:30px; cursor:pointer;}
+.mobsearch-icon1{float: right; position: absolute; right:13px ;top:5px;}
+
 
 
 /******************************* change pwd ******************************/
@@ -448,7 +462,7 @@ a:focus{text-decoration:none !important;}
 }
 @media (max-width:785px){
     .mob-nav{display:block;}
-    .menu{display:none;}
+    
 }
 
 @media only screen and (max-width:992px) and (min-width:768px){
@@ -507,11 +521,17 @@ a:focus{text-decoration:none !important;}
     .checkpin input[type="text"]{width:75%;}
     .checkpin a{width:24%;}
 }
+
+@media (min-width:768px){
+    .mobsearch-icon{display:none;}
+    .mob-nav, .mob-search{display:none !important;}
+}
+
 @media (max-width:767px){
     .siteHeaderLinks ul{float:left;}
     .siteHeaderLinks ul li:first-child{padding-left:0;}
-    #header .search{float:left; width:auto; padding-left:0; margin-bottom:34px;}
-    #header .cart{margin-top:25px;}
+    #header .search{display:none;}
+    #header .cart{margin-top:17px;}
     .plp-left{display:none;}
     .box{height:auto;}
     .sortby{width:100% !important; padding-left:0;}
@@ -527,6 +547,8 @@ a:focus{text-decoration:none !important;}
     .checkout .addressbox{width:93% !important;}
     .wishlist .cart-details .details-left, .wishlist .cart-details, .wishlist .img-wrap{padding-left:0;}
     .myaccount-right.wishlist .cartbox{width:100%;}
+    .mob-nav{display:block;}
+    .menu, .menu> ul, #search-box{display:none;}
 }
 
 @media (max-width:600px){
@@ -548,8 +570,8 @@ a:focus{text-decoration:none !important;}
 @media (max-width:550px){
     #header .search{width:100%; margin-bottom:0 !important;}
     #header .search input[type="text"]{width:98%;}
-    #header .cart{margin-top:0px; margin-bottom:30px;}
-/*  #header{width:99.1%;}*/
+   /* #header .cart{margin-top:0px; margin-bottom:30px;}*/
+    /*  #header{width:99.1%;}*/
     .pdp .size ul li{margin-right:7px;}
     .checkout-right #subtotal, .checkout-right #order-confirm{text-align:center;}
     .checkout-right #order-confirm label{width:100%; margin-bottom:20px;}
@@ -581,6 +603,10 @@ a:focus{text-decoration:none !important;}
     .pdp .stock ul li{width:100%; margin-bottom:10px;}
     .details-btns{position:relative; width:100%; float:right; right:0px;}
     .details-btns a{width:100%;}
+    #navbar, .search-section{padding:0;}
+    .mobsearch-icon{margin-right:10px;}
+    .mob-nav{width:40px; margin-right:10px;}
+    .mob-search input[type="text"]{width:86%;}
 }
 
 @media (max-width:400px){
@@ -597,6 +623,9 @@ a:focus{text-decoration:none !important;}
     #changepwd h3{font-size:27px;}
     .myorders .tabing-wrap .tabing-btns{font-size:12px;}
     .pdp  .pdp-left .price-wrap h2{font-size:26px;}
+    #navbar img{width:50%; margin-top:9px;}
+    .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -645px; height:auto; padding:15px; margin-top:10px;}
+    .mob-search{top:57px;}
 }
 /********************** popup responsive code ***********************/
 @media (max-width:520px){
