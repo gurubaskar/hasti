@@ -366,6 +366,23 @@ function closeForgotPassword() {
  jQuery("#signInPopup").show(); 
 }
 
+
+/*************** my orders tabbing section ***************/
+$(document).ready(function () {
+        $('.myorders ul li:first').addClass('active');
+        $('.tab-content:not(:first)').hide();
+        $('.myorders ul li a').click(function (event) {
+            event.preventDefault();
+            var content = $(this).attr('href');
+            $(this).parent().addClass('tab-active');
+            $(this).parent().siblings().removeClass('tab-active');
+            $(this).parent().siblings().find('a').removeClass('tab-active');
+            $(content).show();
+            $(content).siblings('.tab-content').hide();
+        });
+});
+
+
 /*************** mega menu *****************/
 
 jQuery(document).ready(function(){
