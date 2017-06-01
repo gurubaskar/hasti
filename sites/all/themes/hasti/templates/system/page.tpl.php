@@ -158,7 +158,7 @@ global $drubiz_domain;
             <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
             </a>
         <?php endif; ?>
-        <div class="menu">
+        <div class="menu" id="eCommerceNavBar">
           <ul id="eCommerceNavBarMenu">
             <?php foreach ($menu_tree as $menu_id => $menu): if (!is_numeric($menu_id)) continue; ?>
               <li class="topLevel">

@@ -368,44 +368,51 @@ function closeForgotPassword() {
 
 /*************** mega menu *****************/
 
-jQuery(document).ready(function(){
-if (jQuery(window).width() >= 768) 
+jQuery(document).ready(function()
+{ 
+if (jQuery(window).width() >= 767) 
 {
     jQuery("#eCommerceNavBarMenu li").mouseover(function() {
     jQuery(this).find('ul').show();         
     var posMainPanel = jQuery("#eCommercePageBody").offset();  
     var posMenuWidth = jQuery(this).first('ul').offset();
     var left = (posMainPanel.left - posMenuWidth.left) + "px";
-    jQuery(this).find('ul').css({left:left});       
+    jQuery(this).find('ul').css({"left":left});       
       });
       jQuery("#eCommerceNavBarMenu li").mouseleave(function() {
+
         jQuery(this).find('ul').hide();
       });
-}else{  jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
-      jQuery("#eCommerceNavBarMenu li>ul").css({"width":"300px"});
-    jQuery("#eCommerceNavBarMenu li").find('ul').css({left:""});  
+}
+else
+{  
+ 
+  jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
+    jQuery("#eCommerceNavBarMenu li>ul").css({"width":"100%"});
+    jQuery("#eCommerceNavBarMenu li").find('ul').css({left:"0px"});  
     jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":"100%"});
     jQuery("#eCommerceNavBarMenu li").off('mouseover');
-        jQuery("#eCommerceNavBar > ul > li").mouseleave(function() {
-           jQuery(this).children("ul").slideUp();
+        jQuery("#eCommerceNavBar > ul > li > ul").mouseleave(function() {
+           jQuery(this).slideUp();
            jQuery('#eCommerceNavBar > ul > li:has( > ul)').removeClass('menu-drop-icon').addClass('menu-dropdown-icon');
         });
         jQuery("#eCommerceNavBar > ul > li").click(function () {
+        
           jQuery(this).has( "ul" ).toggleClass('menu-drop-icon');
-          jQuery(this).children("ul").slideToggle(150);
+          /*jQuery(this).children("ul").slideToggle(150);*/
           jQuery('html, body').animate({
                 scrollTop: jQuery(this).offset().top
             }, 100);
       });
-
 }
   
 jQuery(window).resize(function () {
-    if (jQuery(window).width() < 768) {
+    if (jQuery(window).width() < 767) {
+      
       jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
-        jQuery("#js_eCommerceProductAddImage > ul  li:gt(2)").hide();
-      jQuery("#eCommerceNavBarMenu li>ul").css({"width":"300px"});
-      jQuery("#eCommerceNavBarMenu li").find('ul').css({left:""});
+      /*jQuery("#js_eCommerceProductAddImage > ul  li:gt(2)").hide();*/
+      jQuery("#eCommerceNavBarMenu li>ul").css({"width":"100%"});
+      jQuery("#eCommerceNavBarMenu li").find('ul').css({left:"0px"});
       jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":"100%"});
       jQuery("#eCommerceNavBarMenu li").off('mouseover');
           jQuery("#eCommerceNavBar > ul > li").mouseleave(function() {
@@ -414,7 +421,8 @@ jQuery(window).resize(function () {
         });
           jQuery("#eCommerceNavBar > ul > li").click(function () {
               jQuery(this).has( "ul" ).toggleClass('menu-drop-icon');
-              jQuery(this).children("ul").slideToggle(150);
+              /*jQuery(this).children("ul").slideToggle(150);*/
+              jQuery(this).children("ul").css("display","block");
               jQuery('html, body').animate({
                     scrollTop: jQuery(this).offset().top
                 }, 100);
@@ -426,9 +434,11 @@ jQuery(window).resize(function () {
         jQuery(this).find('ul').show();
         jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":""});
           var posMainPanel = jQuery("#eCommercePageBody").offset();  
+         
           var posMenuWidth = jQuery(this).first('ul').offset();
+          
           var left = (posMainPanel.left - posMenuWidth.left) + "px";
-          jQuery(this).find('ul').css({left:left});
+          jQuery(this).find('ul').css({"left":left});
         });
         jQuery("#eCommerceNavBarMenu li").mouseleave(function() {
           jQuery(this).find('ul').hide();
@@ -444,9 +454,11 @@ jQuery('#eCommerceNavBar > ul > li:has( > ul)').addClass('menu-dropdown-icon');
 
 jQuery("#eCommerceNavBar > ul").before("<a href=\"#\" class=\"menu-mobile\"></a>");
 
-jQuery(".menu-mobile").click(function (e) {
+jQuery(".mob-nav").click(function (e) {
   jQuery("#eCommerceNavBar > ul").toggleClass('show-on-mobile');
   jQuery("#eCommercePageBody").toggleClass('mob-active');
+  //jQuery(".menu > ul").toggleClass('show-on-mobile');
+ // jQuery("#eCommercePageBody").toggleClass('mob-active');
   e.preventDefault();
 });
 
