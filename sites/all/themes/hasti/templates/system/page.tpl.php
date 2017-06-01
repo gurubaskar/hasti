@@ -82,7 +82,6 @@ global $drubiz_domain;
 ?>
 <div id="topnav">
   <div class="container-fluid">
-    <div class="row">
       <div class="col-xs-12 col-sm-7 col-md-6 header-content">
         <p>Have your greatest experience with us and support the Women of India.</p>
       </div>
@@ -102,7 +101,6 @@ global $drubiz_domain;
             <?php endif; ?>
           </ul>
       </div>
-    </div>
   </div>
 </div>
 <div data-role="popup" id="positionWindow" class="ui-content signin" style="max-width:700px">
@@ -153,7 +151,7 @@ global $drubiz_domain;
 <!-- header -->
 <div id="header">
   <div class="container-fluid">
-    <div class="col-xxs-12 col-xs-12 col-sm-5 col-md-8 col-lg-7" id="navbar">
+    <div class="col-xxs-10 col-xs-8 col-sm-4 col-md-8 col-lg-7" id="navbar">
         <div class="mob-nav"></div>
         <?php if ($logo): ?>
           <a class="logo navbar-btn pull-left" data-ajax="false" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -201,11 +199,12 @@ global $drubiz_domain;
             </ul>
         </div>
       </div>
-      <div class="col-xxs-12 col-xs-12 col-sm-7 col-md-4 col-lg-5 search-section">
+      <div class="col-xxs-2 col-xs-4 col-sm-8 col-md-4 col-lg-5 search-section">
         <div class="cart">
-          <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">
+          <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart"></a>
           <!-- <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p> -->
         </div>
+        <img src="<?php print current_theme_path();?>/images/search.png" class="mobsearch-icon">
         <div class="search">
           <form id="frmSearchForm" name="frmSearchForm" method="get">
             <!-- <fieldset class="formstyle" title="Search this site..."> -->
@@ -226,6 +225,10 @@ global $drubiz_domain;
             <div class="searchAutoComplete" id="searchAutoComplete"></div>
           </form>
         </div>
+      </div>
+      <div class="mob-search">
+        <input type="text" name="" id="" class="mob-input"> 
+        <input type="image" class="mobsearch-icon1" src="<?php print current_theme_path();?>/images/search.png">
       </div>
   </div>
 </div>

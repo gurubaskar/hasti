@@ -97,18 +97,134 @@
   // krumo($out_of_stock_info->availableQuantity , $facet_values);
   // krumo($sku);
 ?>
+<div id="eCommerceProductDetailContainer" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 <div id="content" class="pdp">
   <div class="container-fluid">
     <!-- <div class="row"> -->
       <div class="col-xs-12 col-sm-12 col-md-12 breadcrumb"><h3>Women / Clothing / Women Long Kurti</h3></div>
       <div class="col-xs-12 col-sm-6 col-md-5 pdp-left">
         <!-- <div class="zoom-wrap"> -->
-          <div class="col-xs-2 col-sm-2 col-md-2 pleft thumb-wrap">
+          <!-- <div class="col-xs-2 col-sm-2 col-md-2 pleft thumb-wrap">
             <img src="<?php print current_theme_path() .'/images/pdp-thumb1.jpg'; ?>" class="img-responsive" />
           </div>
           <div class="col-xs-10 col-sm-10 col-md-10 pleft pright zoom-img">
             <img src="<?php echo drubiz_image($product->pdp_regular_image); ?>" class="img-responsive" />
-          </div>
+          </div> -->
+
+        <div class="PDP group group1">
+        <ul class="displayList pdpList PDP">
+          <li class="image mainImage pdpMainImage">
+            <div class="pdpMainImage">
+              <div id="js_productDetailsImageContainer" onclick="displayDialogBox('largeImage_')">
+                <a href="<?php echo drubiz_image($product->pdp_large_image) ?>" class="innerZoom" rel="undefined" title="" style="outline-style: none; text-decoration: none;" data-ajax="false">
+                  <div class="zoomPad"><img src="<?php echo drubiz_image($product->pdp_regular_image) ?>" name="mainImage" class="js_productLargeImage" height="630" width="490" onerror="onImgError(this, 'PDP-Large');" id="js_mainImage" title="" style="opacity: 1; display: block;"><div class="zoomPup" style="display: none; top: -1px; left: 223px; width: 266px; height: 330px; position: absolute; border-width: 1px;"></div><div class="zoomWindow" style="position: absolute; z-index: 5001; cursor: default; left: 0px; top: 0px; display: none;"><div class="zoomWrapper" style="border-width: 1px; width: 490px; cursor: crosshair;"><div class="zoomWrapperTitle" style="width: 100%; position: absolute; display: block;">undefined</div><div class="zoomWrapperImage" style="width: 100%; height: 630px;"><img src="<?php echo drubiz_image($product->pdp_alt_1_large_image) ?>" style="position: absolute; border: 0px; display: block; left: -411.429px; top: 0px;"></div></div></div><div class="zoomPreload" style="visibility: hidden; top: 293.5px; left: 245px; position: absolute;"></div></div>
+                </a>
+              </div>
+            </div>
+          </li>
+       
+          <!-- </div> -->
+
+          <li class="image mainImage pdpMainImage thumb" style="display: block;">
+            <div class="pdpAlternateImage">
+              <div id="js_eCommerceProductAddImage">
+
+                 <div id="js_altImageThumbnails" class="bxslider mCustomScrollbar _mCS_1" style="height:630px"><div id="mCSB_1" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+
+                  <div id="addImageLink_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="mainAddImageLink" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->pdp_regular_image) ?>','<?php echo drubiz_image($product->pdp_large_image) ?>');"><img src="<?php echo drubiz_image($product->pdp_thumbnail_image) ?>" id="mainAddImage" name="mainAddImage" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
+
+                  <?php foreach (range(1, 10) as $img_n): $img_prefix = "pdp_alt_{$img_n}"; if (empty($product->{$img_prefix . '_regular_image'})) continue; ?>
+                    <div id="addImage<?php echo $img_n ?>Link_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="addImage<?php echo $img_n ?>Link" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->{$img_prefix . '_regular_image'}) ?>','<?php echo drubiz_image($product->{$img_prefix . '_large_image'}) ?>');"><img src="<?php echo drubiz_image($product->{$img_prefix . '_thumbnail_image'}) ?>" name="addImage1" id="addImage1" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
+                  <?php endforeach; ?>
+
+                 </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 580px; max-height: 620px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+              </div>
+            </div>
+          </li>
+           </ul>
+           <!-- </div> -->
+          <script type="text/javascript">
+            jQuery(document).ready(function(){
+
+              jQuery(window).resize(function() {
+
+               width = jQuery(window).width();
+               if(jQuery(window).width() > 900){
+                jQuery('#js_altImageThumbnails').mCustomScrollbar({
+                  theme:"dark-3",
+                });
+              }
+             if(width < 768  )
+             { 
+
+              //jQuery(".pdpImgCaurosel").css("display","block");
+              //jQuery("#js_mainImage").css("display","none");
+              //jQuery(".image.mainImage.pdpMainImage.thumb").css("display","none");
+              jQuery(".pdpImgCaurosel").bxSlider({
+                slideWidth: 350,
+                minSlides: 2,
+                moveSlides: 1,
+                maxSlides: 1,
+                slideMargin:10
+              });
+            }
+            else{
+              //jQuery(".pdpImgCaurosel").css("display","none");
+              //jQuery("#js_mainImage").css("display","block");
+              //jQuery(".image.mainImage.pdpMainImage.thumb").css("display","block");
+            }
+
+            var maxSlides=3;
+            var slideMargin=50;
+            if (width > 1000) {
+              maxSlides = 4;
+            }
+            else if(width >480 && width<700) {
+              maxSlides = 2;
+            }
+            else{
+              if (width < 490) {
+                maxSlides = 1;
+              }
+            }
+            jQuery('.slider1').bxSlider({
+              slideWidth: 200,
+              minSlides: 2,
+              moveSlides: 1,
+              maxSlides: maxSlides,
+              slideMargin:10
+            });
+
+            if(false)
+            {
+              var thmbSlides=7;
+              if (width > 550) {
+                thmbSlides = 7;
+              }
+              else if(width >380 && width<550) {
+                thmbSlides = 4;
+              }
+              else if(width >250 && width<380) {
+                thmbSlides = 3;
+              }
+              else{
+                if (width < 250) {
+                  thmbSlides = 2;
+                }
+              }
+              jQuery('.bxslider').bxSlider({
+                slideWidth: 50,
+                minSlides: 1,
+                moveSlides: 1,
+                maxSlides: thmbSlides,
+                slideMargin:10
+              });
+            }
+            }).resize();
+            });
+          </script>
+
+        </div>
         <div class="price-wrap">
           <h2>Transparent Price</h2>
           <p>We believe customers have the right to know what their products costs to make</p>
@@ -135,7 +251,7 @@
                             <?php $countFacet=0; ?>
                               <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
                                 <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
-                                  <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>"><?php echo $this_facet_value ?></a>
+                                  <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>" data-ajax="false"><?php echo $this_facet_value ?></a>
                                 </li>
                               <?php endforeach; ?>
                             </ul>
@@ -168,7 +284,7 @@
                                   <?php 
                                   $product_nid = get_nid_from_variant_product_id($this_facet_product_id);
                                   ?>
-                                  <a class="product-choose-facet" href="#">
+                                  <a class="product-choose-facet" href="#" data-ajax="false">
                                     <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>">
                                     </li>
                                   </a>
@@ -209,7 +325,7 @@
           </ul>
         </div>
         <div class="btns-wrap">
-          <span><a href="#" class="wish-icon" id="js_addToWishlist">Add to wish list</a></span>
+          <span><a href="#" class="wish-icon" id="js_addToWishlist" data-ajax="false">Add to wish list</a></span>
           <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="<?php echo $addToCart;?>">Add to Bag</a></span>
           <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>">Buy Now</a></span>
         </div>
@@ -219,14 +335,30 @@
           <?php $storyInfo = pdp_story_info($product->product_id); 
             if($storyInfo->isError == 'false') :
           ?>
+          <?php if(!empty($storyInfo->storyDescription[0]) and $storyInfo->storyDescription[0] != null) { ?>
           <p><?php echo $storyInfo->storyDescription[0]; ?></p>
+          <?php } ?>
           <div class="storyimg-wrap">
             <div class="col-xs-12 col-sm-12 col-md-12 pleft pright-five">
               <div class="img-wrap">
-                <img src="http://bg4ws0386:8080<?php print $storyInfo->ImageUrl[0] ?>" class="img-responsive" />
+                <?php if(!empty($storyInfo->Image1[0]) and $storyInfo->Image1[0] != null) { ?>
+                  <img src="<?php print current_theme_path() . $storyInfo->Image1[0] ?>" class="img-responsive" />
+                <?php } if(!empty($storyInfo->Image2[0]) and $storyInfo->Image2[0] != null) {?>
+                  <img src="<?php print current_theme_path() . $storyInfo->Image2[0] ?>" class="img-responsive" />
+                <?php } if(!empty($storyInfo->Image3[0]) and $storyInfo->Image3[0] != null) {?>
+                  <img src="<?php print current_theme_path() . $storyInfo->Image3[0] ?>" class="img-responsive" />
+                <?php } ?>
               </div>
               <div class="video">
-                <a href="#"><img src="<?php print current_theme_path() .'/images/pdp-rvedio.jpg'; ?>" class="img-responsive" /></a>
+                <?php 
+                if(!empty($storyInfo->storyVideo[0]) and $storyInfo->storyVideo[0] != null) {?>
+                <video width="250" height="240" controls class="img-responsive">
+                  <source src="http://bg4ws0386:8080/<?php print $storyInfo->storyVideo[0];?>" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <?php } if(!empty($storyInfo->Image4[0]) and $storyInfo->Image4[0] != null) {?>
+                <img src="<?php print current_theme_path() . $storyInfo->Image4[0] ?>" class="img-responsive" />
+                <?php } ?>
               </div>
             </div>
             <div class="btns-wrap">
@@ -240,5 +372,12 @@
         </div>
       </div>
     <!-- </div> -->
+
+    <div id="js_mainImageDiv" style="display:none">
+      <a href="">
+        <img src="" name="mainImage" class="js_productLargeImage" width="100%" onerror="onImgError(this, 'PDP-Large');">
+      </a>
+    </div>
   </div>
 </div>
+

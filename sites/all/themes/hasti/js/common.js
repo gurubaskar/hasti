@@ -3,9 +3,18 @@
     $(".select-wrap") .hide();
     $(".cart-options").hide();
     $(".wishlist-options").hide();
+    $(".mob-search").hide();
   });
 
 
+    $(document).ready(function(){
+      $(".mobsearch-icon").click(function(){
+        $(".mob-search").slideToggle('medium', function(){
+          if ($(this).is(':visible'))
+                $(this).css('display','block');
+        });
+      });
+    });
   $(document).ready(function () {
     $('.checkout-left ul li:first').addClass('active');
     $('.tab-content:not(:first)').hide();
@@ -358,6 +367,22 @@ function closeForgotPassword() {
 }
 
 
+/*************** my orders tabbing section ***************/
+$(document).ready(function () {
+        $('.myorders ul li:first').addClass('active');
+        $('.tab-content:not(:first)').hide();
+        $('.myorders ul li a').click(function (event) {
+            event.preventDefault();
+            var content = $(this).attr('href');
+            $(this).parent().addClass('tab-active');
+            $(this).parent().siblings().removeClass('tab-active');
+            $(this).parent().siblings().find('a').removeClass('tab-active');
+            $(content).show();
+            $(content).siblings('.tab-content').hide();
+        });
+});
+
+
 /*************** mega menu *****************/
 
 jQuery(document).ready(function()
@@ -454,4 +479,156 @@ jQuery(".mob-nav").click(function (e) {
   e.preventDefault();
 });
 
+});
+
+function replaceDetailImage(largeImageUrl, detailImageUrl)
+    {
+        if (!jQuery('#mainImages').length)
+        {
+            var mainImages = jQuery('#js_mainImageDiv').clone();
+            jQuery(mainImages).find('img.js_productLargeImage').attr('id', 'js_mainImage');
+            jQuery('#js_productDetailsImageContainer').html(mainImages.html());
+            jQuery('#js_seeMainImage a').attr("href", "javascript:replaceDetailImage('"+largeImageUrl+"', '"+detailImageUrl+"');");
+        }
+            var mainImages = jQuery('#js_mainImageDiv').clone();
+            jQuery(mainImages).find('img.js_productLargeImage').attr('id', 'js_mainImage');
+            jQuery(mainImages).find('img.js_productLargeImage').attr('src', largeImageUrl+ "?" + new Date().getTime());
+            jQuery(mainImages).find('a').attr('class', 'innerZoom');
+            if(detailImageUrl != "")
+            {
+              jQuery(mainImages).find('a').attr('href', detailImageUrl);
+            }
+            else
+            {
+                jQuery(mainImages).find('a').attr('href', 'javaScript:void(0);');
+            }
+            jQuery('#js_productDetailsImageContainer').html(mainImages.html());
+            activateZoom(detailImageUrl);
+
+        if (document.images['js_mainImage'] != null)
+        {
+            var detailimagePath;
+            document.getElementById("js_mainImage").setAttribute("src",largeImageUrl);
+            if(document.getElementById('js_largeImage'))
+            {
+                setDetailImage(detailImageUrl);
+            }
+            document.getElementById("js_mainImage").setAttribute("class","js_productLargeImage");
+            detailimagePath = "javascript:displayDialogBox('largeImage_')";
+            if (jQuery('#js_mainImageLink').length)
+            {
+                jQuery('#js_mainImageLink').attr("href",detailimagePath);
+            }
+        }
+    }
+
+    function activateZoom(imgUrl)
+    {
+        if (typeof imgUrl == "undefined" || imgUrl == "NULL" || imgUrl == "")
+        {
+            return;
+        }
+        var image = new Image();
+        image.src = imgUrl+ "?" + new Date().getTime();
+        image.onerror = function ()
+        {
+            jQuery('.innerZoom').attr('href', 'javaScript:void(0);');
+            return false;
+        };
+        image.onload = function ()
+        {
+            jQuery('.innerZoom').jqzoom(zoomOptions);
+        };
+
+    }
+
+    function activateInitialZoom()
+    {
+        jQuery('.innerZoom').each(function()
+        {
+            var elm = this;
+            var image = new Image();
+            image.src = this.href+ "?" + new Date().getTime();
+            image.onerror = function ()
+            {
+                jQuery(elm).attr('href', 'javaScript:void(0);');
+                return false;
+            };
+            image.onload = function ()
+            {
+                jQuery('.innerZoom').jqzoom(zoomOptions);
+            };
+        });
+    }
+
+    var zoomOptions = {
+        zoomType: 'innerzoom',
+        lens:true,
+        preloadImages: true,
+        preloadText: ''
+    };
+
+    jQuery(document).ready(function() {
+      jQuery('#mainAddImageLink').click();
+    });
+
+function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
+  {
+
+     var params = jQuery(elm).siblings('input.param').serialize();
+     displayDialogId = '#' + dialogPurpose + 'displayDialog';
+     var url = "";
+     if (params)
+     {
+        url = '/dialogActionRequest?'+params;
+     }
+     else
+     {
+        url = '/dialogActionRequest';
+     }
+
+
+      jQuery.ajax({
+      url: url,
+      type: "POST",
+      data: {},
+      success: function(response) {
+          jQuery("#js_plpQuicklook_Container_id").html("");
+          jQuery("#js_plpQuicklook_Container_id").html(response);
+           quicklookDialog = jQuery(displayDialogId).dialog({
+                modal: true,
+                resizeable:false,
+                draggable:false,
+                position:'center',
+                close:function(){jQuery(".ui-dialog").removeClass("TestQuickLookClass");},
+              });
+          jQuery(".quicklookPDPurl").attr("href", pdpUrl);
+          quicklookDialog.dialog('open');
+           jQuery(".ui-dialog").addClass("QuickLookPopup");
+           jQuery(".pdpImgCaurosel").css("display","block");
+        jQuery("#js_mainImage").css("display","none");
+         jQuery(".image.mainImage.pdpMainImage.thumb").css("display","none");
+         jQuery("#js_plpQuicklook_Container_id").find("#js_altImageThumbnails").css("display","none");
+         jQuery("#js_plpQuicklook_Container_id").find("#js_altImageThumbnailsForQuickLook").css("display","block");
+        jQuery("#js_plpQuicklook_Container_id").find(".pdpImgCaurosel").bxSlider({
+        infiniteLoop: true,
+        pager:true,
+        touchEnabled:true,
+            slideWidth: 350,
+            minSlides: 2,
+            moveSlides: 1,
+            maxSlides: 1,
+            slideMargin:10,
+        pagerCustom:'#js_altImageThumbnailsForQuickLook'
+          });
+    jQuery('#js_altImageThumbnailsForQuickLook').mCustomScrollbar({
+    theme:"dark-3"
+});
+     }
+      });
+  }
+
+jQuery(document).ready(function(){
+  jQuery('#block-menu-menu-footer-menu-1-hasti- > ul').removeClass('menu nav');
+  jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
 });
