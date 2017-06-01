@@ -6,15 +6,15 @@
     $(".mob-search").hide();
   });
 
-
-    $(document).ready(function(){
+ $(document).ready(function(){
       $(".mobsearch-icon").click(function(){
         $(".mob-search").slideToggle('medium', function(){
           if ($(this).is(':visible'))
                 $(this).css('display','block');
         });
       });
-    });
+  });
+
   $(document).ready(function () {
     $('.checkout-left ul li:first').addClass('active');
     $('.tab-content:not(:first)').hide();
@@ -366,23 +366,6 @@ function closeForgotPassword() {
  jQuery("#signInPopup").show(); 
 }
 
-
-/*************** my orders tabbing section ***************/
-$(document).ready(function () {
-        $('.myorders ul li:first').addClass('active');
-        $('.tab-content:not(:first)').hide();
-        $('.myorders ul li a').click(function (event) {
-            event.preventDefault();
-            var content = $(this).attr('href');
-            $(this).parent().addClass('tab-active');
-            $(this).parent().siblings().removeClass('tab-active');
-            $(this).parent().siblings().find('a').removeClass('tab-active');
-            $(content).show();
-            $(content).siblings('.tab-content').hide();
-        });
-});
-
-
 /*************** mega menu *****************/
 
 jQuery(document).ready(function(){
@@ -615,8 +598,7 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
      }
       });
   }
-
-jQuery(document).ready(function(){
+  jQuery(document).ready(function(){
   jQuery('#block-menu-menu-footer-menu-1-hasti- > ul').removeClass('menu nav');
   jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
 });
