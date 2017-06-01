@@ -3,8 +3,17 @@
     $(".select-wrap") .hide();
     $(".cart-options").hide();
     $(".wishlist-options").hide();
+    $(".mob-search").hide();
   });
 
+ $(document).ready(function(){
+      $(".mobsearch-icon").click(function(){
+        $(".mob-search").slideToggle('medium', function(){
+          if ($(this).is(':visible'))
+                $(this).css('display','block');
+        });
+      });
+  });
 
   $(document).ready(function () {
     $('.checkout-left ul li:first').addClass('active');
@@ -116,6 +125,19 @@
             },
             dataType: 'json'
           });
+    });
+    $(".topLevel.topCatalogLi").mouseover(function(){
+      $(this).find("ul").css("display","block");
+      //$(this).find(".mainDiv").css("display","block");
+      //$(this).find(".imgDivClass").remove();
+      //var subUlDiv=$(this).find(".subUlDiv");
+      //var str='<div class="imgDivClass">'+$(this).find(".menuimgDiv").html()+'</div>';
+      // $(str).insertAfter(subUlDiv);
+    });
+    $(".topLevel.topCatalogLi").mouseout(function(){
+      //$(this).find(".mainDiv").css("display","none");
+      $(this).find("ul").css("display","none");
+      //$(this).find(".imgDivClass").remove();
     });
   });
   $(window).load(function(){
@@ -343,3 +365,252 @@ function closeForgotPassword() {
  jQuery("#forgotPopup").hide();
  jQuery("#signInPopup").show(); 
 }
+
+/*************** mega menu *****************/
+
+jQuery(document).ready(function()
+{ 
+if (jQuery(window).width() >= 767) 
+{
+    jQuery("#eCommerceNavBarMenu li").mouseover(function() {
+    jQuery(this).find('ul').show();         
+    var posMainPanel = jQuery("#eCommercePageBody").offset();  
+    var posMenuWidth = jQuery(this).first('ul').offset();
+    var left = (posMainPanel.left - posMenuWidth.left) + "px";
+    jQuery(this).find('ul').css({"left":left});       
+      });
+      jQuery("#eCommerceNavBarMenu li").mouseleave(function() {
+
+        jQuery(this).find('ul').hide();
+      });
+}
+else
+{  
+ 
+  jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
+    jQuery("#eCommerceNavBarMenu li>ul").css({"width":"100%"});
+    jQuery("#eCommerceNavBarMenu li").find('ul').css({left:"0px"});  
+    jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":"100%"});
+    jQuery("#eCommerceNavBarMenu li").off('mouseover');
+        jQuery("#eCommerceNavBar > ul > li > ul").mouseleave(function() {
+           jQuery(this).slideUp();
+           jQuery('#eCommerceNavBar > ul > li:has( > ul)').removeClass('menu-drop-icon').addClass('menu-dropdown-icon');
+        });
+        jQuery("#eCommerceNavBar > ul > li").click(function () {
+        
+          jQuery(this).has( "ul" ).toggleClass('menu-drop-icon');
+          /*jQuery(this).children("ul").slideToggle(150);*/
+          jQuery('html, body').animate({
+                scrollTop: jQuery(this).offset().top
+            }, 100);
+      });
+}
+  
+jQuery(window).resize(function () {
+    if (jQuery(window).width() < 767) {
+      
+      jQuery( "#eCommerceNavBar > ul > li > ul" ).addClass( "slider" );
+      /*jQuery("#js_eCommerceProductAddImage > ul  li:gt(2)").hide();*/
+      jQuery("#eCommerceNavBarMenu li>ul").css({"width":"100%"});
+      jQuery("#eCommerceNavBarMenu li").find('ul').css({left:"0px"});
+      jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":"100%"});
+      jQuery("#eCommerceNavBarMenu li").off('mouseover');
+          jQuery("#eCommerceNavBar > ul > li").mouseleave(function() {
+        jQuery(this).children("ul").slideUp();
+        jQuery('#eCommerceNavBar > ul > li:has( > ul)').removeClass('menu-drop-icon').addClass('menu-dropdown-icon');
+        });
+          jQuery("#eCommerceNavBar > ul > li").click(function () {
+              jQuery(this).has( "ul" ).toggleClass('menu-drop-icon');
+              /*jQuery(this).children("ul").slideToggle(150);*/
+              jQuery(this).children("ul").css("display","block");
+              jQuery('html, body').animate({
+                    scrollTop: jQuery(this).offset().top
+                }, 100);
+          });
+    }
+    else{
+      jQuery("#eCommerceNavBarMenu li").mouseover(function() {
+        jQuery(this).find('ul').css({"width":"1240px"});
+        jQuery(this).find('ul').show();
+        jQuery("#eCommerceNavBarMenu li>ul").children("li.subLevel").css({"width":""});
+          var posMainPanel = jQuery("#eCommercePageBody").offset();  
+         
+          var posMenuWidth = jQuery(this).first('ul').offset();
+          
+          var left = (posMainPanel.left - posMenuWidth.left) + "px";
+          jQuery(this).find('ul').css({"left":left});
+        });
+        jQuery("#eCommerceNavBarMenu li").mouseleave(function() {
+          jQuery(this).find('ul').hide();
+          });
+        jQuery("#eCommerceNavBar > ul > li").off('click');
+        jQuery("#eCommerceNavBar > ul").removeClass('show-on-mobile');
+        
+    }
+});
+
+
+jQuery('#eCommerceNavBar > ul > li:has( > ul)').addClass('menu-dropdown-icon');
+
+jQuery("#eCommerceNavBar > ul").before("<a href=\"#\" class=\"menu-mobile\"></a>");
+
+jQuery(".mob-nav").click(function (e) {
+  jQuery("#eCommerceNavBar > ul").toggleClass('show-on-mobile');
+  jQuery("#eCommercePageBody").toggleClass('mob-active');
+  //jQuery(".menu > ul").toggleClass('show-on-mobile');
+ // jQuery("#eCommercePageBody").toggleClass('mob-active');
+  e.preventDefault();
+});
+
+});
+
+function replaceDetailImage(largeImageUrl, detailImageUrl)
+    {
+        if (!jQuery('#mainImages').length)
+        {
+            var mainImages = jQuery('#js_mainImageDiv').clone();
+            jQuery(mainImages).find('img.js_productLargeImage').attr('id', 'js_mainImage');
+            jQuery('#js_productDetailsImageContainer').html(mainImages.html());
+            jQuery('#js_seeMainImage a').attr("href", "javascript:replaceDetailImage('"+largeImageUrl+"', '"+detailImageUrl+"');");
+        }
+            var mainImages = jQuery('#js_mainImageDiv').clone();
+            jQuery(mainImages).find('img.js_productLargeImage').attr('id', 'js_mainImage');
+            jQuery(mainImages).find('img.js_productLargeImage').attr('src', largeImageUrl+ "?" + new Date().getTime());
+            jQuery(mainImages).find('a').attr('class', 'innerZoom');
+            if(detailImageUrl != "")
+            {
+              jQuery(mainImages).find('a').attr('href', detailImageUrl);
+            }
+            else
+            {
+                jQuery(mainImages).find('a').attr('href', 'javaScript:void(0);');
+            }
+            jQuery('#js_productDetailsImageContainer').html(mainImages.html());
+            activateZoom(detailImageUrl);
+
+        if (document.images['js_mainImage'] != null)
+        {
+            var detailimagePath;
+            document.getElementById("js_mainImage").setAttribute("src",largeImageUrl);
+            if(document.getElementById('js_largeImage'))
+            {
+                setDetailImage(detailImageUrl);
+            }
+            document.getElementById("js_mainImage").setAttribute("class","js_productLargeImage");
+            detailimagePath = "javascript:displayDialogBox('largeImage_')";
+            if (jQuery('#js_mainImageLink').length)
+            {
+                jQuery('#js_mainImageLink').attr("href",detailimagePath);
+            }
+        }
+    }
+
+    function activateZoom(imgUrl)
+    {
+        if (typeof imgUrl == "undefined" || imgUrl == "NULL" || imgUrl == "")
+        {
+            return;
+        }
+        var image = new Image();
+        image.src = imgUrl+ "?" + new Date().getTime();
+        image.onerror = function ()
+        {
+            jQuery('.innerZoom').attr('href', 'javaScript:void(0);');
+            return false;
+        };
+        image.onload = function ()
+        {
+            jQuery('.innerZoom').jqzoom(zoomOptions);
+        };
+
+    }
+
+    function activateInitialZoom()
+    {
+        jQuery('.innerZoom').each(function()
+        {
+            var elm = this;
+            var image = new Image();
+            image.src = this.href+ "?" + new Date().getTime();
+            image.onerror = function ()
+            {
+                jQuery(elm).attr('href', 'javaScript:void(0);');
+                return false;
+            };
+            image.onload = function ()
+            {
+                jQuery('.innerZoom').jqzoom(zoomOptions);
+            };
+        });
+    }
+
+    var zoomOptions = {
+        zoomType: 'innerzoom',
+        lens:true,
+        preloadImages: true,
+        preloadText: ''
+    };
+
+    jQuery(document).ready(function() {
+      jQuery('#mainAddImageLink').click();
+    });
+
+function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
+  {
+
+     var params = jQuery(elm).siblings('input.param').serialize();
+     displayDialogId = '#' + dialogPurpose + 'displayDialog';
+     var url = "";
+     if (params)
+     {
+        url = '/dialogActionRequest?'+params;
+     }
+     else
+     {
+        url = '/dialogActionRequest';
+     }
+
+
+      jQuery.ajax({
+      url: url,
+      type: "POST",
+      data: {},
+      success: function(response) {
+          jQuery("#js_plpQuicklook_Container_id").html("");
+          jQuery("#js_plpQuicklook_Container_id").html(response);
+           quicklookDialog = jQuery(displayDialogId).dialog({
+                modal: true,
+                resizeable:false,
+                draggable:false,
+                position:'center',
+                close:function(){jQuery(".ui-dialog").removeClass("TestQuickLookClass");},
+              });
+          jQuery(".quicklookPDPurl").attr("href", pdpUrl);
+          quicklookDialog.dialog('open');
+           jQuery(".ui-dialog").addClass("QuickLookPopup");
+           jQuery(".pdpImgCaurosel").css("display","block");
+        jQuery("#js_mainImage").css("display","none");
+         jQuery(".image.mainImage.pdpMainImage.thumb").css("display","none");
+         jQuery("#js_plpQuicklook_Container_id").find("#js_altImageThumbnails").css("display","none");
+         jQuery("#js_plpQuicklook_Container_id").find("#js_altImageThumbnailsForQuickLook").css("display","block");
+        jQuery("#js_plpQuicklook_Container_id").find(".pdpImgCaurosel").bxSlider({
+        infiniteLoop: true,
+        pager:true,
+        touchEnabled:true,
+            slideWidth: 350,
+            minSlides: 2,
+            moveSlides: 1,
+            maxSlides: 1,
+            slideMargin:10,
+        pagerCustom:'#js_altImageThumbnailsForQuickLook'
+          });
+    jQuery('#js_altImageThumbnailsForQuickLook').mCustomScrollbar({
+    theme:"dark-3"
+});
+     }
+      });
+  }
+  jQuery(document).ready(function(){
+  jQuery('#block-menu-menu-footer-menu-1-hasti- > ul').removeClass('menu nav');
+  jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
+});
