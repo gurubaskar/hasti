@@ -1,4 +1,4 @@
-<?php krumo($profile);?>
+<?php //krumo($profile);?>
 <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">
   <?php echo theme('myaccount_menu_links'); ?>
 </div>
