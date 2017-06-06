@@ -767,6 +767,57 @@ $(document).ready(function() {
     });
   });
 
+  $('.sendOTP').click(function(e) {
+    e.preventDefault();
+    loading();
+    $.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'send-otp',
+      success: function(data) {
+         console.log(data);
+        if (typeof data['_ERROR_MESSAGE_'] != 'undefined' && data['_ERROR_MESSAGE_'].length > 0) {
+          alert(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+        else {
+          close_loading();
+          $('#sendOTP').hide();
+          $('#displayOTP').show();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+
+$('.validateOTP').click(function(e) {
+    var otp = $('#OTPValue').val();
+    e.preventDefault();
+    loading();
+    $.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'validate-otp',
+      data: 'otp=' + otp,
+      success: function(data) {
+        if (data['status'] == 'fail' && data['isError'] == 'true') {
+          alert(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+        else {
+           document.location = Drupal.settings.basePath + 'view-order/' + encodeURIComponent(data['orderId']);
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+
   $('#subscribeMail').click(function(){
     $('#subMsg').empty();
     var subscriberEmail = document.getElementById('newsletter').value;

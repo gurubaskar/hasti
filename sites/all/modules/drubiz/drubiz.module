@@ -143,6 +143,14 @@ function drubiz_init() {
     $GLOBALS['user_login_form'] = drupal_get_form('user_login');
   }
 
+  // Checking whether the user is logged in to access below pages.
+  $params = array('account','cart','checkout','checkout-payment','checkout-address','send-otp','validate-otp');
+  if (empty($GLOBALS['user']->uid)) {
+    if(in_array(arg(0), $params)) {
+      drupal_goto('user/logout');
+    }
+  }
+
   // Redirect to Change password for first time user who login with generated password and unset the session variable in logout.
   if (arg(1) == 'logout') {
     unset($_SESSION['drubiz']['requirePasswordChange']);
@@ -395,6 +403,21 @@ function drubiz_menu() {
     'title'             => 'Checkout - Final',
     'description'       => "Checkout - Final",
     'page callback'     => 'drubiz_checkout_final',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['send-otp'] = array(
+    'title'             => 'Checkout - OTP',
+    'description'       => "Checkout - Send OTP",
+    'page callback'     => 'drubiz_send_otp',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['validate-otp'] = array(
+    'title'             => 'Checkout - OTP',
+    'description'       => "Checkout - Validate OTP",
+    'page callback'     => 'drubiz_validate_otp',
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
