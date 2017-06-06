@@ -181,12 +181,9 @@ function drubiz_import_data($xls_files) {
     $drubiz_category_names[$catalog_name] = $category_names;
     variable_set('drubiz_category_names', json_encode($drubiz_category_names));
 
-// 
     $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images', '[]'), TRUE);
     $drubiz_subcategory_images[$catalog_name] = $subcategory_image;
     variable_set('drubiz_subcategory_images', json_encode($drubiz_subcategory_images));    
-
-    // 
 
     echo " DONE!" . PHP_EOL;
     echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;

@@ -166,6 +166,74 @@ function drubiz_checkout_final() {
 }
 
 /**
+ * Page callback for /send-otp
+ */
+function drubiz_send_otp() {
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $endpoint = 'sendOTP';
+  
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint);
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+
+  echo json_encode($data);
+}
+
+/**
+ * Page callback for /validate-otp
+ */
+function drubiz_validate_otp() {
+   $params = array(
+    'otp' =>  $_POST['otp'],
+  );
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  
+  $endpoint = 'validateOTP';
+  
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+
+  if($data['isNewSession'] == 'true' or $data['isNewSession'] == 1) {
+    if($data['response'] == 'success') {
+       $params = array(
+      'paymentMethodTypeId' => 'EXT_COD', // TODO: This is hard coded for now.
+      );
+      
+      if (!empty($GLOBALS['user']->uid)) {
+        // Logged in user
+        // /singlePageSubmitOrderNew?partyId=10010
+        $endpoint = 'singlePageSubmitOrderNew';
+        $params['partyId'] = get_user_party_id();
+      }
+
+      $client = drubiz_api_client();
+      $response = $client->get($endpoint . '?' . http_build_query($params));
+      $raw_json = $response->getBody();
+      $data = json_decode($raw_json, TRUE);
+      // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+      echo json_encode($data);
+    } else {
+      echo json_encode($data);
+    }
+  } else {
+    drupal_goto('user/logout');
+  }
+}
+
+/**
  * Page callback for /drubiz/add-address
  */
 function drubiz_add_address() {

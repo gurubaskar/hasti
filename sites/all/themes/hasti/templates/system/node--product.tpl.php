@@ -353,7 +353,7 @@
                 <?php 
                 if(!empty($storyInfo->storyVideo[0]) and $storyInfo->storyVideo[0] != null) {?>
                 <video width="250" height="240" controls class="img-responsive">
-                  <source src="http://bg4ws0386:8080/<?php print $storyInfo->storyVideo[0];?>" type="video/mp4">
+                  <source src="<?php print current_theme_path() . $storyInfo->storyVideo[0];?>" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
                 <?php } if(!empty($storyInfo->Image4[0]) and $storyInfo->Image4[0] != null) {?>

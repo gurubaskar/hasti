@@ -126,8 +126,17 @@
             <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
               <span>
                 <input type="radio" name="radiobtn" checked=""><label>COD</label>
-                <div class="btns-wrap">
+                <!-- <div class="btns-wrap">
                   <a href="#" class="buy-now hastiCOD">Continue</a>
+                </div> -->
+                <div class="btns-wrap" id="sendOTP">
+                  <a href="#" class="sendOTP">Send OTP</a>
+                </div>
+                <div class="displayOTP" id="displayOTP" style="display: none;">
+                  <input type="text" name="OTPValue" id="OTPValue">
+                  <div class="btns-wrap">
+                    <a href="#" class="validateOTP">Validate OTP</a>
+                  </div>
                 </div>
               </span>
               <span>
