@@ -83,6 +83,7 @@ function drubiz_import_data($xls_files) {
   variable_del('drubiz_category_tree');
   variable_del('drubiz_category_parents');
   variable_del('drubiz_category_names');
+  variable_del('drubiz_subcategory_images');
 
   foreach ($xls_files as $catalog_name => $xls_file) {
     echo DRUBIZ_IMPORT_LONG_DELIMITER . PHP_EOL;
@@ -145,6 +146,7 @@ function drubiz_import_data($xls_files) {
       $parent_category_id = trim((string)$c['parent_category_id']);
       $category_keyed[$product_category_id] = $c;
       $category_names[$product_category_id] = $c['category_name'];
+      $subcategory_image[$product_category_id] = $c['category_image'];
       // Build Category Tree.
       if (strpos(strtoupper($parent_category_id), '_CATEGORY_ROOT') !== FALSE) {
         // It's a category.
@@ -178,6 +180,14 @@ function drubiz_import_data($xls_files) {
     $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
     $drubiz_category_names[$catalog_name] = $category_names;
     variable_set('drubiz_category_names', json_encode($drubiz_category_names));
+
+// 
+    $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images', '[]'), TRUE);
+    $drubiz_subcategory_images[$catalog_name] = $subcategory_image;
+    variable_set('drubiz_subcategory_images', json_encode($drubiz_subcategory_images));    
+
+    // 
+
     echo " DONE!" . PHP_EOL;
     echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 

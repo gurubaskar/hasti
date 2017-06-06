@@ -868,7 +868,7 @@ function myaccount_update_profile() {
 }
 
 function myaccount_order_detail($order_id){
-  return theme('myaccount_order_detail', array('order'=>order_details($order_id)));
+  return theme('myaccount_order_detail', array('order'=>myorder_details($order_id)));
 }
 
 function myaccount_loyalty(){
@@ -892,21 +892,25 @@ function myaccount_change_password(){
 function myaccount_orders(){
   $orders = get_user_orders();
   $order_details = array();
-  foreach ($orders['OrderHeader'] as $order_key => $order_value) {
-    $order_details[$order_value['orderId']] = order_details($order_value['orderId']);
+
+  $isSession = order_details($order_value['orderId']);
+  if($isSession['isNewSession'] == 'true' or $isSession['isNewSession'] == 1) {
+    foreach ($orders['OrderHeader'] as $order_key => $order_value) {
+      $order_details[$order_value['orderId']] = order_details($order_value['orderId']);
+    }
+    return theme('myaccount_orders', array(
+      'orders' => get_user_orders(),'order_details' => $order_details,
+    ));
+  } else {
+    drupal_goto('user/logout');
   }
-  return theme('myaccount_orders', array(
-    'orders' => get_user_orders(),'order_details' => $order_details,
-  ));
 }
 
 function order_details($order_id) {
   // /eCommerceOrderDetailNew?orderId=RNYCO10190&partyId=10010
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceOrderDetailNew?' . http_build_query(array(
+  $response = $client->get('eCommerceOrderHistoryNew?' . http_build_query(array(
     'partyId'         => get_user_party_id(),
-    'orderId'         => $order_id,
-    'productStoreId'  => 'RNY_STORE', // TODO: Is this hard coded?
   )));
 
   $raw_json = $response->getBody();
@@ -914,6 +918,17 @@ function order_details($order_id) {
   return $data;
 }
 
+function myorder_details($order_id) {
+  $client = drubiz_api_client();
+  $response = $client->get('eCommerceOrderDetailNew?' . http_build_query(array(
+    'partyId'         => get_user_party_id(),
+    'orderId'         => $order_id,
+  )));
+
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  return $data;
+}
 /**
  * Page callback for account/dashboard
  */

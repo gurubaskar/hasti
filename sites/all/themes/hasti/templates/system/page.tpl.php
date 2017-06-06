@@ -79,6 +79,9 @@ global $drubiz_domain;
   $main_menu_name = 'main-menu-' . $drubiz_domain['catalog'] . $main_menu_suffix;
   $menu_tree = menu_tree_output(menu_tree_all_data($main_menu_name));
   $search_filter_sidebar = !empty($page['search_filter_sidebar']);
+
+  $drubiz_category_names = json_decode(json_decode(json_encode(variable_get('drubiz_category_names'))),true);
+  $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images'));
 ?>
 <div id="topnav">
   <div class="container-fluid">
@@ -184,7 +187,15 @@ global $drubiz_domain;
                               <?php endforeach; ?>
                             </ul>
                           <?php endif; ?>
-
+                          <!-- menu image -->
+                          <?php $get_subcategory_id = array_search($sub_menu['#title'],$drubiz_category_names['hasti']);?>
+                          <?php 
+                            if(!empty($drubiz_subcategory_images->hasti->{$get_subcategory_id}) and $drubiz_subcategory_images->hasti->{$get_subcategory_id} != NULL) {
+                          ?>
+                          <img src="<?php echo current_theme_path() . '/images/' .$drubiz_subcategory_images->hasti->{$get_subcategory_id};?>" style="width: 230px; height: 250px; " />
+                          <?php } ?>
+                          
+                          <!-- menu image -->
                         </li>
                       <?php endforeach; ?>
                     </ul>
