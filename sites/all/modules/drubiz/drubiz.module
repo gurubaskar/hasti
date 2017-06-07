@@ -144,12 +144,12 @@ function drubiz_init() {
   }
 
   // Checking whether the user is logged in to access below pages.
-  $params = array('account','cart','checkout','checkout-payment','checkout-address','send-otp','validate-otp');
+  /*$params = array('account','checkout','checkout-payment','checkout-address','send-otp','validate-otp');
   if (empty($GLOBALS['user']->uid)) {
     if(in_array(arg(0), $params)) {
       drupal_goto('user/logout');
     }
-  }
+  }*/
 
   // Redirect to Change password for first time user who login with generated password and unset the session variable in logout.
   if (arg(1) == 'logout') {
