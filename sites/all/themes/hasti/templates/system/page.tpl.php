@@ -212,7 +212,7 @@ global $drubiz_domain;
       </div>
       <div class="col-xxs-2 col-xs-4 col-sm-8 col-md-4 col-lg-5 search-section">
         <div class="cart">
-          <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart"></a>
+          <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">Cart</a>
           <!-- <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p> -->
         </div>
         <img src="<?php print current_theme_path();?>/images/search.png" class="mobsearch-icon">
