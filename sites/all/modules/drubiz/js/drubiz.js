@@ -771,6 +771,20 @@ $(document).ready(function() {
     });
   });
 
+  $('#COD').click(function(e) {
+    $('#sendOTP').show();
+    $('#onlineProceed').hide();
+    $('#displayOTP').hide();
+    $('#placeOrderOTP').hide();
+  });
+
+  $('#Online').click(function(e) {
+    $('#onlineProceed').show();
+    $('#sendOTP').hide();
+    $('#displayOTP').hide();
+    $('#placeOrderOTP').hide();
+  });
+
   $('.sendOTP').click(function(e) {
     e.preventDefault();
     loading();
@@ -811,6 +825,31 @@ $('.validateOTP').click(function(e) {
           close_loading();
         }
         else {
+           close_loading();
+           $('#placeOrderOTP').show();
+           $('#paymentOption').hide();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+
+  $('.placeOrderBtn').click(function(e) {
+    e.preventDefault();
+    loading();
+    $.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'checkout-final',
+      success: function(data) {
+        if (data['status'] == 'fail' && data['isError'] == 'true') {
+          alert(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+        else {
            document.location = Drupal.settings.basePath + 'view-order/' + encodeURIComponent(data['orderId']);
         }
       },
@@ -821,6 +860,7 @@ $('.validateOTP').click(function(e) {
       dataType: 'json'
     });
   });
+
 
   $('#subscribeMail').click(function(){
     $('#subMsg').empty();
