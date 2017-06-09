@@ -93,7 +93,7 @@ global $drubiz_domain;
             <li><a href="#"><?php echo t('Track Order');?></a></li>
             <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>
             <?php if($GLOBALS['user']->uid != 0):?>
-              <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $GLOBALS['user']->mail; ?></a></li>
+              <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid == 0):?>
@@ -211,7 +211,7 @@ global $drubiz_domain;
       <div class="col-xxs-2 col-xs-4 col-sm-8 col-md-4 col-lg-5 search-section">
         <div class="cart">
           <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">
-          <p><span class="count" id="mini-cart-count"></span> Items <span class="cost">Rs. 0.00</span></p></a>
+          <span class="count" id="mini-cart-count"></span></a>
         </div>
         <img src="<?php print current_theme_path();?>/images/search.png" class="mobsearch-icon">
         <div class="search">

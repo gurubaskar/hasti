@@ -145,31 +145,37 @@
           </div>
           <div class="cartbox">
             <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
+              <div id="paymentOption">
               <span>
-                <input type="radio" name="radiobtn" checked=""><label>COD</label>
+                <input type="radio" name="radiobtn" id="COD"><label>COD</label>
                 <!-- <div class="btns-wrap">
                   <a href="#" class="buy-now hastiCOD">Continue</a>
                 </div> -->
-                <div class="btns-wrap" id="sendOTP">
+                <div class="btns-wrap" id="sendOTP" style="display: none;">
                   <a href="#" class="sendOTP">Send OTP</a>
                 </div>
                 <div class="displayOTP" id="displayOTP" style="display: none;">
                   <input type="text" name="OTPValue" id="OTPValue">
                   <div class="btns-wrap">
+                  <?php $grandTotal = get_user_cart();?>
+                    <p>Amount payable at the time of delivery <b>₹. <?php echo $grandTotal['orderGrandTotal'];?></b></p>
+                    <p>In order to confirm your order,please click on "Send OTP" button and enter One Time Password here</p>
                     <a href="#" class="validateOTP">Validate OTP</a>
                   </div>
                 </div>
               </span>
               <span>
-                <input type="radio" name="radiobtn"><label>Online Payment</label>
-                <div class="btns-wrap">
-                  <a href="#" class="buy-now ccavenue" style="display:none">Proceed to Payment</a>
+                <input type="radio" name="radiobtn" id="Online"><label>Online Payment</label>
+                <div class="btns-wrap" id="onlineProceed" style="display:none">
+                  <a href="#" class="buy-now ccavenue">Proceed to Payment</a>
                 </div>
               </span>
+              </div>
+              <div class="btns-wrap placeOrderOTP" id="placeOrderOTP" style="display: none;">
+                <a href="#" class="placeOrderBtn">Place Order</a>
+              </div>
             </div>
           </div>
-          
-          
         </div>
       </div>
 <!--payment method end -->
