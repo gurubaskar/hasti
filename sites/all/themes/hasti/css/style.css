@@ -58,7 +58,7 @@ a:focus{text-decoration:none !important;}
 #topnav p{color:#fff;  margin-bottom:7px; }
 .siteHeaderLinks ul{float:right; margin-bottom:0;}
 .siteHeaderLinks ul li{border-right:none; float:left; padding:0 0 0 10px;}
-.siteHeaderLinks ul li a{ color: #fff; font-size: 10px !important;  text-transform:uppercase; font-weight: bold; padding: 0 7px 0 0 !important; border-right: 1px solid #fff !important; border:0; text-shadow: 0; box-shadow:none;}
+.siteHeaderLinks ul li a{ color: #fff !important; font-size: 10px !important;  text-transform:uppercase; font-weight: bold; padding: 0 7px 0 0 !important; border-right: 1px solid #fff !important; border:0; text-shadow: 0; box-shadow:none;}
 .siteHeaderLinks ul li a:hover{color:#ccc; text-decoration:none;}
 
 #header{width:100%; float:left; border-bottom:1px solid #00b04c; margin:40px 0 25px 0; position:relative;}
@@ -67,9 +67,10 @@ a:focus{text-decoration:none !important;}
 #header .search .ui-input-text{width:auto !important; float:right;}
 #header .search .searchSubmit{float:right; position:absolute; right:20px;}
 #header .search input[type="text"]{border-top:0; border-right:0; border-left:1px solid #000; border-bottom:1px solid #000; padding:5px; margin-right:4px; float:right; width:250px; margin-left:5px;}
-#header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px;}
+#header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px; position:relative;}
+#header .cart a{position:absolute; opacity:0.7; right:-6px; top:3px; width:19px; height:19px; border-radius:50px; background-color:#009989;}
 #header .cart p{padding-left:33px;}
-#header .cart span{font-weight:bold;}
+#header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:17px;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
 #navbar{margin-bottom:0px;}
 #navbar a.logo{margin:0;}
@@ -168,6 +169,7 @@ a:focus{text-decoration:none !important;}
         display: block;
         border: none;
     }
+    #eCommerceNavBarMenu li:hover>ul li.subLevel img{opacity:1 !important;}
     #eCommerceNavBarMenu li:hover>ul li.subLevel>a{
         color: #000;
         font-weight: bold; font-size:15px;
@@ -203,20 +205,23 @@ a:focus{text-decoration:none !important;}
 
 
 /************************* PLP starts ***********************/
-.plp .plp-left{background:#f6f6f6; float:left; padding:30px 0; width:23%; margin-right:15px;}
+.plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:23%; margin-right:15px;}
 .left-wrap{margin:0 0 0 15px; padding:0 15px 0 0;}
 .left-wrap h3, .breadcrumb h3{font-family:inherit; font-size:17px; color:0081c5; font-weight:bold; padding-top:10px; margin-bottom:28px;}
-.left-wrap ul li h3{color:#58595b; border-top:1px solid #a7a7a8; font-size:16px; font-weight:normal; margin-bottom:10px;}
+.left-wrap ul li h3{color:#58595b; /*border-top:1px solid #a7a7a8;*/ font-size:16px; font-weight:normal; margin-bottom:0px; margin-top:0;}
 .plus{background:url('./../images/main-img.png') no-repeat 0 -376px; padding:10px; float:right;}
 .minus{background:url('./../images/main-img.png') no-repeat 0 -403px; padding:10px; float:right;}
 .left-wrap #price-wrap{width:80%; margin:0 0 10px 10px; float:left;}
+.left-wrap>ul>div>li{border-bottom:1px solid #a7a7a8; margin-top:0; padding-bottom:10px;}
 .left-wrap ul li, .left-wrap ul li #price{float:left; width:100%; margin-bottom:5px;}
 .left-wrap ul li ul li{float:left; width:100%; color:#000;}
-.left-wrap ul li ul li input[type="checkbox"]{margin-right:2px;}
+.left-wrap ul li ul li.leaf{margin-left:20px; width:90%;}
+.left-wrap ul li ul li input[type="checkbox"]{margin-right:2px; width:14px; height:14px; left:-20px; margin-top:3px;}
 .left-wrap #price-wrap .jslider{margin-bottom:38px;}
 #size-wrap li{float:left; width:auto; margin-right:15px;}
 
-.plp .plp-right{margin:30px 0;}
+.plp .plp-right .text-center{float:right; padding-top:20px;}
+.plp .plp-right{margin:0 0 30px 0;}
 /*.plp .plp-right .box:hover{border:1px solid red;}*/
 .plp .plp-right .col-xs-12.col-sm-4.col-md-3{padding-left:0;}
 .box{/*border:1px solid #e1e1e1;*/ height:390px; float:right; width:100%; padding:5px 0; margin-bottom:15px; position:relative; display:inline-block; overflow:hidden;}
@@ -243,8 +248,15 @@ a:focus{text-decoration:none !important;}
 .close{position:absolute; top:-20px; right:3px; opacity:inherit;}
 
 .sort-wrap{float:right; width:auto; margin-bottom:30px;}
-.sort-wrap span{font-size:17px; color:0081c5; font-weight:bold; margin-right:10px;}
-.sort-wrap select{width:160px; padding:5px; background:url('./../images/main-img.png') no-repeat 139px -419px;}
+.sort-wrap>span{margin-top:3px; float:left;}
+.sort-wrap span{font-size:17px; color:#0081c5; margin-right:10px;}
+.sort-wrap #search_sort-button {padding:7px 0; box-shadow:none !important;}
+.sort-wrap #search_sort-button > span{font-size:14px; color:#000; font-weight:normal; line-height:16px;}
+.sort-wrap .ui-select{float:right; margin:0; width:180px;}
+.sort-wrap .ui-select option{font-size:14px !important;}
+/*.sort-wrap #search_sort-button*/ .ui-icon-carat-d:after{background-size:10px !important; margin-top:-7px !important;}
+/*.sort-wrap #search_sort-button*/ .ui-btn-icon-right:after{width:14px !important; height:14px !important; background-color:#000 !important;}
+.ui-corner-all{border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important;}
 .disabled{background:#E8E8E8 !important; color:#bababa !important;}
 
 /************************* PDP starts ***********************/
@@ -450,6 +462,73 @@ a:focus{text-decoration:none !important;}
 .forgot-btn .ui-input-btn{width:auto; float:right; padding:5px 20px !important; margin-left:20px !important;}
 #positionWindow-popup a{color:#fff !important; font-weight:700;}
 
+
+
+/************* mobmenu **************/
+/*#eCommerceNavBar .show-on-mobile{
+        display: block;
+    position: absolute !important;
+    top: 47px;
+}
+#eCommerceNavBar ul#eCommerceNavBarMenu{float:left;}
+#eCommerceNavBarMenu ul{
+        border: 1px solid #AFAFAF;
+    border-top: none;
+    background: #FFFFFF;
+    left: -9999px;
+    min-width: 150px;
+    position: absolute;
+    z-index: 999;
+}
+#eCommerceNavBar > ul > li > ul > li:first-child{margin: 0;}
+#eCommerceNavBar> ul > li > ul > li{
+        float: none;
+    width: 100%;
+    margin-top: 10px !important;
+}
+#eCommerceNavBar > ul > li > ul > li > ul{  
+  position: relative;
+    display: block !important;
+}
+#eCommerceNavBar > ul > li > ul > li > ul > li{float: none;}
+.menu-dropdown-icon:before{
+        content: "";
+    font-family: "Ionicons";
+    background: url(./../images/plus.png) no-repeat 8px 0;
+    display: none;
+    cursor: pointer;
+    float: right;
+    padding: 10px;
+    color: #333;
+    margin-top: 18px;
+    width: 30px;
+}
+.menu-drop-icon:before {
+    content: "";
+    font-family: "Ionicons";
+    background: url(./../images/minus.png) no-repeat 8px 0;
+    display: none;
+    cursor: pointer;
+    float: right;
+    padding: 10px;
+    color: #333;
+    margin-top: 18px;
+    width: 30px;
+}
+#eCommerceNavBarMenu li:hover>ul {
+    width: 1240px;
+    border: none;
+    background: #c11563;
+    padding: 10px;
+    min-height: 400px;
+}
+#eCommerceNavBarMenu li:hover>ul li.subLevel{
+    float: left;
+    display: block;
+    border: none; 
+}
+*/
+
 /************************* RESPONSIVE starts ***********************/
 @media(max-width:1100px){
     .pdp .btns-wrap span{width:300px; margin-bottom:10px;}
@@ -550,6 +629,7 @@ a:focus{text-decoration:none !important;}
     .mob-nav{display:block;}
     .menu, .menu> ul, #search-box{display:none;}
     #navbar{margin-bottom:20px;}
+    .menu .show-on-mobile{display:block;}
 }
 
 @media (max-width:600px){
@@ -624,7 +704,7 @@ a:focus{text-decoration:none !important;}
     #changepwd h3{font-size:27px;}
     .myorders .tabing-wrap .tabing-btns{font-size:12px;}
     .pdp  .pdp-left .price-wrap h2{font-size:26px;}
-    #navbar img{width:50%; margin-top:9px;}
+    #navbar img{width:100px; margin-top:9px;}
     .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -645px; height:auto; padding:15px; margin-top:10px;}
     .mob-search{top:57px;}
 }
