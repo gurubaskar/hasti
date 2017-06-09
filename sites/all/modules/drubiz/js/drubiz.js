@@ -496,8 +496,8 @@ $(document).ready(function() {
       alert('Please select a size of your choice');
       return;
     }
-
     var action = $(this).attr('id') == 'js_addToCart_buynow' ? 'buy_now' : 'add';
+    var action1 = $(this).attr('id') == 'js_addToCart' ? 'add' : 'plp';
     // alert(action + ' - ' + product_id + ' | ' + quantity);
     loading();
     $.ajax({
@@ -510,7 +510,11 @@ $(document).ready(function() {
           if (action == 'buy_now') {
             document.location = Drupal.settings.basePath + 'checkout-payment';
           }
-          else {
+          else if(action == 'add' && action1 == 'add') {
+            update_mini_cart();
+            document.location = Drupal.settings.basePath + 'cart';
+          } else {
+            jQuery.notify("1 Item added to the cart.");
             update_mini_cart();
           }
         }

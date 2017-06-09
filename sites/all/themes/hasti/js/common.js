@@ -4,6 +4,7 @@
     $(".cart-options").hide();
     $(".wishlist-options").hide();
     $(".mob-search").hide();
+    $("#forgotPopup").hide();
   });
 
  $(document).ready(function(){

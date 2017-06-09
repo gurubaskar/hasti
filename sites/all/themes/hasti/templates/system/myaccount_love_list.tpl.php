@@ -1,4 +1,7 @@
  <?php //krumo($wishlist)?>
+<?php if($GLOBALS['user']->uid == 0) { ?>
+Please login to view the view list
+<?php } else { ?>
 <div id="eCommerceShowWishList" class="eCommerceShowWishList">
   <?php if(empty($wishlist['wishListItemDetails'])){?>
     <div class="no-items-wishlist">
@@ -68,3 +71,4 @@
     </div>
   <?php }?>
 </div>
+<?php } ?>
