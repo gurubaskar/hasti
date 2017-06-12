@@ -242,30 +242,26 @@ global $drubiz_domain;
   </div>
 </div>
 <!-- content -->
-<div id="eCommercePageBody">
+<div id="eCommercePageBody"></div>
   <?php //print_r($drubiz_domain);?>
   <?php if ($breadcrumb): ?>
     <div id="breadcrumb"><?php print clean_breadcrumb($breadcrumb); ?></div>
   <?php endif; ?>
   <div id="content" class="plp">
     <div class="container-fluid">
-
-    <?php if ($search_filter_sidebar): ?>
-        <div id="" style="display: block;">
+      <?php if ($search_filter_sidebar): ?>
           <div class="col-xs-0 col-sm-3 col-md-3 plp-left">
-          <div class="left-wrap">
-            <ul>
-              <?php echo render($page['search_filter_sidebar']) ?>
-            </ul>
+            <div class="left-wrap">
+              <ul>
+                <?php echo render($page['search_filter_sidebar']) ?>
+              </ul>
+            </div>
           </div>
-          </div>
-        </div>
       <?php endif; ?>
-
       <?php print render($page['content']); ?>      
     </div>
   </div>
-</div> 
+ 
 <!-- Footer -->
 <div id="footer">
   <div class="container-fluid">
