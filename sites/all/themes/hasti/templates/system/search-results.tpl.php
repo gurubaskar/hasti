@@ -24,16 +24,18 @@
  */
 ?>
 <?php if ($search_results): ?>
-  <div class="col-xs-12 col-sm-9 col-md-9 plp-right">
-    <div class="col-xs-12 col-sm-12 col-md-12 sortby">
-      <div class="sort-wrap">
-        <span>Sort By</span>
-        <?php echo theme('drubiz_search_sort') ?>
+  <!-- <div class="col-xs-12 col-sm-9 col-md-9 plp-right"> -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 sortby">
+        <div class="sort-wrap">
+          <span>Sort By</span>
+          <?php echo theme('drubiz_search_sort') ?>
+        </div>
       </div>
     </div>
     <?php print $search_results; ?>
     <?php print $pager; ?>
-  </div>
+  <!-- </div> -->
 <?php else : ?>
   <h2><?php print t('Your search yielded no results');?></h2>
   <?php print search_help('search#noresults', drupal_help_arg()); ?>
