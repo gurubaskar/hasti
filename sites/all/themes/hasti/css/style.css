@@ -144,7 +144,7 @@ a:focus{text-decoration:none !important;}
     }
     #eCommerceNavBar > ul > li > ul > li > ul > li{float:none;}
     #eCommercePageBody{
-        width: 1370px;
+        width: 1370px !important;
         margin: 0 auto;
         display: block;
         clear: both;
@@ -153,7 +153,7 @@ a:focus{text-decoration:none !important;}
     .subCategoryNav{margin-top:41px;}
     .subCategoryNav li ul.subCategoryNav{margin-top:0px;}
     #eCommerceNavBarMenu li:hover>ul{
-        width: 1370px;
+        width: 1370px !important;
         border: none;
         background: #fff;
         padding: 10px;
