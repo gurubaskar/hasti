@@ -32,9 +32,10 @@
           <?php echo theme('drubiz_search_sort') ?>
         </div>
       </div>
+
+      <?php print $search_results; ?>
+      <?php print $pager; ?>
     </div>
-    <?php print $search_results; ?>
-    <?php print $pager; ?>
   <!-- </div> -->
 <?php else : ?>
   <h2><?php print t('Your search yielded no results');?></h2>

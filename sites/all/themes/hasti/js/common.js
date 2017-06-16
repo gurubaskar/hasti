@@ -453,7 +453,7 @@ jQuery(window).resize(function () {
 
 jQuery('#eCommerceNavBar > ul > li:has( > ul)').addClass('menu-dropdown-icon');
 
-jQuery("#eCommerceNavBar > ul").before("<a href=\"#\" class=\"menu-mobile\"></a>");
+jQuery("#eCommerceNavBar > ul").before("<a href=\"#\" class=\"mob-nav\"></a>");
 
 jQuery(".mob-nav").click(function (e) {
   jQuery("#eCommerceNavBar > ul").toggleClass('show-on-mobile');
