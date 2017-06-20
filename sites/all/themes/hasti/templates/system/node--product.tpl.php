@@ -113,7 +113,7 @@
 
         <div class="PDP group group1 zoom-wrap">
           <ul class="displayList pdpList PDP">
-            <div class="col-xs-2 col-sm-2 col-md-2 pleft thumb-wrap nopad">
+            <div class="col-xs-2 col-sm-2 col-md-2 pleft thumb-wrap">
                 <li class="image mainImage pdpMainImage thumb" style="display: block;">
                   <div class="pdpAlternateImage">
                     <div id="js_eCommerceProductAddImage">
