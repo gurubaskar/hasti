@@ -163,9 +163,11 @@ function hastiSignIn(){
     url: Drupal.settings.basePath + 'drubiz/user-register',
     data: data,
     success: function(data) {
-      console.log(data);
+      //console.log(data);
       if (!data['error']) {
-        document.location = data['destination'];
+        //document.location = data['destination'];
+        var href = jQuery(location).attr('href').replace('#&ui-state=dialog','');
+        document.location = href;
       }
       else {
         alert(data['error_messages'].join("\n"));
@@ -194,7 +196,12 @@ function signInHasti(){
     success: function(data) {
       // console.log(data);
       if (!data['error']) {
-        document.location = data['destination'];
+        if(data['destination'] == '/account/change-password'){
+          document.location = data['destination'];  
+        } else {
+          var href = jQuery(location).attr('href').replace('#&ui-state=dialog','');
+          document.location = href;
+        }
       }
       else {
         alert(data['error_messages'].join("\n"));
