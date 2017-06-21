@@ -186,13 +186,15 @@ global $drubiz_domain;
                             </ul>
                           <?php endif; ?>
                           <!-- menu image -->
-                          <?php $get_subcategory_id = array_search($sub_menu['#title'],$drubiz_category_names['hasti']);?>
-                          <?php 
-                            if(!empty($drubiz_subcategory_images->hasti->{$get_subcategory_id}) and $drubiz_subcategory_images->hasti->{$get_subcategory_id} != NULL) {
-                          ?>
-                          <img src="<?php echo current_theme_path() . '/images/' .$drubiz_subcategory_images->hasti->{$get_subcategory_id};?>" style="width: 230px; height: 250px; " />
-                          <?php } ?>
-                          
+                         <?php 
+                           // $get_category_id = array_search($sub_menu['#title'],$drubiz_category_names['hasti']);
+                           $parentCategoryTitle = $menu['#title'];
+                           $subCategoryTitle = $sub_menu['#title'];
+                           $menuImageURL = $drubiz_subcategory_images->hasti->$parentCategoryTitle->$subCategoryTitle;
+                           if(!empty($menuImageURL) and $menuImageURL != NULL) {
+                           ?>
+                            <img src="<?php echo current_theme_path() . '/images/' .$menuImageURL;?>" style="width: 230px; height: 250px; " />
+                           <?php } ?>
                           <!-- menu image -->
                         </li>
                       <?php endforeach; ?>

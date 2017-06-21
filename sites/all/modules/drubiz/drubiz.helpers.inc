@@ -146,7 +146,10 @@ function drubiz_import_data($xls_files) {
       $parent_category_id = trim((string)$c['parent_category_id']);
       $category_keyed[$product_category_id] = $c;
       $category_names[$product_category_id] = $c['category_name'];
-      $subcategory_image[$product_category_id] = $c['category_image'];
+
+      $parentCategoryName = $category_keyed[$parent_category_id]['category_name'];
+      $subCategroyName = $c['category_name'];
+      $subcategory_image[$parentCategoryName][$subCategroyName] = $c['category_image'];
       // Build Category Tree.
       if (strpos(strtoupper($parent_category_id), '_CATEGORY_ROOT') !== FALSE) {
         // It's a category.
