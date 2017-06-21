@@ -101,7 +101,7 @@
 <div id="content" class="pdp">
   <!-- <div class="container-fluid"> -->
     <!-- <div class="row"> -->
-      <div class="col-xs-12 col-sm-12 col-md-12 breadcrumb"><h3>Women / Clothing / Women Long Kurti</h3></div>
+      <!-- <div class="col-xs-12 col-sm-12 col-md-12 breadcrumb"><h3>Women / Clothing / Women Long Kurti</h3></div> -->
       <div class="col-xs-12 col-sm-6 col-md-5 pdp-left">
         <!-- <div class="zoom-wrap"> -->
           <!-- <div class="col-xs-2 col-sm-2 col-md-2 pleft thumb-wrap">
