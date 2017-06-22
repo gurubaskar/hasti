@@ -179,6 +179,7 @@
           </span>
           </div>
           <div class="btns-wrap placeOrderOTP" id="placeOrderOTP" style="display: none;">
+            OTP verified successfully. Please click below "Place Order" button.<br /><br />
             <a href="#" class="placeOrderBtn">Place Order</a>
           </div>
         </div>
