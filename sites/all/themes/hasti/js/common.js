@@ -127,6 +127,25 @@
             dataType: 'json'
           });
     });
+    $('.address-delete').click(function(){
+      var conatctMechId = $(this).data('contactmechid');
+      loading();
+      $.ajax({
+            type: "POST",
+            url: Drupal.settings.basePath + 'address-delete',
+            data: 'contactMechId=' + conatctMechId,
+            success: function(data) {
+              close_loading();
+              $('#delete_'+conatctMechId).hide();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+              console.log(textStatus + ': ' + errorThrown);
+              close_loading();
+            },
+            dataType: 'json'
+          });
+    });
     $(".topLevel.topCatalogLi").mouseover(function(){
       $(this).find("ul").css("display","block");
       //$(this).find(".mainDiv").css("display","block");
