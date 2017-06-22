@@ -1239,6 +1239,24 @@ function drubiz_checkout_address(){
 
 }
 
+function drubiz_delete_address() {
+  $endpoint = 'deleteAddressBookNew';
+  $contactMechId = @$_POST['contactMechId'];
+  $params = array();
+  /*$jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }*/
+  $params['partyId'] = get_user_party_id();
+  $params['contactMechId'] = $contactMechId;
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  echo json_encode($data);
+}
+
 function drubiz_view_promocode(){
   $client = drubiz_api_client();  
   $response = $client->get('getcoupon?' . http_build_query(array(

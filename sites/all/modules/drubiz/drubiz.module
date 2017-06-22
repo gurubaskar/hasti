@@ -407,6 +407,14 @@ function drubiz_menu() {
     'file'              => 'drubiz.pages.inc',
   );
 
+  $items['address-delete'] = array(
+    'title'             => 'Checkout Address',
+    'description'       => "Checkout Address",
+    'page callback'     => 'drubiz_delete_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
   $items['send-otp'] = array(
     'title'             => 'Checkout - OTP',
     'description'       => "Checkout - Send OTP",
