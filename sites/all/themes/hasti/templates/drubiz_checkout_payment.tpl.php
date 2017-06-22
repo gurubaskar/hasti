@@ -2,12 +2,13 @@
 <div class="col-xs-12 col-sm-4 col-md-3 checkout-left">
 <h2>Placing Order</h2>
 <ul>
-  <li><a href="#checkout-login">Sign In</a></li>
   <?php if($GLOBALS['user']->uid != 0) {?>
+    <li><a href="#checkout-login">Login Details</a></li>
     <li><a href="#order-summary">Order Summary</a></li>
     <li><a href="#delivery-address">Delivery Address</a></li>
     <li><a href="#payment-method">Payment Method</a></li>
   <?php } else { ?>
+    <li><a href="#checkout-login">Sign In</a></li>
     <li><a href="" class="disabled">Order Summary</a></li>
     <li><a href="" class="disabled">Delivery Address</a></li>
     <li><a href="" class="disabled">Payment Method</a></li>
@@ -24,37 +25,49 @@
         <a href="<?php echo url('user/logout'); ?>"><input type="button" value="Logout" id="logout"></a>
       </div>
     <?php }else{ ?>
-    <div id="signInPopup">
-      <h3>Sign In</h3>
-      <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
-      <input type="text" placeholder="* User Name" id="" name="USERNAME">
-      <input type="text" placeholder="* Password" id="" name="PASSWORD">
-      </form>
-      <!-- <span class="remember"><a href="#">Remember Me</a></span> -->
+      <div id="signInPopup">
+        <h3>Sign In</h3>
+        <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
+          <input type="text" placeholder="* User Name" id="" name="USERNAME">
+          <input type="text" placeholder="* Password" id="" name="PASSWORD">
+          <span class="remember"><a href="#">Remember Me</a></span>
+        </form>
+        <div class="checkoutbtn-wrap">
+          <input type="button" value="Sign In" id="signinorder" onclick="signInHasti();">
+          <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
+          <span class="facebook"><a href="#" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
+          <span class="google"><a href="#" class="ui-link">SIGN IN WITH GOOGLE</a></span>
+        </div>
+      </div>
+      <div id="forgotPopup">
+        <h3>Forgot Password</h3>
+        <p>Enter your Email Address here to receive a new password</p>
+        <input type="text" id="emailid" placeholder="* Email Id">
+        <div class="forgot-btn">
+          <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
+          <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
+        </div>
+      </div>
+
+      <h3 class="signup">Sign Up</h3>
+      <!-- <input type="text" placeholder="* Email Id" id="">
+      <input type="text" placeholder="* Password" id="">
+      <input type="text" placeholder="* Confirm Password" id="">
       <div class="checkoutbtn-wrap">
-        <input type="button" value="Sign In" id="signinorder" onclick="signInHasti();">
-        <!-- <span class="forgot-pwd"><a href="#">Forgot Password?</a></span> -->
-        <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
+        <input type="button" value="Sign Up" id="signin">
+      </div> --> 
+      <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">
+        <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" id="">
+        <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
+        <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
+        <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
+        <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
+        <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
+      </form> 
+      <div class="checkoutbtn-wrap">
+        <input type="button" value="Sign Up" id="signin" onclick="hastiSignIn();">
       </div>
-    </div>
 
-    <div id="forgotPopup">
-      <h3>Forgot Password</h3>
-      <p>Enter your Email Address here to receive a new password</p>
-      <input type="text" id="emailid" placeholder="* Email Id">
-      <div class="forgot-btn">
-        <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
-        <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
-      </div>
-    </div>
-
-    <!-- <h3 class="signup">Sign Up</h3>
-    <input type="text" placeholder="* Email Id" id="">
-    <input type="text" placeholder="* Password" id="">
-    <input type="text" placeholder="* Confirm Password" id="">
-    <div class="checkoutbtn-wrap">
-      <input type="button" value="Sign Up" id="signin">
-    </div> -->
     <?php } ?>
   </div>
   <div class="col-xs-12 col-sm-12 col-md-4"></div>
