@@ -229,7 +229,6 @@ function signInHasti(){
             //jQuery("#orderSummary").trigger("click");
             // jQuery("#order-summary").show();
           } else {
-            alert("else");
             document.location = href;
           }
         }
