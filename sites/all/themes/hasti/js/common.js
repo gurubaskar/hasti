@@ -27,6 +27,10 @@
         $(content).show();
         $(content).siblings('.tab-content').hide();
     });
+    $('.checkout-left ul li a').click(function(){
+      $('li a').removeClass("active");
+      $(this,'a').addClass('active');
+     })
   });
 
   $(document).ready(function(){
@@ -206,7 +210,8 @@ function hastiSignIn(){
 function signInHasti(){
   var data_USERNAME = jQuery('#signInForm').find('[name=USERNAME]:first').val();
   var data_PASSWORD = jQuery('#signInForm').find('[name=PASSWORD]:first').val();
-
+  var params = jQuery(location).attr('pathname');
+  var checkout = params.split("/");
   loading();
   jQuery.ajax({
     type: "POST",
@@ -219,7 +224,14 @@ function signInHasti(){
           document.location = data['destination'];  
         } else {
           var href = jQuery(location).attr('href').replace('#&ui-state=dialog','');
-          document.location = href;
+          if(checkout[2] == "checkout-payment") {
+            document.location = href;
+            //jQuery("#orderSummary").trigger("click");
+            // jQuery("#order-summary").show();
+          } else {
+            alert("else");
+            document.location = href;
+          }
         }
       }
       else {
@@ -393,6 +405,45 @@ function closeForgotPassword() {
  jQuery("#signInPopup").show(); 
 }
 
+function openLogin() {
+  jQuery("#order-summary").hide();
+  jQuery("#checkout-login").show();
+  jQuery("#delivery-address").hide();
+  jQuery("#payment-method").hide();
+  jQuery("#orderSummary").removeClass("active-img");
+  jQuery("#deliveryAddress").removeClass("active-img");
+  jQuery("#paymentMethod").removeClass("active-img");
+}
+
+function openOrderSummary() {
+  jQuery("#order-summary").show();
+  jQuery("#checkout-login").hide();
+  jQuery("#delivery-address").hide();
+  jQuery("#payment-method").hide();
+  jQuery("#orderSummary").addClass("active-img");
+  jQuery("#deliveryAddress").removeClass("active-img");
+  jQuery("#paymentMethod").removeClass("active-img");
+}
+
+function openDeliveryAddress() {
+ jQuery("#order-summary").hide();
+ jQuery("#checkout-login").hide(); 
+ jQuery("#delivery-address").show();
+ jQuery("#payment-method").hide();
+ jQuery("#orderSummary").addClass("active-img");
+ jQuery("#deliveryAddress").addClass("active-img");
+ jQuery("#paymentMethod").removeClass("active-img");
+}
+
+function openPaymentMethod() {
+ jQuery("#order-summary").hide();
+ jQuery("#checkout-login").hide(); 
+ jQuery("#delivery-address").hide();
+ jQuery("#payment-method").show();
+ jQuery("#orderSummary").addClass("active-img");
+ jQuery("#deliveryAddress").addClass("active-img");
+ jQuery("#paymentMethod").addClass("active-img");
+}
 /*************** mega menu *****************/
 
 jQuery(document).ready(function()
