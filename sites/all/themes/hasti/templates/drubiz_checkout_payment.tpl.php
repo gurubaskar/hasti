@@ -3,10 +3,10 @@
 <h2>Placing Order</h2>
 <ul>
   <?php if($GLOBALS['user']->uid != 0) {?>
-    <li><a href="#checkout-login">Login Details</a></li>
-    <li><a href="#order-summary">Order Summary</a></li>
-    <li><a href="#delivery-address">Delivery Address</a></li>
-    <li><a href="#payment-method">Payment Method</a></li>
+    <li><a href="#" onclick="openLogin();" class="active-img">Login Details</a></li>
+    <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="tickimg">Order Summary</a></li>
+    <li><a id="deliveryAddress" href="#" onclick="openDeliveryAddress();" class="tickimg">Delivery Address</a></li>
+    <li><a id="paymentMethod" href="#" onclick="openPaymentMethod();" class="tickimg">Payment Method</a></li>
   <?php } else { ?>
     <li><a href="#checkout-login">Sign In</a></li>
     <li><a href="" class="disabled">Order Summary</a></li>
@@ -16,12 +16,12 @@
 </ul>
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 checkout-right">
-  <div id="checkout-login" class="tab-content">
+  <div id="checkout-login" class="">
     <div class="col-xs-12 col-sm-12 col-md-8">
       <?php if($GLOBALS['user']->uid){?>
         <span class="logged-user" id="logged-user"><?php echo t('Username') ?>:</span>
         <span class=""><?php echo $GLOBALS['user']->mail ?></span>
-        <div class="checkoutbtn-wrap-logout">
+        <div class="checkoutbtn-wrap">
           <a href="<?php echo url('user/logout'); ?>"><input type="button" value="Logout" id="logout"></a>
         </div>
       <?php }else{ ?>
@@ -67,7 +67,7 @@
   </div>
   <!--login end -->
 
-  <div id="order-summary" class="tab-content" style="display: none;">
+  <div id="order-summary" class="" style="display: none;">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="heading-bar">
         <h2>Order Summary</h2>
@@ -109,13 +109,13 @@
         <span>&#43; 911234567890</span>
       </div>
       <div class="btns-wrap">
-        <span><a href="#" class="buy-now">Continue</a></span>
+        <span><a href="#" class="buy-now" onclick="openDeliveryAddress();">Continue</a></span>
       </div>
     </div>
   </div>
   <!--order summary end -->
 
-  <div id="delivery-address" class="tab-content" style="display: none;">
+  <div id="delivery-address" class="" style="display: none;">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="heading-bar">
         <h2>Delivery Address</h2>
@@ -123,6 +123,7 @@
       <?php foreach ($addresses['postalAddressList'] as $postal_key => $postal_value) { ?>
       <div class="addressbox" id="delete_<?php echo $postal_value['contactMechId'] ;?>">
         <div class="col-xs-8 col-sm-6 col-md-6 pleft address">
+          <input type="radio" class="address-select" name="deliveryaddress" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>" value="<?php echo $postal_value['contactMechId'] ;?>">
           <h4><?php echo $postal_value['toName']?></h4>
           <span><?php echo $postal_value['address1']?></span>
           <span><?php echo $postal_value['address2']?></span>
@@ -131,21 +132,20 @@
           <div class="phno"><label>Mob No:</label><span><?php echo $postal_value['contactNumber']?></span></div>
         </div>
         <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
-          <input type="radio" class="address-select" name="deliveryaddress" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>" value="<?php echo $postal_value['contactMechId'] ;?>">
           <a href="#"><span class="edit"></span></a>
           <a href="#"><span class="delete address-delete" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>"></span></a>
         </div>
       </div>
       <?php } ?>
       <div class="btns-wrap">
-        <span><a href="#" class="buy-now">Add New Address</a></span><br />
-        <span><a href="#" class="buy-now">Continue</a></span>
+        <span class="new-address"><a href="#" class="buy-now">Add New Address</a></span>
+        <span class="continue"><a href="#" class="buy-now" onclick="openPaymentMethod();">Continue</a></span>
       </div>
     </div>
   </div>
   <!--delivery address end -->
 
-  <div id="payment-method" class="tab-content" style="display: none;">
+  <div id="payment-method" class="" style="display: none;">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="heading-bar">
         <h2>Payment Method</h2>
