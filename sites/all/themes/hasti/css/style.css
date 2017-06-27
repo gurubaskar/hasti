@@ -396,8 +396,7 @@ a:focus{text-decoration:none !important;}
 .cartbox h3, .myorders .cartbox h3{color:#0081c5; font-weight:bold; font-size:16px; margin-bottom:7px;}
 .cartbox h4{color:#0081c5; font-weight:normal; font-size:15px; margin-bottom:15px;}
 .cartbox .qty, .cartbox .size{border:1px solid #d3d2d2; padding:0px 3px; font-weight:normal !important;}
-.cartbox label{margin-right:5px !important; co
-    lor:#6d6e70; font-weight:normal !important; font-size:14px !important; display:inline-block !important; }
+.cartbox label{margin-right:5px !important; color:#6d6e70; font-weight:normal !important; font-size:14px !important; display:inline-block !important; }
 .cart-details .cartrow{margin-bottom:15px;}
 .cart-details span, a.remove, a.update{color:#0081c5; font-weight:normal !important;}
 .cartbox .total span, .cartbox .total label{font-size:18px !important;}
@@ -405,10 +404,10 @@ a:focus{text-decoration:none !important;}
 .edit-warp, .bottomimg-wrap{width:100%; float:left;}
 .remove{background:url('./../images/main-img.png') no-repeat -5px -441px; padding:10px 28px; font-weight:normal;}
 .update{background:url('./../images/main-img.png') no-repeat -5px -477px; padding:10px 28px;}
-.edit{margin:10px 0; padding-right:0;}
+.edit{margin:10px 0; padding-right:0 !important;}
 #subtotal, .alltotal{float:right; width:100%; text-align:right; margin:15px 0;}
-#subtotal label, .alltotal label{ color:#6d6e70; font-size:28px; font-weight:bold; margin-right:5px; display:inline-block;}
-#subtotal span, .alltotal span{color:#0081c5; font-size:28px; font-weight:bold;}
+#subtotal label, .alltotal label{ color:#6d6e70; font-size:28px !important; font-weight:normal; margin-right:5px !important; display:inline-block !important;}
+#subtotal span, .alltotal span{color:#0081c5; font-size:28px; font-weight:normal;}
 #cart .btns-wrap{margin:20px 0; float:right; width:100%;}
 #cart .btns-wrap span{float:right; margin-left:10px; margin-right:0;}
 .checkpin{float:right; width:420px;}
@@ -473,7 +472,7 @@ a:focus{text-decoration:none !important;}
 .payment-method .btns-wrap{width:100%; float:left; margin-top:20px;}
 .payment-method .btns-wrap a{background:#00b04c; padding:10px 40px; width:auto;}
 .payment-method .btns-wrap a:hover{color:#fff;}
-.active-img{background:url('./../images/main-img.png') no-repeat 106px -540px; padding:13px 44px 8px 0; display:block; margin:0; width:auto;}
+.active-img{background:url('./../images/main-img.png') no-repeat 125px -540px; padding:13px 44px 8px 0; display:block; margin:0; width:auto;}
 .deliverybtn-wrap{margin:20px 0;}
 .deliverybtn-wrap a{border:1px solid #00b04c; background:#00b04c; color:#fff; font-weight:bold; padding:10px 30px;}
 
@@ -496,14 +495,16 @@ a:focus{text-decoration:none !important;}
 .myorders .tabing-wrap .tab-active a{color:#fff !important;}
 .qty-plus{background:url('./../images/main-img.png') no-repeat -7px -605px; padding:9px 11px; }
 .qty-minus{background:url('./../images/main-img.png') no-repeat -42px -608px; padding:5px 11px; margin-right:5px;}
+.order-confirmation .cartbox h3{margin-top:0; margin-bottom:12px;}
 .order-confirmation .cartbox .total{padding-left:0;}
-.order-confirmation .cartbox .total span{color:#00b04c;}
+.order-confirmation .cartbox .total span, .cart-details .edit .total span{color:#00b04c; font-weight:bold !important;}
 .confirmation-wrap, .details-wrap{float:left; width:100%;}
 .confirmation-wrap p{color:#000;}
 .confirmation-wrap a{color:#0081c5;}
 .delivery-wrap{margin-top:20px;}
 .delivery-wrap p{font-weight:bold;}
 .delivery-wrap p span{color:#0081c5;}
+.order-confirmation .delivery-wrap p span, .order-confirmation a{font-weight:normal;}
 .icon-wrap{float:left; width:100%; margin:20px 0;}
 .icon-wrap .icon-container{margin:0 auto; width:35%;}
 .icon-wrap .icon-container ul li{float:left; margin:0 10px; width:27%; text-align:center;}
@@ -646,7 +647,7 @@ a:focus{text-decoration:none !important;}
     .storyimg-wrap .btns-wrap span{width:300px; margin-bottom:10px;}
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
     .checkout .addressbox{width:93% !important;}
-    .icon-wrap .icon-container{width:47%;}
+    .icon-wrap .icon-container{width:49%;}
     .details-btns{position:relative; width:100%; float:right; right:0px;}
     .details-btns a{margin-bottom:0; margin-top:10px; margin-right:10px; width:30%;}
     .checkout-right .addressbox{width:93% !important;}
@@ -678,13 +679,14 @@ a:focus{text-decoration:none !important;}
     .plp-right{width:69% !important;}
     .plp-right .col-sm-4{width:49.5%;}
     .plp-right .col-sm-4 .box{height:430px;}
+    .cartbox .total span, .cartbox .total label{width:100%;}
 }
 
 
 @media only screen and (max-width:767px) and (min-width:640px){
     .plp-right .col-xs-12{width:33.333%;}
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
-    .icon-wrap .icon-container{width:60%;}
+    .icon-wrap .icon-container{width:61%;}
     .box{height:385px !important;}
 }
 @media only screen and (max-width:767px) and (min-width:441px){
@@ -705,6 +707,8 @@ a:focus{text-decoration:none !important;}
     .checkpin .ui-input-text{width:75% !important;}
     .checkpin input[type="text"]{width:100%;}
     .checkpin a{width:24%;}
+    .order-confirmation .cartbox .total{width:100%;}
+    .order-confirmation .cartbox .total span, .order-confirmation .cartbox .total label{width:auto;}
 }
 
 @media (min-width:768px){
@@ -717,6 +721,7 @@ a:focus{text-decoration:none !important;}
     .siteHeaderLinks ul li:first-child{padding-left:0;}
     #header .search{display:none;}
     #header .cart{margin-top:17px;}
+    .header-content, .siteHeaderLinks, .order-confirmation{padding:0 !important;}
     .plp-left{display:none;}
     .sortby{width:100% !important; padding-left:0;}
     .plp .plp-right .row{padding-left:15;}
@@ -765,7 +770,7 @@ a:focus{text-decoration:none !important;}
     .checkout-right input[type="text"], .checkout-right .checkoutbtn-wrap input[type="button"]{width:100%;}
     .myaccount-right.wishlist .details-left, .myaccount-right.wishlist .details-right{width:auto;}
     .heading-bar.orderno{border-top:55px solid #0081c5;}
-    .heading-bar.orderno h2{top:-50px; line-height:25px;}
+    .heading-bar.orderno h2{top:-53px; line-height:25px;}
     .heading-bar.orderno h2 span{display:block;}
     .form-wrap .form-row input[type="text"]{width:90%;}
     .form-wrap .btns-wrap{margin-left:0;}
