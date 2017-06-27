@@ -190,7 +190,7 @@ global $drubiz_domain;
                            // $get_category_id = array_search($sub_menu['#title'],$drubiz_category_names['hasti']);
                            $parentCategoryTitle = $menu['#title'];
                            $subCategoryTitle = $sub_menu['#title'];
-                           $menuImageURL = $drubiz_subcategory_images->hasti->$parentCategoryTitle->$subCategoryTitle;
+                           $menuImageURL = @$drubiz_subcategory_images->hasti->$parentCategoryTitle->$subCategoryTitle;
                            if(!empty($menuImageURL) and $menuImageURL != NULL) {
                            ?>
                             <img src="<?php echo current_theme_path() . '/images/' .$menuImageURL;?>" style="width: 230px; height: 250px; " />
