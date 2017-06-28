@@ -1,4 +1,10 @@
-<?php //krumo($addresses);?>
+<?php 
+$from="";
+if(!empty($_GET['from'])) {
+  $from="1";
+}
+?>
+<input type="hidden" id="from" value="<?php echo $from;?>" />
 <div class="col-xs-12 col-sm-4 col-md-3 checkout-left">
 <h2>Placing Order</h2>
 <ul>
@@ -138,7 +144,7 @@
       </div>
       <?php } ?>
       <div class="btns-wrap">
-        <span class="new-address"><a href="#" class="buy-now">Add New Address</a></span>
+        <span class="new-address"><a href="<?php echo url('account/add-address') ?>?back=order" class="buy-now">Add New Address</a></span>
         <span class="continue"><a href="#" class="buy-now" onclick="openPaymentMethod();">Continue</a></span>
       </div>
     </div>
