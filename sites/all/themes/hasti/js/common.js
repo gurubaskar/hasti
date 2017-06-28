@@ -247,6 +247,154 @@ function signInHasti(){
   });
 }
 
+function addAddress(){
+  if(jQuery('#firstname').val() == ''){
+    alert('Enter First Name.');
+    return false;
+  }
+  if(jQuery('#lastname').val() == ''){
+    alert('Enter Last Name.');
+    return false;
+  }
+  if(jQuery('#address1').val() == ''){
+    alert('Enter Address 1.');
+    return false;
+  }
+  if(jQuery('#address2').val() == ''){
+    alert('Enter Address 2.');
+    return false;
+  }
+  if(jQuery('#city').val() == ''){
+    alert('Enter City.');
+    return false;
+  }
+  if(jQuery('#zipcode').val() == ''){
+    alert('Enter zipcode.');
+    return false;
+  }
+  if(jQuery('#mobile').val() == ''){
+    alert('Enter mobile.');
+    return false;
+  }
+
+  var data_firstname   = jQuery('#addNewAddress').find('[name=firstname]:first').val();
+  var data_lastname    = jQuery('#addNewAddress').find('[name=lastname]:first').val();
+  var data_address1    = jQuery('#addNewAddress').find('[name=address1]:first').val();
+  var data_address2    = jQuery('#addNewAddress').find('[name=address2]:first').val();
+  var data_city        = jQuery('#addNewAddress').find('[name=city]:first').val();
+  var data_zipcode     = jQuery('#addNewAddress').find('[name=zipcode]:first').val();
+  var data_mobile      = jQuery('#addNewAddress').find('[name=mobile]:first').val();
+  
+  var data = 'firstname=' + encodeURIComponent(data_firstname) + '&lastname=' + encodeURIComponent(data_lastname) + '&address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
+  var orderAddress = getParameterByName('back');
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'drubiz/add-address',
+    data: data,
+    success: function(data) {
+      //console.log(data);
+      if (data['isError'] == 'true') {
+        alert(data['_EVENT_MESSAGE_']);
+        close_loading();
+      } else {
+        if(orderAddress == 'order') {
+          document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
+        } else {
+          document.location = Drupal.settings.basePath + 'account/address-book';
+        }
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });
+
+}
+
+jQuery(document).ready(function() {
+  if(jQuery('#deliveryAddress').length > 0 && jQuery('#from').val() == '1') {
+    jQuery('#deliveryAddress').trigger('click');
+  }
+});
+
+function editAddress(){
+  if(jQuery('#firstname').val() == ''){
+    alert('Enter First Name.');
+    return false;
+  }
+  if(jQuery('#lastname').val() == ''){
+    alert('Enter Last Name.');
+    return false;
+  }
+  if(jQuery('#address1').val() == ''){
+    alert('Enter Address 1.');
+    return false;
+  }
+  if(jQuery('#address2').val() == ''){
+    alert('Enter Address 2.');
+    return false;
+  }
+  if(jQuery('#city').val() == ''){
+    alert('Enter City.');
+    return false;
+  }
+  if(jQuery('#zipcode').val() == ''){
+    alert('Enter zipcode.');
+    return false;
+  }
+  if(jQuery('#mobile').val() == ''){
+    alert('Enter mobile.');
+    return false;
+  }
+
+  var data_firstname   = jQuery('#addNewAddress').find('[name=firstname]:first').val();
+  var data_lastname    = jQuery('#addNewAddress').find('[name=lastname]:first').val();
+  var data_address1    = jQuery('#addNewAddress').find('[name=address1]:first').val();
+  var data_address2    = jQuery('#addNewAddress').find('[name=address2]:first').val();
+  var data_city        = jQuery('#addNewAddress').find('[name=city]:first').val();
+  var data_zipcode     = jQuery('#addNewAddress').find('[name=zipcode]:first').val();
+  var data_mobile      = jQuery('#addNewAddress').find('[name=mobile]:first').val();
+  alert(data);
+  /*var data = 'firstname=' + encodeURIComponent(data_firstname) + '&lastname=' + encodeURIComponent(data_lastname) + '&address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
+
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'drubiz/add-address',
+    data: data,
+    success: function(data) {
+      //console.log(data);
+      if (data['isError'] == 'true') {
+        alert(data['_EVENT_MESSAGE_']);
+        close_loading();
+      } else {
+        document.location = Drupal.settings.basePath + 'account/address-book';
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });*/
+
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 /************** plp box hover code **************/
 function showVariants(e ,selectFeatureDiv , productId){
     jQuery(".cart-options").hide();
@@ -419,7 +567,7 @@ function openOrderSummary() {
   jQuery("#checkout-login").hide();
   jQuery("#delivery-address").hide();
   jQuery("#payment-method").hide();
-  jQuery("#orderSummary").addClass("active-img");
+  jQuery("#orderSummary").removeClass("active-img");
   jQuery("#deliveryAddress").removeClass("active-img");
   jQuery("#paymentMethod").removeClass("active-img");
 }
@@ -430,8 +578,11 @@ function openDeliveryAddress() {
  jQuery("#delivery-address").show();
  jQuery("#payment-method").hide();
  jQuery("#orderSummary").addClass("active-img");
- jQuery("#deliveryAddress").addClass("active-img");
+ jQuery("#deliveryAddress").removeClass("active-img");
  jQuery("#paymentMethod").removeClass("active-img");
+
+ jQuery('li a').removeClass("active");
+ jQuery('#deliveryAddress').addClass('active');
 }
 
 function openPaymentMethod() {
@@ -441,7 +592,9 @@ function openPaymentMethod() {
  jQuery("#payment-method").show();
  jQuery("#orderSummary").addClass("active-img");
  jQuery("#deliveryAddress").addClass("active-img");
- jQuery("#paymentMethod").addClass("active-img");
+
+ jQuery('li a').removeClass("active");
+ jQuery('#paymentMethod').addClass('active');
 }
 /*************** mega menu *****************/
 
