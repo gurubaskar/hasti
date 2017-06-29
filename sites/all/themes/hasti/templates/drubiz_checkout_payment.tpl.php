@@ -134,6 +134,7 @@ if(!empty($_GET['from'])) {
           <span><?php echo $postal_value['address1']?></span>
           <span><?php echo $postal_value['address2']?></span>
           <span><?php echo $postal_value['city']?></span>
+          <span><?php echo $postal_value['stateProvinceGeoId']?></span>
           <span><?php echo $postal_value['postalCode']?></span>
           <div class="phno"><label>Mob No:</label><span><?php echo $postal_value['contactNumber']?></span></div>
         </div>
