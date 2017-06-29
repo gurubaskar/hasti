@@ -260,7 +260,14 @@ global $drubiz_domain;
             </div>
           </div>
       <?php endif; ?>
-      <?php print render($page['content']); ?>      
+      <?php if ($page['left_menu']): ?>
+      <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">        
+        <?php print render($page['left_menu']); ?>
+      </div>
+       <?php endif; ?>
+      <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
+      <?php print render($page['content']); ?>
+      </div>      
     </div>
   </div>
  
@@ -268,14 +275,46 @@ global $drubiz_domain;
 <div id="footer">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <?php print render($page['footer_menu_1']); ?>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <?php print render($page['footer_menu_2']); ?>
-      </div>
-      <!-- Footer Social Icons -->
-      <?php print render($page['footer_social']); ?>
+      <div class="col-xs-12 col-sm-12 col-md-12 links-wrap">
+          <div class="col-xs-12 col-sm-3 col-md-3 links">
+            <h3>Get to Know Hasti</h3>
+            <ul>
+              <li><a href="<?php echo url('about-us')?>" alt="About Us"><?php echo t('About Us');?></a></li>
+              <li><a href="#" alt="Press Release"><?php echo t('Press Release');?></a></li>
+              <li><a href="#" alt="News & Events"><?php echo t('News & Events');?></a></li>
+              <li><a href="#" alt="Site Map"><?php echo t('Site Map');?></a></li>              
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-3 links">
+            <h3>Help</h3>
+            <ul>
+              <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns"><?php echo t('Cancellation & Returns');?></a></li>
+              <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy"><?php echo t('Shipping Policy');?></a></li>
+              <li><a href="#" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
+              <li><a href="#" alt="Track Orders"><?php echo t('Track Orders');?></a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-3 links">
+            <h3>Policies</h3>
+            <ul>
+              <li><a href="<?php echo url('terms-of-use')?>" alt="Terms Of Use"><?php echo t('Terms Of Use');?></a></li>
+              <li><a href="<?php echo url('privacy-policy')?>" alt="Privacy Policy"><?php echo t('Privacy Policy');?></a></li>
+              <li><a href="#" alt="Returns Policy"><?php echo t('Returns Policy');?></a></li>
+              <li><a href="<?php echo url('security')?>" alt="Security"><?php echo t('Security');?></a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
+            <h3>Folow Us</h3>
+            <ul>
+              <li class="facebook"><a href="#"></a></li>
+              <li class="flickr"><a href="#"></a></li>
+              <li class="google"><a href="#"></a></li>
+              <li class="printrest"><a href="#"></a></li>
+              <li class="twitter"><a href="#"></a></li>
+              <li class="in"><a href="#"></a></li>
+            </ul>
+          </div>
+        </div>
     </div>
   </div>
 </div>
