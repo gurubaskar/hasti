@@ -79,17 +79,17 @@ function drubiz_change_password($current_password, $new_password) {
 /**
  * Idempotently import data from Excel spreadsheet.
  */
-function drubiz_import_data($xls_files) {
+function drubiz_import_data($xls_files,$flag=false) {
   variable_del('drubiz_category_tree');
   variable_del('drubiz_category_parents');
   variable_del('drubiz_category_names');
   variable_del('drubiz_subcategory_images');
-
+  $debug = array();
   foreach ($xls_files as $catalog_name => $xls_file) {
-    echo DRUBIZ_IMPORT_LONG_DELIMITER . PHP_EOL;
-    echo "Reading XLS data ($xls_file)...";
+    //echo DRUBIZ_IMPORT_LONG_DELIMITER . PHP_EOL;
+    $debug[] = "Reading XLS data ($xls_file)...";
     $xls = PHPExcel_IOFactory::load($xls_file);
-    echo " DONE!" . PHP_EOL;
+    //echo " DONE!" . PHP_EOL;
 
     // Get worksheet dimensions
     $data = array();
@@ -131,11 +131,11 @@ function drubiz_import_data($xls_files) {
 
     $master_product_lookup = array();
 
-    echo "Catalog: $catalog_name" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+   // echo "Catalog: $catalog_name" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Categories Sheet
-    echo "Getting keyed Categories...";
+    $debug[] = "Getting keyed Categories...";
     foreach ($category as $i => $c) {
       if ($i == 0) {
         $category_header = array_map('variableize', $c);
@@ -188,11 +188,11 @@ function drubiz_import_data($xls_files) {
     $drubiz_subcategory_images[$catalog_name] = $subcategory_image;
     variable_set('drubiz_subcategory_images', json_encode($drubiz_subcategory_images));    
 
-    echo " DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+    //echo " DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Product Sheet
-    echo "Getting keyed Products...";
+    $debug[] = "Getting keyed Products...";
     foreach ($product as $i => $p) {
       if ($i == 0) {
         $product_header = array_map('variableize', $p);
@@ -203,7 +203,7 @@ function drubiz_import_data($xls_files) {
       $master_product_id    = trim((string)$p['master_product_id']);
       $product_id           = trim((string)$p['product_id']);
       if (empty($product_id)) {
-        echo "Empty product_id, using master_product_id: {$master_product_id}" . PHP_EOL;
+        //echo "Empty product_id, using master_product_id: {$master_product_id}" . PHP_EOL;
         $product_id = $master_product_id;
         $p['product_id'] = $product_id;
       }
@@ -213,15 +213,15 @@ function drubiz_import_data($xls_files) {
       }
       else {
         // Product is repeated.
-        echo "Repeat Product: {$product_id}" . PHP_EOL;
+        $debug[] = "Repeat Product: {$product_id}" . PHP_EOL;
         continue;
       }
     }
-    echo "... DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+    //echo "... DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Store price
-    echo "Getting keyed Store Prices...";
+    $debug[] = "Getting keyed Store Prices...";
     foreach ($store_price as $i => $c) {
       if ($i == 0) {
         $store_price_header = array_map('variableize', $c);
@@ -238,11 +238,11 @@ function drubiz_import_data($xls_files) {
       $store_price_keyed[$master_product_id][$product_id][$product_store_id]['list_price'] = $c['list_price'];
       $store_price_keyed[$master_product_id][$product_id][$product_store_id]['sales_price'] = $c['sales_price'];
     }
-    echo "... DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+   // echo "... DONE!" . PHP_EOL;
+   // echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Product Association Sheet
-    echo "Getting keyed Product Associations...";
+    $debug[] = "Getting keyed Product Associations...";
     foreach ($product_association as $i => $pa) {
       if ($i == 0) {
         $product_association_header = array_map('variableize', $pa);
@@ -254,8 +254,8 @@ function drubiz_import_data($xls_files) {
       }
       $product_association_keyed[$pa['product_id']][$pa['product_id_to']] = $pa;
     }
-    echo " DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+    //echo " DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Check if Main Menu already exists for Catalog, if not create it.
     //$language_param = variable_get('locale_language_negotiation_session_param', 'language');
@@ -266,17 +266,17 @@ function drubiz_import_data($xls_files) {
     $main_menu_name = 'main-menu-' . $catalog_name . '-' . $language->language;
     $main_menu_exists = (menu_load($main_menu_name) !== FALSE);
     if ($main_menu_exists) {
-      echo "Main Menu ($main_menu_name) exists..." . PHP_EOL;
+      //echo "Main Menu ($main_menu_name) exists..." . PHP_EOL;
     }
     else {
-      echo "Main Menu ($main_menu_name) does not exist; creating...";
+      //echo "Main Menu ($main_menu_name) does not exist; creating...";
       $new_main_menu = array(
         'menu_name' => $main_menu_name,
         'title' => "Main menu ($catalog_name)",
         'description' => "Main menu for $catalog_name",
       );
       menu_save($new_main_menu);
-      echo " DONE!" . PHP_EOL;
+     // echo " DONE!" . PHP_EOL;
     }
   
 
@@ -284,7 +284,7 @@ function drubiz_import_data($xls_files) {
     // file_put_contents('category_keyed_' . $catalog_name . '.log', print_r($category_keyed, 1));
     // exit;
 
-    echo "Building Categories Menus... " . PHP_EOL;
+    //echo "Building Categories Menus... " . PHP_EOL;
     // TODO: Avoid having to destroy & rebuild menus. Use a smarter algo.
     db_query("DELETE FROM {menu_links} WHERE menu_name = :main_menu_name", array(':main_menu_name' => $main_menu_name));
     foreach ($category_tree as $category_id => $subcategories) {
@@ -305,7 +305,7 @@ function drubiz_import_data($xls_files) {
         'plid' => 0, // Top level Category
       );
       $category_mlid = menu_link_save($item);
-      echo "  Category $category_mlid: " . $category_name . PHP_EOL;
+      //echo "  Category $category_mlid: " . $category_name . PHP_EOL;
 
       foreach ($subcategories as $subcategory_id => $sub_subcategories) {
         $subcategory_name = trim((string)$category_keyed[$subcategory_id]['category_name']);
@@ -326,7 +326,7 @@ function drubiz_import_data($xls_files) {
           'plid' => $category_mlid,
         );
         $subcategory_mlid = menu_link_save($item);
-        echo "    Subcategory $subcategory_mlid: " . $subcategory_name . PHP_EOL;
+        //echo "    Subcategory $subcategory_mlid: " . $subcategory_name . PHP_EOL;
 
         foreach ($sub_subcategories as $sub_subcategory_id => $sub_sub_subcategories) {
           $sub_subcategory_name = trim((string)$category_keyed[$sub_subcategory_id]['category_name']);
@@ -347,16 +347,16 @@ function drubiz_import_data($xls_files) {
             'plid' => $subcategory_mlid,
           );
           $sub_subcategory_mlid = menu_link_save($item);
-          echo "      Sub-subcategory $sub_subcategory_mlid: " . $sub_subcategory_name . PHP_EOL;
+          //echo "Sub-subcategory $sub_subcategory_mlid: " . $sub_subcategory_name . PHP_EOL;
         }
       }
     }
   }
-    echo "... DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+   // echo "... DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Facet Group Sheet
-    echo "Getting keyed Facet Groups...";
+    $debug[] = "Getting keyed Facet Groups...";
     foreach ($facet_group as $i => $fg) {
       if ($i == 0) {
         $facet_group_header = array_map('variableize', $fg);
@@ -371,10 +371,10 @@ function drubiz_import_data($xls_files) {
       }
       $facet_group_keyed[$product_category_id][$facet_group_id] = $fg;
     }
-    echo " DONE!" . PHP_EOL;
+    //echo " DONE!" . PHP_EOL;
 
     // Facet Values Sheet
-    echo "Getting keyed Facet Values...";
+    $debug[] = "Getting keyed Facet Values...";
     foreach ($facet_value as $i => $fv) {
       if ($i == 0) {
         $facet_value_header = array_map('variableize', $fv);
@@ -387,11 +387,11 @@ function drubiz_import_data($xls_files) {
       }
       $facet_value_keyed[$facet_group_id][] = $fv;
     }
-    echo " DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+    //echo " DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // Verify Products
-    echo "Verifying Products..." . PHP_EOL;
+    //echo "Verifying Products..." . PHP_EOL;
     // Verification.
     $oks = array();
     $errors = array();
@@ -400,7 +400,7 @@ function drubiz_import_data($xls_files) {
     $count = 0;
     foreach ($product_keyed as $product_id => $p) {
       $count++;
-      echo "  {$count} - Parsing Product {$product_id}...";
+      $debug[] =  "  {$count} - Parsing Product {$product_id}...";
 
       $is_master_product = FALSE;
       $master_product_id = (string)$p['master_product_id'];
@@ -594,32 +594,32 @@ function drubiz_import_data($xls_files) {
         }
       }
 
-      echo " DONE!" . PHP_EOL;
+      //echo " DONE!" . PHP_EOL;
     }
-    echo "... DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+    //echo "... DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
-    echo "Saving Products..." . PHP_EOL;
+    //echo "Saving Products..." . PHP_EOL;
 
     unset($final_product); // Break pointer refs from previous loop. See: Warning @ http://php.net/manual/en/control-structures.foreach.php
     $final_product_count = 0;
     foreach ($final_products as $i => $final_product) {
       $final_product_count++;
-      echo "{$final_product_count} - {$i}. Saving Product {$final_product->field_product_id[LANGUAGE_NONE][0]['value']}...";
+      //echo "{$final_product_count} - {$i}. Saving Product {$final_product->field_product_id[LANGUAGE_NONE][0]['value']}...";
       // Serialize field_system_data
       $all_product_variants = get_object_vars($final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_variants);
       if (empty($all_product_variants)) {
         // Master product only; no variants! Add master product itself as a variant.
         $p = $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_raw;
         $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_variants->{$p['product_id']} = $p;
-        echo " no variants; using master product...";
+        $debug[] =  " no variants; using master product...";
       }
       $final_product->field_system_data[LANGUAGE_NONE][0]['value'] = json_encode($final_product->field_system_data[LANGUAGE_NONE][0]['value']);
       node_save($final_product);
-      echo " DONE! Node NID: {$final_product->nid}" . PHP_EOL;
+      //echo " DONE! Node NID: {$final_product->nid}" . PHP_EOL;
     }
-    echo "... DONE!" . PHP_EOL;
-    echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
+    //echo "... DONE!" . PHP_EOL;
+    //echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
     // print_r(compact('errors', 'warnings'));
     $output = print_r(compact('errors', 'warnings', 'oks'), 1) . PHP_EOL;
@@ -627,7 +627,10 @@ function drubiz_import_data($xls_files) {
   }
 
   // Done! :)
-  echo "IMPORT COMPLETE!" . PHP_EOL;
+  //echo "IMPORT COMPLETE!" . PHP_EOL;
+  if($flag){
+    return json_encode($output);
+  }
 }
 
 /**
