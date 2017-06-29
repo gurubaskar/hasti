@@ -86,20 +86,23 @@ a:focus{text-decoration:none !important;}
 #content{float:left; width:100%; margin-bottom:20px; z-index:-1;}
 
 #footer{width:100%; float:left; background:url('./../images/footer-bg.jpg') no-repeat top left; padding:20px 0; position:relative; text-align:center;}
-#footer ul li{display:inline-block; padding:4px 0;}
-#footer ul li a{color:#fff !important; border-right:1px solid #fff; padding:0 10px; font-size:14px; font-weight:normal; line-height:14px;}
+#footer ul li{display:block; padding:0 0 15px 0; text-align:left;}
+#footer ul li a{color:#fff !important; font-size:16px; font-weight:normal; line-height:18px;}
 #footer ul li a:hover{background-color:transparent;}
-#footer h3{margin-top:40px; color:#fff; text-transform:uppercase;  font-family:'BPscript'; font-size:15px;}
+#footer h3{margin-top:20px; color:#fff; font-family:'BPscript'; font-size:20px; text-align:left; margin-bottom:20px; width:100%;}
+#footer .social-wrap{padding:0;}
+#footer .social-wrap input[type="text"]{float:left; width:100%; padding:9px; border:0;}
+#footer .social-wrap input[type="submit"]{float:left; margin:10px 0 0 0; background-color:#000; color:#fff; font-weight:normal; font-size:14px; padding:7px 30px; border:none;}
 #footer .social{margin-bottom:10px;}
 #footer .social a{border:none;}
-#footer ul li{cursor:pointer;}
-#footer ul li.facebook{width:auto !important; float:none; margin:0 !important; background:url('./../images/main-img.png') no-repeat 0 0; position:relative; padding:11px;}
+#footer .icons-wrap ul{float:left; width:100%;}
+#footer ul li.facebook{width:auto !important; float:left; margin:0 3% 0 0 !important; background:url('./../images/main-img.png') no-repeat -7px -9px; position:relative; padding:17px 10px;}
 #footer ul li.facebook a, #footer ul li.google a{background:none; float:inherit;}
-#footer ul li.flickr{width:auto !important; float:none; background:url('./../images/main-img.png') no-repeat 0px -46px; position:relative; padding:11px;}
-#footer ul li.google{width:auto !important; float:none; background:url('./../images/main-img.png') no-repeat 0px -97px; position:relative; padding:11px;}
-#footer ul li.printrest{width:auto !important; float:none; background:url('./../images/main-img.png') no-repeat 0px -144px; position:relative; padding:11px;}
-#footer ul li.twitter{width:auto !important; float:none; background:url('./../images/main-img.png') no-repeat 0px -188px; position:relative; padding:11px;}
-#footer ul li.in{width:auto !important; float:none; background:url('./../images/main-img.png') no-repeat 0px -234px; position:relative; padding:11px;}
+#footer ul li.flickr{width:auto !important; float:left; background:url('./../images/main-img.png') no-repeat -7px -55px; position:relative; padding:17px; margin:0 3% 0 0;}
+#footer ul li.google{width:auto !important; float:left; background:url('./../images/main-img.png') no-repeat -7px -104px; position:relative; padding:17px; margin:0 3% 0 0;}
+#footer ul li.printrest{width:auto !important; float:left; background:url('./../images/main-img.png') no-repeat -4px -150px; position:relative; padding:17px; margin:0 3% 0 0;}
+#footer ul li.twitter{width:auto !important; float:left; background:url('./../images/main-img.png') no-repeat -7px -197px; position:relative; padding:17px; margin:0 3% 0 0;}
+#footer ul li.in{width:auto !important; float:left; background:url('./../images/main-img.png') no-repeat -7px -239px; position:relative; padding:16px; }
 
 /************* mega menu ****************/
    .menu ul#eCommerceNavBarMenu{
@@ -659,11 +662,12 @@ a:focus{text-decoration:none !important;}
 
 @media only screen and (max-width:900px) and (min-width:861px){
      #eCommerceNavBarMenu li:hover>ul li.subLevel{width:18%;}
+     #footer .icons-wrap ul li{margin:0 3% 0 0;}
 }
 
 @media only screen and (max-width:860px) and (min-width:768px){
      #eCommerceNavBarMenu li:hover>ul li.subLevel{width:23%;}
-
+     #footer .icons-wrap ul li{margin:0 1% 0 0;}
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px){
@@ -671,6 +675,8 @@ a:focus{text-decoration:none !important;}
     .wishlist .img-wrap{margin-bottom:20px;}
     .wishlist .img-wrap, .wishlist .cart-details{width:100%; padding-left:0;}
     .wishlist .cart-details .details-left{padding-left:0;}
+    #footer .links-wrap .links{width:22%;}
+    #footer .social-wrap{width:32%;}
 }
 
 @media only screen and (max-width:875px) and (min-width:768px){
@@ -691,6 +697,8 @@ a:focus{text-decoration:none !important;}
 }
 @media only screen and (max-width:767px) and (min-width:441px){
     .box{height:auto; max-height:470px;}
+    #footer .links-wrap .links, #footer .social-wrap{width:50%;}
+    #footer .social-wrap{padding:0 15px;}
 }
 @media only screen and (max-width:660px) and (min-width:481px){
     .pdp .btns-wrap span{width:60%; margin-bottom:10px;}
@@ -758,6 +766,7 @@ a:focus{text-decoration:none !important;}
     .checkout-right{padding-left:0 !important; padding-right:0 !important;}
     .checkout-right #order-confirm{margin-top:0 !important;}
     .checkout-right .addressbox{width:93% !important;}
+    #footer{background:url('./../images/footer-bg.jpg') repeat-y top left;}
 }
 
 @media (max-width:600px){
@@ -775,6 +784,7 @@ a:focus{text-decoration:none !important;}
     .form-wrap .form-row input[type="text"]{width:90%;}
     .form-wrap .btns-wrap{margin-left:0;}
     .cartbox .total{padding-left:0;}
+    #footer .social-wrap{width:100%; padding:0 15px;}
 }
 
 @media (max-width:550px){
@@ -825,6 +835,11 @@ a:focus{text-decoration:none !important;}
 }
 @media(max-width:439px){
     .plp .plp-right .box{height:auto !important; max-height:100% !important;}
+    #footer h3, #footer ul li{text-align:center;}
+    /*.links-wrap .links{margin-bottom:20px;}*/
+    #footer .social-wrap ul li{float:none !important; display:inline; padding:10px 17px;}
+    #footer .social-wrap{position:relative; top:-10px; padding:0;}
+    #footer ul li.facebook a{padding:0 !important;}
 }
 
 @media (max-width:400px){
@@ -860,6 +875,7 @@ a:focus{text-decoration:none !important;}
     .ui-popup .facebook a, .ui-popup .google a{background:none;}
     #login.ui-page {min-height: 79% !important;}
     .forgot-btn .ui-input-btn{padding:5px 10px !important; margin-left:10px !important;}
+    #footer ul li.facebook a{padding:0;}
 }
 @media (max-width:320px){
     .ui-popup-container{max-width:270px !important;}
