@@ -268,6 +268,10 @@ function addAddress(){
     alert('Enter City.');
     return false;
   }
+  if(jQuery('#state').val() == ''){
+    alert('Select State.');
+    return false;
+  }
   if(jQuery('#zipcode').val() == ''){
     alert('Enter zipcode.');
     return false;
@@ -282,11 +286,13 @@ function addAddress(){
   var data_address1    = jQuery('#addNewAddress').find('[name=address1]:first').val();
   var data_address2    = jQuery('#addNewAddress').find('[name=address2]:first').val();
   var data_city        = jQuery('#addNewAddress').find('[name=city]:first').val();
+  var data_state        = jQuery('#addNewAddress').find('[name=state]:first').val();
   var data_zipcode     = jQuery('#addNewAddress').find('[name=zipcode]:first').val();
   var data_mobile      = jQuery('#addNewAddress').find('[name=mobile]:first').val();
   
-  var data = 'firstname=' + encodeURIComponent(data_firstname) + '&lastname=' + encodeURIComponent(data_lastname) + '&address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
+  var data = 'data_firstname=' + encodeURIComponent(data_firstname) + '&data_lastname=' + encodeURIComponent(data_lastname) + '&data_address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_state=' + encodeURIComponent(data_state) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
   var orderAddress = getParameterByName('back');
+  alert(data);
   loading();
   jQuery.ajax({
     type: "POST",
@@ -342,6 +348,10 @@ function editAddress(){
     alert('Enter City.');
     return false;
   }
+  if(jQuery('#state').val() == ''){
+    alert('Select State.');
+    return false;
+  }
   if(jQuery('#zipcode').val() == ''){
     alert('Enter zipcode.');
     return false;
@@ -351,15 +361,16 @@ function editAddress(){
     return false;
   }
 
-  var data_firstname   = jQuery('#addNewAddress').find('[name=firstname]:first').val();
-  var data_lastname    = jQuery('#addNewAddress').find('[name=lastname]:first').val();
-  var data_address1    = jQuery('#addNewAddress').find('[name=address1]:first').val();
-  var data_address2    = jQuery('#addNewAddress').find('[name=address2]:first').val();
-  var data_city        = jQuery('#addNewAddress').find('[name=city]:first').val();
-  var data_zipcode     = jQuery('#addNewAddress').find('[name=zipcode]:first').val();
-  var data_mobile      = jQuery('#addNewAddress').find('[name=mobile]:first').val();
-  alert(data);
-  /*var data = 'firstname=' + encodeURIComponent(data_firstname) + '&lastname=' + encodeURIComponent(data_lastname) + '&address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
+  var data_firstname   = jQuery('#editNewAddress').find('[name=firstname]:first').val();
+  var data_lastname    = jQuery('#editNewAddress').find('[name=lastname]:first').val();
+  var data_address1    = jQuery('#editNewAddress').find('[name=address1]:first').val();
+  var data_address2    = jQuery('#editNewAddress').find('[name=address2]:first').val();
+  var data_city        = jQuery('#editNewAddress').find('[name=city]:first').val();
+  var data_state       = jQuery('#editNewAddress').find('[name=state]:first').val();
+  var data_zipcode     = jQuery('#editNewAddress').find('[name=zipcode]:first').val();
+  var data_mobile      = jQuery('#editNewAddress').find('[name=mobile]:first').val();
+
+  var data = 'data_firstname=' + encodeURIComponent(data_firstname) + '&data_lastname=' + encodeURIComponent(data_lastname) + '&data_address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_state=' + encodeURIComponent(data_state) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
 
   loading();
   jQuery.ajax({
@@ -369,7 +380,7 @@ function editAddress(){
     success: function(data) {
       //console.log(data);
       if (data['isError'] == 'true') {
-        alert(data['_EVENT_MESSAGE_']);
+        alert(data['_ERROR_MESSAGE_']);
         close_loading();
       } else {
         document.location = Drupal.settings.basePath + 'account/address-book';
@@ -381,7 +392,7 @@ function editAddress(){
       close_loading();
     },
     dataType: 'json'
-  });*/
+  });
 
 }
 

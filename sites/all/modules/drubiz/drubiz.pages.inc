@@ -218,11 +218,27 @@ function drubiz_validate_otp() {
 
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
 
-  if($data['isNewSession'] == 'true' or $data['isNewSession'] == 1) {
+  if($data['isNewSession'] == 'false' or $data['isNewSession'] == 0) {
     echo json_encode($data);
   } else {
     drupal_goto('user/logout');
   }
+}
+
+function getState() {
+  $endpoint = 'getAssociatedStateList';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'countryGeoId'=>'IND'
+    );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  return $data;
 }
 
 /**
@@ -289,20 +305,20 @@ function drubiz_validate_otp() {
  */
 function drubiz_add_address() {
   $params = array(
-    'CUSTOMER_FIRST_NAME'  => $_POST['firstname'],
-    'CUSTOMER_LAST_NAME'     => $_POST['lastname'],
-    'CUSTOMER_ADDRESS1'   => $_POST['address1'],
-    'CUSTOMER_ADDRESS2'    => $_POST['data_address2'],
-    'CUSTOMER_CITY'     => $_POST['data_city'],
-    'SHIPPING_STATE'        => 'IN-KA',
-    'CUSTOMER_COUNTRY' => 'IND',
-    'CUSTOMER_POSTAL_CODE'         => $_POST['data_zipcode'],
-    'PHONE_MOBILE_CONTACT'  => $_POST['data_mobile'],
-    'productStoreId' => 'WOI_STORE',
+    'CUSTOMER_FIRST_NAME'     => $_POST['data_firstname'],
+    'CUSTOMER_LAST_NAME'      => $_POST['data_lastname'],
+    'CUSTOMER_ADDRESS1'       => $_POST['data_address1'],
+    'CUSTOMER_ADDRESS2'       => $_POST['data_address2'],
+    'CUSTOMER_CITY'           => $_POST['data_city'],
+    'CUSTOMER_STATE'          => $_POST['data_state'],
+    'CUSTOMER_COUNTRY'        => 'IND',
+    'CUSTOMER_POSTAL_CODE'    => $_POST['data_zipcode'],
+    'PHONE_MOBILE_CONTACT'    => $_POST['data_mobile'],
+    'productStoreId'          => 'WOI_STORE',
     'contactMechPurposeTypeId' => 'SHIPPING_LOCATION',
-    'partyId' => get_user_party_id(),
+    'partyId'                 => get_user_party_id(),
   );
-watchdog(__FUNCTION__, '<pre>' . print_r(compact('params'), 1) . '</pre>');
+
   if ($GLOBALS['user']->uid != 0) {
     $endpoint = 'updateAddressBookNew';
     $jsessionid = get_user_jsessionid();
@@ -717,8 +733,7 @@ function myaccount_edit_address($id){
     $one_address = array();
     //   http://localhost:8080/osafecoreaddon/getAddressUpdate?partyId=10010&contactMechId=10380
     $client = drubiz_api_client();
-    $response = $client->get('getAddressUpdate?' . http_build_query(array(
-      'partyId'                => get_user_party_id(),
+    $response = $client->get('getupdateAddressInfo?' . http_build_query(array(
       'contactMechId'          => $id,
     )));
     $raw_json = $response->getBody();
@@ -730,7 +745,7 @@ function myaccount_edit_address($id){
         $list_address = $response['postalAddressList'];
     }
    
-    return theme('myaccount_edit_address', array('addr'=>$one_address,'address_list'=>$list_address));
+    return theme('myaccount_edit_address', array('addr'=>$one_address['shippingAddress'][0],'address_list'=>$list_address));
 }
 
 function checkout_edit_address($id){

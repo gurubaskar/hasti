@@ -1,4 +1,4 @@
-<?php //krumo($order) ?>
+<?php krumo($order) ?>
 <div id="content">
     <div class="container-fluid order-confirmation">
       <div class="col-xs-12 col-sm-12 col-md-12" id="cart">
@@ -13,6 +13,7 @@
                 <div class="col-xs-12 col-sm-6 col-md-6 pleft delivery-wrap">
                   <p>Your Estimated Delivery date is : <br/><span calss="delivery-details">Thursday, May 30 2017 - Friday May 31, 2017</span></p>
                   <p>Your Purchase invoice has been sent to your email id which is:<br/> <span calss="delivery-details"><?php echo $GLOBALS['user']->mail;?></span></p>
+                  <p>Payment Method:<br/> <span calss="delivery-details"><?php echo $order['shippingAddress'][0]['type'] ?></span></p>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 pleft pright delivery-wrap">
                   <p>Your order was sent to:<br/> <span calss="delivery-details">
