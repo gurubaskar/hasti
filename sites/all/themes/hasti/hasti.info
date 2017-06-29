@@ -19,11 +19,11 @@ regions[search_filter_sidebar] = Search Filter Sidebar
 ;regions[sidebar_second] = 'Secondary'
 ;regions[footer]         = 'Footer'
 regions[footer_menu_1]  = 'Footer Menu 1'
-regions[footer_menu_2]  = 'Footer Menu 2'
+;regions[footer_menu_2]  = 'Footer Menu 2'
 regions[footer_social]  = 'Footer Social'
 ;regions[page_top]       = 'Page top'
 ;regions[page_bottom]    = 'Page bottom'
-
+regions[left_menu]  = 'Left Menu'
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Stylesheets
