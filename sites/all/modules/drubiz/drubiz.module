@@ -240,10 +240,19 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  
   $items['drubiz/user'] = array(
     'title'             => 'User Login',
     'description'       => "User Login",
     'page callback'     => 'drubiz_user',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
+  $items['sonata/importdata'] = array(
+    'title'             => 'Import Data',
+    'description'       => "Import Data",
+    'page callback'     => 'import_data',
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );

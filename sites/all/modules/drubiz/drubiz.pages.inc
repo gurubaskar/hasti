@@ -166,6 +166,18 @@ function drubiz_checkout_final() {
 }
 
 /**
+* callback for Import data 
+*/
+function import_data(){
+  $response = $_GET['filename'];
+  //$response = 'drubiz_data/catalog_hasti.xls';
+  $xls_files = array(
+    'hasti'   => $response,
+  );
+  drubiz_import_data($xls_files,flag==true);
+}
+
+/**
  * Page callback for /send-otp
  */
 function drubiz_send_otp() {
