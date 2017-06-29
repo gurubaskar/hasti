@@ -295,7 +295,7 @@ function addAddress(){
     success: function(data) {
       //console.log(data);
       if (data['isError'] == 'true') {
-        alert(data['_EVENT_MESSAGE_']);
+        alert(data['_ERROR_MESSAGE_']);
         close_loading();
       } else {
         if(orderAddress == 'order') {

@@ -228,7 +228,7 @@ function drubiz_validate_otp() {
 /**
  * Page callback for /drubiz/add-address
  */
-function drubiz_add_address() {
+/*function drubiz_add_address() {
   $params = array(
     'SHIPPING_POSTAL_CODE'  => $_POST['SHIPPING_POSTAL_CODE'],
     'SHIPPING_ADDRESS1'     => $_POST['SHIPPING_ADDRESS1'],
@@ -282,6 +282,40 @@ function drubiz_add_address() {
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
 
   echo json_encode($data);
+}*/
+
+/**
+ * Page callback for /drubiz/add-address
+ */
+function drubiz_add_address() {
+  $params = array(
+    'CUSTOMER_FIRST_NAME'  => $_POST['firstname'],
+    'CUSTOMER_LAST_NAME'     => $_POST['lastname'],
+    'CUSTOMER_ADDRESS1'   => $_POST['address1'],
+    'CUSTOMER_ADDRESS2'    => $_POST['data_address2'],
+    'CUSTOMER_CITY'     => $_POST['data_city'],
+    'SHIPPING_STATE'        => 'IN-KA',
+    'CUSTOMER_COUNTRY' => 'IND',
+    'CUSTOMER_POSTAL_CODE'         => $_POST['data_zipcode'],
+    'PHONE_MOBILE_CONTACT'  => $_POST['data_mobile'],
+    'productStoreId' => 'WOI_STORE',
+    'contactMechPurposeTypeId' => 'SHIPPING_LOCATION',
+    'partyId' => get_user_party_id(),
+  );
+watchdog(__FUNCTION__, '<pre>' . print_r(compact('params'), 1) . '</pre>');
+  if ($GLOBALS['user']->uid != 0) {
+    $endpoint = 'updateAddressBookNew';
+    $jsessionid = get_user_jsessionid();
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
+    $client = drubiz_api_client();
+    $response = $client->get($endpoint . '?' . http_build_query($params));
+    $raw_json = $response->getBody();
+    $data = json_decode($raw_json, TRUE);
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+    echo json_encode($data);
+  }
 }
 
 /**
