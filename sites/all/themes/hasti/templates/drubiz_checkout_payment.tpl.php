@@ -12,7 +12,11 @@ if(!empty($_GET['from'])) {
     <li><a href="#" onclick="openLogin();" class="active-img">Login Details</a></li>
     <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="tickimg">Order Summary</a></li>
     <li><a id="deliveryAddress" href="#" onclick="openDeliveryAddress();" class="tickimg">Delivery Address</a></li>
-    <li><a id="paymentMethod" href="#" onclick="openPaymentMethod();" class="tickimg">Payment Method</a></li>
+    <?php if(count($addresses['postalAddressList']) > 0) {?>
+      <li><a id="paymentMethod" href="#" onclick="openPaymentMethod();" class="tickimg">Payment Method</a></li>
+    <?php } else { ?>
+      <li><a id="" href="#" class="disabled">Payment Method</a></li>
+    <?php } ?>
   <?php } else { ?>
     <li><a href="#checkout-login">Sign In</a></li>
     <li><a href="" class="disabled">Order Summary</a></li>
@@ -129,7 +133,13 @@ if(!empty($_GET['from'])) {
       <?php foreach ($addresses['postalAddressList'] as $postal_key => $postal_value) { ?>
       <div class="addressbox" id="delete_<?php echo $postal_value['contactMechId'] ;?>">
         <div class="col-xs-8 col-sm-6 col-md-6 pleft address">
-          <input type="radio" class="address-select" name="deliveryaddress" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>" value="<?php echo $postal_value['contactMechId'] ;?>">
+        <?php
+          $checked = "";
+          if($postal_value['isDefaultShipAddr'] == 1) {
+            $checked = "checked";
+          }
+        ?>
+          <input type="radio" class="address-select" name="deliveryaddress" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>" value="<?php echo $postal_value['contactMechId'] ;?>" <?php echo $checked;?>>
           <h4><?php echo $postal_value['toName']?></h4>
           <span><?php echo $postal_value['address1']?></span>
           <span><?php echo $postal_value['address2']?></span>
@@ -146,7 +156,11 @@ if(!empty($_GET['from'])) {
       <?php } ?>
       <div class="btns-wrap">
         <span class="new-address"><a href="<?php echo url('account/add-address') ?>?back=order" class="buy-now">Add New Address</a></span>
-        <span class="continue"><a href="#" class="buy-now" onclick="openPaymentMethod();">Continue</a></span>
+        <?php if(count($addresses['postalAddressList']) > 0) {?>
+          <span class="continue"><a href="#" class="buy-now" onclick="openPaymentMethod();">Continue</a></span>
+        <?php } else { ?>
+          <span class="continue"><a href="#" class="buy-now disabled">Continue</a></span>
+        <?php } ?>
       </div>
     </div>
   </div>

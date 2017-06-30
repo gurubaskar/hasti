@@ -424,6 +424,14 @@ function drubiz_menu() {
     'file'              => 'drubiz.pages.inc',
   );
 
+  $items['account/setdefault-address'] = array(
+    'title'             => 'Checkout Address',
+    'description'       => "Checkout Address",
+    'page callback'     => 'drubiz_default_address',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+
   $items['send-otp'] = array(
     'title'             => 'Checkout - OTP',
     'description'       => "Checkout - Send OTP",

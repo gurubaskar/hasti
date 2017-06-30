@@ -19,6 +19,11 @@
         <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
           <a href="<?php echo url('account/edit-address/'.$addr['contactMechId']) ?>" class="standardBtn update"><?php echo t('Update');?></a>
           <a href="#"><span class="delete address-delete" data-contactMechId="<?php echo $addr['contactMechId'] ;?>">delete</span></a>
+          <?php if($addr['isDefaultShipAddr'] == false) {?>
+          <a href="#"><span class="setdefault-address" data-contactMechId="<?php echo $addr['contactMechId'] ;?>">Set As Default</span></a>
+          <?php } else { ?>
+            Default Address
+          <?php } ?>
         </div>
       </div>
     <?php } ?>
