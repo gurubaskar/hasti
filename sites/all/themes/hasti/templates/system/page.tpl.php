@@ -259,15 +259,14 @@ global $drubiz_domain;
               </ul>
             </div>
           </div>
-      <?php endif; ?>
-      <?php /*if ($page['left_menu']): ?>
+      <?php endif; ?><?php /*if ($page['left_menu']): ?>
       <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">        
         <?php print render($page['left_menu']); ?>
       </div>
        <?php endif; */?>
-      <div class="col-xs-12 col-sm-12 col-md-12 myaccount-right">
+       <!--div class="col-xs-12 col-sm-12 col-md-12 myaccount-right"-->
       <?php print render($page['content']); ?>
-      </div>      
+      <!-- </div>       -->
     </div>
   </div>
  
@@ -282,7 +281,7 @@ global $drubiz_domain;
               <li><a href="<?php echo url('about-us')?>" alt="About Us" target="_blank"><?php echo t('About Us');?></a></li>
               <li><a href="#" alt="Press Release" target="_blank"><?php echo t('Press Release');?></a></li>
               <li><a href="#" alt="News & Events" target="_blank"><?php echo t('News & Events');?></a></li>
-              <li><a href="#" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li>              
+              <li><a href="#" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li>            
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">

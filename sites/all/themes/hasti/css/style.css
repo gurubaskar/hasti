@@ -121,6 +121,7 @@ a:focus{text-decoration:none !important;}
         color: #231f20;
         font-size: 14px !important;
         text-align:center; font-weight:normal;
+        text-transform: uppercase;
    }
    #eCommerceNavBarMenu ul{
         border: 1px solid #AFAFAF;
@@ -551,21 +552,21 @@ a:focus{text-decoration:none !important;}
     #signup.ui-page {min-height: 85% !important;}
     #forgotpwd.ui-page{min-height: 43% !important;}
     .ui-content{padding:10px 25px 10px 25px;}
-.ui-popup.signin, #changepwd{background-color:#00b04c; color:#fff;  height:auto; float:left; width:400px; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; -o-border-radius:5px;}
+.ui-popup.signin, #changepwd{background-color:#00b04c; color:#fff; top:23%; height:auto; padding-bottom:30px; float:left; width:400px; border-radius:5px !important; -moz-border-radius:5px !important; -webkit-border-radius:5px !important; -o-border-radius:5px !important;}
 .signin h3, #changepwd h3{font-size:30px; font-weight:300;}
 .signin input[type="text"], #changepwd input[type="password"]{width:100%; border-radius:0; background:#fff; color:#6d6e70; margin:15px 0 7px 0; padding:10px;}
 .remember{background:url('./../images/main-img.png') no-repeat -4px -502px; position:relative; padding:11px; width:378px !important; float:left; margin-top:10px;}
 .ui-popup.signin a, .ui-popup.signin a:hover{color:#fff; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:30px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
-.signin .ui-input-btn.ui-btn, .forgot-btn{background:#fff; border:none; color:#00b04c; font-size:25px; font-weight:normal; padding:5px 7px; margin:25px 0 15px 0;}
+.signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 7px; margin:25px 0 15px 0;}
 .ui-input-text, .signin-btn{width:400px !important; float:left;}
 .checkpin .ui-input-text{width:auto !important;}
 .checkpin a{color:#fff !important; font-weight:normal !important;}
 .ui-shadow-inset{box-shadow:none !important; -webkit-box-shadow:none !important; -moz-box-shadow:none !important; -o-box-shadow:none !important;}
 .ui-popup-container{height:100%;}
-.forgot-pwd{float:left; width:auto; font-weight:normal; font-size:14px;}
-.new-signup{float:right; width:auto; font-weight:normal; font-size:14px;}
+.forgot-pwd{float:left; width:auto; font-weight:normal; font-size:14px; margin-top:10px;}
+.new-signup{float:right; width:auto; font-weight:normal; font-size:14px; margin-top:10px;}
 .ui-mobile .ui-page-active{overflow-x: visible !important;}
 .ui-popup .facebook{width:100%; float:left; background:#456198; text-align:center; font-size:14px; font-weight:normal; padding:8px 0; margin:20px 0 10px 0 !important;}
 .ui-popup .facebook a{background:url('./../images/main-img.png') no-repeat 0px -10px; position:relative; padding:6px; width:96% !important; float:left;}
@@ -573,7 +574,31 @@ a:focus{text-decoration:none !important;}
 .ui-popup .google a{background:url('./../images/main-img.png') no-repeat 0px -105px; position:relative; padding:6px; width:96% !important; float:left;}
 .forgot-btn .ui-input-btn{width:auto; float:right; padding:5px 20px !important; margin-left:20px !important;}
 #positionWindow-popup a{color:#fff !important; font-weight:700;}
-
+#signUpForm .ui-input-text, .signin .signin-btn, #forgotPopup .ui-input-text {
+	width:100% !important;
+}
+.signin .ui-input-btn.ui-btn {
+	margin-bottom:0px !important;
+}
+.remember {
+	margin-top:0px !important;
+}
+#signInPopup .ui-icon-delete, .signin .ui-icon-delete {
+	border-radius: 20px !important;
+    top: -18px;
+    right: -8px;
+}
+#signInWindow .ui-icon-delete {
+	border-radius: 20px !important;
+    top: -18px;
+    right: -8px;
+}
+#signInWindow .forgot-btn {
+	width:100%;
+	float:left;
+	padding:0px;
+	margin:0px !important;
+}
 
 
 /************* mobmenu **************/
@@ -876,7 +901,14 @@ a:focus{text-decoration:none !important;}
     .signin{width:85%;}
     .ui-input-text, .signin-btn, .ui-input-text, .signin-btn, .ui-popup .facebook, .ui-popup .google{width:100% !important;}
     .ui-page {min-height: 75% !important;}
+    .forgot-btn .ui-input-btn {
+		font-size: 21px !important;
+		padding:10px;
+		width: 100% !important;
+    	margin-bottom: 0px !important;
+	}
 }
+
 
 @media (max-width:380px){
     .forgot-pwd, .new-signup{width:100%; float:left;}

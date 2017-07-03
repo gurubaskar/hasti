@@ -158,15 +158,45 @@ $(document).ready(function () {
           });
     });
     $('.address-delete').click(function(){
+      if (confirm("Are you sure want to delete address?") ) {
+        var conatctMechId = $(this).data('contactmechid');
+        loading();
+        $.ajax({
+              type: "POST",
+              url: Drupal.settings.basePath + 'address-delete',
+              data: 'contactMechId=' + conatctMechId,
+              success: function(data) {
+                close_loading();
+                $('#delete_'+conatctMechId).hide();
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+                console.log(textStatus + ': ' + errorThrown);
+                close_loading();
+              },
+              dataType: 'json'
+            });
+        
+      } else {
+        return false;
+      }
+    });
+    $('.setdefault-address').click(function(){
       var conatctMechId = $(this).data('contactmechid');
       loading();
       $.ajax({
             type: "POST",
-            url: Drupal.settings.basePath + 'address-delete',
+            url: Drupal.settings.basePath + 'account/setdefault-address',
             data: 'contactMechId=' + conatctMechId,
             success: function(data) {
-              close_loading();
-              $('#delete_'+conatctMechId).hide();
+              if (data['isError'] == 'false') {
+                alert(data['_EVENT_MESSAGE_']);
+                close_loading();
+                document.location = Drupal.settings.basePath +'account/address-book';
+              } else {
+                alert(data['_ERROR_MESSAGE_']);
+                close_loading();
+              }
             },
             error: function(jqXHR, textStatus, errorThrown) {
               alert('We are facing some technical difficulties at the moment. Please try again after some time.');
@@ -318,7 +348,7 @@ function addAddress(){
   
   var data = 'data_firstname=' + encodeURIComponent(data_firstname) + '&data_lastname=' + encodeURIComponent(data_lastname) + '&data_address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_state=' + encodeURIComponent(data_state) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
   var orderAddress = getParameterByName('back');
-  alert(data);
+
   loading();
   jQuery.ajax({
     type: "POST",
