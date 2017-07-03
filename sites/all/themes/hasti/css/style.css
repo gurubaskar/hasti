@@ -206,7 +206,17 @@ a:focus{text-decoration:none !important;}
     #eCommerceNavBarMenu li.topLevel:hover a{
         color:#0081c5;
     }
-
+/************************* Home page ************************/
+#homepage .story-wrap{width:100%; float:left; background:#f1f1f2; padding:20px; margin:15px 0;}
+#homepage .story-wrap h3{font-size:30px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-bottom:15px;}
+#homepage .story-wrap p{font-size:15px; color:#929497; line-height:25px; margin:0;}
+#homepage .story-wrap p .more{font-size:16px; font-weight:bold; margin-left:20px;}
+#homepage .story-wrap p a{color:#929497;}
+#homepage .story-wrap p a:hover{color:#929497;}
+#homepage .row1, #homepage .row2{margin-bottom:15px; float:left; width:100%;}
+.row1 .video, .row3 .video{margin-top:15px; float:left;}
+.row2 .video{margin-top:15px; float:left;}
+.row1 .video img, .row2 .video img, .row3 .video img{width:100%;}
 
 /************************* PLP starts ***********************/
 .plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:23%; margin-right:15px;}
@@ -310,6 +320,7 @@ a:focus{text-decoration:none !important;}
 .storyimg-wrap{float:left; width:100%; margin-top:15px;}
 .pleft{padding-left:0 !important;}
 .pright{padding-right:0 !important;}
+.mright{margin-right:0 !important;}
 .imgwrap-right img{margin-bottom:5px;}
 .video{margin-top:10px;}
 .video video{width:47.5%; float:left; margin-right:5px; cursor:pointer;}
@@ -575,29 +586,29 @@ a:focus{text-decoration:none !important;}
 .forgot-btn .ui-input-btn{width:auto; float:right; padding:5px 20px !important; margin-left:20px !important;}
 #positionWindow-popup a{color:#fff !important; font-weight:700;}
 #signUpForm .ui-input-text, .signin .signin-btn, #forgotPopup .ui-input-text {
-	width:100% !important;
+    width:100% !important;
 }
 .signin .ui-input-btn.ui-btn {
-	margin-bottom:0px !important;
+    margin-bottom:0px !important;
 }
 .remember {
-	margin-top:0px !important;
+    margin-top:0px !important;
 }
 #signInPopup .ui-icon-delete, .signin .ui-icon-delete {
-	border-radius: 20px !important;
+    border-radius: 20px !important;
     top: -18px;
     right: -8px;
 }
 #signInWindow .ui-icon-delete {
-	border-radius: 20px !important;
+    border-radius: 20px !important;
     top: -18px;
     right: -8px;
 }
 #signInWindow .forgot-btn {
-	width:100%;
-	float:left;
-	padding:0px;
-	margin:0px !important;
+    width:100%;
+    float:left;
+    padding:0px;
+    margin:0px !important;
 }
 
 
@@ -799,6 +810,12 @@ a:focus{text-decoration:none !important;}
     .checkout-right #order-confirm{margin-top:0 !important;}
     .checkout-right .addressbox{width:93% !important;}
     #footer{background:url('./../images/footer-bg.jpg') repeat-y top left;}
+    #homepage .story-wrap p .more{width:100%; text-align:right; float:right; margin-top:15px;}
+    #homepage .row1 img, #homepage .bigimg{margin-bottom:15px;}
+    #homepage .row1 .lastcol, #homepage .row3 .lastcol{padding-right:0;}
+    .row1 .video{margin-top:0;}
+    .row2 .video{margin-bottom:15px;}
+    .row3 .video{margin-top:15px;}
 }
 
 @media (max-width:600px){
@@ -865,7 +882,10 @@ a:focus{text-decoration:none !important;}
     .checkout-right .edit-address a{float:right; width:100%; margin-bottom:8px;}
     .checkout-right .btns-wrap span{width:93%; float:left;}
     .checkout-right .btns-wrap span.continue{margin-top:15px;}
-    .ui-popup.signin, #changepwd{width:100% !important;}
+    .ui-popup.signin, #changepwd, #homepage .row2 .col-xs-6{width:100% !important;}
+    #homepage .row1 .col-xs-6, #homepage .row3 .col-xs-6{width:100%;}
+    #homepage .story-wrap h3{font-size:23px; line-height:28px;}
+
 }
 @media(max-width:439px){
     .plp .plp-right .box{height:auto !important; max-height:100% !important;}
@@ -902,13 +922,12 @@ a:focus{text-decoration:none !important;}
     .ui-input-text, .signin-btn, .ui-input-text, .signin-btn, .ui-popup .facebook, .ui-popup .google{width:100% !important;}
     .ui-page {min-height: 75% !important;}
     .forgot-btn .ui-input-btn {
-		font-size: 21px !important;
-		padding:10px;
-		width: 100% !important;
-    	margin-bottom: 0px !important;
-	}
+        font-size: 21px !important;
+        padding:10px;
+        width: 100% !important;
+        margin-bottom: 0px !important;
+    }
 }
-
 
 @media (max-width:380px){
     .forgot-pwd, .new-signup{width:100%; float:left;}
