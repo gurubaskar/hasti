@@ -16,6 +16,32 @@
       });
   });
 
+$(document).ready(function () {
+    $('.policy-left ul li#security').addClass('active');
+    $('.tab-content:not(:first)').hide();
+    $('.policy-left ul li a').click(function (event) {
+        event.preventDefault();
+        var content = $(this).attr('href');
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+        $(content).show();
+        $(content).siblings('.tab-content').hide();
+    });
+    $('.policy-left ul li a').click(function(){
+      $('li a').removeClass("active");
+      $(this,'a').addClass('active');
+     })
+  });
+  $(document).ready(function(){    
+    $("#securitypolicy").click(function () {
+        $("#returns").removeClass("active");
+        $("#security-li").addClass("active");
+        $("#security").css('display','block');
+        $("#returns-policy").css('display','none');
+        event.preventDefault();
+    });
+  });
+
   $(document).ready(function () {
     $('.checkout-left ul li:first').addClass('active');
     $('.tab-content:not(:first)').hide();

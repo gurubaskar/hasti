@@ -259,13 +259,12 @@ global $drubiz_domain;
               </ul>
             </div>
           </div>
-      <?php endif; ?>
-      <?php // if ($page['left_menu']): ?>
-      <!-- <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">         -->
-        <?php // print render($page['left_menu']); ?>
-      <!-- </div> -->
-       <?php //endif; ?>
-      <!-- <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right"> -->
+      <?php endif; ?><?php /*if ($page['left_menu']): ?>
+      <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">        
+        <?php print render($page['left_menu']); ?>
+      </div>
+       <?php endif; */?>
+       <!--div class="col-xs-12 col-sm-12 col-md-12 myaccount-right"-->
       <?php print render($page['content']); ?>
       <!-- </div>       -->
     </div>
@@ -279,28 +278,28 @@ global $drubiz_domain;
           <div class="col-xs-12 col-sm-3 col-md-3 links">
             <h3>Get to Know Hasti</h3>
             <ul>
-              <li><a href="<?php echo url('about-us')?>" alt="About Us"><?php echo t('About Us');?></a></li>
-              <li><a href="#" alt="Press Release"><?php echo t('Press Release');?></a></li>
-              <li><a href="#" alt="News & Events"><?php echo t('News & Events');?></a></li>
-              <li><a href="#" alt="Site Map"><?php echo t('Site Map');?></a></li>              
+              <li><a href="<?php echo url('about-us')?>" alt="About Us" target="_blank"><?php echo t('About Us');?></a></li>
+              <li><a href="#" alt="Press Release" target="_blank"><?php echo t('Press Release');?></a></li>
+              <li><a href="#" alt="News & Events" target="_blank"><?php echo t('News & Events');?></a></li>
+              <li><a href="#" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li>            
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
             <h3>Help</h3>
             <ul>
-              <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns"><?php echo t('Cancellation & Returns');?></a></li>
-              <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy"><?php echo t('Shipping Policy');?></a></li>
+              <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns" target="_blank"><?php echo t('Cancellation & Returns');?></a></li>
+              <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy" target="_blank"><?php echo t('Shipping Policy');?></a></li>
               <li><a href="#" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
-              <li><a href="#" alt="Track Orders"><?php echo t('Track Orders');?></a></li>
+              <li><a href="#" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
             <h3>Policies</h3>
             <ul>
-              <li><a href="<?php echo url('terms-of-use')?>" alt="Terms Of Use"><?php echo t('Terms Of Use');?></a></li>
-              <li><a href="<?php echo url('privacy-policy')?>" alt="Privacy Policy"><?php echo t('Privacy Policy');?></a></li>
-              <li><a href="#" alt="Returns Policy"><?php echo t('Returns Policy');?></a></li>
-              <li><a href="<?php echo url('security')?>" alt="Security"><?php echo t('Security');?></a></li>
+              <li><a href="<?php echo url('terms-of-use')?>" alt="Terms Of Use" target="_blank"><?php echo t('Terms Of Use');?></a></li>
+              <li><a href="<?php echo url('privacy-policy')?>" alt="Privacy Policy" target="_blank"><?php echo t('Privacy Policy');?></a></li>
+              <li><a href="#" alt="Returns Policy" target="_blank"><?php echo t('Returns Policy');?></a></li>
+              <li><a href="<?php echo url('policies')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
