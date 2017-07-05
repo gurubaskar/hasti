@@ -29,6 +29,11 @@ regions[privacy]  = 'privacy'
 regions[return]  = 'return'
 regions[term_of_use]  = 'term_of_use'
 regions[infringement]  = 'infringement'
+regions[left_menu]  = 'Left Menu'
+regions[homepage_block_1] = 'Homepage 1'
+regions[homepage_block_2] = 'Homepage 2'
+regions[homepage_block_3] = 'Homepage 3'
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
