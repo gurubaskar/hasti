@@ -268,7 +268,7 @@ global $drubiz_domain;
        <!--div class="col-xs-12 col-sm-12 col-md-12 myaccount-right"-->
       <?php //print render($page['content']); ?>
 
-      <?php endif; ?>
+      <?php //endif; ?>
       <?php // if ($page['left_menu']): ?>
       <!-- <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">         -->
         <?php // print render($page['left_menu']); ?>
