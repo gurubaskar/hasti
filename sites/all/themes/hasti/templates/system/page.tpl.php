@@ -259,13 +259,27 @@ global $drubiz_domain;
               </ul>
             </div>
           </div>
+
       <?php endif; ?><?php /*if ($page['left_menu']): ?>
       <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">        
         <?php print render($page['left_menu']); ?>
       </div>
        <?php endif; */?>
        <!--div class="col-xs-12 col-sm-12 col-md-12 myaccount-right"-->
-      <?php print render($page['content']); ?>
+      <?php //print render($page['content']); ?>
+
+      <?php endif; ?>
+      <?php // if ($page['left_menu']): ?>
+      <!-- <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">         -->
+        <?php // print render($page['left_menu']); ?>
+      <!-- </div> -->
+       <?php //endif; ?>
+      <!-- <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right"> -->
+       <?php //print render($page['content']); ?>
+      <?php print render($page['homepage_block_1']); ?>
+      <?php print render($page['homepage_block_2']); ?>
+      <?php print render($page['homepage_block_3']); ?>
+
       <!-- </div>       -->
     </div>
   </div>
