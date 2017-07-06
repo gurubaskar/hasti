@@ -275,10 +275,10 @@ global $drubiz_domain;
       <!-- </div> -->
        <?php //endif; ?>
       <!-- <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right"> -->
-       <?php //print render($page['content']); ?>
-      <?php print render($page['homepage_block_1']); ?>
-      <?php print render($page['homepage_block_2']); ?>
-      <?php print render($page['homepage_block_3']); ?>
+      <?php print render($page['content']); ?>
+      <?php //print render($page['homepage_block_1']); ?>
+      <?php //print render($page['homepage_block_2']); ?>
+      <?php //print render($page['homepage_block_3']); ?>
 
       <!-- </div>       -->
     </div>
