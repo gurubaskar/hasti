@@ -304,7 +304,7 @@ function getState() {
  * Page callback for /drubiz/add-address
  */
 function drubiz_add_address() {
-  $params = array(
+  $params_add = array(
     'CUSTOMER_FIRST_NAME'     => $_POST['data_firstname'],
     'CUSTOMER_LAST_NAME'      => $_POST['data_lastname'],
     'CUSTOMER_ADDRESS1'       => $_POST['data_address1'],
@@ -320,6 +320,14 @@ function drubiz_add_address() {
   );
 
   if ($GLOBALS['user']->uid != 0) {
+    $params_edit = array();
+    $data_update = @$_POST['data_update'];
+    if(isset($data_update) == 1) {
+      $params_edit = array(
+        'contactMechId'           => $_POST['data_contactMechId'],
+      );
+    }
+    $params = array_merge($params_add, $params_edit);
     $endpoint = 'updateAddressBookNew';
     $jsessionid = get_user_jsessionid();
     if (!empty($jsessionid)) {

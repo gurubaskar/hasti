@@ -425,8 +425,9 @@ function editAddress(){
   var data_state       = jQuery('#editNewAddress').find('[name=state]:first').val();
   var data_zipcode     = jQuery('#editNewAddress').find('[name=zipcode]:first').val();
   var data_mobile      = jQuery('#editNewAddress').find('[name=mobile]:first').val();
+  var data_addressid   = jQuery('#editNewAddress').find('[name=addressid]:first').val();
 
-  var data = 'data_firstname=' + encodeURIComponent(data_firstname) + '&data_lastname=' + encodeURIComponent(data_lastname) + '&data_address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_state=' + encodeURIComponent(data_state) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile);
+  var data = 'data_firstname=' + encodeURIComponent(data_firstname) + '&data_lastname=' + encodeURIComponent(data_lastname) + '&data_address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_state=' + encodeURIComponent(data_state) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile) + '&data_contactMechId=' + encodeURIComponent(data_addressid) + '&data_update=1';
 
   loading();
   jQuery.ajax({

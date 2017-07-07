@@ -29,6 +29,7 @@
         <?php } ?>
       </select>
       <input type="text" name="country" placeholder="Country" class="disabled-text" value="India" disabled>
+      <input type="hidden" name="addressid" class="" value="<?php echo $addr['contactMechId'];?>">
       <input type="text" maxlength="6" name="zipcode" id="zipcode" placeholder="Zipcode" value="<?php echo $addr['postalCode'];?>">
       <input type="text" maxlength="10" name="mobile" id="mobile" placeholder="Mobile" value="<?php echo $addr['contactNumber'];?>">
       <div class="btns-wrap">
