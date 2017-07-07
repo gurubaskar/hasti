@@ -1,21 +1,22 @@
 <div id="content" class="checkout">
 	<div class="container-fluid">
 		<!-- <div class="row"> -->
-		<div class="col-xs-12 col-sm-4 col-md-3 policy-left">
+		<div class="col-xs-12 col-sm-4 col-md-3 faq-left">
 			<!--h2>Placing Order</h2-->
 			<ul>
-				<li><a href="#returns-policy" id="returns" class="active">Returns Policy</a></li>
-				<li><a href="#terms-of-use">Terms Of Use</a></li>
-				<li><a href="#security" id="security-li">Security</a></li>
-				<li><a href="#privacy-policy">Privacy</a></li>
-				<li><a href="#infringement">Infringement</a></li>
+				<li><a href="#faq" id="faq" class="active">Site Map</a></li>
+				<li><a href="#tracking-order">Shipping, Order, Tracking & Delivery</a></li>
+				<li><a href="#cancellation" id="security-li">Cancellation & Modification</a></li>
+				<li><a href="#try-buy">Try & Buy</a></li>
+				<li><a href="#payment">Payment</a></li>
+				<li><a href="#return-exchange">Returns & Exchange</a></li>
 			</ul>
 		</div>
 		<div class="col-xs-12 col-sm-8 col-md-9">
-			<div id="returns-policy" class="tab-content">
+			<div id="faq" class="tab-content">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="heading-bar">
-					<h2>Returns Policy</h2>
+					<h2>Site Map</h2>
 				</div>
 				<div class="">
 					<div class="col-xs-12 col-sm-12 col-md-12 pleft">
@@ -29,10 +30,10 @@
 			</div>
 			<!--returns-policy end -->
 
-			<div id="terms-of-use" class="tab-content">
+			<div id="tracking-order" class="tab-content">
 				<div class="col-xs-12 col-sm-12 col-md-12 checkout-right">
 					<div class="heading-bar">
-						<h2>Terms Of Use</h2>
+						<h2>Shipping, Order, Tracking & Delivery</h2>
 					</div>
 					<div class="">
 						<div class="col-xs-12 col-sm-12 col-md-12 pleft">
@@ -47,10 +48,10 @@
 			</div>
 			<!--terms-of-use end -->
 
-			<div id="security" class="tab-content">
+			<div id="cancellation" class="tab-content">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="heading-bar">
-						<h2>Security</h2>
+						<h2>Cancellation & Modification</h2>
 					</div>
 					<div class="">
 						<div class="col-xs-12 col-sm-12 col-md-12 pleft">
@@ -65,10 +66,10 @@
 			</div>
 			<!--security end -->
 
-			<div id="privacy-policy" class="tab-content">
+			<div id="try-buy" class="tab-content">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="heading-bar">
-						<h2>Privacy Policy</h2>
+						<h2>Try & Buy</h2>
 					</div>
 					<div class="">
 						<div class="col-xs-12 col-sm-12 col-md-12 pleft">
@@ -81,12 +82,28 @@
 					</div>
 				</div>
 			</div>
-			<!--privacy-policy end -->
+			<!--Try & Buy -->
 
-			<div id="infringement" class="tab-content">
+			<div id="payment" class="tab-content">
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="heading-bar">
-					<h2>infringement</h2>
+					<h2>Payment</h2>
+				</div>
+				<div class="">
+					<div class="col-xs-12 col-sm-12 col-md-12 pleft">
+						<?php 
+							print render($region['infringement']);
+						 ?>	
+					</div>
+				</div>
+				</div>
+			</div>
+			<!--Payment -->
+			
+			<div id="return-exchange" class="tab-content">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="heading-bar">
+					<h2>Returns & Exchange</h2>
 				</div>
 				<div class="">
 					<div class="col-xs-12 col-sm-12 col-md-12 pleft">
@@ -98,7 +115,7 @@
 				</div>
 			</div>
 			<!--infringement -->
-			
+
 		</div>
 		<!-- </div> -->
 	</div>
