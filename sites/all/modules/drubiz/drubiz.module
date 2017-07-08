@@ -782,6 +782,23 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  $items['account/reorder/%'] = array(
+    'title'             => 'Re order',
+    'description'       => "Re order",
+    'page callback'     => 'reorder',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['drubiz/reorderItem'] = array(
+    'title'             => 'Re order',
+    'description'       => "Re order",
+    'page callback'     => 'reorder_item',
+    'page arguments'    => array(2),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
    
   return $items;
 }
@@ -881,6 +898,10 @@ function drubiz_theme() {
     'myaccount_orders' => array(
       'path'            => $drubiz_path,
       'template'        => 'myaccount_orders',
+    ),
+    'myaccount_reorders' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_reorders',
     ),
      'myaccount_order_detail' => array(
       'path'            => $drubiz_path,

@@ -702,13 +702,67 @@ function drubiz_cancel_order() {
 function cancelOrderReason() {
   $client = drubiz_api_client();
   $endpoint = 'cancelOrderReason';
-    $jsessionid = get_user_jsessionid();
-    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-    $response = $client->get($endpoint . '?' . http_build_query());
-    $raw_json =  $response->getBody();
-    $data = json_decode($raw_json, TRUE);
-    // watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
-    return $data;
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint . '?' . http_build_query());
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
+  return $data;
+}
+
+function reorder($order_id) {
+  return theme('myaccount_reorders', array('order'=>myorder_details($order_id)));
+}
+
+function reorder_item() {
+  // echo "as ";exit;
+  $endpoint = 'reOrderAddMultiItemsToCart';
+
+  $itemDetails = '';
+  $products = $_POST['productIds'];
+  $explodeIds = explode(',', $products);
+  //add_multi_product_id_0=1008-1&add_multi_product_quantity_0=1&add_multi_product_id_1=100043-1&add_multi_product_quantity_1=2
+  $e = '';
+  $f = '';
+  if(count($explodeIds) > 1) {
+    foreach ($explodeIds as $key => $value) {
+      $a = "add_multi_product_id_".$key;
+      $b = $value;
+      $c = "add_multi_product_quantity_".$key;
+      $d = 1;
+      $e .= $a.'='.$b.'&'.$c.'='.$d.'&';
+    }
+  } else {
+    $f = http_build_query(array(
+      'add_multi_product_id_0'=>$products,
+      'add_multi_product_quantity_0'        => 1,
+    ));
+  }
+
+  if(count($explodeIds) > 1) {
+    $f = rtrim($e,'&');
+  }else {
+    $f = $f;
+  }
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $params['partyId'] = get_user_party_id();
+  $z= $f.'&$partyId='.get_user_party_id();
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . $z);
+  $raw_json = $response->getBody();
+
+  /*if (empty($GLOBALS['user']->uid)) {
+    $raw_headers = $response->getHeaders();
+    if (!empty($raw_headers['Set-Cookie'])) {
+      $_SESSION['drubiz']['headers'] = $raw_headers;
+    }
+  }*/
+
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data','f','response','g','z'), 1) . '</pre>');
+  echo $data;
 }
 
 /**
