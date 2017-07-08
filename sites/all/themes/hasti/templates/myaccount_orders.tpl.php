@@ -1,4 +1,4 @@
-<?php krumo($orders);?>
+<?php //krumo($orders);?>
 <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">
   <?php echo theme('myaccount_menu_links'); ?>
 </div>
@@ -43,7 +43,7 @@
 						<a href="#cancelWindow_<?php echo $order['orderId'];?>" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" class="ordercancel">Cancel Order</a>
 					<!-- <a href="#cancelWindow" class="ordercancel" data-ajax="false">Cancel Order</a> -->
 					<?php endif;?>
-					<a class="reorder" data-reorder-id="<?php echo $product_variant->product_id; ?>" data-ajax="false">Re-Order</a>
+					<a class="reorder" href="<?php echo url('account/reorder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Re-Order</a>
 				</div>
 			</div>
 			<?php

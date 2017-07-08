@@ -477,7 +477,7 @@ function editAddress(){
     var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
     var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').attr('value');
     var data = "";
-    data += 'orderId=' + orderId;
+    // data += 'orderId=' + orderId;
     loading();
     jQuery.ajax({
       type: "POST",
@@ -504,6 +504,43 @@ function editAddress(){
       dataType: 'json'
     });
   });
+});
+
+jQuery(document).ready(function(){
+    jQuery(".reoderItem").click(function(){
+     var itemChecked = jQuery(".theClass:checked").length;
+     if(itemChecked > 0) {
+        var checkedVals = jQuery('.theClass:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+        var productIds = checkedVals.join(",");
+        loading();
+        jQuery.ajax({
+          type: "POST",
+          url: Drupal.settings.basePath + 'drubiz/reorderItem',
+          data: 'productIds=' + productIds,
+          success: function(data) {
+            if (data['isError_0'] == 'false') {
+              alert(data['_EVENT_MESSAGE_0']);
+              close_loading();
+              document.location = Drupal.settings.basePath + 'cart';        
+            }
+            else {
+              alert(data['_ERROR_MESSAGE_']);
+              close_loading();
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus + ': ' + errorThrown);
+            close_loading();
+          },
+          dataType: 'json'
+        });
+      } else {
+        alert("Please select item");
+        return false;
+      }
+    });
 });
 
 function getParameterByName(name, url) {
