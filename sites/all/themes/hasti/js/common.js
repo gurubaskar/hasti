@@ -470,6 +470,42 @@ function editAddress(){
 
 }
 
+
+  jQuery(document).ready(function(){
+    jQuery(".cancelord").click(function(){
+    var orderId = jQuery(this).data('cancel-id');
+    var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
+    var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').attr('value');
+    var data = "";
+    data += 'orderId=' + orderId;
+    loading();
+    jQuery.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'drubiz/cancelOrder',
+      data: 'orderId=' + orderId + '&reasionId=' + reasionId + '&reasonComments=' + reasonComments,
+      success: function(data) {
+        if (data['isError'] == 'false') {
+          alert(data['_EVENT_MESSAGE_']);
+          close_loading();
+          document.location = Drupal.settings.basePath + 'account/orders';        
+        }
+        else if (data['isError'] == 'true') {
+          alert(data['_EVENT_MESSAGE_']);
+          close_loading();
+        } else {
+          alert(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus + ': ' + errorThrown);
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+});
+
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");

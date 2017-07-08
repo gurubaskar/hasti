@@ -678,6 +678,40 @@ function drubiz_forgot_password() {
 }
 
 /**
+ * Page callback for /drubiz_forgot_password
+ */
+function drubiz_cancel_order() {
+  $client = drubiz_api_client();
+  $endpoint = 'cancelOrder';
+  $params = array(
+      'orderId' =>$_POST['orderId'],
+      'statusId' => 'ORDER_CANCELLED',
+      'setItemStatus' => 'Y',
+      'cancelReason' => $_POST['reasonComments'],
+      'cancelReasonId' => $_POST['reasionId'],
+  );
+    $jsessionid = get_user_jsessionid();
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+      $response = $client->get($endpoint . '?' . http_build_query($params));
+      $raw_json =  $response->getBody();
+      $data = json_decode($raw_json, TRUE);
+      watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
+      echo json_encode($data);
+}
+
+function cancelOrderReason() {
+  $client = drubiz_api_client();
+  $endpoint = 'cancelOrderReason';
+    $jsessionid = get_user_jsessionid();
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    $response = $client->get($endpoint . '?' . http_build_query());
+    $raw_json =  $response->getBody();
+    $data = json_decode($raw_json, TRUE);
+    // watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
+    return $data;
+}
+
+/**
  * Page callback for /drubiz/mini-cart
  */
 function drubiz_mini_cart() {
