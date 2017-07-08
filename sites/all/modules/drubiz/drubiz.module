@@ -775,6 +775,13 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  $items['drubiz/cancelOrder'] =array(
+    'title'             => 'Cancel Order',
+    'description'       => "Cancel Order",
+    'page callback'     => 'drubiz_cancel_order',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
    
   return $items;
 }

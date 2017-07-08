@@ -40,13 +40,35 @@
 					<a class="returnorder" data-return-id="<?php echo $product_variant->product_id; ?>" data-ajax="false">Return</a>
 				<?php endif;?>
 					<?php if($status == 'Approved') :?>
-					<a class="ordercancel" data-cancel-id="<?php echo $product_variant->product_id; ?>" data-ajax="false">Cancel Order</a>
+						<a href="#cancelWindow_<?php echo $order['orderId'];?>" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" class="ordercancel">Cancel Order</a>
+					<!-- <a href="#cancelWindow" class="ordercancel" data-ajax="false">Cancel Order</a> -->
 					<?php endif;?>
 					<a class="reorder" data-reorder-id="<?php echo $product_variant->product_id; ?>" data-ajax="false">Re-Order</a>
 				</div>
 			</div>
+			<?php
+			  	$reasonList = cancelOrderReason();
+			  ?>
+			<div data-role="popup" id="cancelWindow_<?php echo $order['orderId'];?>" class="ui-content signin" style="max-width:700px">
+			  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			  <div >
+			  <h3>Cancel Order</h3>
+			    <textarea id="cancelComments">cancelWindow_<?php echo $order['orderId'];?></textarea>
+			  	<select id="cancelReason">
+			  		<?php
+			  		foreach ($reasonList['cancelReasonList'] as $key => $reasonValue) { ?>
+			  			<option id="<?php echo $reasonValue['cancelReasonId']?>" value="<?php echo $reasonValue['cancelReasonId']?>"><?php echo $reasonValue['cancelReason']?></option>
+			  		<?php } ?>
+			  	</select>
+			  	<input type="hidden" name="" value="<?php echo $order['orderId'];?>" id="cancel-id1">
+			    <!--<input type="button" value="Submit" onclick="cancelOrder(<?php //echo $order['orderId'];?>);">-->
+			    <a href="" class="cancelord" data-role="button" data-ajax="false" data-cancel-id="<?php echo $order['orderId'];?>">Submit</a>
+			    <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="">Cancel</a>
+			  </div>
+			</div>
 		<?php endforeach; ?>
 	</div>
+	
 	<!-- Recent orders tab end -->
 
 	<div id="past-orders" class="tab-content" style="display: none;">
