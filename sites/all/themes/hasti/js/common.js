@@ -514,10 +514,11 @@ jQuery(document).ready(function(){
             return this.value;
         }).get();
         var productIds = checkedVals.join(",");
+        // alert(productIds);
         loading();
         jQuery.ajax({
           type: "POST",
-          url: Drupal.settings.basePath + 'drubiz/reorderItem',
+          url: Drupal.settings.basePath + 'reorderItem',
           data: 'productIds=' + productIds,
           success: function(data) {
             if (data['isError_0'] == 'false') {
@@ -531,7 +532,9 @@ jQuery(document).ready(function(){
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
+            // alert(textStatus + ': ' + errorThrown);
             console.log(textStatus + ': ' + errorThrown);
+            // return false;
             close_loading();
           },
           dataType: 'json'
@@ -540,6 +543,7 @@ jQuery(document).ready(function(){
         alert("Please select item");
         return false;
       }
+      return false;
     });
 });
 
@@ -1001,4 +1005,18 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
   jQuery(document).ready(function(){
   jQuery('#block-menu-menu-footer-menu-1-hasti- > ul').removeClass('menu nav');
   jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
+});
+
+jQuery(document).ready(function () {
+  jQuery('.myorders ul li:first').addClass('active');
+  jQuery('.tab-content:not(:first)').hide();
+  jQuery('.myorders ul li a').click(function (event) {
+    event.preventDefault();
+    var content = jQuery(this).attr('href');
+    jQuery(this).parent().addClass('tab-active');
+    jQuery(this).parent().siblings().removeClass('tab-active');
+    jQuery(this).parent().siblings().find('a').removeClass('tab-active');
+    jQuery(content).show();
+    jQuery(content).siblings('.tab-content').hide();
+  });
 });

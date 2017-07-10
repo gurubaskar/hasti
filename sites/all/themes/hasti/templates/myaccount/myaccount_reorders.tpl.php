@@ -1,9 +1,9 @@
-<?php krumo($order);?>
 <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">
   <?php echo theme('myaccount_menu_links'); ?>
 </div>
 <div class="dashboard-orderdetails">
-
+<h3>ReOrder Items</h3>
+Order Number: <?php echo $orderId;?>
 <table border="1" cellpadding="5" cellspacing="5" class="dashboard-ordertable">
      <tbody>
       <tr class="ordertable-head">
@@ -66,5 +66,5 @@
     
          </div>
          <div>
-         	<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="reoderItem" onclick="reorderCheck()">Submit</a>
+         	<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="reoderItem">Reorder Selected item</a>
          </div>
