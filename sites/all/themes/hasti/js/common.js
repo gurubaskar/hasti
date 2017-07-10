@@ -514,10 +514,11 @@ jQuery(document).ready(function(){
             return this.value;
         }).get();
         var productIds = checkedVals.join(",");
+        // alert(productIds);
         loading();
         jQuery.ajax({
           type: "POST",
-          url: Drupal.settings.basePath + 'drubiz/reorderItem',
+          url: Drupal.settings.basePath + 'reorderItem',
           data: 'productIds=' + productIds,
           success: function(data) {
             if (data['isError_0'] == 'false') {
@@ -531,7 +532,9 @@ jQuery(document).ready(function(){
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
+            // alert(textStatus + ': ' + errorThrown);
             console.log(textStatus + ': ' + errorThrown);
+            // return false;
             close_loading();
           },
           dataType: 'json'
@@ -540,6 +543,7 @@ jQuery(document).ready(function(){
         alert("Please select item");
         return false;
       }
+      return false;
     });
 });
 

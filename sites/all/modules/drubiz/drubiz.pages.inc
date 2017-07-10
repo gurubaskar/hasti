@@ -192,7 +192,7 @@ function drubiz_send_otp() {
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
 
-  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
 
   echo json_encode($data);
 }
@@ -715,8 +715,8 @@ function reorder($order_id) {
   return theme('myaccount_reorders', array('order'=>myorder_details($order_id)));
 }
 
-function reorder_item() {
-  // echo "as ";exit;
+function reorderItem() {
+   
   $endpoint = 'reOrderAddMultiItemsToCart';
 
   $itemDetails = '';
@@ -762,7 +762,7 @@ function reorder_item() {
 
   $data = json_decode($raw_json, TRUE);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data','f','response','g','z'), 1) . '</pre>');
-  echo $data;
+  echo json_encode($data);
 }
 
 /**

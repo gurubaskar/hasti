@@ -9,7 +9,9 @@
 		<li class="tabing-btns"><a href="#past-orders">Past Orders</a></li>
 	</ul>
 	<div id="recent-orders" class="tab-content">
-		<?php foreach ($orders['OrderHeader'] as $i => $order): 
+		<?php 
+			if(count($orders['OrderHeader']) > 0) {
+			foreach ($orders['OrderHeader'] as $i => $order): 
 			$nid = get_nid_from_variant_product_id($order['productId']);
 	        $node = node_load($nid);
 	        $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
@@ -66,7 +68,10 @@
 			    <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="">Cancel</a>
 			  </div>
 			</div>
-		<?php endforeach; ?>
+		<?php endforeach; 
+		} else {?>
+		<div> No Orders</div>
+		<?php } ?>
 	</div>
 	
 	<!-- Recent orders tab end -->

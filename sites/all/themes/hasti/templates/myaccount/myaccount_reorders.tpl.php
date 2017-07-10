@@ -1,4 +1,3 @@
-<?php krumo($order);?>
 <div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">
   <?php echo theme('myaccount_menu_links'); ?>
 </div>
@@ -66,5 +65,5 @@
     
          </div>
          <div>
-         	<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="reoderItem" onclick="reorderCheck()">Submit</a>
+         	<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="reoderItem">Reorder Selected item</a>
          </div>

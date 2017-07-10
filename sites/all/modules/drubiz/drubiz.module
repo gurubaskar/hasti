@@ -790,11 +790,10 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-  $items['drubiz/reorderItem'] = array(
-    'title'             => 'Re order',
-    'description'       => "Re order",
-    'page callback'     => 'reorder_item',
-    'page arguments'    => array(2),
+  $items['reorderItem'] = array(
+    'title'             => 'Re asd order',
+    'description'       => "Re asd order",
+    'page callback'     => 'reorderItem',
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
