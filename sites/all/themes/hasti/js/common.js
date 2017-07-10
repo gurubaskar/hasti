@@ -1006,3 +1006,17 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
   jQuery('#block-menu-menu-footer-menu-1-hasti- > ul').removeClass('menu nav');
   jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
 });
+
+jQuery(document).ready(function () {
+  jQuery('.myorders ul li:first').addClass('active');
+  jQuery('.tab-content:not(:first)').hide();
+  jQuery('.myorders ul li a').click(function (event) {
+    event.preventDefault();
+    var content = jQuery(this).attr('href');
+    jQuery(this).parent().addClass('tab-active');
+    jQuery(this).parent().siblings().removeClass('tab-active');
+    jQuery(this).parent().siblings().find('a').removeClass('tab-active');
+    jQuery(content).show();
+    jQuery(content).siblings('.tab-content').hide();
+  });
+});

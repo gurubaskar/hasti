@@ -712,7 +712,7 @@ function cancelOrderReason() {
 }
 
 function reorder($order_id) {
-  return theme('myaccount_reorders', array('order'=>myorder_details($order_id)));
+  return theme('myaccount_reorders', array('order'=>myorder_details($order_id),'orderId'=>$order_id));
 }
 
 function reorderItem() {

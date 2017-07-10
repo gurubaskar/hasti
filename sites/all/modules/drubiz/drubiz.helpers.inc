@@ -72,7 +72,7 @@ function drubiz_change_password($current_password, $new_password) {
   $response = $client->get($request);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
   return $data;
 }
 

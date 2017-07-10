@@ -20,7 +20,7 @@
 		<h3>Settings</h3>
 		<ul>
 			<li><a href="<?php echo url('account/profile');?>" data-ajax="false">Personal information</a></li>
-			<li><a href="<?php echo url('account/');?>" data-ajax="false">Change Password</a></li>
+			<li><a href="<?php echo url('account/change-password');?>" data-ajax="false">Change Password</a></li>
 			<li><a href="<?php echo url('account/address-book');?>" data-ajax="false">Address</a></li>
 			<!--<li><a href="<?php //echo url('account/');?>" data-ajax="false">Profile Settings</a></li>
 			<li><a href="<?php //echo url('account/');?>" data-ajax="false">Update Email/Mobile</a></li>
