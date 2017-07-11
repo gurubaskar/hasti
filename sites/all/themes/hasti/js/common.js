@@ -1007,6 +1007,7 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
   jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
 });
 
+
 jQuery(document).ready(function () {
   jQuery('.myorders ul li:first').addClass('active');
   jQuery('.tab-content:not(:first)').hide();
@@ -1020,3 +1021,50 @@ jQuery(document).ready(function () {
     jQuery(content).siblings('.tab-content').hide();
   });
 });
+
+function savePersonalInfo(){
+  var data_firstName = jQuery('#firstName').val();
+  var data_lastName = jQuery('#lastName').val();
+  var data_phoneNumber = jQuery('#phoneNumber').val();
+  var data_gender = jQuery('#gender').val();
+  if(data_firstName == ''){
+    alert("FirstName can't be Empty");
+    return false;
+  }
+  if(data_lastName == ''){
+    alert("Last Name can't be Empty");
+    return false;
+  }
+  if(data_phoneNumber == ''){
+    alert("Phone Number cant't be Empty");
+    return false;
+  }
+  var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&data_lastName=' + encodeURIComponent(data_lastName)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
+  if(data_gender != ''){
+      data = data + '&data_gender=' + encodeURIComponent(data_gender);
+      alert(data);
+  }
+  jQuery.ajax({
+            type: "POST",
+            url: Drupal.settings.basePath + 'account/save-profile',
+            data: data,
+            success: function(data) {
+              console.log(data);
+              if (data['isError'] == 'false') {
+                alert(data['_EVENT_MESSAGE_']);
+                close_loading();
+                document.location = Drupal.settings.basePath +'account/profile';
+              } else {
+                alert(data['_ERROR_MESSAGE_']);
+                close_loading();
+              }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+              console.log(textStatus + ': ' + errorThrown);
+              close_loading();
+            },
+            dataType: 'json'
+    });
+}
+

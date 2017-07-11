@@ -797,7 +797,13 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-  
+  $items['account/save-profile'] = array(
+    'title'             => 'My Account Save Profile Settings',
+    'description'       => "My Account Save Profile Settings",
+    'page callback'     => 'myaccount_save_profile',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
    
   return $items;
 }
