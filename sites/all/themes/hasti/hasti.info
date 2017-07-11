@@ -33,6 +33,7 @@ regions[left_menu]  = 'Left Menu'
 regions[homepage_block_1] = 'Homepage 1'
 regions[homepage_block_2] = 'Homepage 2'
 regions[homepage_block_3] = 'Homepage 3'
+regions[social_share] = 'Social Share'
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Stylesheets

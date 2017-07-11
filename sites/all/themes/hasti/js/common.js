@@ -504,6 +504,9 @@ function editAddress(){
       dataType: 'json'
     });
   });
+  jQuery(".shareStory").click(function(){
+    jQuery('#socialIcons').toggle();
+  });
 });
 
 jQuery(document).ready(function(){
