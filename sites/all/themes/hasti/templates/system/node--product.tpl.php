@@ -364,10 +364,13 @@
               </div>
             </div>
             <div class="btns-wrap">
-              <span><a href="#">Share this story</a></span>
+              <span><a href="#" class="shareStory">Share this story</a></span>
               <span><a href="#">Your Feedback</a></span>
             </div>
           </div>
+          <div style="clear: both; display: none;" id="socialIcons">
+              <?php print render($region['social_share']); ?>
+            </div>
           <?php else : ?>
             <?php echo $storyInfo->_ERROR_MESSAGE_;?>
           <?php endif;?>
