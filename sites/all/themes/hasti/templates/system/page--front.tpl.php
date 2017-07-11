@@ -72,8 +72,8 @@
  *
  * @ingroup templates
  */
-
 global $drubiz_domain;
+require_once 'autoload.php';
   $language_param = variable_get('locale_language_negotiation_session_param', 'language');
   $main_menu_suffix = (empty($_SESSION[$language_param]) || @$_SESSION[$language_param] == 'en') ? '-en' : '-' . $_SESSION[$language_param];
   $main_menu_name = 'main-menu-' . $drubiz_domain['catalog'] . $main_menu_suffix;
@@ -92,16 +92,17 @@ global $drubiz_domain;
           <ul>
             <li><a href="#"><?php echo t('Track Order');?></a></li>
             <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>
-            <?php if($GLOBALS['user']->uid != 0):?>
+             <?php print_r($_SESSION);if($GLOBALS['user']->uid != 0):?>
               <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
-            <?php if($GLOBALS['user']->uid == 0):?>
+           <?php if($GLOBALS['user']->uid == 0):?>
               <li><a href="#positionWindow" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
               <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
             <?php endif; ?>
           </ul>
       </div>
+    </div>
   </div>
 </div>
 <div data-role="popup" id="positionWindow" class="ui-content signin" style="max-width:700px">
@@ -134,7 +135,9 @@ global $drubiz_domain;
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
-  <span class="facebook"><a href="#">SIGN IN WITH FACEBOOK</a></span>
+  
+  <span class="facebook">
+  <a href="fbconfig.php">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">

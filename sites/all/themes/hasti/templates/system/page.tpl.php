@@ -74,6 +74,7 @@
  */
 
 global $drubiz_domain;
+require_once 'autoload.php';
   $language_param = variable_get('locale_language_negotiation_session_param', 'language');
   $main_menu_suffix = (empty($_SESSION[$language_param]) || @$_SESSION[$language_param] == 'en') ? '-en' : '-' . $_SESSION[$language_param];
   $main_menu_name = 'main-menu-' . $drubiz_domain['catalog'] . $main_menu_suffix;
@@ -134,7 +135,9 @@ global $drubiz_domain;
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
-  <span class="facebook"><a href="#">SIGN IN WITH FACEBOOK</a></span>
+  
+  <span class="facebook">
+  <a href="fbconfig.php">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">

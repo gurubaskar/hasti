@@ -77,6 +77,46 @@ function drubiz_change_password($current_password, $new_password) {
 }
 
 /**
+* call back for facebook login
+**/
+function facebook_login_request($fname,$lname,$email,$gender){
+  //https://localhost:8443/eCommerceFacebookLoginResponse?isFBLogin=connected&fbEmail=induspro9@gmail.com&fbFirst_name=Indu&fbLast_name=S&fbGender=F
+  $endpoint = 'eCommerceFacebookLoginResponse';
+  $client = drubiz_api_client();
+  $params = array(
+    'isFBLogin'     => 'connected',
+    'fbEmail'       => $email,
+    'fbFirst_name'  => $fname,
+    'fbLast_name'   => $lname,
+    'fbGender'      => $gender,
+   //'partyId'        => get_user_party_id(),
+  );
+  $response = $client->get($endpoint.'?'. http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json,TRUE); 
+
+   //login to hasti with facebook credential
+   if($data['isNewSession'] == 1){
+        session_start();
+        $account = user_load_by_mail($username);
+        global $user;           
+        $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+        //$user = user_load($account->uid);
+        //user_login_finalize();        
+        drupal_set_message('User logged in!');
+        // Login to Ofbiz        
+        list($data, $response) = ofbiz_login($email, $data['PASSWORD']);
+        //session_register('email');         
+        $return['success_messages'][] = $data;        
+    }else {
+      $return['error_messages'][] = 'Invalid username / password.';
+    }
+       
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data','return','email'), 1) . '</pre>'); 
+  return $return;
+}
+
+/**
  * Idempotently import data from Excel spreadsheet.
  */
 function drubiz_import_data($xls_files,$flag=false) {
