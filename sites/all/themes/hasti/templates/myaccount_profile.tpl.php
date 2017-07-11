@@ -8,18 +8,30 @@
     <div class="form-wrap">
       <div class="form-row">
         <label>First Name</label>
-        <input type="text" value="<?php echo $profile['firstName'];?>" disabled="disabled">
+        <input type="text" id="firstName" value="<?php echo $profile['firstName'];?>" >
       </div>
       <div class="form-row">
         <label>Last Name</label>
-        <input type="text" value="<?php echo $profile['lastName'];?>" disabled="disabled">
+        <input type="text" id="lastName" value="<?php echo $profile['lastName'] ;?>" >
       </div>
       <div class="form-row">
         <label>Gender</label>
-        <input type="text" value="<?php echo $profile['gender'];?>" disabled="disabled">
+        <select id="gender">
+          <option value="">Select One..</option>
+          <option value="M" <?php if($profile['gender'] == 'M') :?> selected <?php endif;?>>Male</option>
+          <option value="F" <?php if($profile['gender'] == 'F') :?> selected <?php endif;?>>Female</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Email Id</label>
+        <input type="text" value="<?php echo $profile['emailAddress'];?>" disabled="disabled">
+      </div>
+      <div class="form-row">
+        <label>Phone Number</label>
+        <input type="text" id="phoneNumber" maxlength="10" value="<?php echo $profile['mobileNumber'];?>" >
       </div>
       <div class="btns-wrap">
-        <a href="#" data-ajax="false"class="basic-btn">Edit</a>
+        <a href="javascript:savePersonalInfo()" data-ajax="false"class="basic-btn">Save</a>
       </div>
     </div>
   </div>

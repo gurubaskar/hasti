@@ -1478,3 +1478,23 @@ function screenShot3(){
   header('Content-type: image/png');
   readfile('sites/all/themes/globular/images/Screenshot3.PNG');
 }
+
+function myaccount_save_profile() {
+  // ecommercePersonalInfoUpdate?partyId=10201&USER_FIRST_NAME=diller&USER_LAST_NAME=Aravind&USER_GENDER=M&PHONE_MOBILE=9678945678
+  $client = drubiz_api_client();
+  $params = array(
+    'partyId' => get_user_party_id(),
+    'USER_FIRST_NAME' => $_POST['data_firstName'],
+    'USER_LAST_NAME' => $_POST['data_lastName'],
+    'PHONE_MOBILE_CONTACT_OTHER' => $_POST['data_phoneNumber'],
+  );
+  if(isset($_POST['data_gender'])){
+    $params['USER_GENDER'] = $_POST['data_gender'];
+  }
+  $request = 'ecommercePersonalInfoUpdate?' . http_build_query($params);
+  $response = $client->get($request);
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
+  echo json_encode($data);
+}
