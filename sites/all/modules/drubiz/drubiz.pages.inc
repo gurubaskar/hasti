@@ -396,7 +396,6 @@ function drubiz_user_change_password() {
   }
 
   // $update_password = drubiz_change_password($current_password, $new_password);
-  // http://bg4ws0386:8080/validateCustomerPasswordResponse;jsessionid=83A498F8D2CF5D2EF16CAE528A669DA3.jvm1?partyId=10010&productStoreId=WOI_STORE&USERNAME=nikhitha945@gmail.com&CUSTOMER_EMAIL=nikhitha945@gmail.com&OLD_PASSWORD=123456&PASSWORD=456789&CONFIRM_PASSWORD=456789
 
   $client = drubiz_api_client();
   $request = 'validateCustomerPasswordResponse?' . http_build_query(array(
@@ -411,16 +410,16 @@ function drubiz_user_change_password() {
   $response = $client->get($request);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
-  // return $data;
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
 
-  
   if($data['isError'] == 'false') {
-    $return['error'] = FALSE;
     $return['error_messages'][] = $data['_EVENT_MESSAGE_'];
   } else {
     $return['error'] = TRUE;
-    $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
+    // $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
+     foreach ((array)@$data['_ERROR_MESSAGE_LIST_'] as $error) {
+        $return['error_messages'][] = $error['message'];
+      }
   }
   echo json_encode($return);
 }
