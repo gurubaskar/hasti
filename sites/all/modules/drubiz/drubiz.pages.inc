@@ -395,12 +395,32 @@ function drubiz_user_change_password() {
     $return['error_messages'][] = 'Password fields are required!';
   }
 
-  $update_password = drubiz_change_password($current_password, $new_password);
-  if($update_password['isError'] == 'False') {
-    $return['error_messages'][] = 'Password Updated Successfully.';
+  // $update_password = drubiz_change_password($current_password, $new_password);
+  // http://bg4ws0386:8080/validateCustomerPasswordResponse;jsessionid=83A498F8D2CF5D2EF16CAE528A669DA3.jvm1?partyId=10010&productStoreId=WOI_STORE&USERNAME=nikhitha945@gmail.com&CUSTOMER_EMAIL=nikhitha945@gmail.com&OLD_PASSWORD=123456&PASSWORD=456789&CONFIRM_PASSWORD=456789
+
+  $client = drubiz_api_client();
+  $request = 'validateCustomerPasswordResponse?' . http_build_query(array(
+    'partyId'         => get_user_party_id(),
+    'productStoreId'  => 'WOI_STORE',
+    'USERNAME'        => $user->mail,
+    'CUSTOMER_EMAIL'  => $user->mail,
+    'OLD_PASSWORD'    => $current_password,
+    'PASSWORD'        => $new_password,
+    'CONFIRM_PASSWORD' => $new_password,
+  ));
+  $response = $client->get($request);
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
+  // return $data;
+
+  
+  if($data['isError'] == 'false') {
+    $return['error'] = FALSE;
+    $return['error_messages'][] = $data['_EVENT_MESSAGE_'];
   } else {
     $return['error'] = TRUE;
-    $return['error_messages'][] = $update_password['_ERROR_MESSAGE_'];
+    $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
   }
   echo json_encode($return);
 }
