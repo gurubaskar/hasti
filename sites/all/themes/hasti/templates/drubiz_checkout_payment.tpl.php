@@ -45,7 +45,7 @@ if(!empty($_GET['from'])) {
           <div class="checkoutbtn-wrap">
             <input type="button" value="Sign In" id="signinorder" onclick="signInHasti();">
             <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
-            <span class="facebook"><a href="#" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
+            <span class="facebook"><a href="facebook-config.php" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
             <span class="google"><a href="#" class="ui-link">SIGN IN WITH GOOGLE</a></span>
           </div>
         </div>

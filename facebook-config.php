@@ -1,7 +1,6 @@
 <?php
-session_start();
 // added in v4.0.0
-require_once 'autoload.php';
+require_once 'vendor/autoload.php';
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
@@ -48,12 +47,10 @@ if ( isset( $session ) ) {
     //end
     /* ---- Session Variables -----*/
     $_SESSION['FBID'] = $fbid;           
-    $_SESSION['FULLNAME'] = $fbfullname;
-    $_SESSION['EMAIL'] =  $fbemail;
 
     //call cack for offbiz service
     $responseData = facebook_login_request($fbfirstname,$fblastname,$fbemail,$gender);
-   
+
     /* ---- header location after session ----*/
   header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
 } else {
