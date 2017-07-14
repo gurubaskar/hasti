@@ -73,7 +73,7 @@
  * @ingroup templates
  */
 global $drubiz_domain;
-require_once 'autoload.php';
+require_once 'vendor/autoload.php';
   $language_param = variable_get('locale_language_negotiation_session_param', 'language');
   $main_menu_suffix = (empty($_SESSION[$language_param]) || @$_SESSION[$language_param] == 'en') ? '-en' : '-' . $_SESSION[$language_param];
   $main_menu_name = 'main-menu-' . $drubiz_domain['catalog'] . $main_menu_suffix;
