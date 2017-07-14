@@ -55,6 +55,84 @@ function get_user_jsessionid() {
 }
 
 /**
+* call back for facebook login
+**/
+function facebook_login_request($fname,$lname,$email,$gender){
+  //https://localhost:8443/eCommerceFacebookLoginResponse?isFBLogin=connected&fbEmail=induspro9@gmail.com&fbFirst_name=Indu&fbLast_name=S&fbGender=F
+  $endpoint = 'eCommerceFacebookLoginResponse';
+  $client = drubiz_api_client();
+  $params = array(
+    'isFBLogin'     => 'connected',
+    'fbEmail'       => $email,
+    'fbFirst_name'  => $fname,
+    'fbLast_name'   => $lname,
+    'fbGender'      => $gender,
+   //'partyId'        => get_user_party_id(),
+  );
+  $fbresponse = $client->get($endpoint.'?'. http_build_query($params));
+  $raw_json = $fbresponse->getBody();
+  $fbdata = json_decode($raw_json,TRUE); 
+
+    //facebook user data save in drupal
+    if($fbdata['isNewSession'] == 1){
+      if (!empty($fbdata['partyId'])) {
+        require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+        $user_password = user_hash_password($fbdata['PASSWORD']);
+        $account = new stdClass;
+        $account->is_new = 1;
+        $account->name = $email;
+        $account->mail = $email;
+        $account->init = $email;
+        $account->status = TRUE;
+        $account->roles = array(DRUPAL_AUTHENTICATED_RID => TRUE);
+        $account->timezone = variable_get('date_default_timezone', '');
+        $account->field_party_id[LANGUAGE_NONE][0]['value'] = $fbdata['partyId'];
+        $user_exists = user_load_by_mail($email);
+        if (empty($user_exists->uid)) {
+          $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+          user_save($account);
+        
+        }else if (!empty($user_exists->uid)) {
+          //$user_authenticated_uid = user_authenticate($user_exists->name, $password);
+          global $user;
+           
+          $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+          $uid = $user_exists->uid;
+          // Log the user into Drupal first! We'll log them out later if Ofbiz fails.
+          $user = user_load($user_exists->uid);
+          user_login_finalize();
+
+          // Login to Ofbiz
+          //list($data, $response) = ofbiz_login($username, $password);
+          
+            $raw_headers = $fbresponse->getHeaders();
+            // Merge cookies.
+            if (!empty($_SESSION['drubiz']['headers']['Set-Cookie'])) {
+              $raw_headers['Set-Cookie'] = array_merge($_SESSION['drubiz']['headers']['Set-Cookie'], $raw_headers['Set-Cookie']);
+            }
+            $_SESSION['drubiz']['headers'] = $raw_headers;
+            //$_SESSION['drubiz']['session'] = $data;
+            // $_SESSION['drubiz']['requirePasswordChange'] = 'N';
+            $return['error'] = FALSE;
+            drupal_set_message('User logged in!');
+            $_SESSION['drubiz']['session']['firstName']=$fname;
+            // dsm($raw_headers);
+            // dsm($_SESSION['drubiz']);
+            if (!empty($_POST['REDIR'])) {
+              drupal_goto();
+            }
+        }
+        else {
+          $return['error_messages'][] = 'Invalid username / password.';
+        }
+      }
+    }
+ 
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'fbdata','account','email','user_exists','user'), 1) . '</pre>'); 
+  return $return;
+}
+
+/**
  * Change User's password on Ofbiz
  */
 function drubiz_change_password($current_password, $new_password) {
@@ -72,48 +150,8 @@ function drubiz_change_password($current_password, $new_password) {
   $response = $client->get($request);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
   return $data;
-}
-
-/**
-* call back for facebook login
-**/
-function facebook_login_request($fname,$lname,$email,$gender){
-  //https://localhost:8443/eCommerceFacebookLoginResponse?isFBLogin=connected&fbEmail=induspro9@gmail.com&fbFirst_name=Indu&fbLast_name=S&fbGender=F
-  $endpoint = 'eCommerceFacebookLoginResponse';
-  $client = drubiz_api_client();
-  $params = array(
-    'isFBLogin'     => 'connected',
-    'fbEmail'       => $email,
-    'fbFirst_name'  => $fname,
-    'fbLast_name'   => $lname,
-    'fbGender'      => $gender,
-   //'partyId'        => get_user_party_id(),
-  );
-  $response = $client->get($endpoint.'?'. http_build_query($params));
-  $raw_json = $response->getBody();
-  $data = json_decode($raw_json,TRUE); 
-
-   //login to hasti with facebook credential
-   if($data['isNewSession'] == 1){
-        session_start();
-        $account = user_load_by_mail($username);
-        global $user;           
-        $GLOBALS['drubiz_skip_user_integration'] = TRUE;
-        //$user = user_load($account->uid);
-        //user_login_finalize();        
-        drupal_set_message('User logged in!');
-        // Login to Ofbiz        
-        list($data, $response) = ofbiz_login($email, $data['PASSWORD']);
-        //session_register('email');         
-        $return['success_messages'][] = $data;        
-    }else {
-      $return['error_messages'][] = 'Invalid username / password.';
-    }
-       
-    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data','return','email'), 1) . '</pre>'); 
-  return $return;
 }
 
 /**
