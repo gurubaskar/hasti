@@ -29,7 +29,7 @@ blockquote:before, blockquote:after, q:before, q:after {content: '';content: non
 table {border-collapse: collapse;border-spacing: 0;}
 
 @font-face {
-    font-family: 'Roboto';
+    font-family:'Roboto';
     src: url('Roboto-Light-webfont.eot');
     src: url('Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
          url('Roboto-Light-webfont.woff') format('woff'),
@@ -39,7 +39,7 @@ table {border-collapse: collapse;border-spacing: 0;}
     font-style: normal;
 }
 @font-face {
-    font-family: 'BPscript';
+    font-family:'BPscript';
     src: url('BPscript-webfont.eot');
     src: url('BPscript-webfont.eot?#iefix') format('embedded-opentype'),
          url('BPscript-webfont.woff') format('woff'),
@@ -443,13 +443,13 @@ a:focus{text-decoration:none !important;}
 .policy-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
 
 .checkout-left, .myaccount-left{background:#eaeaea; height:100%; float:left; padding:25px 30px 25px 30px !important;}
-.checkout-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:normal; margin-top:0;}
+.checkout-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:300; margin-top:0;}
 .checkout-left ul{float:left; width:100%; margin-top:6px;}
 .checkout-left ul li, .myaccount-left ul li{ width:100%; float:left;}
 .checkout-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
 .active{color:#0081c5 !important; text-decoration:none;}
 .checkout-right, .wishlist, .myorders{padding:25px 15px;}
-.checkout-right h3, .wishlist h3, .myorders h3{font-size:25px; font-weight:normal; margin-top:0; color:#6d6e70; margin-bottom:10px; float:left; width:100%;}
+.checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:10px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
 .checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -540px; padding:11px; float:left; width:100%;}
 .checkout-right .remember a{padding-left:25px; font-weight:normal; font-size:15px; color:#6d6e70;}
@@ -498,10 +498,10 @@ a:focus{text-decoration:none !important;}
 .deliverybtn-wrap a{border:1px solid #00b04c; background:#00b04c; color:#fff; font-weight:bold; padding:10px 30px;}
 
 /***************************  myaccount section starts  ***************************/
-.myaccount-left h3{font-weight:bold; font-size:17px; color:#6d6e70; margin-bottom:7px;}
-.myaccount-left > ul{padding-top:25px; width:100%; float:left;}
-.myaccount-left > ul > li{margin-bottom:20px;}
-.myaccount .myaccount-left ul li a{font-weight:normal; padding:6px 0; font-size:15px;}
+.myaccount-left h3{font-weight:400; font-size:17px; color:#6d6e70; margin-bottom:9px; margin-top:7px;}
+.myaccount-left > ul{padding-top:5px; width:100%; float:left;}
+.myaccount-left > ul > li{margin-bottom:12px;}
+.myaccount-left ul li a{font-weight:300; padding:6px 0; font-size:15px;}
 .myaccount-right.wishlist .cartbox{width:47.5%; margin-right:20px;}
 .myaccount-right.wishlist .details-right{float:right;}
 .myaccount-right.wishlist .details-right .remove{padding:6px 0 2px 28px; float:right;}
@@ -509,6 +509,10 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.wishlist .btns-wrap span{background:url('./../images/main-img.png') no-repeat 15px -286px #00b04c; float:right; width:170px; cursor:pointer;}
 .myaccount-right.wishlist .btns-wrap span a{text-align:left; margin-left:62px; width:auto;}
 .myaccount-right.wishlist .cartbox .qty, .myaccount-right.wishlist .cartbox .size, .myorders .cart-details span{border:0;}
+.myaccount-right .form-wrap{margin:5px 0 10px 0;}
+.myaccount-right .form-wrap .form-row label{color:#6d6e70; font-weight:400; font-size:15px; margin-top:5px;}
+
+
 .myorders .tabing-wrap{width:100%; float:left; margin-top:15px;}
 .myorders .tabing-wrap .tabing-btns{position:relative; height: 0; border-top: 42px solid #fff; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; font-size:20px; line-height:20px; float:left;}
 .myorders .tabing-wrap .tab-active{position:relative; height: 0; border-top: 42px solid #0081c5 !important; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; color:#fff; font-size:20px; line-height:20px; float:left;}
@@ -536,7 +540,9 @@ a:focus{text-decoration:none !important;}
 .required{color:#BF0000; margin-right:2px; width:auto;}
 .form-wrap .form-row{float:left; width:100%; margin-bottom:15px;}
 .form-wrap .form-row label{width:170px; float:left;}
-.form-wrap .form-row input[type="text"]{width:300px; padding:5px; float:left;}
+.form-wrap .form-row .ui-select{width:300px; float:left; margin:0;}
+.form-wrap .form-row .ui-select .ui-btn{border:1px solid #d3d2d2; color:#6d6e70; font-size:14px; padding:10px;}
+.form-wrap .form-row input[type="text"], .form-wrap .form-row .ui-select select{width:300px; font-size:14px; padding:10px; color:#6d6e70; font-weight:300; float:left; border:1px solid #d3d2d2;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:15px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
@@ -670,9 +676,148 @@ a:focus{text-decoration:none !important;}
     display: block;
     border: none; 
 }
+/************************ RESPONSIVE TABLE DESKTOP CODE ***********************/
+table { 
+        width: 100%; 
+        border-collapse: collapse; 
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) { 
+        background: #eee; 
+    }
+    th { 
+        background: #333; 
+        color: white; 
+        font-weight: bold; 
+    }
+    td, th { 
+        padding: 6px; 
+        border: 1px solid #ccc; 
+        text-align: left; 
+    }
+    #demo-top-bar {
+        text-align: left;
+        position: relative;
+        zoom: 1;
+        width: 100% !important;
+        z-index: 6000;
+        padding: 20px 0 20px;
+    }
+    #demo-bar-inside {
+        width: 960px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+    }
+    #demo-bar-buttons {
+        padding-top: 10px;
+        float: right;
+    }
+    #demo-bar-buttons a {
+        font-size: 12px;
+        margin-left: 20px;
+        color: white;
+        margin: 2px 0;
+        text-decoration: none;
+        font: 14px "Lucida Grande", Sans-Serif !important;
+    }
+    #demo-bar-buttons a:hover,
+    #demo-bar-buttons a:focus {
+        text-decoration: underline;
+    }
+    #demo-bar-badge {
+        display: inline-block;
+        width: 302px;
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: transparent !important;
+    }
+    #demo-bar-badge a {
+        display: block;
+        width: 100%;
+        height: 38px;
+        border-radius: 0;
+        bottom: auto;
+        margin: 0;
+        background: url(/images/examples-logo.png) no-repeat;
+        background-size: 100%;
+        overflow: hidden;
+        text-indent: -9999px;
+    }
+    #demo-bar-badge:before, #demo-bar-badge:after {
+        display: none !important;
+    }
+/**************** RESPONSIVE TABLE DESKTOP CODE END ******************/
 
+/*********************************************** RESPONSIVE starts ***********************************************/
 
-/************************* RESPONSIVE starts ***********************/
+@media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr { border: 1px solid #ccc; }
+
+        td {
+            /* Behave  like a "row" */
+            border: none !important;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50% !important;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        /*
+        Label the data
+        */
+        td:nth-of-type(1):before { content: "First Name"; }
+        td:nth-of-type(2):before { content: "Last Name"; }
+        td:nth-of-type(3):before { content: "Job Title"; }
+        td:nth-of-type(4):before { content: "Favorite Color"; }
+        td:nth-of-type(5):before { content: "Wars of Trek?"; }
+        td:nth-of-type(6):before { content: "Porn Name"; }
+        td:nth-of-type(7):before { content: "Date of Birth"; }
+        td:nth-of-type(8):before { content: "Dream Vacation City"; }
+        td:nth-of-type(9):before { content: "GPA"; }
+        td:nth-of-type(10):before { content: "Arbitrary Data"; }
+    }
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 480px) {
+        body {
+            padding: 0;
+            margin: 0;
+            width: 320px; }
+        }
+
+    /* iPads (portrait and landscape) ----------- */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        body {
+            width: 495px;
+        }
+    }
+/********************************* RESPONSIVE TABLE CODE END *******************************/
+
 @media(max-width:1100px){
     .pdp .btns-wrap span{width:300px; margin-bottom:10px;}
     .storyimg-wrap .btns-wrap span{width:185px;}
