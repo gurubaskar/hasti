@@ -256,6 +256,13 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  $items['sonata/importstatus'] = array(
+    'title'             => 'Import Data',
+    'description'       => "Import Data",
+    'page callback'     => 'import_status',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
 
   $items['drubiz/user-register'] = array(
     'title'             => 'User Registration',
