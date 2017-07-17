@@ -169,14 +169,34 @@ function drubiz_checkout_final() {
 * callback for Import data 
 */
 function import_data(){
-  $response = $_GET['filename'];
-  //$response = 'drubiz_data/catalog_hasti.xls';
-  $xls_files = array(
-    'hasti'   => $response,
-  );
-  drubiz_import_data($xls_files,flag==true);
-}
+  $file_name = $_GET['filename'];
+  $status = array();
+  $status['filename'] = $file_name;
+  $status['status'] = 'started';
+  $status['status'] = 'running';
+  variable_del('cron_status');
+  variable_set('cron_status',json_encode($status));
+  $status = variable_get('cron_status',$status);
+  if($status['status'] == "started" || $status['status'] =="running" ) {
+    echo 'fail';
+  }else {    
+    // delete from variable
+    variable_del('import_data_status');
+    // set the filename in variable
+    if($file_name !=""){
+      echo "EXECUTING";
+      //print_r($status);
+      variable_set('import_data_status',json_encode($status));
+      $response= array();
+      // set header 
+      header( "HTTP/1.1 202 Accepted" );
+      $response['status'] = 'accepted';
 
+      echo json_encode($response);//exit; 
+      //exec("c:\WINDOWS\system32\cmd.exe /c START C:/xampp/htdocs/drubiz_hasti/import_data_command_file.bat"); 
+    }    
+  }
+}
 /**
  * Page callback for /send-otp
  */
