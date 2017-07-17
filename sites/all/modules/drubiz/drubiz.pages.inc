@@ -1517,3 +1517,21 @@ function myaccount_save_profile() {
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
   echo json_encode($data);
 }
+
+function myaccount_return_order($orderId) {
+  $endpoint = 'eCommerceSalesReturnNew';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'orderId'=>$orderId
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
+  // echo json_encode($data);
+  return theme('myaccount_return_order',array('order'=>$data)); 
+}
