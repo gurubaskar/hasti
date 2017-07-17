@@ -288,6 +288,8 @@ a:focus{text-decoration:none !important;}
 .pdp .pdp-left .mCSB_container a img{max-width:100%; height:auto;}
 .pdp .pdp-left .mCSB_scrollTools{right:-5px; display:none !important;}
 .pdp .pdp-right .story-wrap{margin:0;}
+.pdp .pdp-right .story-wrap #socialIcons, .pdp .pdp-right .story-wrap #socialIcons ul{float:left; width:100%;}
+.pdp .pdp-right .story-wrap #socialIcons ul li{float:left; width:auto; margin-right:18px; margin-top:10px;}
 .pdp .title, .pdp .size{border-bottom:1px solid #adafb2; margin-bottom:15px; padding-bottom:20px; float:left; width:100%;}
 .pdp .title{margin-top:0;}
 .pdp .title h2{font-family:'Roboto'; font-size:28px; color:#58595b; margin-bottom:15px; line-height:28px;}
@@ -446,7 +448,8 @@ a:focus{text-decoration:none !important;}
 .checkout-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:300; margin-top:0;}
 .checkout-left ul{float:left; width:100%; margin-top:6px;}
 .checkout-left ul li, .myaccount-left ul li{ width:100%; float:left;}
-.checkout-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
+.checkout-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70 !important; font-weight:500; padding:9px 0; display:block;}
+.myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
 .checkout-right, .wishlist, .myorders{padding:25px 15px;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:10px; float:left; width:100%;}
