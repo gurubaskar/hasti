@@ -49,6 +49,7 @@
 					<!-- <a href="#cancelWindow" class="ordercancel" data-ajax="false">Cancel Order</a> -->
 					<?php endif;?>
 					<a class="reorder" href="<?php echo url('account/reorder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Re-Order</a>
+					<a class="returnOrder" href="<?php echo url('account/returnOrder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Return Order</a>
 				</div>
 			</div>
 			<?php
@@ -120,6 +121,7 @@
 					<!-- <a href="#cancelWindow" class="ordercancel" data-ajax="false">Cancel Order</a> -->
 					<?php endif;?>
 					<a class="reorder" href="<?php echo url('account/reorder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Re-Order</a>
+					<a class="returnOrder" href="<?php echo url('account/returnOrder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Return Order</a>
 				</div>
 			</div>
 			<?php
