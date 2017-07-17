@@ -6,27 +6,59 @@
     <div class="heading-bar">
       <h2><?php echo t('Add Address');?></h2>
     </div>
-    <style type="text/css">.ui-select {position: static;}</style>
-    <div id="addNewAddress" name="addNewAddress">
-      <?php
-        $state = getState();
-        $stateList = $state['stateList'];
-      ?>
-      <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="First Name">
-      <input type="text" maxlength="20" class="" name="lastname" id="lastname" placeholder="Last Name">
-      <input type="text" name="address1" id="address1" placeholder="Address Line 1">
-      <input type="text" name="address2" id="address2" placeholder="Address Line 2">
-      <input type="text" name="city" id="city" placeholder="City">
-      <select name="state" id="state">
-        <?php foreach ($stateList as $key => $value) { ?>
-          <option value="<?php echo $value['geoId']?>"><?php echo $value['geoName']?></option>
-        <?php } ?>
-      </select>
-      <input type="text" name="country" placeholder="Country" class="disabled-text" value="India" disabled>
-      <input type="text" maxlength="6" name="zipcode" id="zipcode" placeholder="Zipcode">
-      <input type="text" maxlength="10" name="mobile" id="mobile" placeholder="Mobile">
-      <div class="btns-wrap">
-        <a href="#" class="buy-now" onclick="addAddress()">Save</a>
+    <div class="outerbox">
+      <div class="form-wrap">
+        <style type="text/css">.ui-select {position: static;}</style>
+        <div id="addNewAddress" name="addNewAddress">
+          <?php
+            $state = getState();
+            $stateList = $state['stateList'];
+          ?>
+          <div class="form-row">
+            <label>First Name</label>
+            <input type="text" maxlength="20" class="" name="firstname" id="firstname">
+          </div>
+          <div class="form-row">
+            <label>Last Name</label>
+            <input type="text" maxlength="20" class="" name="lastname" id="lastname">
+          </div>
+          <div class="form-row">
+            <label>Address 1</label>
+            <input type="text" name="address1" id="address1">
+          </div>
+          <div class="form-row">
+            <label>Address 2</label>
+            <input type="text" name="address2" id="address2">
+          </div>
+          <div class="form-row">
+            <label>City</label>
+            <input type="text" name="city" id="city">
+          </div>
+          <div class="form-row">
+            <label>State</label>
+            <select name="state" id="state">
+            <?php foreach ($stateList as $key => $value) { ?>
+              <option value="<?php echo $value['geoId']?>"><?php echo $value['geoName']?></option>
+            <?php } ?>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Country</label>
+            <input type="text" name="country" class="disabled-text" value="India" disabled>
+          </div>
+          <div class="form-row">
+            <label>Zipcode</label>
+            <input type="text" maxlength="6" name="zipcode" id="zipcode">
+          </div>
+          <div class="form-row">
+            <label>Mobile</label>
+            <input type="text" maxlength="10" name="mobile" id="mobile">
+          </div>
+          <div class="btns-wrap">
+            <a href="#" class="buy-now" onclick="addAddress()">Save</a>
+            <a href="<?php echo url('account/address-book');?>" class="">Cancel</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
