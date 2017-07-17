@@ -511,6 +511,8 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.wishlist .cartbox .qty, .myaccount-right.wishlist .cartbox .size, .myorders .cart-details span{border:0;}
 .myaccount-right .form-wrap{margin:5px 0 10px 0;}
 .myaccount-right .form-wrap .form-row label{color:#6d6e70; font-weight:400; font-size:15px; margin-top:5px;}
+.myaccount-right .form-wrap .form-row .ui-input-text{width:auto !important;}
+.myaccount-right .form-wrap .btns-wrap a{float:left !important;}
 
 
 .myorders .tabing-wrap{width:100%; float:left; margin-top:15px;}
@@ -541,10 +543,12 @@ a:focus{text-decoration:none !important;}
 .form-wrap .form-row{float:left; width:100%; margin-bottom:15px;}
 .form-wrap .form-row label{width:170px; float:left;}
 .form-wrap .form-row .ui-select{width:300px; float:left; margin:0;}
-.form-wrap .form-row .ui-select .ui-btn{border:1px solid #d3d2d2; color:#6d6e70; font-size:14px; padding:10px;}
+.form-wrap .form-row .ui-select .ui-btn{border:1px solid #d3d2d2; color:#6d6e70; font-size:14px; padding:10px; box-shadow:none !important;}
+.form-wrap .form-row .ui-btn-icon-right:after{background-color:#6d6e70 !important;}
+.form-wrap .form-row .ui-select .ui-btn>span:not(.ui-li-count){font-weight:300;}
 .form-wrap .form-row input[type="text"], .form-wrap .form-row .ui-select select{width:300px; font-size:14px; padding:10px; color:#6d6e70; font-weight:300; float:left; border:1px solid #d3d2d2;}
-.form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:15px;}
-.form-wrap .btns-wrap a{margin-right:10px; text-align:center;}
+.form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
+.form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
 .basic-btn{background:#00b04c; color:#fff; padding:10px 40px; font-size:15px;}
 
@@ -561,6 +565,11 @@ a:focus{text-decoration:none !important;}
 #changepwd input[type="password"]{margin:15px 0 4px 0 !important; border:none;}
 .forgot-btn{margin-top:35px !important;}
 .forgot-btn #js_submitChangePasswdBtn{border:none; width:100%; background:none; padding:5px 7px; font-weight:bold;}
+.myaccount-right #changepwd{float:none;}
+.myaccount-right .forgot-btn{padding:0; margin-top:15px;}
+.myaccount-right .forgot-btn #js_submitChangePasswdBtn{background:#fff;}
+.myaccount-right #changepwd .password#CONFIRM_PASSWORD{margin-bottom:40px !important;}
+.myaccount-right #changepwd h3{display:none;}
 
 
 /***************************  popup code starts  ***************************/
@@ -874,6 +883,8 @@ table {
     .plp-right .col-sm-4{width:49.5%;}
     .plp-right .col-sm-4 .box{height:430px;}
     .cartbox .total span, .cartbox .total label{width:100%;}
+    .myaccount-right .form-wrap .form-row{margin-bottom:5px;}
+    .myaccount-right .form-wrap .btns-wrap{margin-top:25px;}
 }
 
 
@@ -961,6 +972,11 @@ table {
     .row1 .video{margin-top:0;}
     .row2 .video{margin-bottom:15px;}
     .row3 .video{margin-top:15px;}
+    .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{margin-top:20px;}
+    .myaccount-right{padding:0 !important;}
+    .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:60% !important;}
+    .myaccount-right .form-wrap .form-row input[type="text"], .myaccount-right .form-wrap .form-row .ui-select select{width:100%;}
+    #changepwd{margin:10px auto 20px auto !important;}
 }
 
 @media (max-width:600px){
@@ -977,6 +993,7 @@ table {
     .heading-bar.orderno h2 span{display:block;}
     .form-wrap .form-row input[type="text"]{width:90%;}
     .form-wrap .btns-wrap{margin-left:0;}
+    .myaccount-right .form-wrap .btns-wrap{margin-left:170px;}
     .cartbox .total{padding-left:0;}
     #footer .social-wrap{width:100%; padding:0 15px;}
 }
@@ -990,6 +1007,9 @@ table {
     /*.checkout-right #subtotal, .checkout-right #order-confirm{text-align:center;}*/
     .checkout-right #order-confirm label{width:100%; margin-bottom:20px;}
     #changepwd{width:100% !important;}
+    .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:100% !important;}
+    .myaccount-right .form-wrap .btns-wrap{margin-left:0 !important;}
+    #changepwd .ui-input-text{width:100% !important;}
 
 }
 
