@@ -4,7 +4,7 @@
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
 <h3>Change Password</h3>
 <div id="content">
-  <div class="container-fluid">
+  <div class="container-fluid change-pwd">
     <div data-role="" id="changepwd">
       <h3>Change Password</h3>
       <input type="password" maxlength="30" class="password" name="OLD_PASSWORD" id="OLD_PASSWORD" value="" placeholder="* Current Password">

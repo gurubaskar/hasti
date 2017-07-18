@@ -516,7 +516,15 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .form-wrap .form-row label{color:#6d6e70; font-weight:400; font-size:15px; margin-top:5px;}
 .myaccount-right .form-wrap .form-row .ui-input-text{width:auto !important;}
 .myaccount-right .form-wrap .btns-wrap a{float:left !important;}
-
+.myaccount-right .heading-bar{margin-top:0;}
+.myaccount-right .new-address{float:right;}
+.myaccount-right .addressbox{width:47%; margin-right:15px; margin-bottom:15px; padding:10px;}
+.myaccount-right .addressbox .edit-address{padding:0;}
+.myaccount-right .addressbox .edit-address a{float:left; width:auto; margin:15px 5px 0 0; background:#00b04c; padding:9px; font-size:14px; color:#fff !important; font-weight:400;}
+.myaccount-right .addressbox .edit-address a:last-child{ margin:15px 0px 0 0;}
+.myaccount-right .addressbox .edit-address .update{background:none;}
+.myaccount-right .btns-wrap{width:100%; float:left;}
+.myaccount-right #address-book .btns-wrap{margin-top:20px; margin-bottom:15px;}
 
 .myorders .tabing-wrap{width:100%; float:left; margin-top:15px;}
 .myorders .tabing-wrap .tabing-btns{position:relative; height: 0; border-top: 42px solid #fff; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; font-size:20px; line-height:20px; float:left;}
@@ -548,12 +556,12 @@ a:focus{text-decoration:none !important;}
 .form-wrap .form-row .ui-select{width:300px; float:left; margin:0;}
 .form-wrap .form-row .ui-select .ui-btn{border:1px solid #d3d2d2; color:#6d6e70; font-size:14px; padding:10px; box-shadow:none !important;}
 .form-wrap .form-row .ui-btn-icon-right:after{background-color:#6d6e70 !important;}
-.form-wrap .form-row .ui-select .ui-btn>span:not(.ui-li-count){font-weight:300;}
+.form-wrap .form-row .ui-select .ui-btn>span:not(.ui-li-count){font-weight:300; text-align:left;}
 .form-wrap .form-row input[type="text"], .form-wrap .form-row .ui-select select{width:300px; font-size:14px; padding:10px; color:#6d6e70; font-weight:300; float:left; border:1px solid #d3d2d2;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn{background:#00b04c; color:#fff; padding:10px 40px; font-size:15px;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
 
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
@@ -568,11 +576,13 @@ a:focus{text-decoration:none !important;}
 #changepwd input[type="password"]{margin:15px 0 4px 0 !important; border:none;}
 .forgot-btn{margin-top:35px !important;}
 .forgot-btn #js_submitChangePasswdBtn{border:none; width:100%; background:none; padding:5px 7px; font-weight:bold;}
-.myaccount-right #changepwd{float:none;}
+.myaccount-right .change-pwd{width:480px;}
 .myaccount-right .forgot-btn{padding:0; margin-top:15px;}
 .myaccount-right .forgot-btn #js_submitChangePasswdBtn{background:#fff;}
-.myaccount-right #changepwd .password#CONFIRM_PASSWORD{margin-bottom:40px !important;}
+/*.myaccount-right #changepwd .password#CONFIRM_PASSWORD{margin-bottom:40px !important;}*/
 .myaccount-right #changepwd h3{display:none;}
+.myaccount-right .change-pwd .forgot-btn, .myaccount-right .change-pwd .forgot-btn .ui-input-btn{float:left; width:100%;}
+.myaccount-right .change-pwd .forgot-btn .ui-input-btn{padding:10px 0 !important; margin:0 !important; background:#fff;}
 
 
 /***************************  popup code starts  ***************************/
@@ -911,6 +921,9 @@ table {
     .plp-right .col-xs-12{width:50%;}
     .icon-wrap .icon-container{width:80%;}
 }
+@media (max-width:980px){
+    .myaccount-right .addressbox{width:100%;}
+}
 
 @media (max-width:885px){
     .checkpin{width:100%; float:left;  margin-top:15px;}
@@ -976,7 +989,8 @@ table {
     .row2 .video{margin-bottom:15px;}
     .row3 .video{margin-top:15px;}
     .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{margin-top:20px;}
-    .myaccount-right{padding:0 !important;}
+    .myaccount-left{margin-bottom:20px;}
+    .myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}
     .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:60% !important;}
     .myaccount-right .form-wrap .form-row input[type="text"], .myaccount-right .form-wrap .form-row .ui-select select{width:100%;}
     #changepwd{margin:10px auto 20px auto !important;}
@@ -1012,7 +1026,9 @@ table {
     #changepwd{width:100% !important;}
     .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:100% !important;}
     .myaccount-right .form-wrap .btns-wrap{margin-left:0 !important;}
-    #changepwd .ui-input-text{width:100% !important;}
+    #changepwd .ui-input-text, .myaccount-right .change-pwd{width:100% !important;}
+    .myaccount-right .change-pwd{padding:0;}
+
 
 }
 
@@ -1072,6 +1088,8 @@ table {
     .cartbox{padding:15px 15px 20px 15px;}
     .checkout-right #order-summary .img-wrap{width:60% !important;}
     .checkout-right #order-summary .cart-details{width:100% !important;}
+    .myaccount-right .form-wrap .btns-wrap, .myaccount-right #addNewAddress .btns-wrap a{width:100%;}
+    .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn{padding:10px 24px !important;}
 }
 
 @media (max-width:370px){
