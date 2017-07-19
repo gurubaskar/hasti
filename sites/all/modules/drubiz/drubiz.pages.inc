@@ -1567,3 +1567,20 @@ function myaccount_return_order($orderId) {
   // echo json_encode($data);
   return theme('myaccount_return_order',array('order'=>$data)); 
 }
+
+function myaccount_review_rating() {
+  $endpoint = 'eCommerceProductReview';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'partyId'=>get_user_party_id(),
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'data'), 1) . '</pre>');
+  return theme('myaccount_review_rating',array("review"=>$data));
+}
