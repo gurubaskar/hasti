@@ -169,33 +169,45 @@ function drubiz_checkout_final() {
 * callback for Import data 
 */
 function import_data(){
+  // delete from variable
+  variable_del('import_data_filename');
   $file_name = $_GET['filename'];
-  $status = array();
-  $status['filename'] = $file_name;
-  $status['status'] = 'started';
-  $status['status'] = 'running';
-  variable_del('cron_status');
-  variable_set('cron_status',json_encode($status));
-  $status = variable_get('cron_status',$status);
-  if($status['status'] == "started" || $status['status'] =="running" ) {
-    echo 'fail';
-  }else {    
-    // delete from variable
-    variable_del('import_data_status');
-    // set the filename in variable
-    if($file_name !=""){
-      echo "EXECUTING";
-      //print_r($status);
-      variable_set('import_data_status',json_encode($status));
-      $response= array();
-      // set header 
-      header( "HTTP/1.1 202 Accepted" );
-      $response['status'] = 'accepted';
-
-      echo json_encode($response);//exit; 
-      //exec("c:\WINDOWS\system32\cmd.exe /c START C:/xampp/htdocs/drubiz_hasti/import_data_command_file.bat"); 
-    }    
+  $status = array(
+    'status' => 'accepted',
+    'filename'=>$file_name,
+    'error'=>'FAILED'
+    );
+  $response= array();
+  // 1. variable _get (cron_status)
+  $status = json_decode(variable_get('import_data_filename'),true);
+  $import_response =  json_decode(variable_get('import_file_response'),true);
+  // check the status 
+  if($status['status'] != 'completed' || $import_response['importstatus']=='FAILED') {
+    if( $status['status'] == 'running') {
+        header( "HTTP/1.1 202 accepted" );
+        $response['status'] = 'accepted';
+    } else {
+      // set the status in     
+      // reset all the values filename , status
+      $status = array(
+        'status' => 'accepted',
+        'filename'=>$file_name,
+        'error'=>''
+      );
+      if($file_name !=""){
+        variable_set('import_data_filename',json_encode($status));        
+        header( "HTTP/1.1 200 ok" );
+        $response['status'] = 'accepted';
+      } 
+   }
   }
+  else {
+    header( "HTTP/1.1 201 Created" );
+    $response['status'] = 'Running';
+  }
+  variable_set('import_file_response',json_encode($response));
+  echo json_encode($response);
+  exit;  
 }
 /**
  * Page callback for /send-otp
