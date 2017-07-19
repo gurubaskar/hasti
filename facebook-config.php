@@ -19,7 +19,7 @@ require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
 // init app with app id and secret
-FacebookSession::setDefaultApplication( '220019185154660','7f32f36d252810c3dc7cef3481643aba' );
+FacebookSession::setDefaultApplication( '270991780046160','ace3b2e5daa6b4e91b8286d5df890c51' );
 // login helper with redirect_uri
  $helper = new FacebookRedirectLoginHelper('http://www.hastti.com/facebook-config.php');
 try {
