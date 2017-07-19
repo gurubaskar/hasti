@@ -819,6 +819,13 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  $items['account/review-rating'] = array(
+    'title'             => 'My Account Review and Rating',
+    'description'       => "My Account Review and Rating",
+    'page callback'     => 'myaccount_review_rating',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
    
   return $items;
 }
@@ -910,6 +917,10 @@ function drubiz_theme() {
     'myaccount_change_password' => array(
       'path'            => $drubiz_path,
       'template'        => 'myaccount_change_password',
+    ),
+    'myaccount_review_rating' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_review_rating',
     ),
     'myaccount_menu' => array(
       'path'            => $drubiz_path,
