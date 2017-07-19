@@ -50,7 +50,6 @@ if ( isset( $session ) ) {
 
     //call cack for offbiz service
     $responseData = facebook_login_request($fbfirstname,$fblastname,$fbemail,$gender);
-
     /* ---- header location after session ----*/
   header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
 } else {

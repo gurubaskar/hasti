@@ -92,7 +92,7 @@ require_once 'vendor/autoload.php';
           <ul>
             <li><a href="#"><?php echo t('Track Order');?></a></li>
             <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>
-            
+
              <?php if($GLOBALS['user']->uid != 0):?>
               <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
@@ -139,7 +139,7 @@ require_once 'vendor/autoload.php';
   
   <span class="facebook">
   <a href="facebook-config.php">SIGN IN WITH FACEBOOK</a></span>
-  <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
+  <span class="google"><a href="google-config.php">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">
 
@@ -405,7 +405,7 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('terms-of-use')?>" alt="Terms Of Use" target="_blank"><?php echo t('Terms Of Use');?></a></li>
               <li><a href="<?php echo url('privacy-policy')?>" alt="Privacy Policy" target="_blank"><?php echo t('Privacy Policy');?></a></li>
               <li><a href="#" alt="Returns Policy" target="_blank"><?php echo t('Returns Policy');?></a></li>
-              <li><a href="<?php echo url('policies')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
+              <li><a href="<?php echo url('security')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">

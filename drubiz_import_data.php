@@ -28,17 +28,19 @@ drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 //if(isset($arg[0])) {
 //	$file_name = 'drubiz_data/catalog_hasti.xls';
 //}else {
-  $status = variable_get('cron_status');
+  $status = json_decode(variable_get('cron_status'),true);
 
-  if($status == "started" || $status =="running" ) {
+  if($status['cronstatus'] == "started" || $status[''] =="running" ) {
   	echo 'IF ==';
   }else {
   	echo 'ELSE ==';
-  	  $file_path = variable_get('import_data_status');      
-      $file = json_decode(json_decode($file_path,true),true);
+  	  $file_path = variable_get('import_data_filename');      
+      $file = json_decode($file_path,true);
       $file_name = $file['filename'];
   	  $xls_files = array(
  		'hasti'	  => array($file_name),
 	  );
-    drubiz_import_data($xls_files['hasti']);
+	if($file_name !=""){
+		drubiz_import_data($xls_files['hasti']);
+	}    
 }
