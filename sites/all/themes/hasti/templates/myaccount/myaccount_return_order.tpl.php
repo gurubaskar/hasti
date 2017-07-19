@@ -6,7 +6,7 @@
   <h3>My Orders</h3>
   <div id="demo-top-bar">
     <div id="no-more-tables">
-      <table class="table-bordered table-striped table-condensed cf">
+      <table class="table-bordered table-striped table-condensed cf returnDetail">
         <thead>
           <tr>
             <td>
@@ -42,7 +42,7 @@
       </table>
     </div>
     <div id="no-more-tables">
-      <table class="table-bordered table-striped table-condensed cf">
+      <table class="table-bordered table-striped table-condensed cf returnOrderDetail">
         <thead>
           <tr>
             <td>
