@@ -410,8 +410,11 @@ a:focus{text-decoration:none !important;}
 .cartbox, .addressbox, .outerbox{width:100%; float:left; border:1px solid #d3d2d2; padding:15px 25px 20px 25px; margin-bottom:10px;}
 #cart .heading-bar{margin:0;}
 .cartbox .img-wrap img{width:150px;}
-.cartbox h3, .myorders .cartbox h3{color:#0081c5; font-weight:bold; font-size:16px; margin-bottom:7px;}
+.cartbox h3, .myorders .cartbox h3{color:#0081c5; font-weight:400; font-size:16px; margin-bottom:15px; margin-top:0;}
+.myorders .cartbox h3 a{font-weight:400; font-size:15px; color:#0081c5;}
+.myorders .cartbox .img-wrap img{max-width:100%; height:auto; display:block;}
 .cartbox h4{color:#0081c5; font-weight:normal; font-size:15px; margin-bottom:15px;}
+.myorders .cartbox .details-btns a{margin-right:0; font-weight:400; font-size:14px;}
 .cartbox .qty, .cartbox .size{border:1px solid #d3d2d2; padding:0px 3px; font-weight:normal !important;}
 .cartbox label{margin-right:5px !important; color:#6d6e70; font-weight:normal !important; font-size:14px !important; display:inline-block !important; }
 .cart-details .cartrow{margin-bottom:15px;}
@@ -451,7 +454,7 @@ a:focus{text-decoration:none !important;}
 .checkout-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70 !important; font-weight:500; padding:9px 0; display:block;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
-.checkout-right, .wishlist, .myorders{padding:25px 15px;}
+.checkout-right, .wishlist, .myorders{padding:0px 15px;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:10px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
 .checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -540px; padding:11px; float:left; width:100%;}
@@ -519,8 +522,10 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .heading-bar{margin-top:0;}
 .myaccount-right .new-address{float:right;}
 .myaccount-right .addressbox{width:47%; margin-right:15px; margin-bottom:15px; padding:10px;}
+.myaccount-right .addressbox .address span{color:#6d6e70; line-height:28px;}
+.myaccount-right .addressbox label{margin:0 2px 0 0; color:#6d6e70; font-size:14px; line-height:28px; float:left;}
 .myaccount-right .addressbox .edit-address{padding:0;}
-.myaccount-right .addressbox .edit-address a{float:left; width:auto; margin:15px 5px 0 0; background:#00b04c; padding:9px; font-size:14px; color:#fff !important; font-weight:400;}
+.myaccount-right .addressbox .edit-address a{float:left; width:auto; margin:15px 5px 0 0; border:1px solid #00b04c; padding:5px 9px; font-size:14px; color:#000 !important; font-weight:400;}
 .myaccount-right .addressbox .edit-address a:last-child{ margin:15px 0px 0 0;}
 .myaccount-right .addressbox .edit-address .update{background:none;}
 .myaccount-right .btns-wrap{width:100%; float:left;}
@@ -529,8 +534,9 @@ a:focus{text-decoration:none !important;}
 .myorders .tabing-wrap{width:100%; float:left; margin-top:15px;}
 .myorders .tabing-wrap .tabing-btns{position:relative; height: 0; border-top: 42px solid #fff; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; font-size:20px; line-height:20px; float:left;}
 .myorders .tabing-wrap .tab-active{position:relative; height: 0; border-top: 42px solid #0081c5 !important; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; color:#fff; font-size:20px; line-height:20px; float:left;}
-.myorders .tabing-wrap a{position:absolute; top:-31px; color:#000; width:auto; text-align:center; font-weight:bold; width:100%;}
+.myorders .tabing-wrap a{position:absolute; top:-31px; color:#000; width:auto; text-align:center; font-weight:500; width:100%;}
 .myorders .tabing-wrap .tab-active a{color:#fff !important;}
+.myorders #past-orders .details-btns{width:30%;}
 .qty-plus{background:url('./../images/main-img.png') no-repeat -7px -605px; padding:9px 11px; }
 .qty-minus{background:url('./../images/main-img.png') no-repeat -42px -608px; padding:5px 11px; margin-right:5px;}
 .order-confirmation .cartbox h3{margin-top:0; margin-bottom:12px;}
@@ -548,7 +554,7 @@ a:focus{text-decoration:none !important;}
 .icon-wrap .icon-container ul li{float:left; margin:0 10px; width:27%; text-align:center;}
 .icon-wrap .icon-container ul li a{color:#000; display:block; margin-bottom:10px; height:55px;}
 .details-btns{position:absolute; right:30px; display:block;}
-.details-btns a{float:right; font-weight:bold; display:block; width:55%; text-align:center; color:#000; padding:7px; margin-bottom:15px; border:1px solid #00b04c;}
+.details-btns a{float:right; font-weight:bold; display:block; width:55%; text-align:center; color:#000 !important; padding:7px; margin-bottom:15px; border:1px solid #00b04c;}
 .form-wrap{width:100%; float:left; margin:20px 0;}
 .required{color:#BF0000; margin-right:2px; width:auto;}
 .form-wrap .form-row{float:left; width:100%; margin-bottom:15px;}
@@ -568,6 +574,12 @@ a:focus{text-decoration:none !important;}
 .mob-search input[type="text"]{width:94% !important; padding:10px; border:0;}
 .mobsearch-icon{float:right; margin-top:15px; margin-right:30px; cursor:pointer;}
 .mobsearch-icon1{float: right; position: absolute; right:13px ;top:5px;}
+
+.myorders .return-order, .myorders .return-order .return-row1, .myorders .return-order .return-row2{float:left; width:100%;}
+.myorders .return-order .return-row1{margin-bottom:20px; border:1px solid #d1d1d1; padding:20px;}
+.myorders .return-order .return-row1 thead td{color:#0081c5; font-weight:400; padding:0 0 8px 0;}
+.myorders .return-order .return-row1 tr{background:none;}
+.myorders .return-order .return-row1 tbody td{border:none; color:#6d6e70;}
 
 
 /******************************* change pwd ******************************/
@@ -699,145 +711,80 @@ a:focus{text-decoration:none !important;}
     border: none; 
 }
 /************************ RESPONSIVE TABLE DESKTOP CODE ***********************/
-table { 
-        width: 100%; 
-        border-collapse: collapse; 
-    }
-    /* Zebra striping */
-    tr:nth-of-type(odd) { 
-        background: #eee; 
-    }
-    th { 
-        background: #333; 
-        color: white; 
-        font-weight: bold; 
-    }
-    td, th { 
-        padding: 6px; 
-        border: 1px solid #ccc; 
-        text-align: left; 
-    }
-    #demo-top-bar {
-        text-align: left;
-        position: relative;
-        zoom: 1;
-        width: 100% !important;
-        z-index: 6000;
-        padding: 20px 0 20px;
-    }
-    #demo-bar-inside {
-        width: 960px;
-        margin: 0 auto;
-        position: relative;
-        overflow: hidden;
-    }
-    #demo-bar-buttons {
-        padding-top: 10px;
-        float: right;
-    }
-    #demo-bar-buttons a {
-        font-size: 12px;
-        margin-left: 20px;
-        color: white;
-        margin: 2px 0;
-        text-decoration: none;
-        font: 14px "Lucida Grande", Sans-Serif !important;
-    }
-    #demo-bar-buttons a:hover,
-    #demo-bar-buttons a:focus {
-        text-decoration: underline;
-    }
-    #demo-bar-badge {
-        display: inline-block;
-        width: 302px;
-        padding: 0 !important;
-        margin: 0 !important;
-        background-color: transparent !important;
-    }
-    #demo-bar-badge a {
-        display: block;
-        width: 100%;
-        height: 38px;
-        border-radius: 0;
-        bottom: auto;
-        margin: 0;
-        background: url(/images/examples-logo.png) no-repeat;
-        background-size: 100%;
-        overflow: hidden;
-        text-indent: -9999px;
-    }
-    #demo-bar-badge:before, #demo-bar-badge:after {
-        display: none !important;
-    }
+.table-bordered {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 2px;
+}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+}
+
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding: 5px;
+}
+
+
 /**************** RESPONSIVE TABLE DESKTOP CODE END ******************/
 
-/*********************************************** RESPONSIVE starts ***********************************************/
-
-@media only screen and (max-width: 760px),
-    (min-device-width: 768px) and (max-device-width: 1024px)  {
-
-        table, thead, tbody, th, td, tr {
-            display: block;
-        }
-
-        thead tr {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-
-        tr { border: 1px solid #ccc; }
-
-        td {
-            /* Behave  like a "row" */
-            border: none !important;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 50% !important;
-        }
-
-        td:before {
-            /* Now like a table header */
-            position: absolute;
-            /* Top/left values mimic padding */
-            top: 6px;
-            left: 6px;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
-        }
-
-        /*
-        Label the data
-        */
-        td:nth-of-type(1):before { content: "First Name"; }
-        td:nth-of-type(2):before { content: "Last Name"; }
-        td:nth-of-type(3):before { content: "Job Title"; }
-        td:nth-of-type(4):before { content: "Favorite Color"; }
-        td:nth-of-type(5):before { content: "Wars of Trek?"; }
-        td:nth-of-type(6):before { content: "Porn Name"; }
-        td:nth-of-type(7):before { content: "Date of Birth"; }
-        td:nth-of-type(8):before { content: "Dream Vacation City"; }
-        td:nth-of-type(9):before { content: "GPA"; }
-        td:nth-of-type(10):before { content: "Arbitrary Data"; }
+/****************** RESPONSIVE starts **********************/
+ @media only screen and (max-width: 800px) {
+    
+    /* Force table to not be like tables anymore */
+    #no-more-tables table, 
+    #no-more-tables thead, 
+    #no-more-tables tbody, 
+    #no-more-tables th, 
+    #no-more-tables td, 
+    #no-more-tables tr { 
+        display: block; 
     }
-
-    /* Smartphones (portrait and landscape) ----------- */
-    @media only screen
-    and (min-device-width : 320px)
-    and (max-device-width : 480px) {
-        body {
-            padding: 0;
-            margin: 0;
-            width: 320px; }
-        }
-
-    /* iPads (portrait and landscape) ----------- */
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-        body {
-            width: 495px;
-        }
+ 
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
+ 
+    #no-more-tables tr { border: 1px solid #ccc; }
+ 
+    #no-more-tables td { 
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50%; 
+        white-space: normal;
+        text-align:left;
+    }
+ 
+    #no-more-tables td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+    }
+ 
+    /*
+    Label the data
+    */
+    #no-more-tables td:before { content: attr(data-title); }
+}
+
 /********************************* RESPONSIVE TABLE CODE END *******************************/
 
 @media(max-width:1100px){
@@ -861,8 +808,8 @@ table {
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
     .checkout .addressbox{width:93% !important;}
     .icon-wrap .icon-container{width:49%;}
-    .details-btns{position:relative; width:100%; float:right; right:0px;}
-    .details-btns a{margin-bottom:0; margin-top:10px; margin-right:10px; width:30%;}
+    .details-btns, .myorders #past-orders .details-btns{position:relative; width:100%; float:right; right:0px;}
+    .details-btns a{margin-bottom:0; margin-top:10px; margin-right:10px !important; width:30%;}
     .checkout-right .addressbox{width:93% !important;}
 }
 
@@ -911,10 +858,12 @@ table {
     .box{height:auto; max-height:470px;}
     #footer .links-wrap .links, #footer .social-wrap{width:50%;}
     #footer .social-wrap{padding:0 15px;}
+
 }
 @media only screen and (max-width:660px) and (min-width:481px){
     .pdp .btns-wrap span{width:60%; margin-bottom:10px;}
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
+    .myorders #past-orders .details-btns{width:50%;}
 }
 
 @media only screen and (max-width:639px) and (min-width:440px){
@@ -1069,7 +1018,7 @@ table {
     .ui-popup.signin, #changepwd, #homepage .row2 .col-xs-6{width:100% !important;}
     #homepage .row1 .col-xs-6, #homepage .row3 .col-xs-6{width:100%;}
     #homepage .story-wrap h3{font-size:23px; line-height:28px;}
-
+    .myorders #past-orders .details-btns{width:100%;}
 }
 @media(max-width:439px){
     .plp .plp-right .box{height:auto !important; max-height:100% !important;}
