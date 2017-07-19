@@ -5,8 +5,8 @@
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
   <h3>My Orders</h3>
   <div id="demo-top-bar">
-    <div id="page-wrap">
-      <table>
+    <div id="no-more-tables">
+      <table class="table-bordered table-striped table-condensed cf">
         <thead>
           <tr>
             <td>
@@ -22,13 +22,13 @@
         </thead>
         <tbody>
           <tr>
-            <td>
+            <td data-title="Order Id">
               <?php echo $order['orderId'];?>
             </td>
-            <td>
+            <td data-title="Date">
               <?php echo date('d/m/Y H:m',strtotime($order['orderDate']));?>
             </td>
-            <td>
+            <td data-title="Place">
               <?php 
                 echo $order['orderPlacedAddress']['toName'].',<br>';
                 echo $order['orderPlacedAddress']['address1'].',<br>';
@@ -41,8 +41,8 @@
         <tbody>
       </table>
     </div>
-    <div id="page-wrap">
-      <table>
+    <div id="no-more-tables">
+      <table class="table-bordered table-striped table-condensed cf">
         <thead>
           <tr>
             <td>
@@ -73,28 +73,28 @@
           $product_variant = $system_data->product_variants->{$orderValue['productId']};
         ?>
           <tr>
-            <td>
+            <td data-title="Product Name">
               <?php echo $orderValue['itemDescription'];?>
             </td>
-            <td>
+            <td data-title="Image">
               <img class="order-img" alt="<?php echo $orderValue['itemDescription'];?>" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
             </td>
-            <td>₹.
+            <td data-title="Price">₹.
               <?php 
                 echo $orderValue['unitPrice'];
               ?>
             </td>
-            <td>
+            <td data-title="Return">
               <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $orderValue['productId'];?>">
             </td>
-            <td>
+            <td data-title="Reason">
               <select id="returnReason">
                 <?php foreach ($order['returnReasons'] as $key => $returnValue) { ?>
                     <option value="<?php echo $returnValue['returnReasonId'];?>"><?php echo $returnValue['description'];?></option>
                 <?php } ?>
               </select>
             </td>
-            <td>
+            <td data-title="Item Status">
               <?php 
                 echo $orderValue['setStatusId'];
               ?>
