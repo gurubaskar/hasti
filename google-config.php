@@ -7,9 +7,13 @@ drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
 //Insert your cient ID and secret 
 //You can get it from : https://console.developers.google.com/
-$client_id='1001369029674-4lco05hqh7mo03r2ff276u61324v5m74.apps.googleusercontent.com'; 
+/*$client_id='1001369029674-4lco05hqh7mo03r2ff276u61324v5m74.apps.googleusercontent.com'; 
 $client_secret = '2aNHpIHrIeMdGyUJyZGz1igB';
-$redirect_uri = 'http://www.hasti.dev/drubiz_hasti/google-config.php';
+$redirect_uri = 'http://www.hasti.dev/drubiz_hasti/google-config.php';*/
+
+$client_id='1272075537-dfnaisoj0p5v39ehg779cs62s4u2iie6.apps.googleusercontent.com'; 
+$client_secret = 'COVUoGtiU4RCZAYuNcuGUFCg';
+$redirect_uri = 'http://www.hastti.com/google-config.php';
 
 //incase of logout request, just unset the session var
 if (isset($_GET['logout'])) {
@@ -75,11 +79,9 @@ if (isset($authUrl)){
 	$gemail=$user->email;
 	$gender=$user->gender;	
 	$responseData = fb_google_api_login_request($gfirstname,$glastname,$gemail,$gender);
-	//print user details
-	// echo '<pre>';
- //print_r($responseData);exit;
-	// echo '</pre>';
-	header('Location:http://www.hasti.dev/drubiz_hasti/index.php');
+	
+	//header('Location:http://www.hasti.dev/drubiz_hasti/index.php');
+	header('Location:http://www.hastti.com/index.php');
 }
 ?>
 
