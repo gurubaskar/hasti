@@ -92,27 +92,27 @@ require_once 'vendor/autoload.php';
   // $category_names_from_catalog = $drubiz_category_names['globus'];
   $get_category_names = explode(',', $product->product_category_id);
 
-
+  $catalogName = $drubiz_domain['catalog'];
 ?>
 
 <?php 
   $cntCategory = count($get_category_names);
   $cname = "";
   $collon = rawurlencode(":");
-  $smCatalog = "?f[0]=sm_field_catalog".$collon."hasti";
+  $smCatalog = "?f[0]=sm_field_catalog".$collon.$catalogName;
   $smCategory= "";
   $smCategoryName = "";
   $smSubCategoryName = "";
   for($i=0;$i<$cntCategory;$i++) {
     if($i==0) {
       $smCategory = "&f[1]=sm_field_category".$collon;
-      $smCategoryName = urlencode($drubiz_category_names['hasti'][trim($get_category_names[$i])]);
+      $smCategoryName = urlencode($drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
     }
-    $smFieldName = str_replace('&', '&amp;',$drubiz_category_names['hasti'][trim($get_category_names[$i])]);
+    $smFieldName = str_replace('&', '&amp;',$drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
     $smSubCategoryName = "&f[2]=sm_field_subcategory".$collon.rawurlencode($smFieldName);
     $c = $get_category_names[$i];
     $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
-    $breadcrumbList .= "<a href=$url>".$drubiz_category_names['hasti'][trim($get_category_names[$i])]."</a>/";
+    $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
   }
 ?>
 
@@ -225,7 +225,7 @@ require_once 'vendor/autoload.php';
                            // $get_category_id = array_search($sub_menu['#title'],$drubiz_category_names['hasti']);
                            $parentCategoryTitle = $menu['#title'];
                            $subCategoryTitle = $sub_menu['#title'];
-                           $menuImageURL = @$drubiz_subcategory_images->hasti->$parentCategoryTitle->$subCategoryTitle;
+                           $menuImageURL = @$drubiz_subcategory_images->$catalogName->$parentCategoryTitle->$subCategoryTitle;
                            if(!empty($menuImageURL) and $menuImageURL != NULL) {
                            ?>
                             <img src="<?php echo current_theme_path() . '/images/' .$menuImageURL;?>" style="width: 230px; height: 250px; " />
