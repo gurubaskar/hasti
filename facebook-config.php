@@ -1,6 +1,6 @@
 <?php
 // added in v4.0.0
-require_once 'vendor/autoload.php';
+require_once 'autoload.php';
 use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
@@ -19,9 +19,13 @@ require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
 // init app with app id and secret
-FacebookSession::setDefaultApplication( '270991780046160','ace3b2e5daa6b4e91b8286d5df890c51' );
+FacebookSession::setDefaultApplication( '468993356803640','d6e6532df7467c0eff38583818a4e7e8' );
+//FacebookSession::setDefaultApplication( '270991780046160','ace3b2e5daa6b4e91b8286d5df890c51' );
+
 // login helper with redirect_uri
- $helper = new FacebookRedirectLoginHelper('http://www.hastti.com/facebook-config.php');
+ $helper = new FacebookRedirectLoginHelper('http://www.hasti.dev/drubiz_hasti/facebook-config.php' );
+//$helper = new FacebookRedirectLoginHelper('http://www.hastti.com/facebook-config.php');
+
 try {
   $session = $helper->getSessionFromRedirect();
 } catch( FacebookRequestException $ex ) {
@@ -49,9 +53,10 @@ if ( isset( $session ) ) {
     $_SESSION['FBID'] = $fbid;           
 
     //call cack for offbiz service
-    $responseData = facebook_login_request($fbfirstname,$fblastname,$fbemail,$gender);
+    $responseData = fb_google_api_login_request($fbfirstname,$fblastname,$fbemail,$gender);
     /* ---- header location after session ----*/
-  header("Location: http://www.hastti.com/index.php");
+  header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
+  //  header("Location: http://www.hastti.com/index.php");
 } else {
   $loginUrl = $helper->getLoginUrl(array(
    'scope' => 'email'

@@ -57,7 +57,7 @@ function get_user_jsessionid() {
 /**
 * call back for facebook login
 **/
-function facebook_login_request($fname,$lname,$email,$gender){
+function fb_google_api_login_request($fname,$lname,$email,$gender){
   //https://localhost:8443/eCommerceFacebookLoginResponse?isFBLogin=connected&fbEmail=induspro9@gmail.com&fbFirst_name=Indu&fbLast_name=S&fbGender=F
   $endpoint = 'eCommerceFacebookLoginResponse';
   $client = drubiz_api_client();
@@ -87,48 +87,48 @@ function facebook_login_request($fname,$lname,$email,$gender){
         $account->roles = array(DRUPAL_AUTHENTICATED_RID => TRUE);
         $account->timezone = variable_get('date_default_timezone', '');
         $account->field_party_id[LANGUAGE_NONE][0]['value'] = $fbdata['partyId'];
-        $user_exists = user_load_by_mail($email);
-        if (empty($user_exists->uid)) {
-          $GLOBALS['drubiz_skip_user_integration'] = TRUE;
-          user_save($account);
-        
-        }else if (!empty($user_exists->uid)) {
-          //$user_authenticated_uid = user_authenticate($user_exists->name, $password);
-          global $user;
-           
-          $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+        // $email1 = "nibedita.shapia@gmail.com";
+        global $user;
+        $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+        $user_exists = user_load_by_mail(@$email);
+        if(!empty($user_exists->uid)) {
           $uid = $user_exists->uid;
           // Log the user into Drupal first! We'll log them out later if Ofbiz fails.
           $user = user_load($user_exists->uid);
           user_login_finalize();
-
-          // Login to Ofbiz
-          //list($data, $response) = ofbiz_login($username, $password);
-          
-            $raw_headers = $fbresponse->getHeaders();
-            // Merge cookies.
-            if (!empty($_SESSION['drubiz']['headers']['Set-Cookie'])) {
-              $raw_headers['Set-Cookie'] = array_merge($_SESSION['drubiz']['headers']['Set-Cookie'], $raw_headers['Set-Cookie']);
-            }
-            $_SESSION['drubiz']['headers'] = $raw_headers;
-            //$_SESSION['drubiz']['session'] = $data;
-            // $_SESSION['drubiz']['requirePasswordChange'] = 'N';
-            $return['error'] = FALSE;
-            drupal_set_message('User logged in!');
-            $_SESSION['drubiz']['session']['firstName']=$fname;
-            // dsm($raw_headers);
-            // dsm($_SESSION['drubiz']);
-            if (!empty($_POST['REDIR'])) {
-              drupal_goto();
-            }
+        } else {         
+          user_save($account);
+          $user_exists = user_load_by_mail(@$email);
+          $uid = $user_exists->uid;
+          // Log the user into Drupal first! We'll log them out later if Ofbiz fails.
+          $user = user_load($user_exists->uid);
+          user_login_finalize();
         }
-        else {
-          $return['error_messages'][] = 'Invalid username / password.';
+        
+        $raw_headers = $fbresponse->getHeaders();
+        // Merge cookies.
+        if (!empty($_SESSION['drubiz']['headers']['Set-Cookie'])) {
+          $raw_headers['Set-Cookie'] = array_merge($_SESSION['drubiz']['headers']['Set-Cookie'], $raw_headers['Set-Cookie']);
         }
+        $_SESSION['drubiz']['headers'] = $raw_headers;
+        //$_SESSION['drubiz']['session'] = $data;
+        // $_SESSION['drubiz']['requirePasswordChange'] = 'N';
+        $return['error'] = FALSE;
+        drupal_set_message('User logged in!');
+        $_SESSION['drubiz']['session']['firstName']=$fname;
+        // dsm($raw_headers);
+        // dsm($_SESSION['drubiz']);
+        if (!empty($_POST['REDIR'])) {
+          drupal_goto();
+        }
+        // }
+        // else {
+        //   $return['error_messages'][] = 'Invalid username / password.';
+        // }
       }
     }
  
-    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'fbdata','account','email','user_exists','user'), 1) . '</pre>'); 
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'fbdata','account','uid','user_exists','user'), 1) . '</pre>'); 
   return $return;
 }
 
@@ -1482,6 +1482,3 @@ function drubiz_user_is_demo_administrator($uid = NULL) {
 function drubiz_demo_password($email) {
   return sha1("drubiz_demo_{$email}");
 }
-
-
-
