@@ -83,7 +83,39 @@ require_once 'vendor/autoload.php';
 
   $drubiz_category_names = json_decode(json_decode(json_encode(variable_get('drubiz_category_names'))),true);
   $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images'));
+
+
+  $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
+  $product = $system_data->product_raw;
+  //krumo($product);
+  $drubiz_category_names1 = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
+  // $category_names_from_catalog = $drubiz_category_names['globus'];
+  $get_category_names = explode(',', $product->product_category_id);
+
+
 ?>
+
+<?php 
+  $cntCategory = count($get_category_names);
+  $cname = "";
+  $collon = rawurlencode(":");
+  $smCatalog = "?f[0]=sm_field_catalog".$collon."hasti";
+  $smCategory= "";
+  $smCategoryName = "";
+  $smSubCategoryName = "";
+  for($i=0;$i<$cntCategory;$i++) {
+    if($i==0) {
+      $smCategory = "&f[1]=sm_field_category".$collon;
+      $smCategoryName = urlencode($drubiz_category_names['hasti'][trim($get_category_names[$i])]);
+    }
+    $smFieldName = str_replace('&', '&amp;',$drubiz_category_names['hasti'][trim($get_category_names[$i])]);
+    $smSubCategoryName = "&f[2]=sm_field_subcategory".$collon.rawurlencode($smFieldName);
+    $c = $get_category_names[$i];
+    $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
+    $breadcrumbList .= "<a href=$url>".$drubiz_category_names['hasti'][trim($get_category_names[$i])]."</a>/";
+  }
+?>
+
 <div id="topnav">
   <div class="container-fluid">
       <div class="col-xs-12 col-sm-7 col-md-6 header-content">
@@ -136,7 +168,8 @@ require_once 'vendor/autoload.php';
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
   
-  <span class="facebook"><a href="facebook-config.php">SIGN IN WITH FACEBOOK</a></span>
+  <span class="facebook">
+  <a href="facebook-config.php">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="google-config.php">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">
@@ -248,9 +281,13 @@ require_once 'vendor/autoload.php';
 <!-- content -->
 <div id="eCommercePageBody"></div>
   <?php //print_r($drubiz_domain);?>
-  <?php if ($breadcrumb): ?>
+  <?php if ($breadcrumb):
+    if(arg(0) != "node") {
+  ?>
     <div id="breadcrumb"><?php print clean_breadcrumb($breadcrumb); ?></div>
-  <?php endif; ?>
+    <?php } else { ?>
+    <div id="breadcrumb"><?php echo  $breadcrumbList.$product->product_name;?></div>
+  <?php } endif; ?>
   <div id="content" class="plp">
     <div class="container-fluid">
       <?php if ($search_filter_sidebar): ?>
