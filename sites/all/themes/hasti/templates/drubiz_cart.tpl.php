@@ -74,27 +74,27 @@
 
         <div class="bottomimg-wrap">
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><a href="#"><img src="<?php echo current_theme_path();?> /images/secure.png" /></a></span>
+            <span><img src="<?php echo current_theme_path();?> /images/secure.png" /></span>
             <p>Secure <br/>Payments</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><a href="#"><img src="<?php echo current_theme_path();?> /images/return.png" /></a></span>
+            <span><img src="<?php echo current_theme_path();?> /images/return.png" /></span>
             <p>Free & Easy <br/> Return</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><a href="#"><img src="<?php echo current_theme_path();?> /images/products.png" /></a></span>
+            <span><img src="<?php echo current_theme_path();?> /images/products.png" /></span>
             <p>Original <br/>Products</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><a href="#"><img src="<?php echo current_theme_path();?> /images/protection.png" /></a></span>
+            <span><img src="<?php echo current_theme_path();?> /images/protection.png" /></span>
             <p>100% Buyer <br/> Protection</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><a href="#"><img src="<?php echo current_theme_path();?> /images/transparent.png" /></a></span>
+            <span><img src="<?php echo current_theme_path();?> /images/transparent.png" /></span>
             <p>Transparent <br/> Pricing</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><a href="#"><img src="<?php echo current_theme_path();?> /images/handmade.png" /></a></span>
+            <span><img src="<?php echo current_theme_path();?> /images/handmade.png" /></span>
             <p>Handmade <br/>Products</p>
           </div>
         </div>
