@@ -136,9 +136,8 @@ require_once 'vendor/autoload.php';
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
   
-  <span class="facebook">
-  <a href="facebook-config.php">SIGN IN WITH FACEBOOK</a></span>
-  <span class="google"><a href="#">SIGN IN WITH GOOGLE</a></span>
+  <span class="facebook"><a href="facebook-config.php">SIGN IN WITH FACEBOOK</a></span>
+  <span class="google"><a href="google-config.php">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">
 
