@@ -30,21 +30,21 @@ table {border-collapse: collapse;border-spacing: 0;}
 
 @font-face {
     font-family:'Roboto';
-    src: url('Roboto-Light-webfont.eot');
-    src: url('Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Roboto-Light-webfont.woff') format('woff'),
-         url('Roboto-Light-webfont.ttf') format('truetype'),
-         url('Roboto-Light-webfont.svg#RobotoLight') format('svg');
+    src: url('../fonts/Roboto-Light-webfont.eot');
+    src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Light-webfont.woff') format('woff'),
+         url('../fonts/Roboto-Light-webfont.ttf') format('truetype'),
+         url('../fonts/Roboto-Light-webfont.svg#RobotoLight') format('svg');
     font-weight: 100;
     font-style: normal;
 }
 @font-face {
-    font-family:'BPscript';
-    src: url('BPscript-webfont.eot');
-    src: url('BPscript-webfont.eot?#iefix') format('embedded-opentype'),
-         url('BPscript-webfont.woff') format('woff'),
-         url('BPscript-webfont.ttf') format('truetype'),
-         url('BPscript-webfont.svg#RobotoLight') format('svg');
+    font-family:'bpscript';
+    src: url('../fonts/bpscript.eot');
+    src: url('../fonts/bpscript.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/bpscript.woff') format('woff'),
+         url('../fonts/bpscript.ttf') format('truetype'),
+         url('../fonts/bpscript.svg#RobotoLight') format('svg');
     font-weight: 300;
     font-style: normal;
 }
@@ -422,7 +422,7 @@ a:focus{text-decoration:none !important;}
 .cartbox .total span, .cartbox .total label{font-size:18px !important;}
 .cartbox .total{padding-right:0;}
 .edit-warp, .bottomimg-wrap{width:100%; float:left;}
-.remove{background:url('./../images/main-img.png') no-repeat -5px -441px; padding:10px 28px; font-weight:normal;}
+.remove{background:url('./../images/main-img.png') no-repeat -5px -446px; padding:10px 28px; font-weight:normal;}
 .update{background:url('./../images/main-img.png') no-repeat -5px -477px; padding:10px 28px;}
 .edit{margin:10px 0; padding-right:0 !important;}
 #subtotal, .alltotal{float:right; width:100%; text-align:right; margin:15px 0;}
@@ -455,7 +455,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
 .checkout-right, .wishlist, .myorders{padding:0px 15px;}
-.checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:10px; float:left; width:100%;}
+.checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
 .checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -540px; padding:11px; float:left; width:100%;}
 .checkout-right .remember a{padding-left:25px; font-weight:normal; font-size:15px; color:#6d6e70;}
@@ -508,12 +508,12 @@ a:focus{text-decoration:none !important;}
 .myaccount-left > ul{padding-top:5px; width:100%; float:left;}
 .myaccount-left > ul > li{margin-bottom:12px;}
 .myaccount-left ul li a{font-weight:300; padding:6px 0; font-size:15px;}
-.myaccount-right.wishlist .cartbox{width:47.5%; margin-right:20px;}
-.myaccount-right.wishlist .details-right{float:right;}
+.myaccount-right.wishlist .cartbox{width:47.5%; margin-right:20px; padding:15px 25px 20px 25px !important; margin-bottom:10px;}
+.myaccount-right.wishlist .details-right{float:right; margin-top:5px;}
 .myaccount-right.wishlist .details-right .remove{padding:6px 0 2px 28px; float:right;}
 .myaccount-right.wishlist .btns-wrap{position:absolute; width:100%; right:0; bottom:10px;}
 .myaccount-right.wishlist .btns-wrap span{background:url('./../images/main-img.png') no-repeat 15px -286px #00b04c; float:right; width:170px; cursor:pointer;}
-.myaccount-right.wishlist .btns-wrap span a{text-align:left; margin-left:62px; width:auto;}
+.myaccount-right.wishlist .btns-wrap span a{text-align:left; margin-left:62px; width:auto; padding:10px 0; float:left; color:#fff; font-weight:400;}
 .myaccount-right.wishlist .cartbox .qty, .myaccount-right.wishlist .cartbox .size, .myorders .cart-details span{border:0;}
 .myaccount-right .form-wrap{margin:5px 0 10px 0;}
 .myaccount-right .form-wrap .form-row label{color:#6d6e70; font-weight:400; font-size:15px; margin-top:5px;}
@@ -581,6 +581,13 @@ a:focus{text-decoration:none !important;}
 .myorders .return-order .return-row1 tr{background:none;}
 .myorders .return-order .return-row1 tbody td{border:none; color:#6d6e70;}
 
+.wishlist .img-wrap{padding-left:0;}
+.wishlist .img-wrap img{height:100%;}
+.eCommerceShowWishList .showWishlistPreviousButton{float:right; background:#00b04c; padding:10px 40px; margin-top:20px;}
+.eCommerceShowWishList .showWishlistPreviousButton a span{color:#fff;  font-weight:400;}
+
+.myaccount-right .reviewRatings{width:100%; float:left;}
+.myaccount-right .reviewRatings tbody td{vertical-align:middle;}
 
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
@@ -728,14 +735,14 @@ a:focus{text-decoration:none !important;}
 .table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
     padding: 5px;
 }
-.returnOrderDetail.table-striped>tbody>tr:nth-of-type(even){background-color:#f2f2f2 !important;}
+.returnOrderDetail.table-striped>tbody>tr:nth-of-type(even), .myaccount-right .reviewRatings>tbody>tr:nth-of-type(even){background-color:#f2f2f2 !important;}
 .myorders #no-more-tables, .returnDetail, .returnOrderDetail{float:left; width:100%;}
 .returnDetail{padding:10px; border-collapse:inherit;}
 .returnDetail thead td{color:#000; font-weight:500; width:33%;}
 .returnDetail tbody td, .returnOrderDetail tbody td{color:#6d6e70; font-weight:400;}
 .myorders #no-more-tables{margin-bottom:20px;}
-.returnOrderDetail thead{background:#eaeaea;}
-.returnOrderDetail thead td{padding:5px; color:#000; font-weight:500;}
+.returnOrderDetail thead, .myaccount-right .reviewRatings thead{background:#eaeaea;}
+.returnOrderDetail thead td, .myaccount-right .reviewRatings thead td{padding:5px; color:#000; font-weight:500;}
 .returnOrderDetail .ui-btn-icon-right{padding:7px 20px 7px 5px; border:1px solid #ddd; box-shadow: none;}
 .returnOrderDetail .ui-select .ui-btn>span:not(.ui-li-count){font-size:13px; color:#6d6e70; font-weight:400;}
 .returnOrderDetail .ui-btn-icon-right:after{right:5px; width:12px !important; height:12px !important; top:15px; background-color:#6d6e70 !important;}
