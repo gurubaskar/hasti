@@ -49,7 +49,7 @@ Please login to view the view list
               <?php } ?>
             </div>
           </div>
-          <div class="wishList_cls_btn wish-delete" data-delete-id="delete_<?php echo $wishList_value['shoppingListItemSeqId'];?>">
+          <div class="wishList_cls_btn wish-delete details-right" data-delete-id="delete_<?php echo $wishList_value['shoppingListItemSeqId'];?>">
             <a class="remove" title="Remove Item" href="#">Remove</a>
           </div>
           <div class="btns-wrap">
