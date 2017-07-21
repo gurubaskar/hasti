@@ -70,7 +70,7 @@ a:focus{text-decoration:none !important;}
 #header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px; position:relative;}
 #header .cart a{position:absolute; opacity:0.7; right:-6px; top:3px; width:19px; height:19px; border-radius:50px; background-color:#009989;}
 #header .cart p{padding-left:33px;}
-#header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:17px;}
+#header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:20px;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
 #navbar{margin-bottom:0px;}
 #navbar a.logo{margin:0;}
