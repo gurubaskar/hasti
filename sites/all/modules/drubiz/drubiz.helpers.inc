@@ -164,7 +164,7 @@ function drubiz_import_data($xls_files,$flag=false) {
   variable_del('drubiz_subcategory_images');
 
 //$status = json_decode(variable_get('status'));
-  print_r($xls_files);//exit;
+  // print_r($xls_files);//exit;
   $debug = array();
   foreach ($xls_files as $catalog_name => $xls_file) {
     //echo DRUBIZ_IMPORT_LONG_DELIMITER . PHP_EOL;
