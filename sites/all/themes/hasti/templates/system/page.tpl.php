@@ -342,7 +342,7 @@ require_once 'vendor/autoload.php';
             <ul>
               <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns" target="_blank"><?php echo t('Cancellation & Returns');?></a></li>
               <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy" target="_blank"><?php echo t('Shipping Policy');?></a></li>
-              <li><a href="#" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
+              <li><a href="<?php //echo url('contact-us')?>" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
               <li><a href="#" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
             </ul>
           </div>
@@ -359,12 +359,12 @@ require_once 'vendor/autoload.php';
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
             <h3>Folow Us</h3>
             <ul>
-              <li class="facebook"><a href="#"></a></li>
+              <li class="facebook"><a href="https://www.facebook.com/Hastti-1385257374900900/"></a></li>
               <li class="flickr"><a href="#"></a></li>
-              <li class="google"><a href="#"></a></li>
-              <li class="printrest"><a href="#"></a></li>
-              <li class="twitter"><a href="#"></a></li>
-              <li class="in"><a href="#"></a></li>
+              <li class="google"><a href="https://plus.google.com/u/4/111641175858782258793"></a></li>
+              <li class="printrest"><a href="https://in.pinterest.com/hastti1/"></a></li>
+              <li class="twitter"><a href="https://twitter.com/Hastti1"></a></li>
+              <li class="in"><a href="https://www.instagram.com/hastti2/"></a></li>
             </ul>
           </div>
         </div>
