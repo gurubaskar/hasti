@@ -1025,6 +1025,62 @@ jQuery(document).ready(function () {
   });
 });
 
+function contactus(){
+  var data_firstName = jQuery('#firstname').val();
+  var email = jQuery("#returnCustomerEmail").val();
+  var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  
+  var data_orderIdNumber = jQuery('#orderIdNumber').val();
+  var data_phoneNumber = jQuery('#conactUsPhone').val();
+  var data_msg = jQuery('#js_content').val();
+  if(data_firstName == ''){
+    alert("FirstName can't be Empty");
+    return false;
+  }
+  if (email == "") {
+      alert("Please Enter your Email");
+      return false;
+  }
+  if (!filter.test(email)) {
+      alert("Please enter a valid email address");
+      return false;
+  }
+  if(data_msg == ''){
+    alert("Massage can't be Empty");
+    return false;
+  }
+  if(data_phoneNumber == ''){
+    alert("Phone Number cant't be Empty");
+    return false;
+  }
+  var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&email=' + encodeURIComponent(email)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
+  if(data_orderIdNumber != ''){
+      data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber);
+      alert(data);
+  }
+  jQuery.ajax({
+            type: "POST",
+            url: Drupal.settings.basePath + 'save-contact-us',
+            data: data,
+            success: function(data) {
+              console.log(data);
+              if (data['isError'] == 'false') {
+                alert(data['_EVENT_MESSAGE_']);
+                close_loading();
+                document.location = Drupal.settings.basePath +'contact-us';
+              } else {
+                alert(data['_ERROR_MESSAGE_']);
+                close_loading();
+              }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+              console.log(textStatus + ': ' + errorThrown);
+              close_loading();
+            },
+            dataType: 'json'
+    });
+}
+
 function savePersonalInfo(){
   var data_firstName = jQuery('#firstName').val();
   var data_lastName = jQuery('#lastName').val();

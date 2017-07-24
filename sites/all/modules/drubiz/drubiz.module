@@ -540,6 +540,7 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+
   $items['account/submit-add-address'] = array(
     'title'             => 'My Account Add Address',
     'description'       => "My Account Add Address",
@@ -826,7 +827,20 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-   
+  $items['contact-us'] = array(
+    'title'             => 'Contact us',
+    'description'       => "Contact us",
+    'page callback'     => 'hasti_contact_us',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  ); 
+  $items['save-contact-us'] = array(
+    'title'             => 'Contact us',
+    'description'       => "Contact us",
+    'page callback'     => 'save_contact_us',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   return $items;
 }
 
@@ -1018,9 +1032,9 @@ function drubiz_theme() {
       'path'            => $drubiz_path,
       'template'        => 'drubiz_ofbiz_login',
     ),
-    'sonata_contact_us_template' => array(
+    'contact_us' => array(
       'path'            => $drubiz_path,
-      'template'        => 'sonata_contact_us_template',
+      'template'        => 'contact_us',
     ),
     'sonata_privacy_policy_template' => array(
       'path'            => $drubiz_path,

@@ -1492,9 +1492,18 @@ function drubiz_view_promocode(){
   $data = json_decode($raw_json, TRUE);
   return $data;
 }
-
-function sonata_contact_us(){
-  return theme('sonata_contact_us_template');
+function save_contact_us(){
+  $client = drubiz_api_client();  
+  $response = $client->get('getcoupon?' . http_build_query(array(
+    'storeId'  => 'Globus_STORE',
+    'partyId'    => get_user_party_id(),
+  )));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  echo $data;
+}
+function hasti_contact_us(){
+  return theme('contact_us');
 }
 function sonata_privacy_policy(){
   return theme('sonata_privacy_policy_template');
