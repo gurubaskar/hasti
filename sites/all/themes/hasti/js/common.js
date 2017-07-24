@@ -1101,7 +1101,7 @@ function savePersonalInfo(){
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&data_lastName=' + encodeURIComponent(data_lastName)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
   if(data_gender != ''){
       data = data + '&data_gender=' + encodeURIComponent(data_gender);
-      alert(data);
+      // alert(data);
   }
   jQuery.ajax({
             type: "POST",
