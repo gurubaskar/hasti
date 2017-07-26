@@ -219,6 +219,9 @@ a:focus{text-decoration:none !important;}
 .row1 .video img, .row2 .video img, .row3 .video img{width:100%;}
 
 /************************* PLP starts ***********************/
+#breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:16px;}
+#breadcrumb a{padding:0 5px;}
+#breadcrumb a:first-child{padding-left:0px;}
 .plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:23%; margin-right:15px;}
 .plp .plp-left .left-wrap ul li h3{margin-bottom:10px;}
 .left-wrap{margin:0 0 0 15px; padding:0 15px 0 0;}
@@ -451,7 +454,9 @@ a:focus{text-decoration:none !important;}
 .checkout-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:300; margin-top:0;}
 .checkout-left ul{float:left; width:100%; margin-top:6px;}
 .checkout-left ul li, .myaccount-left ul li{ width:100%; float:left;}
-.checkout-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70 !important; font-weight:500; padding:9px 0; display:block;}
+.checkout-left ul li a{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
+.checkout-left ul li a:hover{color:#6d6e70;}
+.myaccount-left ul li a{font-size:15px; color:#6d6e70 !important; font-weight:500; padding:9px 0; display:block;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
 .checkout-right, .wishlist, .myorders{padding:0px 15px;}
@@ -504,7 +509,7 @@ a:focus{text-decoration:none !important;}
 .deliverybtn-wrap a{border:1px solid #00b04c; background:#00b04c; color:#fff; font-weight:bold; padding:10px 30px;}
 
 /***************************  myaccount section starts  ***************************/
-.myaccount-left h3{font-weight:400; font-size:17px; color:#6d6e70; margin-bottom:9px; margin-top:7px;}
+.myaccount-left h3{font-weight:600; font-size:17px; color:#6d6e70; margin-bottom:9px; margin-top:7px;}
 .myaccount-left > ul{padding-top:5px; width:100%; float:left;}
 .myaccount-left > ul > li{margin-bottom:12px;}
 .myaccount-left ul li a{font-weight:300; padding:6px 0; font-size:15px;}
@@ -531,7 +536,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .btns-wrap{width:100%; float:left;}
 .myaccount-right #address-book .btns-wrap{margin-top:20px; margin-bottom:15px;}
 
-.myorders .tabing-wrap{width:100%; float:left; margin-top:15px;}
+.myorders .tabing-wrap{width:100%; float:left;}
 .myorders .tabing-wrap .tabing-btns{position:relative; height: 0; border-top: 42px solid #fff; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; font-size:20px; line-height:20px; float:left;}
 .myorders .tabing-wrap .tab-active{position:relative; height: 0; border-top: 42px solid #0081c5 !important; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; color:#fff; font-size:20px; line-height:20px; float:left;}
 .myorders .tabing-wrap a{position:absolute; top:-31px; color:#000; width:auto; text-align:center; font-weight:500; width:100%;}
