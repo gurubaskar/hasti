@@ -1043,13 +1043,13 @@ function contactus(){
   if (!filter.test(email)) {
       alert("Please enter a valid email address");
       return false;
+  }  
+  if(data_phoneNumber == ''){
+    alert("Phone Number cant't be Empty");
+    return false;
   }
   if(data_msg == ''){
     alert("Massage can't be Empty");
-    return false;
-  }
-  if(data_phoneNumber == ''){
-    alert("Phone Number cant't be Empty");
     return false;
   }
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&email=' + encodeURIComponent(email)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
