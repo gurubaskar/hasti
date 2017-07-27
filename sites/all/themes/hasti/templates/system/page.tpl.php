@@ -334,7 +334,7 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('about-us')?>" alt="About Us" target="_blank"><?php echo t('About Us');?></a></li>
               <li><a href="#" alt="Press Release" target="_blank"><?php echo t('Press Release');?></a></li>
               <li><a href="#" alt="News & Events" target="_blank"><?php echo t('News & Events');?></a></li>
-              <li><a href="#" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li>            
+              <li><a href="<?php echo url('faq')?>" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li>            
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
@@ -352,8 +352,8 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('terms-of-use')?>" alt="Terms Of Use" target="_blank"><?php echo t('Terms Of Use');?></a></li>
               <li><a href="<?php echo url('privacy-policy')?>" alt="Privacy Policy" target="_blank"><?php echo t('Privacy Policy');?></a></li>
               <li><a href="#" alt="Returns Policy" target="_blank"><?php echo t('Returns Policy');?></a></li>
-              <!-- policies-->
-              <li><a href="<?php echo url('security')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
+              <!-- policies security-->
+              <li><a href="<?php echo url('policies')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
