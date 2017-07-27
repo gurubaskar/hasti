@@ -342,7 +342,7 @@ require_once 'vendor/autoload.php';
             <ul>
               <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns" target="_blank"><?php echo t('Cancellation & Returns');?></a></li>
               <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy" target="_blank"><?php echo t('Shipping Policy');?></a></li>
-              <li><a href="<?php //echo url('contact-us')?>" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
+              <li><a href="<?php echo url('contact-us')?>" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
               <li><a href="#" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
             </ul>
           </div>
