@@ -114,6 +114,7 @@ require_once 'vendor/autoload.php';
     $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
     $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
   }
+  
 ?>
 
 <div id="topnav">

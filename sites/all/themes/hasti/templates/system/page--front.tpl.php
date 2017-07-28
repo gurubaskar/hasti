@@ -82,6 +82,7 @@ require_once 'vendor/autoload.php';
 
   $drubiz_category_names = json_decode(json_decode(json_encode(variable_get('drubiz_category_names'))),true);
   $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images'));
+  
 ?>
 <div id="topnav">
   <div class="container-fluid">

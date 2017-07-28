@@ -23,7 +23,7 @@ drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 FacebookSession::setDefaultApplication( '270991780046160','ace3b2e5daa6b4e91b8286d5df890c51' );
 
 // login helper with redirect_uri
-// $helper = new FacebookRedirectLoginHelper('http://www.hasti.dev/drubiz_hasti/facebook-config.php' );
+ //$helper = new FacebookRedirectLoginHelper('http://www.hasti.dev/drubiz_hasti/facebook-config.php' );
 $helper = new FacebookRedirectLoginHelper('http://www.hastti.com/facebook-config.php');
 
 try {
@@ -40,7 +40,7 @@ if ( isset( $session ) ) {
   $response = $request->execute();
   // get response  GraphLocation::className()
   $graphObject = $response->getGraphObject(GraphUser::className());
-   	$fbid = $graphObject->getProperty('id');              // To Get Facebook ID
+  $fbid = $graphObject->getProperty('id');              // To Get Facebook ID
 	  $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
     $fbemail = $graphObject->getProperty('email');    // To Get Facebook email ID
 
@@ -55,8 +55,8 @@ if ( isset( $session ) ) {
     //call cack for offbiz service
     $responseData = fb_google_api_login_request($fbfirstname,$fblastname,$fbemail,$gender);
     /* ---- header location after session ----*/
- //   header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
-  header("Location: http://www.hastti.com/index.php");
+ //header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
+   header("Location: http://www.hastti.com/index.php");
 } else {
   $loginUrl = $helper->getLoginUrl(array(
    'scope' => 'email'

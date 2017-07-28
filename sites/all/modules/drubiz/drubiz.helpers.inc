@@ -61,12 +61,13 @@ function fb_google_api_login_request($fname,$lname,$email,$gender){
   //https://localhost:8443/eCommerceFacebookLoginResponse?isFBLogin=connected&fbEmail=induspro9@gmail.com&fbFirst_name=Indu&fbLast_name=S&fbGender=F
   $endpoint = 'eCommerceFacebookLoginResponse';
   $client = drubiz_api_client();
+  $fbgender = strtoupper(substr( $gender, 0, 1));
   $params = array(
     'isFBLogin'     => 'connected',
     'fbEmail'       => $email,
     'fbFirst_name'  => $fname,
     'fbLast_name'   => $lname,
-    'fbGender'      => $gender,
+    'fbGender'      => $fbgender,
    //'partyId'        => get_user_party_id(),
   );
   $fbresponse = $client->get($endpoint.'?'. http_build_query($params));
