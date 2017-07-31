@@ -459,6 +459,12 @@ a:focus{text-decoration:none !important;}
 .bottomimg-wrap .img-box p{padding-top:20px; font-size:16px; color:#000;}
 
 /****************************  Check out starts  *************************/
+.contact-left, .myaccount-left{background:#eaeaea; height:100%; float:left; padding:25px 30px 25px 30px !important;}
+.contact-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:normal; margin-top:0;}
+.pcontact-left ul{float:left; width:100%; margin-top:6px;}
+.contact-left ul li, .myaccount-left ul li{ width:100%; float:left;}
+.contact-left ul li a, .myaccount-left ul li a{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
+
 .myaccount-left{background:#eaeaea; height:100%; float:left; padding:25px 30px 25px 30px !important;}
 .policy-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:normal; margin-top:0;}
 .policy-left ul{float:left; width:100%; margin-top:6px;}

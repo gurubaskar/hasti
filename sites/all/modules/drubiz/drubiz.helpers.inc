@@ -158,20 +158,20 @@ function drubiz_change_password($current_password, $new_password) {
 /**
  * Idempotently import data from Excel spreadsheet.
  */
-function drubiz_import_data($xls_files,$flag=false) {  
-  variable_del('drubiz_category_tree');
+function drubiz_import_data($xls_files,$flag=false) {
+ variable_del('drubiz_category_tree');
   variable_del('drubiz_category_parents');
   variable_del('drubiz_category_names');
   variable_del('drubiz_subcategory_images');
 
-//$status = json_decode(variable_get('status'));
-  // print_r($xls_files);//exit;
+//$status = json_decode(variable_get('satus'));
+  print_r($xls_files);//exit;
   $debug = array();
   foreach ($xls_files as $catalog_name => $xls_file) {
-    //echo DRUBIZ_IMPORT_LONG_DELIMITER . PHP_EOL;
+    echo DRUBIZ_IMPORT_LONG_DELIMITER . PHP_EOL;
     $debug[] = "Reading XLS data ($xls_file)...";
     $xls = PHPExcel_IOFactory::load($xls_file);
-    //echo " DONE!" . PHP_EOL;
+    echo " DONE!" . PHP_EOL;
 
     // Get worksheet dimensions
     $data = array();
@@ -707,23 +707,13 @@ function drubiz_import_data($xls_files,$flag=false) {
     $output = print_r(compact('errors', 'warnings', 'oks'), 1) . PHP_EOL;
     file_put_contents('errors_warnings_' . $catalog_name . '.log', print_r(compact('output', 'final_products'), 1));
   }
-  $impresponse = array();
+
   // Done! :)
   //echo "IMPORT COMPLETE!" . PHP_EOL;
   if($flag){
-    // get the avriable get 
-    $impresponse =  json_decode(variable_get('import_file_response'),true);
-    if(count($errors) > 0 ) {
-      $impresponse['error'] = $errors;
-      $impresponse['importstatus'] = 'FAILED';
-    }else {
-      $impresponse['error'] = array();
-      $impresponse['importstatus'] = 'COMPLETED';
-    }
-    variable_set('import_file_response',json_encode($impresponse));
+    return json_encode($output);
   }
 }
-
 /**
  * Data Import Helpers
  */
