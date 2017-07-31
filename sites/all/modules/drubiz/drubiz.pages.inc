@@ -169,6 +169,14 @@ function drubiz_checkout_final() {
 * callback for Import data 
 */
 function import_data(){
+  //$file_name = $_GET['filename'];
+  $file_name = 'drubiz_data/catalog_hasti.xls';
+  $xls_files = array(
+    'hasti'   => $file_name,
+  );
+  drubiz_import_data($xls_files,flag==true);
+}
+/*function import_data(){
   // delete from variable
   variable_del('import_data_filename');
   $file_name = $_GET['filename'];
@@ -187,8 +195,8 @@ function import_data(){
         header( "HTTP/1.1 202 accepted" );
         $response['status'] = 'accepted';
     } else {
-      // set the status in     
-      // reset all the values filename , status
+      //set the status in     
+      //reset all the values filename , status
       $status = array(
         'status' => 'accepted',
         'filename'=>$file_name,
@@ -206,9 +214,9 @@ function import_data(){
     $response['status'] = 'Running';
   }
   variable_set('import_file_response',json_encode($response));
-  echo json_encode($response);
+  echo json_encode($response);  
   exit;  
-}
+}*/
 /**
  * Page callback for /send-otp
  */
