@@ -67,7 +67,7 @@ a:focus{text-decoration:none !important;}
 #header .search .ui-input-text{width:auto !important; float:right;}
 #header .search .searchSubmit{float:right; position:absolute; right:20px;}
 #header .search input[type="text"]{border-top:0; border-right:0; border-left:1px solid #000; border-bottom:1px solid #000; padding:5px; margin-right:4px; float:right; width:250px; margin-left:5px; position:relative; color:#231f20;}
-#header .search #solr-suggestions{position:absolute; width:69%; float:right; background:#fff; top:51px; border:1px solid #d3d2d2; z-index:1; right:23px; border-top:0;}
+#header .search #solr-suggestions{position:absolute; width:250px; float:right; background:#fff; top:51px; border:1px solid #d3d2d2; z-index:1; right:24px; border-top:0;}
 #header .search #solr-suggestions a{padding:7px;  margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:300; float:left; width:98.5%;}
 #header .search #solr-suggestions a:hover{background:#00b04c; color:#fff;}
 #header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px; position:relative;}
