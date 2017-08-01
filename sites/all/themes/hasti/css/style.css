@@ -211,7 +211,7 @@ a:focus{text-decoration:none !important;}
     }
 /************************* Home page ************************/
 #homepage .story-wrap{width:100%; float:left; background:#f1f1f2; padding:20px; margin:15px 0;}
-#homepage .story-wrap h3{font-size:30px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-bottom:15px;}
+#homepage .story-wrap h3{font-size:30px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-top:0; margin-bottom:15px;}
 #homepage .story-wrap p{font-size:15px; color:#929497; line-height:25px; margin:0;}
 #homepage .story-wrap p .more{font-size:16px; font-weight:bold; margin-left:20px;}
 #homepage .story-wrap p a{color:#929497;}
@@ -283,7 +283,7 @@ a:focus{text-decoration:none !important;}
 .disabled{background:#E8E8E8 !important; color:#bababa !important;}
 .disabled-text{color:#bababa !important;}
 /************************* PDP starts ***********************/
-.pdp .breadcrumb{background:none; z-index:-1;}
+.pdp .breadcrumb, #breadcrumb .breadcrumb{background:none !important; z-index:-1; padding:0;}
 .pdp .breadcrumb h3{margin-bottom:0; margin-top:0; padding-top:0;}
 /*.pdp  .pdp-left{margin-bottom:20px; z-index:-1;}*/
 .pdp .pdp-left .zoom-wrap ul.pdpList{float:left; width:100%;}
