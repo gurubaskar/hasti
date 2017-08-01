@@ -841,6 +841,14 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  $items['drubiz/ccavenue'] = array(
+    'title'             => 'ccavenue',
+    'description'       => "ccavenue",
+    'page callback'     => 'online_payment',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
   return $items;
 }
 
