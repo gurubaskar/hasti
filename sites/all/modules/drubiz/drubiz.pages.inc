@@ -377,6 +377,7 @@ function drubiz_add_address() {
     $response = $client->get($endpoint . '?' . http_build_query($params));
     $raw_json = $response->getBody();
     $data = json_decode($raw_json, TRUE);
+    toCheckSession($data);
     watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
     echo json_encode($data);
   }
@@ -438,20 +439,33 @@ function drubiz_user_change_password() {
   // $update_password = drubiz_change_password($current_password, $new_password);
 
   $client = drubiz_api_client();
-  $request = 'validateCustomerPasswordResponse?' . http_build_query(array(
-    'partyId'         => get_user_party_id(),
+  $endpoint = 'validateCustomerPasswordResponse';
+  $params = array(
+      'partyId'         => get_user_party_id(),
     'productStoreId'  => 'WOI_STORE',
     'USERNAME'        => $user->mail,
     'CUSTOMER_EMAIL'  => $user->mail,
     'OLD_PASSWORD'    => $current_password,
     'PASSWORD'        => $new_password,
     'CONFIRM_PASSWORD' => $new_password,
-  ));
-  $response = $client->get($request);
+  );
+  // $request = 'validateCustomerPasswordResponse?' . http_build_query(array(
+  //   'partyId'         => get_user_party_id(),
+  //   'productStoreId'  => 'WOI_STORE',
+  //   'USERNAME'        => $user->mail,
+  //   'CUSTOMER_EMAIL'  => $user->mail,
+  //   'OLD_PASSWORD'    => $current_password,
+  //   'PASSWORD'        => $new_password,
+  //   'CONFIRM_PASSWORD' => $new_password,
+  // ));
+  // $response = $client->get($request);
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
-
+  toCheckSession($data);
   if($data['isError'] == 'false') {
     $return['error_messages'][] = $data['_EVENT_MESSAGE_'];
   } else {
@@ -754,6 +768,7 @@ function drubiz_cancel_order() {
       $response = $client->get($endpoint . '?' . http_build_query($params));
       $raw_json =  $response->getBody();
       $data = json_decode($raw_json, TRUE);
+      toCheckSession($data);
       watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
       echo json_encode($data);
 }
@@ -820,6 +835,7 @@ function reorderItem() {
   }*/
 
   $data = json_decode($raw_json, TRUE);
+  toCheckSession($data);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data','f','response','g','z'), 1) . '</pre>');
   echo json_encode($data);
 }
@@ -1184,13 +1200,29 @@ function order_details($order_id) {
 
 function myorder_details($order_id) {
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceOrderDetailNew?' . http_build_query(array(
-    'partyId'         => get_user_party_id(),
-    'orderId'         => $order_id,
-  )));
+  $endpoint = 'eCommerceOrderDetailNew';
+  $params = array(
+      'partyId' => get_user_party_id(),
+      'orderId' =>$order_id,
+  );
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+
+  // $jsessionid = get_user_jsessionid();
+      // $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+
+  // $response = $client->get('eCommerceOrderDetailNew?' . http_build_query(array(
+  //   'partyId'         => get_user_party_id(),
+  //   'orderId'         => $order_id,
+  // )));
 
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','endpoint'), 1) . '</pre>');
+  // toCheckSession($data);
   return $data;
 }
 /**
@@ -1251,11 +1283,22 @@ function myaccount_change_userinfo(){
 
 function myaccount_love_list(){
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceShowWishListResponse?' . http_build_query(array(
+  $endpoint = 'eCommerceShowWishListResponse';
+  // $response = $client->get('eCommerceShowWishListResponse?' . http_build_query(array(
+  //   'partyId'         => get_user_party_id(),
+  // )));
+  $params = array(
     'partyId'         => get_user_party_id(),
-  )));
+  );
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $wishlist = json_decode($raw_json, TRUE);
+  toCheckSession($wishlist);
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','endpoint'), 1) . '</pre>');
   return theme('myaccount_love_list',array('wishlist' => $wishlist));
 }
 
@@ -1580,6 +1623,7 @@ function myaccount_return_order($orderId) {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  toCheckSession($data);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'request', 'data'), 1) . '</pre>');
   // echo json_encode($data);
   return theme('myaccount_return_order',array('order'=>$data)); 
@@ -1598,6 +1642,7 @@ function myaccount_review_rating() {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  toCheckSession($data);
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'data'), 1) . '</pre>');
   return theme('myaccount_review_rating',array("review"=>$data));
 }

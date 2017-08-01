@@ -1298,11 +1298,22 @@ function get_user_orders() {
 function get_user_profile() {
   // /eCommerceEditCustomerInfoNew?partyId=10010
   $client = drubiz_api_client();
-  $response = $client->get('eCommerceEditGetPersonalInfo?' . http_build_query(array(
-    'partyId' => get_user_party_id(),
-  )));
+  $endpoint = 'eCommerceEditGetPersonalInfo';
+  $params = array(
+      'partyId' => get_user_party_id(),
+  );
+  // $response = $client->get('eCommerceEditGetPersonalInfo?' . http_build_query(array(
+  //   'partyId' => get_user_party_id(),
+  // )));
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  toCheckSession($data);
+  // watchdog(__FUNCTION__, print_r(compact('data'), 1));
   return $data;
 }
 
@@ -1331,11 +1342,20 @@ function ofbiz_login($username, $password) {
 function get_user_addresses() {
   // /multiPageCustomerAddressNew?partyId=10010
   $client = drubiz_api_client();
-  $response = $client->get('displayPostalAddress?' . http_build_query(array(
-    'partyId' => get_user_party_id(),
-  )));
+  $endpoint = 'displayPostalAddress';
+  $params = array(
+      'partyId' => get_user_party_id(),
+  );
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+
+  // $response = $client->get('displayPostalAddress?' . http_build_query(array(
+  //   'partyId' => get_user_party_id(),
+  // )));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  toCheckSession($data);
   return $data;
 }
 
@@ -1473,3 +1493,26 @@ function drubiz_user_is_demo_administrator($uid = NULL) {
 function drubiz_demo_password($email) {
   return sha1("drubiz_demo_{$email}");
 }
+
+function toCheckSession($data) {
+// if(!isset($data['isNewSession']) || $data['isNewSession'] != 1 || $data['isNewSession'] == '') {
+  // var_dump(!empty($data['isNewSession']));
+  if($data['isNewSession']) {
+  // drupal_set_message("userlogged in -bas");
+  //   // return $data;
+  // } else {
+//   echo '<script language="javascript">';
+// echo 'alert("message successfully sent")';
+// echo '</script>';
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('data'), 1) . '</pre>');
+     module_load_include('pages.inc', 'user');
+
+     user_logout();
+     drubiz_user_logout();
+    drupal_set_message("userlogged out");
+    drupal_goto();
+   }
+}
+
+
+
