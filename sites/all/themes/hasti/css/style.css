@@ -76,7 +76,7 @@ a:focus{text-decoration:none !important;}
 #header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:20px;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
 #navbar{margin-bottom:0px;}
-#navbar a.logo{margin:0;}
+#navbar a.logo{margin:5px 0 0 0;}
 #navbar img{float:left;}
 /*#navbar .navbar-btn{margin-top:5px; margin-bottom:0;}*/
 .menu{float:left; margin-top:29px; margin-left:20px;}
@@ -225,7 +225,7 @@ a:focus{text-decoration:none !important;}
 #breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:16px;}
 #breadcrumb a{padding:0 5px;}
 #breadcrumb a:first-child{padding-left:0px;}
-.plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:23%; margin-right:15px;}
+.plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:100%; margin-right:15px;}
 .plp .plp-left .left-wrap ul li h3{margin-bottom:10px;}
 .left-wrap{margin:0 0 0 15px; padding:0 15px 0 0;}
 .left-wrap h3, .breadcrumb h3{font-family:inherit; font-size:16px; color:#0081c5; font-weight:normal; padding-top:10px; margin-bottom:28px;}
@@ -424,7 +424,7 @@ a:focus{text-decoration:none !important;}
 
 /************************* CART starts ***********************/
 .heading-bar{position:relative; height: 0; border-top: 42px solid #0081c5; border-right: 42px solid transparent; padding:7px 20px; width:100%; display:block; margin:35px 0 0px 0; color:#fff; font-size:20px; line-height:20px;}
-.heading-bar h2{position:absolute; top:-31px; margin-top:0; margin-bottom:0; font-weight:normal; line-height:14px; font-size:20px;}
+.heading-bar h2{position:absolute; top:-27px; margin-top:0; margin-bottom:0; font-weight:normal; line-height:14px; font-size:20px;}
 .cartbox, .addressbox, .outerbox{width:100%; float:left; border:1px solid #d3d2d2; padding:15px 25px 20px 25px; margin-bottom:10px;}
 #cart .heading-bar{margin:0;}
 .cartbox .img-wrap img{width:150px;}
@@ -475,7 +475,7 @@ a:focus{text-decoration:none !important;}
 .checkout-left h2, .myaccount-left h2{font-size:25px; color:#6d6e70; font-weight:300; margin-top:0;}
 .checkout-left ul{float:left; width:100%; margin-top:6px;}
 .checkout-left ul li, .myaccount-left ul li{ width:100%; float:left;}
-.checkout-left ul li a{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
+.checkout-left ul li a, .checkout-left ul li span{font-size:15px; color:#6d6e70; font-weight:500; padding:9px 0; display:block;}
 .checkout-left ul li a:hover{color:#6d6e70;}
 .myaccount-left ul li a{font-size:15px; color:#6d6e70 !important; font-weight:500; padding:9px 0; display:block;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
@@ -490,9 +490,9 @@ a:focus{text-decoration:none !important;}
 .checkout-right .forgot-pwd{width:100%; float:left; font-weight:bold; padding-top:10px; font-weight:bold; font-size:15px;}
 .checkout-right .forgot-pwd a{color:#000;}
 .checkout-right .facebook{width:75%; float:left; background:#456198; text-align:center; font-weight:normal; font-size:14px; margin:20px 0 10px 0 !important; padding:5px 0;}
-.checkout-right .facebook a{background:url('./../images/main-img.png') no-repeat 0px -7px; position: relative; padding: 6px; width: 96% !important; float: left; color:#fff; font-weight:normal;}
+.checkout-right .facebook a{background:url('./../images/main-img.png') no-repeat 0px -7px; position: relative; padding: 6px; width: 96% !important; float: left; color:#fff !important; font-weight:normal;}
 .checkout-right .google{width:75%; float:left; background:#e34c3c; text-align:center; font-weight:normal; font-size:14px; margin:5px 0 10px 0 !important; padding:5px 0;}
-.checkout-right .google a{background:url('./../images/main-img.png') no-repeat 0px -105px; position: relative; padding: 6px; width: 96% !important; float: left; color:#fff; font-weight:normal;}
+.checkout-right .google a{background:url('./../images/main-img.png') no-repeat 0px -105px; position: relative; padding: 6px; width: 96% !important; float: left; color:#fff !important; font-weight:normal;}
 .checkout-right .facebook a:hover, .checkout-right .google a:hover{color:#fff;}
 .checkout-right h3.signup{margin-top:25px;}
 .checkout-right .heading-bar{margin-top:0;}
@@ -556,6 +556,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .addressbox .edit-address .update{background:none;}
 .myaccount-right .btns-wrap{width:100%; float:left;}
 .myaccount-right #address-book .btns-wrap{margin-top:20px; margin-bottom:15px;}
+.myaccount-right .addressbox .edit-address span.basic-btn{margin-top:15px; padding:6px; font-size:14px; float:left; line-height:20px;}
 
 .myorders .tabing-wrap{width:100%; float:left;}
 .myorders .tabing-wrap .tabing-btns{position:relative; height: 0; border-top: 42px solid #fff; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; font-size:20px; line-height:20px; float:left;}
@@ -593,7 +594,7 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
 
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
@@ -614,6 +615,8 @@ a:focus{text-decoration:none !important;}
 
 .myaccount-right .reviewRatings{width:100%; float:left;}
 .myaccount-right .reviewRatings tbody td{vertical-align:middle;}
+
+.myorders #eCommerceOrderDetail, .myorders #eCommerceOrderDetail .orderDetailShippingGroup{float:left; width:100%;}
 
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
@@ -640,7 +643,7 @@ a:focus{text-decoration:none !important;}
 .signin h3, #changepwd h3{font-size:30px; font-weight:300;}
 .signin input[type="text"], #changepwd input[type="password"]{width:100%; border-radius:0; background:#fff; color:#6d6e70; margin:15px 0 7px 0; padding:10px;}
 .remember{background:url('./../images/main-img.png') no-repeat -4px -502px; position:relative; padding:11px; width:378px !important; float:left; margin-top:10px;}
-.ui-popup.signin a, .ui-popup.signin a:hover{color:#fff; text-decoration:none; font-weight:normal;}
+.ui-popup.signin a, .ui-popup.signin a:hover{color:#fff !important; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:30px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
 .signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 7px; margin:25px 0 15px 0;}
