@@ -226,7 +226,7 @@ require_once 'vendor/autoload.php';
             <!-- <fieldset class="formstyle" title="Search this site..."> -->
               <div id="searchContainer" class="targetMobile" style="display: block;">
                 <div id="searchField">
-                  <input type="text" placeholder="<?php echo t('search website');?>" name="searchText" id="searchText" class="ui-autocomplete-input" autocomplete="on">
+                  <input type="text" placeholder="<?php echo t('search website');?>" name="searchText" id="searchText" class="ui-autocomplete-input" autocomplete="off">
                   <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
                   <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
                 </div>

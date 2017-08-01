@@ -82,7 +82,7 @@ function drubiz_search_suggest() {
   else {
     foreach ($results as $result) {
       $return[] = array(
-        'label' => "<a><div class=\"apachesolr_autocomplete suggestion\" style=\"float: none;\">$result</div><div class='apachesolr_autocomplete message' style='float:right'></div><br style='clear:both'></a>",
+        'label' => "<a><div class=\"apachesolr_autocomplete suggestion\" style=\"float: none;\">$result</div></a>",
         'value' => $result,
       );
     }

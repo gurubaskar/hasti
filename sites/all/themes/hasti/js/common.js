@@ -135,9 +135,9 @@ $(document).ready(function () {
                   for (key in data) {
                     //alert(data[key].value);
                     var label = data[key].label.replace('<a>', '<a href="' + Drupal.settings.basePath + 'search/site/' + data[key].value + '">');
-                    label = label.
-                      replace("<br style='clear:both'>", '').
-                      replace('</a>', "<br style='clear:both'><br style='clear:both'></a>"); //.
+                    // label = label.
+                    //   replace("<br style='clear:both'>", '').
+                    //   replace('</a>', "<br style='clear:both'><br style='clear:both'></a>"); //.
                       //replace(/count'>([0-9]+)<\/div>/g, 'count\'>$1 results</div>');
                     $('#solr-suggestions').append(label);
                     if (++count > 5) break;
