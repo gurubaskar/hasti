@@ -22,7 +22,7 @@
           <?php if($addr['isDefaultShipAddr'] == false) {?>
           <a href="#"><span class="setdefault-address" data-contactMechId="<?php echo $addr['contactMechId'] ;?>">Set As Default</span></a>
           <?php } else { ?>
-            Default Address
+            <span class="basic-btn">Default Address</span>
           <?php } ?>
         </div>
       </div>
