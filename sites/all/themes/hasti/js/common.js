@@ -775,6 +775,16 @@ function openPaymentMethod() {
  jQuery("#orderSummary").addClass("active-img");
  jQuery("#deliveryAddress").addClass("active-img");
 
+ jQuery('#paymentOption').show();
+ jQuery('#sendOTP').hide();
+ jQuery('#displayOTP').hide();
+ jQuery('#placeOrderOTP').hide();
+ jQuery('#onlineProceed').hide();
+ jQuery('#COD').prop('checked', false);
+ jQuery('#Online').prop('checked', false);
+ jQuery('#OTPValue').val("");
+
+
  jQuery('li a').removeClass("active");
  jQuery('#paymentMethod').addClass('active');
 }
