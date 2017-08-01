@@ -296,7 +296,7 @@ require_once 'vendor/autoload.php';
     <div id="breadcrumb">
        <div class="container-fluid">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <?php echo  $breadcrumbList.$product->product_name;?>
+            <?php echo  $breadcrumbList.'&nbsp;'.$product->product_name;?>
           </div>
         </div>
     </div>

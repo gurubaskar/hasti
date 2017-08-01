@@ -280,8 +280,8 @@ require_once 'vendor/autoload.php';
       <!-- </div> -->
        <?php //endif; ?>
       <!-- <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right"> -->
-<div id="content">
-    <div class="container-fluid">
+<!-- <div id="content"> -->
+    <!-- <div class="container-fluid"> -->
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12" id="homepage">
           <div class="col-xs-12 col-sm-12 col-md-12">
@@ -371,10 +371,10 @@ require_once 'vendor/autoload.php';
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 
       <!-- </div>       -->
-    </div>
+    <!-- </div> -->
   </div>
  
 <!-- Footer -->
