@@ -1,5 +1,7 @@
-<div class="col-xs-12 col-sm-4 col-md-3 myaccount-left">
-  <?php echo theme('myaccount_menu_links'); ?>
+<div class="col-xs-12 col-sm-4 col-md-3">
+  <div class=" myaccount-left">
+    <?php echo theme('myaccount_menu_links'); ?>
+  </div>
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
   <div class="col-xs-12 col-sm-12 col-md-12" id="address-book">
