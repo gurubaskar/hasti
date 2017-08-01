@@ -285,18 +285,32 @@ require_once 'vendor/autoload.php';
   <?php if ($breadcrumb):
     if(arg(0) != "node") {
   ?>
-    <div id="breadcrumb"><?php print clean_breadcrumb($breadcrumb); ?></div>
+    <div id="breadcrumb">
+       <div class="container-fluid">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <?php print clean_breadcrumb($breadcrumb); ?>
+          </div>
+        </div>
+    </div>
     <?php } else { ?>
-    <div id="breadcrumb"><?php echo  $breadcrumbList.$product->product_name;?></div>
+    <div id="breadcrumb">
+       <div class="container-fluid">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <?php echo  $breadcrumbList.$product->product_name;?>
+          </div>
+        </div>
+    </div>
   <?php } endif; ?>
   <div id="content" class="plp">
     <div class="container-fluid">
       <?php if ($search_filter_sidebar): ?>
-          <div class="col-xs-0 col-sm-3 col-md-3 plp-left">
+          <div class="col-xs-0 col-sm-3 col-md-3">
+            <div class="plp-left">
             <div class="left-wrap">
               <ul>
                 <?php echo render($page['search_filter_sidebar']) ?>
               </ul>
+            </div>
             </div>
           </div>
 

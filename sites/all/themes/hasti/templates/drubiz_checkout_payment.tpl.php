@@ -5,25 +5,27 @@ if(!empty($_GET['from'])) {
 }
 ?>
 <input type="hidden" id="from" value="<?php echo $from;?>" />
-<div class="col-xs-12 col-sm-4 col-md-3 checkout-left">
-<h2>Placing Order</h2>
-<ul>
-  <?php if($GLOBALS['user']->uid != 0) {?>
-    <li><a href="#" onclick="openLogin();" class="active-img">Login Details</a></li>
-    <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="tickimg">Order Summary</a></li>
-    <li><a id="deliveryAddress" href="#" onclick="openDeliveryAddress();" class="tickimg">Delivery Address</a></li>
-    <?php if(count($addresses['postalAddressList']) > 0) {?>
-      <li><a id="paymentMethod" href="#" onclick="openPaymentMethod();" class="tickimg">Payment Method</a></li>
-    <?php } else { ?>
-      <li><a id="" href="#" class="disabled">Payment Method</a></li>
-    <?php } ?>
-  <?php } else { ?>
-    <li><a href="#checkout-login">Sign In</a></li>
-    <li><a href="" class="disabled">Order Summary</a></li>
-    <li><a href="" class="disabled">Delivery Address</a></li>
-    <li><a href="" class="disabled">Payment Method</a></li>
-  <?php } ?>
-</ul>
+<div class="col-xs-12 col-sm-4 col-md-3">
+  <div class="checkout-left">
+    <h2>Placing Order</h2>
+    <ul>
+      <?php if($GLOBALS['user']->uid != 0) {?>
+        <li><a href="#" onclick="openLogin();" class="active-img">Login Details</a></li>
+        <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="tickimg">Order Summary</a></li>
+        <li><a id="deliveryAddress" href="#" onclick="openDeliveryAddress();" class="tickimg">Delivery Address</a></li>
+        <?php if(count($addresses['postalAddressList']) > 0) {?>
+          <li><a id="paymentMethod" href="#" onclick="openPaymentMethod();" class="tickimg">Payment Method</a></li>
+        <?php } else { ?>
+          <li><a id="" href="#" class="disabled">Payment Method</a></li>
+        <?php } ?>
+      <?php } else { ?>
+        <li><a class="active" href="#checkout-login">Sign In</a></li>
+        <li><span>Order Summary</span></li>
+        <li><span>Delivery Address</span></li>
+        <li><span>Payment Method</span></li>
+      <?php } ?>
+    </ul>
+  </div>
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 checkout-right">
   <div id="checkout-login" class="">
