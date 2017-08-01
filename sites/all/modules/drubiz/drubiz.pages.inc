@@ -221,19 +221,18 @@ function import_data(){
  * Page callback for /send-otp
  */
 function drubiz_send_otp() {
+  $endpoint = 'sendOTP';
   $jsessionid = get_user_jsessionid();
   if (!empty($jsessionid)) {
     $endpoint .= (';jsessionid=' . urlencode($jsessionid));
   }
-  $endpoint = 'sendOTP';
-  
   $client = drubiz_api_client();
   $response = $client->get($endpoint);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
 
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
-
+  toCheckSession($data);
   echo json_encode($data);
 }
 
@@ -241,6 +240,7 @@ function drubiz_send_otp() {
  * Page callback for /validate-otp
  */
 function drubiz_validate_otp() {
+  $endpoint = 'validateOTP';
    $params = array(
     'otp' =>  $_POST['otp'],
   );
@@ -249,20 +249,18 @@ function drubiz_validate_otp() {
     $endpoint .= (';jsessionid=' . urlencode($jsessionid));
   }
   
-  $endpoint = 'validateOTP';
-  
   $client = drubiz_api_client();
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
 
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
-
-  if($data['isNewSession'] == 'false' or $data['isNewSession'] == 0) {
-    echo json_encode($data);
-  } else {
-    drupal_goto('user/logout');
-  }
+  toCheckSession($data);
+  // if($data['isNewSession'] == 'false' or $data['isNewSession'] == 0) {
+  echo json_encode($data);
+  // } else {
+  //   drupal_goto('user/logout');
+  // }
 }
 
 function getState() {
@@ -387,13 +385,13 @@ function drubiz_add_address() {
  * Page callback for /checkout-payment
  */
 function drubiz_checkout_payment() {
-  $client = drubiz_api_client();
-  $response = $client->get('partyStoreCreditPayment?'. http_build_query(array(
+  // $client = drubiz_api_client();
+  // $response = $client->get('partyStoreCreditPayment?'. http_build_query(array(
 
-  )));
-  $raw_json = $response->getBody();
-  $storeCredit = json_decode($raw_json,TRUE);
-return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'storeCredit' => $storeCredit,'addresses'=>get_user_addresses()));
+  // )));
+  // $raw_json = $response->getBody();
+  // $storeCredit = json_decode($raw_json,TRUE);
+return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'addresses'=>get_user_addresses()));
 }
 
 /**

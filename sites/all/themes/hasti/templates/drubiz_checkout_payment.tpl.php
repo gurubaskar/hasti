@@ -39,7 +39,7 @@ if(!empty($_GET['from'])) {
           <h3>Sign In</h3>
           <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
             <input type="text" placeholder="* User Name" id="" name="USERNAME">
-            <input type="text" placeholder="* Password" id="" name="PASSWORD">
+            <input type="password" placeholder="* Password" id="" name="PASSWORD">
             <span class="remember"><a href="#">Remember Me</a></span>
           </form>
           <div class="checkoutbtn-wrap">
@@ -183,7 +183,7 @@ if(!empty($_GET['from'])) {
               <a href="#" class="sendOTP">Send OTP</a>
             </div>
             <div class="displayOTP" id="displayOTP" style="display: none;">
-              <input type="text" name="OTPValue" id="OTPValue">
+              <input type="text" name="OTPValue" id="OTPValue" maxlength="6">
               <div class="btns-wrap">
               <?php $grandTotal = get_user_cart();?>
                 <p>Amount payable at the time of delivery <b>₹. <?php echo $grandTotal['orderGrandTotal'];?></b></p>
