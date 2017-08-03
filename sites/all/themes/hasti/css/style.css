@@ -68,7 +68,7 @@ a:focus{text-decoration:none !important;}
 #header .search .searchSubmit{float:right; position:absolute; right:20px;}
 #header .search input[type="text"]{border-top:0; border-right:0; border-left:1px solid #000; border-bottom:1px solid #000; padding:5px; margin-right:4px; float:right; width:250px; margin-left:5px; position:relative; color:#231f20;}
 #header .search #solr-suggestions{position:absolute; width:250px; float:right; background:#fff; top:51px; border:1px solid #d3d2d2; z-index:1; right:24px; border-top:0;}
-#header .search #solr-suggestions a{padding:7px;  margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:300; float:left; width:98.5%;}
+#header .search #solr-suggestions a{padding:4px 7px;  margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:300; float:left; width:98.5%;}
 #header .search #solr-suggestions a:hover{background:#00b04c; color:#fff;}
 #header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px; position:relative;}
 #header .cart a{position:absolute; opacity:0.7; right:-6px; top:3px; width:19px; height:19px; border-radius:50px; background-color:#009989;}
@@ -211,6 +211,7 @@ a:focus{text-decoration:none !important;}
     }
 /************************* Home page ************************/
 #homepage .story-wrap{width:100%; float:left; background:#f1f1f2; padding:20px; margin:15px 0;}
+#homepage .story-wrap:first-child{margin:0 0 15px 0;}
 #homepage .story-wrap h3{font-size:30px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-top:0; margin-bottom:15px;}
 #homepage .story-wrap p{font-size:15px; color:#929497; line-height:25px; margin:0;}
 #homepage .story-wrap p .more{font-size:16px; font-weight:bold; margin-left:20px;}
@@ -283,7 +284,7 @@ a:focus{text-decoration:none !important;}
 .disabled{background:#E8E8E8 !important; color:#bababa !important;}
 .disabled-text{color:#bababa !important;}
 /************************* PDP starts ***********************/
-.pdp .breadcrumb, #breadcrumb .breadcrumb{background:none !important; z-index:-1; padding:0;}
+.pdp .breadcrumb, #breadcrumb .breadcrumb{background:none !important; z-index:-1; padding:0; margin-bottom:0;}
 .pdp .breadcrumb h3{margin-bottom:0; margin-top:0; padding-top:0;}
 /*.pdp  .pdp-left{margin-bottom:20px; z-index:-1;}*/
 .pdp .pdp-left .zoom-wrap ul.pdpList{float:left; width:100%;}
@@ -483,6 +484,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right, .wishlist, .myorders{padding:0px 15px;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
+.checkout-right input[type="text"]:first-child, .checkout-right input[type="password"]:first-child{margin:0px 0 10px 0;}
 .checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -540px; padding:11px; float:left; width:100%;}
 .checkout-right .remember a{padding-left:25px; font-weight:normal; font-size:15px; color:#6d6e70;}
 .checkout-right .checkoutbtn-wrap{margin:25px 0; float:left; width:100%;}
@@ -519,7 +521,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right #delivery-address .btns-wrap .buy-now{float:left;}
 .checkout-right .address .phno span, .checkout-right .address .phno label{font-size:14px; width:auto; float:left; color:#6d6e70; font-weight:normal;}
 .checkout-right #signInForm>div.ui-input-text, .checkout-right #signUpForm>div.ui-input-text{width:100% !important; float:left;}
-.checkout-right .checkoutbtn-wrap .ui-btn{border:none; box-shadow:none; text-align:inherit !important;}
+.checkout-right .checkoutbtn-wrap .ui-btn{border:none; box-shadow:none; text-align:inherit !important; cursor:default;}
 .checkout-right .payment-method #paymentOption{width:100%; float:left;}
 .checkout-right .displayOTP .ui-input-text{width:100% !important; float:left;}
 .payment-method .btns-wrap{width:100%; float:left; margin-top:20px;}
@@ -528,6 +530,7 @@ a:focus{text-decoration:none !important;}
 .active-img{background:url('./../images/main-img.png') no-repeat 125px -540px; padding:13px 44px 8px 0; display:block; margin:0; width:auto;}
 .deliverybtn-wrap{margin:20px 0;}
 .deliverybtn-wrap a{border:1px solid #00b04c; background:#00b04c; color:#fff; font-weight:bold; padding:10px 30px;}
+#cart .details-right{margin-top:5px;}
 
 /***************************  myaccount section starts  ***************************/
 .myaccount-left h3{font-weight:600; font-size:17px; color:#6d6e70; margin-bottom:9px; margin-top:7px;}
@@ -557,6 +560,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .btns-wrap{width:100%; float:left;}
 .myaccount-right #address-book .btns-wrap{margin-top:20px; margin-bottom:15px;}
 .myaccount-right .addressbox .edit-address span.basic-btn{margin-top:15px; padding:6px; font-size:14px; float:left; line-height:20px;}
+.myaccount-right>.col-xs-12.col-sm-12.col-md-12, .checkout-right{padding:0 !important;}
 
 .myorders .tabing-wrap{width:100%; float:left;}
 .myorders .tabing-wrap .tabing-btns{position:relative; height: 0; border-top: 42px solid #fff; border-right: 42px solid transparent; padding:7px 20px; width:50%; display:block; margin:0; font-size:20px; line-height:20px; float:left;}
@@ -893,7 +897,7 @@ a:focus{text-decoration:none !important;}
     .plp-right{width:69% !important;}
     .plp-right .col-sm-4{width:49.5%;}
     .plp-right .col-sm-4 .box{height:430px;}
-    .cartbox .total span, .cartbox .total label{width:100%;}
+    /*.cartbox .total span, .cartbox .total label{width:100%;}*/
     .myaccount-right .form-wrap .form-row{margin-bottom:5px;}
     .myaccount-right .form-wrap .btns-wrap{margin-top:25px;}
 }
@@ -951,7 +955,7 @@ a:focus{text-decoration:none !important;}
     .sort-wrap{float:left;}
     .pdp .btns-wrap{width:85%;}
     .cart-details{margin-top:10px;}
-    .checkout-left, .myaccount-left{height:auto;}
+    .checkout-left, .myaccount-left{height:auto; width:100%;}
     .checkout-right{padding-right:0; padding-left:0;}
     .checkout-right .tab-content>.col-xs-12{padding-right:0; padding-left:0;}
     .checkout-right input[type="text"], .checkout-right .checkoutbtn-wrap input[type="button"], .checkout-right input[type="password"]{width:100%;}
@@ -989,18 +993,18 @@ a:focus{text-decoration:none !important;}
     .row2 .video{margin-bottom:15px;}
     .row3 .video{margin-top:15px;}
     .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{margin-top:20px;}
-    .myaccount-left{margin-bottom:20px;}
+    .myaccount-left, .checkout-left{margin-bottom:20px;}
     .myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}
     .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:60% !important;}
     .myaccount-right .form-wrap .form-row input[type="text"], .myaccount-right .form-wrap .form-row .ui-select select{width:100%;}
     #changepwd{margin:10px auto 20px auto !important;}
-    .policy-right, .faq-right{padding:0 !important;}
-
+    .policy-right, .faq-right, .cartbox .cart-details .details-left, .cartbox .cart-details .edit{padding:0 !important;}
+    #navbar a.logo{margin:0;}
 }
 
 @media (max-width:600px){
     .pdp .sizechart{float:left; margin:5px 0 10px 0; width:100%;}
-    .cart-details .details-left, .cart-details .details-right{width:100%;}
+    .cart-details .details-left, .cart-details .details-right{width:100%; padding:0;}
     .cart-details .total{width:100%;}
     .cart-details .total div{float:left;}
     .edit-wrap{width:100%; margin-bottom:20px;}
@@ -1015,6 +1019,7 @@ a:focus{text-decoration:none !important;}
     .myaccount-right .form-wrap .btns-wrap{margin-left:170px;}
     .cartbox .total{padding-left:0;}
     #footer .social-wrap{width:100%; padding:0 15px;}
+    #cart .img-wrap, #cart .cart-details{padding:0;}
 }
 
 @media (max-width:550px){
@@ -1028,11 +1033,12 @@ a:focus{text-decoration:none !important;}
     #changepwd{width:100% !important;}
     .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:100% !important;}
     .myaccount-right .form-wrap .btns-wrap{margin-left:0 !important;}
-    #changepwd .ui-input-text, .myaccount-right .change-pwd{width:100% !important;}
+    #changepwd .ui-input-text, .myaccount-right .change-pwd, .pdp-left .zoom-img{width:100% !important;}
     .myaccount-right .change-pwd{padding:0;}
-    .pdp .pdp-left .thumb-wrap{padding-right:0; overflow-y:scroll; height:100px;}
+    .pdp .pdp-left .thumb-wrap{padding-right:0; overflow-y:scroll; height:100px; width:100%;}
     .pdp .pdp-left .mCSB_container a{width:auto;}
     .pdp-left{padding:0 !important;}
+    .pdp-left .zoom-img{margin-top:20px;}
 
 }
 
@@ -1074,6 +1080,8 @@ a:focus{text-decoration:none !important;}
     #homepage .row1 .col-xs-6, #homepage .row3 .col-xs-6{width:100%;}
     #homepage .story-wrap h3{font-size:23px; line-height:28px;}
     .myorders #past-orders .details-btns{width:100%;}
+    #homepage, #breadcrumb .container-fluid>.col-xs-12, #cart, .cartbox .img-wrap, .cartbox .cart-details, .cartbox .cart-details .details-right, .checkoutwrap-left, .checkout-right, .checkout-right #checkout-login>.col-xs-12{padding:0 !important;}
+    #cart #subtotal span{font-size:28px;}
 }
 @media(max-width:439px){
     .plp .plp-right .box{height:auto !important; max-height:100% !important;}
@@ -1094,6 +1102,10 @@ a:focus{text-decoration:none !important;}
     .checkout-right #order-summary .cart-details{width:100% !important;}
     .myaccount-right .form-wrap .btns-wrap, .myaccount-right #addNewAddress .btns-wrap a{width:100%;}
     .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn{padding:10px 24px !important;}
+    #navbar a.logo{width:60%;}
+    #navbar img{max-width:100%;}
+    .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -640px; height:40px;}
+    .mob-search{top:61px;}
 }
 
 @media (max-width:370px){
