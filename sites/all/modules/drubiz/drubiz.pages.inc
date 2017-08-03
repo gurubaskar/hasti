@@ -263,6 +263,22 @@ function drubiz_validate_otp() {
   // }
 }
 
+function online_payment() {
+  $client = drubiz_api_client();
+  $endpoint = 'ccAvenueSubmitOrder';
+  $params = array(
+      'partyId' =>get_user_party_id(),
+      'id' => 10462,
+  );
+    $jsessionid = get_user_jsessionid();
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+      $response = $client->get($endpoint . '?' . http_build_query($params));
+      $raw_json =  $response->getBody();
+      $data = json_decode($raw_json, TRUE);
+      watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data','endpoint'), 1) . '</pre>');
+      echo json_encode($data);
+}
+
 function getState() {
   $endpoint = 'getAssociatedStateList';
   $jsessionid = get_user_jsessionid();
