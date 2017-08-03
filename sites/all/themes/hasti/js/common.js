@@ -104,8 +104,9 @@ $(document).ready(function () {
     $('.box').mouseout(function(){
            $(".select-wrap", this).hide();
     });
-    
-  $('#searchText').keyup(function(e) {
+   
+  //$('#searchText').keyup(function(e) {
+  $('#searchText').live('keyup',function(e) {
       // console.log(e.which);
       var special_keys = [37, 38, 39, 40, 16, 17, 18, 91, 33, 34, 35, 36, 45, 144, 145, 20];
       if ($.inArray(e.which, special_keys) != -1) {
@@ -524,6 +525,35 @@ function editAddress(){
   jQuery(".shareStory").click(function(){
     jQuery('#socialIcons').toggle();
   });
+
+  jQuery(".ccavenue").click(function(){
+    loading();
+    jQuery.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'drubiz/ccavenue',
+      success: function(data) {
+        if (data['status'] == 'success') {
+          // alert(data['_EVENT_MESSAGE_']);
+          close_loading();
+          var merchantId = data['merchantId'];
+          var encRequest = data['encRequest'];
+          var accessCode = data['accessCode'];
+          // alert(merchantId +'--' +encRequest +'--'+ accessCode);
+          document.location = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id="+merchantId+"&encRequest="+encRequest+"&access_code="+accessCode;
+        }
+        else {
+          alert(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus + ': ' + errorThrown);
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+
 });
 
 jQuery(document).ready(function(){
