@@ -5,7 +5,7 @@ if(!empty($_GET['from'])) {
 }
 ?>
 <input type="hidden" id="from" value="<?php echo $from;?>" />
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-xs-12 col-sm-4 col-md-3 checkoutwrap-left">
   <div class="checkout-left">
     <h2>Placing Order</h2>
     <ul>
