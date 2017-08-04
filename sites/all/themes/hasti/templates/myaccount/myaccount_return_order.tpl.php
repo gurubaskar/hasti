@@ -1,5 +1,5 @@
 <?php //krumo($order) ?>
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
   <div class=" myaccount-left">
     <?php echo theme('myaccount_menu_links'); ?>
   </div>
@@ -81,7 +81,7 @@
             <td data-title="Image">
               <img class="order-img" alt="<?php echo $orderValue['itemDescription'];?>" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
             </td>
-            <td data-title="Price">₹.
+            <td data-title="Price">&#8377;.
               <?php 
                 echo $orderValue['unitPrice'];
               ?>

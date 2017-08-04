@@ -105,7 +105,7 @@ if(!empty($_GET['from'])) {
         <div class="col-xs-8 col-sm-8 col-md-8 cart-details pright">
           <h4><?php echo $cart_value['internalName']; ?></h4>
           <div class="cartrow"><label>Qty:</label><span class="qty"><?php echo $cart_value['quantity']; ?></span></div>
-          <div class="cartrow"><label>Price:</label><span>₹. <?php echo format_money($cart_value['listPrice']);?></span></div>
+          <div class="cartrow"><label>Price:</label><span>&#8377;. <?php echo format_money($cart_value['listPrice']);?></span></div>
           <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
           <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $node->field_color[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
           <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
@@ -188,7 +188,7 @@ if(!empty($_GET['from'])) {
               <input type="text" name="OTPValue" id="OTPValue" maxlength="6">
               <div class="btns-wrap">
               <?php $grandTotal = get_user_cart();?>
-                <p>Amount payable at the time of delivery <b>₹. <?php echo $grandTotal['orderGrandTotal'];?></b></p>
+                <p>Amount payable at the time of delivery <b>&#8377;. <?php echo $grandTotal['orderGrandTotal'];?></b></p>
                 <p>In order to confirm your order,please click on "Send OTP" button and enter One Time Password here</p>
                 <a href="#" class="validateOTP">Validate OTP</a>
               </div>
