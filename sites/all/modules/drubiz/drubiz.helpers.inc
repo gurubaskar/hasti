@@ -1504,7 +1504,15 @@ function toCheckSession($data) {
 //   echo '<script language="javascript">';
 // echo 'alert("message successfully sent")';
 // echo '</script>';
-    watchdog(__FUNCTION__, '<pre>' . print_r(compact('data'), 1) . '</pre>');
+  $client = drubiz_api_client();
+  $endpoint = 'logout';
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint);
+  $raw_json = $response->getBody();
+  $logout = json_decode($raw_json, TRUE);
+
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','logout'), 1) . '</pre>');
      module_load_include('pages.inc', 'user');
 
      user_logout();
