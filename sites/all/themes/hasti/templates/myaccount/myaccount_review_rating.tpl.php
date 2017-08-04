@@ -1,5 +1,5 @@
 <?php //krumo($order) ?>
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
   <div class=" myaccount-left">
     <?php echo theme('myaccount_menu_links'); ?>
   </div>
