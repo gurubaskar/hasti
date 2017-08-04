@@ -1,5 +1,5 @@
 <?php //krumo($orders);?>
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
   <div class=" myaccount-left">
     <?php echo theme('myaccount_menu_links'); ?>
   </div>
@@ -32,7 +32,7 @@
 				<div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
 					<div class="col-xs-12 col-sm-12 col-md-12 details-left">
 						<div class="cartrow">
-							<label>Grand Total:</label><span>₹. <?php echo format_money($order['orderGrandTotal']) ?></span>
+							<label>Grand Total:</label><span>&#8377;. <?php echo format_money($order['orderGrandTotal']) ?></span>
 						</div>
 						<div class="cartrow">
 							<label>Date:</label><span><?php echo date('d/m/Y H:i:s', strtotime($order['orderDate'])) ?></span>
@@ -104,7 +104,7 @@
 				<div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
 					<div class="col-xs-12 col-sm-12 col-md-12 details-left">
 						<div class="cartrow">
-							<label>Grand Total:</label><span>₹. <?php echo format_money($order['orderGrandTotal']) ?></span>
+							<label>Grand Total:</label><span>&#8377;. <?php echo format_money($order['orderGrandTotal']) ?></span>
 						</div>
 						<div class="cartrow">
 							<label>Date:</label><span><?php echo date('d/m/Y H:i:s', strtotime($order['orderDate'])) ?></span>
