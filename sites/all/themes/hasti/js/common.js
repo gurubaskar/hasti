@@ -105,8 +105,8 @@ $(document).ready(function () {
            $(".select-wrap", this).hide();
     });
    
-  //$('#searchText').keyup(function(e) {
-  $('#searchText').live('keyup',function(e) {
+  $('#searchText').keyup(function(e) {
+  // $('#searchText').live('keyup',function(e) {
       // console.log(e.which);
       var special_keys = [37, 38, 39, 40, 16, 17, 18, 91, 33, 34, 35, 36, 45, 144, 145, 20];
       if ($.inArray(e.which, special_keys) != -1) {
@@ -135,7 +135,7 @@ $(document).ready(function () {
                   var count = 1;
                   for (key in data) {
                     //alert(data[key].value);
-                    var label = data[key].label.replace('<a>', '<a href="' + Drupal.settings.basePath + 'search/site/' + data[key].value + '">');
+                    var label = data[key].label.replace('<a>', '<a href="' + Drupal.settings.basePath + 'search/site/' + data[key].value + '" data-ajax="'+ false +'">');
                     // label = label.
                     //   replace("<br style='clear:both'>", '').
                     //   replace('</a>', "<br style='clear:both'><br style='clear:both'></a>"); //.

@@ -38,36 +38,38 @@
                   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
                   $product_variant = $system_data->product_variants->{$cart_product['productId']};
                 ?>
-                <div class="col-xs-12 col-sm-3 col-md-2 img-wrap">
-                  <img alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->plp_image) ?>" class="productCartListImage img-responsive" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
-                  <div class="col-xs-6 col-sm-6 col-md-5 details-left">
-                    <h4><?php echo $cart_product['productName'][0]; ?></h4>
-                    <div class="cartrow">
-                      <label>Qty:</label>
-                      <span class="qty"><?php echo (int)$cart_product['quantity'] ?></span>
-                    </div>
-                    <div class="cartrow">
-                      <label>Price:</label>
-                      <span>&#8377. <?php echo format_money($cart_product['unitPrice']) ?></span>
-                    </div>
-                    <?php $selected_features = get_selected_features($product_variant); ?>
-                    <?php foreach ($selected_features as $selected_feature_name => $selected_feature_value): ?>
-                      <?php if (strtolower($selected_feature_name) == 'size'): ?>
-                          <div class="cartrow"><label><?php echo t('Size:'); ?></label><span class="size"><?php echo $selected_feature_value ?></span></div>
-                       <?php elseif (strtolower($selected_feature_name) == 'color'): ?>
-                          <div class="cartrow"><label><?php echo t('Color:'); ?></label><span class="color"><?php echo $selected_feature_value ?></span></div>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-                    <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
+                <div class="product-wrap">
+                  <div class="col-xs-12 col-sm-3 col-md-2 img-wrap">
+                    <img alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->plp_image) ?>" class="productCartListImage img-responsive" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
                   </div>
-                  <div class="col-xs-12 col-sm-12 col-md-12 edit">
-                    <div class="col-xs-6 col-sm-6 col-md-7 total">
-                      <?php
-                        $unitPrice = $cart_product['unitPrice'] * (int)$cart_product['quantity'];
-                      ?>
-                      <div><label>Amount Payable:</label><span>&#8377. <?php echo format_money($unitPrice) ?></span></div>
+                  <div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
+                    <div class="col-xs-6 col-sm-6 col-md-5 details-left">
+                      <h4><?php echo $cart_product['productName'][0]; ?></h4>
+                      <div class="cartrow">
+                        <label>Qty:</label>
+                        <span class="qty"><?php echo (int)$cart_product['quantity'] ?></span>
+                      </div>
+                      <div class="cartrow">
+                        <label>Price:</label>
+                        <span>&#8377. <?php echo format_money($cart_product['unitPrice']) ?></span>
+                      </div>
+                      <?php $selected_features = get_selected_features($product_variant); ?>
+                      <?php foreach ($selected_features as $selected_feature_name => $selected_feature_value): ?>
+                        <?php if (strtolower($selected_feature_name) == 'size'): ?>
+                            <div class="cartrow"><label><?php echo t('Size:'); ?></label><span class="size"><?php echo $selected_feature_value ?></span></div>
+                         <?php elseif (strtolower($selected_feature_name) == 'color'): ?>
+                            <div class="cartrow"><label><?php echo t('Color:'); ?></label><span class="color"><?php echo $selected_feature_value ?></span></div>
+                        <?php endif; ?>
+                      <?php endforeach; ?>
+                      <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 edit">
+                      <div class="col-xs-6 col-sm-6 col-md-7 total">
+                        <?php
+                          $unitPrice = $cart_product['unitPrice'] * (int)$cart_product['quantity'];
+                        ?>
+                        <div><label>Amount Payable:</label><span>&#8377. <?php echo format_money($unitPrice) ?></span></div>
+                      </div>
                     </div>
                   </div>
                 </div>
