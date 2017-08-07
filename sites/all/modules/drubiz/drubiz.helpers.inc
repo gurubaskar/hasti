@@ -1540,5 +1540,76 @@ function toCheckSession($data) {
    }
 }
 
+function drubiz_hasti_comments_form($form, &$form_state) {
+  global $user;
+  $form = array();
+  $form['nickname'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Nickname',
+    '#size' => 10,
+    '#required' => TRUE,
+  );
+  $form['reviewTitle'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Review Title',
+    '#size' => 10,
+    '#required' => TRUE,
+  );
+  $form['ratings'] = array(
+    '#type' => 'fivestar',
+    '#title' => 'Ratings',
+    '#required' => false,
+  );
+/*  $fivestar = field_view_field('node', $node, 'field_fivestar_awesomeness');
+print render($fivestar);*/
+  $form['comments'] = array(
+    '#type' => 'textarea',
+    '#title' => 'Comments',
+    '#wysiwyg' => false,
+    '#size' => 10,
+    '#attributes' => array('maxlength' => 250),
+    '#required' => TRUE,
+  );
+  $form['productid_field'] = array(
+     '#type' => 'hidden',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+    '#submit' => array('drubiz_hasti_comments_form_submit'),
+  );
+  $form['#attributes'] = array('data-ajax' => 'false');
+  // $form['#submit'] = array('drubiz_hasti_comments_form_submit'); 
+   return $form;
+}
+
+function drubiz_hasti_comments_form_submit($form, &$form_state) {
+  $nickname = $form_state['values']['nickname'];
+  $reviewTitle = $form_state['values']['reviewTitle'];
+  $comments = $form_state['values']['comments'];
+  $ratings = $form_state['values']['ratings'];
+  $productid = $form_state['values']['productid_field'];
+
+  $client = drubiz_api_client();
+  $endpoint = 'eCommerceCreateProductReviewNew';
+  $params = array(
+    'productId'     => $productid,
+    'REVIEW_TEXT'   => $comments,
+    'productStoreId'=>'WOI_STORE',
+    'REVIEW_NICK_NAME'=> $nickname,
+    'CLIENT'        => 'Hasti',
+    'overallRate'   => $ratings,
+    'partyId'       => get_user_party_id(),
+    'REVIEW_TITLE'  => $reviewTitle,
+  );
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json =  $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data','endpoint'), 1) . '</pre>');
+  // echo json_encode($data);
+
+}
 
 

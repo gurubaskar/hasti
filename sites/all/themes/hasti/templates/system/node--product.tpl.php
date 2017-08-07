@@ -375,6 +375,12 @@
             <?php echo $storyInfo->_ERROR_MESSAGE_;?>
           <?php endif;?>
         </div>
+        <?php
+          $comments_form = drupal_get_form('drubiz_hasti_comments_form');
+          $comments_form['productid_field']['#value'] = $product->product_id;
+        // var_dump($comments_form['my_field']['#value']);
+            print drupal_render($comments_form);
+        ?>
       </div>
     <!-- </div> -->
 
