@@ -53,6 +53,24 @@ function get_user_jsessionid() {
   }
   return NULL;
 }
+/**
+* call back for print invoice
+**/
+
+function print_order_invoice($orderid, $partyid){
+//http://bg4ws0386:8080/eCommerceOrderDetailNew?orderId=WOI10412&partyId=10150
+  $endpoint = 'eCommerceOrderDetailNew';
+  $client = drubiz_api_client();
+  $params = array(
+    'orderId'     => $orderid,
+    'partyId'       => $partyid,
+  );
+  $response = $client->get($endpoint.'?'. http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json,TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>'); 
+  return $data; 
+}
 
 /**
 * call back for facebook login

@@ -82,7 +82,8 @@
                 <ul>
                   <li>
                     <a href="#"><img src="<?php echo current_theme_path();?> /images/print.png" id="print"></a>
-                    <a href="#">Print</a>
+                    <?php $partyId=get_user_party_id();?>
+                    <a href="<?php echo url('print_invoice.php')?>?orderid=<?php echo $order['orderId'] ?>&partyid=<?php echo $partyId ?>">Print</a>
                   </li>
                   <li>
                     <a href="#"><img src="<?php echo current_theme_path();?> /images/email.png" id="email"></a>

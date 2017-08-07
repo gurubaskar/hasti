@@ -1543,7 +1543,7 @@ function drubiz_view_promocode(){
 }
 function save_contact_us(){
   $client = drubiz_api_client();  
-  $response = $client->get('getcoupon?' . http_build_query(array(
+  $response = $client->get('submitContactUsNew?' . http_build_query(array(
     'storeId'  => 'Globus_STORE',
     'partyId'    => get_user_party_id(),
   )));
