@@ -1565,14 +1565,19 @@ function save_contact_us(){
   $data_orderIdNumber = $_POST['data_orderIdNumber'];
   $data_msg = $_POST['data_msg'];
   $file = $_POST['file'];
+  $jsessionid = get_user_jsessionid();
   $endpoint = 'submitContactUsNew';
   $params = array(
+    'jsessionId' =>$jsessionid,
     'firstName'  => $firstname,
     'emailAddress'=> $email,
     'content' => $data_msg,
     'contactPhoneNumber' => $data_phoneNumber,
     'orderIdNumber' => $data_orderIdNumber,
-    'choose-file' =>$file
+    'partyId'    => get_user_party_id(),
+    'choose-file' => $file,
+    'contactMechTypeId'=>'WEB_ADDRESS',
+    'communicationEventTypeId'=>'WEB_SITE_COMMUNICATI' 
   );
   $response = $client->get($endpoint.'?' . http_build_query($params));
   $raw_json = $response->getBody();
@@ -1581,7 +1586,9 @@ function save_contact_us(){
   echo json_encode($data);
 }
 
-
+function hasti_contact_us(){
+  return theme('contact_us');
+}
 function sonata_privacy_policy(){
   return theme('sonata_privacy_policy_template');
 }

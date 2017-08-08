@@ -1,37 +1,3 @@
-<script>
-jQuery(document).ready(function () 
-{
-  jQuery('.characterLimit').each(function(){
-      restrictTextLength(this);
-  });
-});
-function restrictTextLength(textArea){
-    var maxchar = jQuery(textArea).attr('maxlength');
-    var curLen = jQuery(textArea).val().length;
-    var regCharLen = lineBreakCount(jQuery(textArea).val());
-    jQuery(textArea).next('.js_textCounter').html((maxchar - (curLen+regCharLen))+" characters left");
-    jQuery(textArea).keyup(function() {
-        var cnt = jQuery(this).val().length;
-        var regCharLen = lineBreakCount(jQuery(this).val());
-        var remainingchar = maxchar - (cnt + regCharLen);
-        if(remainingchar < 0){
-            jQuery(this).next('.js_textCounter').html('0 characters left');
-            jQuery(this).val(jQuery(this).val().slice(0, (maxchar-regCharLen)));
-        } else{
-            jQuery(this).next('.js_textCounter').html(remainingchar+' characters left');
-        }
-    });
- }
-  function lineBreakCount(str){
-    //counts n
-    try {
-        return((str.match(/[^\n]*\n[^\n]*/gi).length));
-    } catch(e) {
-        return 0;
-    }
-  }   
-</script>
-
 <div id="content" class="checkout">
   <div class="container-fluid">
     <!-- <div class="row"> -->
@@ -59,6 +25,19 @@ function restrictTextLength(textArea){
             </div> 
             <style type="text/css">.ui-select {position: static;}</style>
             <div id="addContactus" name="addContactus">          
+              <?php 
+              if($GLOBALS['user']->uid != 0):
+              ?>
+              <div class="form-row">
+                <label>First Name</label>
+                <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $_SESSION['drubiz']['session']['firstName']; ?>">
+              </div>          
+              <div class="form-row">
+                <label>Email Id</label>
+                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo $GLOBALS['user']->mail; ?>" maxlength="200">
+              </div>
+              <?php endif; ?>
+             <?php if($GLOBALS['user']->uid == 0):?>
               <div class="form-row">
                 <label>First Name</label>
                 <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>">
@@ -67,6 +46,7 @@ function restrictTextLength(textArea){
                 <label>Email Id</label>
                  <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo t('@ Email');?>" maxlength="200">
               </div>
+              <?php endif; ?>
               <div class="form-row">
                 <label>Order Number</label>
                 <input type="text" name="orderIdNumber" id="orderIdNumber" placeholder="<?php echo t('Purchase Order Number (Optional)');?>">
