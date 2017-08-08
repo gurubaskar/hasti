@@ -827,13 +827,7 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-  $items['contact-us'] = array(
-    'title'             => 'Contact us',
-    'description'       => "Contact us",
-    'page callback'     => 'hasti_contact_us',
-    'access arguments'  => array('access content'),
-    'file'              => 'drubiz.pages.inc',
-  ); 
+  
   $items['save-contact-us'] = array(
     'title'             => 'Contact us',
     'description'       => "Contact us",

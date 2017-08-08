@@ -1089,6 +1089,7 @@ function contactus(){
   var data_orderIdNumber = jQuery('#orderIdNumber').val();
   var data_phoneNumber = jQuery('#conactUsPhone').val();
   var data_msg = jQuery('#js_content').val();
+   var choosefile = jQuery('#choose-file').val();
   if(data_firstName == ''){
     alert("FirstName can't be Empty");
     return false;
@@ -1111,7 +1112,7 @@ function contactus(){
   }
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&email=' + encodeURIComponent(email)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
   if(data_orderIdNumber != ''){
-      data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber)+ '&data_msg='+data_msg;
+      data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber)+ '&data_msg='+data_msg+ '&file='+choosefile;
       //alert(data);
   }
   jQuery.ajax({
