@@ -1111,8 +1111,8 @@ function contactus(){
   }
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&email=' + encodeURIComponent(email)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
   if(data_orderIdNumber != ''){
-      data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber);
-      alert(data);
+      data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber)+ '&data_msg='+data_msg;
+      //alert(data);
   }
   jQuery.ajax({
         type: "POST",
@@ -1121,9 +1121,11 @@ function contactus(){
         success: function(data) {
           console.log(data);
           if (data['isError'] == 'false') {
-            alert(data['_EVENT_MESSAGE_']);
+            // alert(data['status']);
             close_loading();
-            document.location = Drupal.settings.basePath +'contact-us';
+            jQuery('.success-msg').show();
+            jQuery('#addContactus').hide();
+            //document.location = Drupal.settings.basePath +'contact-us';
           } else {
             alert(data['_ERROR_MESSAGE_']);
             close_loading();

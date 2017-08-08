@@ -54,8 +54,11 @@ function restrictTextLength(textArea){
           <div class="col-xs-12 col-sm-12 col-md-12 pleft">
           <div class="outerbox">
           <div class="form-wrap">
+            <div class="success-msg" style="display: none">
+              Succesfully Submitted
+            </div> 
             <style type="text/css">.ui-select {position: static;}</style>
-            <div id="addNewAddress" name="addNewAddress">          
+            <div id="addContactus" name="addContactus">          
               <div class="form-row">
                 <label>First Name</label>
                 <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>">
@@ -78,12 +81,12 @@ function restrictTextLength(textArea){
               </div>
               <div class="form-row">
                 <label>Message</label>
-               <textarea name="content" id="js_content" placeholder="*Type Your Message Here..." class="content characterLimit" cols="35" rows="5" maxlength="255"></textarea>
-               <span class="js_textCounter textCounter">255 characters left</span>
+               <textarea name="content" id="js_content" placeholder="*Type Your Message Here..." class="content characterLimit" cols="35" rows="5" maxlength="100"></textarea>
+               <span class="js_textCounter textCounter">100 characters left</span>
                <input type="hidden" name="content_MANDATORY" value="Y">
               </div>         
               <div class="btns-wrap">
-                <a href="#" class="buy-now" onclick="contactus()">Save</a>
+                <a href="#" class="contact-us" onclick="contactus()">Save</a>
                 <a href="<?php echo url('account/address-book');?>" class="">Cancel</a>
               </div>
             </div>
