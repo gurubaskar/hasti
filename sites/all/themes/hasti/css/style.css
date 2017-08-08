@@ -599,7 +599,7 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
 .basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
-
+.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
 .mob-search input[type="text"]{width:94% !important; padding:10px; border:0;}

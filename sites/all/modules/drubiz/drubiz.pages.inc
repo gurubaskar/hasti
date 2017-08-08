@@ -1559,14 +1559,28 @@ function drubiz_view_promocode(){
 }
 function save_contact_us(){
   $client = drubiz_api_client();  
-  $response = $client->get('submitContactUsNew?' . http_build_query(array(
-    'storeId'  => 'Globus_STORE',
-    'partyId'    => get_user_party_id(),
-  )));
+  $firstname = $_POST['data_firstName'];
+  $email = $_POST['email'];
+  $data_phoneNumber = $_POST['data_phoneNumber'];
+  $data_orderIdNumber = $_POST['data_orderIdNumber'];
+  $data_msg = $_POST['data_msg'];
+  $endpoint = 'submitContactUsNew';
+  $params = array(
+    'firstName'  => $firstname,
+    'emailAddress'=> $email,
+    'content' => $data_msg,
+    'contactPhoneNumber' => $data_phoneNumber,
+    'sendEmailTo' => 'nibedita.t@sonata-software.com',
+    //'partyIdTo' => 'WOI_COMPANY',
+    'orderIdNumber' => $data_orderIdNumber
+  );
+  $response = $client->get($endpoint.'?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  echo $data;
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1).'</pre>');
+  echo json_encode($data);
 }
+
 function hasti_contact_us(){
   return theme('contact_us');
 }
