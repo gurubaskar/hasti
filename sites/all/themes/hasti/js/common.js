@@ -1009,7 +1009,6 @@ function replaceDetailImage(largeImageUrl, detailImageUrl)
 
 function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
   {
-
      var params = jQuery(elm).siblings('input.param').serialize();
      displayDialogId = '#' + dialogPurpose + 'displayDialog';
      var url = "";
@@ -1021,7 +1020,6 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
      {
         url = '/dialogActionRequest';
      }
-
 
       jQuery.ajax({
       url: url,
@@ -1067,7 +1065,6 @@ function displayActionDialogBoxQuicklook(dialogPurpose,elm,pdpUrl)
   jQuery('#block-menu-menu-footer-menu-2-hasti- > ul').removeClass('menu nav');
 });
 
-
 jQuery(document).ready(function () {
   jQuery('.myorders ul li:first').addClass('active');
   jQuery('.tab-content:not(:first)').hide();
@@ -1081,7 +1078,37 @@ jQuery(document).ready(function () {
     jQuery(content).siblings('.tab-content').hide();
   });
 });
-
+jQuery(document).ready(function () 
+{
+  jQuery('.characterLimit').each(function(){
+      restrictTextLength(this);
+  });
+});
+function restrictTextLength(textArea){
+    var maxchar = jQuery(textArea).attr('maxlength');
+    var curLen = jQuery(textArea).val().length;
+    var regCharLen = lineBreakCount(jQuery(textArea).val());
+    jQuery(textArea).next('.js_textCounter').html((maxchar - (curLen+regCharLen))+" characters left");
+    jQuery(textArea).keyup(function() {
+        var cnt = jQuery(this).val().length;
+        var regCharLen = lineBreakCount(jQuery(this).val());
+        var remainingchar = maxchar - (cnt + regCharLen);
+        if(remainingchar < 0){
+            jQuery(this).next('.js_textCounter').html('0 characters left');
+            jQuery(this).val(jQuery(this).val().slice(0, (maxchar-regCharLen)));
+        } else{
+            jQuery(this).next('.js_textCounter').html(remainingchar+' characters left');
+        }
+    });
+ }
+  function lineBreakCount(str){
+    //counts n
+    try {
+        return((str.match(/[^\n]*\n[^\n]*/gi).length));
+    } catch(e) {
+        return 0;
+    }
+  } 
 function contactus(){
   var data_firstName = jQuery('#firstname').val();
   var email = jQuery("#returnCustomerEmail").val();
