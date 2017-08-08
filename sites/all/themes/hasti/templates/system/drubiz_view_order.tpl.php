@@ -88,10 +88,6 @@
                     <a href="<?php echo url('print_invoice.php')?>?orderid=<?php echo $order['orderId'] ?>&partyid=<?php echo $partyId ?>">Print</a>
                   </li>
                   <li>
-                    <a href="#"><img src="<?php echo current_theme_path();?> /images/email.png" id="email"></a>
-                    <a href="#">Email Invoice</a>
-                  </li>
-                  <li>
                     <a href="<?php echo url('contact-us');?>"><img src="<?php echo current_theme_path();?> /images/contact.png" id="contact"></a>
                     <a href="<?php echo url('contact-us');?>">Contact us</a>
                   </li>
