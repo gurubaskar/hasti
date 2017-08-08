@@ -1564,15 +1564,15 @@ function save_contact_us(){
   $data_phoneNumber = $_POST['data_phoneNumber'];
   $data_orderIdNumber = $_POST['data_orderIdNumber'];
   $data_msg = $_POST['data_msg'];
+  $file = $_POST['file'];
   $endpoint = 'submitContactUsNew';
   $params = array(
     'firstName'  => $firstname,
     'emailAddress'=> $email,
     'content' => $data_msg,
     'contactPhoneNumber' => $data_phoneNumber,
-    'sendEmailTo' => 'nibedita.t@sonata-software.com',
-    //'partyIdTo' => 'WOI_COMPANY',
-    'orderIdNumber' => $data_orderIdNumber
+    'orderIdNumber' => $data_orderIdNumber,
+    'choose-file' =>$file
   );
   $response = $client->get($endpoint.'?' . http_build_query($params));
   $raw_json = $response->getBody();
@@ -1581,9 +1581,7 @@ function save_contact_us(){
   echo json_encode($data);
 }
 
-function hasti_contact_us(){
-  return theme('contact_us');
-}
+
 function sonata_privacy_policy(){
   return theme('sonata_privacy_policy_template');
 }
