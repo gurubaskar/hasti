@@ -7,7 +7,10 @@
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
   <h3>Personal Information</h3>
   <div class="outerbox">
-    <div class="form-wrap">
+   <div class="success-msg" style="display: none">
+    Succesfully Updated
+   </div> 
+    <div class="form-wrap" id="addpersonalinfo">
       <div class="form-row">
         <label>First Name</label>
         <input type="text" id="firstName" value="<?php echo $profile['firstName'];?>" >

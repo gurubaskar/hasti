@@ -489,7 +489,7 @@ function editAddress(){
 }
 
 
-  jQuery(document).ready(function(){
+jQuery(document).ready(function(){
     jQuery(".cancelord").click(function(){
     var orderId = jQuery(this).data('cancel-id');
     var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
@@ -1191,27 +1191,29 @@ function savePersonalInfo(){
       // alert(data);
   }
   jQuery.ajax({
-            type: "POST",
-            url: Drupal.settings.basePath + 'account/save-profile',
-            data: data,
-            success: function(data) {
-              console.log(data);
-              if (data['isError'] == 'false') {
-                alert(data['_EVENT_MESSAGE_']);
-                close_loading();
-                document.location = Drupal.settings.basePath +'account/profile';
-              } else {
-                alert(data['_ERROR_MESSAGE_']);
-                close_loading();
-              }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-              console.log(textStatus + ': ' + errorThrown);
-              close_loading();
-            },
-            dataType: 'json'
-    });
+      type: "POST",
+      url: Drupal.settings.basePath + 'account/save-profile',
+      data: data,
+      success: function(data) {
+        console.log(data);
+        if (data['isError'] == 'false') {
+          //alert(data['_EVENT_MESSAGE_']);
+          close_loading();
+          jQuery('.success-msg').show();
+          jQuery('#addpersonalinfo').hide();
+          //document.location = Drupal.settings.basePath +'account/profile';
+        } else {
+          alert(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        console.log(textStatus + ': ' + errorThrown);
+        close_loading();
+      },
+      dataType: 'json'
+  });
 }
 
 jQuery(document).ready(function(){
