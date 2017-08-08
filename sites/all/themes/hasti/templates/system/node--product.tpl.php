@@ -381,6 +381,28 @@
         // var_dump($comments_form['my_field']['#value']);
             print drupal_render($comments_form);
         ?>
+        <div class="PDPReview">
+          <?php 
+            $rating = displayPDPReviewandRating($product->product_id);
+            if(count($rating['review']) > 0) {
+              foreach ($rating['review'] as $key => $ratingValue) {
+          ?>
+            <span><?php echo $ratingValue['reviewTitle'];?></span>
+            <span><?php echo $ratingValue['productReview'];?></span>
+            <span><?php echo $ratingValue['reviewNickName'];?></span>
+            <span><?php echo date("d/m/Y H:s",strtotime($ratingValue['postedDateTime']));?></span>
+            <span><?php
+              $rating = $ratingValue['productRating'];
+              $ratingAverage = $rating * 20;
+              $path = drupal_get_path('module', 'fivestar');      
+              drupal_add_js($path . '/js/fivestar.js');
+              drupal_add_css($path . '/css/fivestar.css');
+              echo theme('fivestar_static', array('rating' => $ratingAverage, 'stars' => 5, 'tag' => 'vote'));?>
+            </span>
+          <?php }
+            }
+          ?>
+        </div>
       </div>
     <!-- </div> -->
 

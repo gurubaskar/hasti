@@ -1612,4 +1612,20 @@ function drubiz_hasti_comments_form_submit($form, &$form_state) {
 
 }
 
-
+function displayPDPReviewandRating($productId) {
+  $endpoint = 'pdpReviewList';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'productId'=>$productId,
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  // toCheckSession($data);
+  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params'), 1) . '</pre>');
+  return $data;
+}
