@@ -365,7 +365,7 @@
             </div>
             <div class="btns-wrap">
               <span><a href="#" class="shareStory">Share this story</a></span>
-              <span><a href="#">Your Feedback</a></span>
+              <!-- <span><a href="#">Your Feedback</a></span> -->
             </div>
           </div>
           <div style="clear: both; display: none;" id="socialIcons">
