@@ -301,13 +301,15 @@ function hastiSignIn(){
 function signInHasti(){
   var data_USERNAME = jQuery('#signInForm').find('[name=USERNAME]:first').val();
   var data_PASSWORD = jQuery('#signInForm').find('[name=PASSWORD]:first').val();
+  var remember = jQuery('#re').val();
   var params = jQuery(location).attr('pathname');
   var checkout = params.split("/");
   loading();
   jQuery.ajax({
     type: "POST",
     url: Drupal.settings.basePath + 'drubiz/user',
-    data: 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD),
+    data: 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD)+'&remember'+remember,
+    
     success: function(data) {
       // console.log(data);
       if (!data['error']) {

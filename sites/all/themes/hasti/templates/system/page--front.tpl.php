@@ -131,7 +131,7 @@ require_once 'vendor/autoload.php';
     <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
     <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
   </form>
-  <span class="remember"><a href="#">Remember Me</a></span>
+  <span class="remember"><!--input type="checkbox" name="re" id="re" value="on"--> Remember Me</span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>

@@ -704,7 +704,13 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-
+  $items['account/my-wallet'] = array(
+    'title'             => 'Product Reviews',
+    'description'       => "Product Reviews",
+    'page callback'     => 'myaccount_my_wallet',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   $items['weaving/add-address-checkout'] = array(
     'title'             => 'My Account Add Address',
     'description'       => "My Account Add Address",
@@ -1031,6 +1037,10 @@ function drubiz_theme() {
     'drubiz_us_states' => array(
       'path'            => $drubiz_path,
       'template'        => 'drubiz_us_states',
+    ),
+    'myaccount_my_wallet' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_my_wallet',
     ),
     'drubiz_theme_switch' => array(
       'path'            => $drubiz_path,

@@ -41,7 +41,7 @@ if($arg == 'change-password') {
 			<li><a href="<?php echo url('account/review-rating');?>" data-ajax="false" class="<?php echo $review;?>">My Review & Ratings</a></li>
 			<!--<li><a href="<?php //echo url('account/');?>" data-ajax="false">Recommendations for you</a></li>-->
 			<li><a href="<?php echo url('account/love-list');?>" data-ajax="false">My Wishlist</a></li>
-			<li><a href="<?php echo url('account/');?>" data-ajax="false" class="<?php echo $myWallet;?>">My Wallet</a></li>
+			<li><a href="<?php echo url('account/my-wallet');?>" data-ajax="false" class="<?php echo $myWallet;?>">My Wallet</a></li>
 		</ul>
 	</li>
 	<li>

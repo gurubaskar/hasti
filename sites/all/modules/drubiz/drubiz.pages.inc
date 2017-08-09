@@ -265,18 +265,26 @@ function drubiz_validate_otp() {
 
 function online_payment() {
   $client = drubiz_api_client();
+  $addressendpoint = 'getPostalAddressSelect';  
+  $jsessionid = get_user_jsessionid();
+  $addressendpoint.= (';jsessionid=' . urlencode($jsessionid));
+  $addressresponse = $client->get($addressendpoint);
+  $addressraw_json =  $addressresponse->getBody();
+  $addressdata = json_decode($addressraw_json, TRUE);
+  $contactMechId = $addressdata['contactMechId'];
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('addressdata','addressendpoint','contactMechId'), 1) . '</pre>');
   $endpoint = 'ccAvenueSubmitOrder';
   $params = array(
       'partyId' =>get_user_party_id(),
-      'id' => 10462,
+      'id' => $contactMechId,
   );
-    $jsessionid = get_user_jsessionid();
-      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-      $response = $client->get($endpoint . '?' . http_build_query($params));
-      $raw_json =  $response->getBody();
-      $data = json_decode($raw_json, TRUE);
-      watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data','endpoint'), 1) . '</pre>');
-      echo json_encode($data);
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json =  $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data','endpoint'), 1) . '</pre>');
+  echo json_encode($data);
 }
 
 function getState() {
@@ -503,6 +511,7 @@ function drubiz_user() {
   );
   $username = @$_POST['USERNAME'];
   $password = @$_POST['PASSWORD'];
+  $re= @$_POST['remember'];
   $account = user_load_by_mail($username);
   if (!empty($account->uid)) {
     //$user_authenticated_uid = user_authenticate($account->name, $password);
@@ -523,6 +532,13 @@ function drubiz_user() {
       if (!empty($_SESSION['drubiz']['headers']['Set-Cookie'])) {
         $raw_headers['Set-Cookie'] = array_merge($_SESSION['drubiz']['headers']['Set-Cookie'], $raw_headers['Set-Cookie']);
       }
+      //login the user in
+      /*if($re == "on"){ //remember me checked
+          setcookie("username",$username,time() + (86400  * 10));
+      }else{ //remember me not checked
+          //session_start();
+          $_SESSION['drubiz']['username'] = $username;
+      }*/
       $_SESSION['drubiz']['headers'] = $raw_headers;
       $_SESSION['drubiz']['session'] = $data;
       $_SESSION['drubiz']['requirePasswordChange'] = 'N';
@@ -1294,7 +1310,6 @@ function myaccount_wclothing_account_address_book(){
 function myaccount_change_userinfo(){
   return theme('myaccount_change_userinfo');
 }
-
 function myaccount_love_list(){
   $client = drubiz_api_client();
   $endpoint = 'eCommerceShowWishListResponse';
@@ -1678,4 +1693,22 @@ function myaccount_review_rating() {
   toCheckSession($data);
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'data'), 1) . '</pre>');
   return theme('myaccount_review_rating',array("review"=>$data));
+}
+
+function myaccount_my_wallet(){   
+  $client = drubiz_api_client();
+  $endpoint = 'partyStoreCreditPayment';  
+  $params = array(
+    'partyId'         => get_user_party_id(),
+  );
+  //$jsessionid = get_user_jsessionid();
+  //if (!empty($jsessionid)) {
+   //   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  //}
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  //toCheckSession($data);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','endpoint'), 1) . '</pre>');
+  return theme('myaccount_my_wallet',array('walletAmount' => $data));   
 }

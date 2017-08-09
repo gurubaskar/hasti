@@ -36,7 +36,7 @@
         <input type="text" id="phoneNumber" maxlength="10" value="<?php echo $profile['mobileNumber'];?>" >
       </div>
       <div class="btns-wrap">
-        <a href="javascript:savePersonalInfo()" data-ajax="false"class="basic-btn">Save</a>
+        <a href="javascript:savePersonalInfo()" data-ajax="false" class="basic-btn">Save</a>
       </div>
     </div>
   </div>
