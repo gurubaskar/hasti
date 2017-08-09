@@ -161,14 +161,14 @@ require_once 'vendor/autoload.php';
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
     <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
     <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
-  </form>
-  <span class="remember"><a href="#">Remember Me</a></span>
+    <span class="remember"><!--input type="checkbox" name="re" id="re" value="on"--> 
+    <a href="#">Remember Me</a></span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
-  
+    </form>
   <span class="facebook">
   <a href="facebook-config.php">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="google-config.php">SIGN IN WITH GOOGLE</a></span>
