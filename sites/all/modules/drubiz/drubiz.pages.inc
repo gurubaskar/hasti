@@ -1677,6 +1677,48 @@ function myaccount_return_order($orderId) {
   return theme('myaccount_return_order',array('order'=>$data)); 
 }
 
+function myaccount_return_order_details() {
+  $endpoint = 'makeQuickReturnNew';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $productIds = explode(',', $_POST['productIds']);
+  $returnTypeId = $_POST['returnTypeId'];
+  $returnReasonId = explode(',',$_POST['returnReasonId']);
+  $returnOrderItem = '';
+  for ($i=0; $i < count($productIds); $i++) { 
+    $seqProductId = explode('_',$productIds[$i]);
+    $returnOrderItem[] = array("orderItemSeqId"=> $seqProductId[0],
+                               "returnTypeId"=> $returnTypeId,
+                               "returnQuantity" => "1",
+                               "returnReasonId" => $returnReasonId[$i],
+                               "productId" => $seqProductId[1]);
+  }
+    
+
+  $params = array(
+    'orderId'             => $_POST['orderId'],
+    'fromPartyId'         => get_user_party_id(),
+    'destinationFacilityId' => 'WOI_FAC',
+    'codRefund'           => 'Y',
+    'accountHolderName'   => $_POST['accountHolderName'],
+    'bankName'            => $_POST['bankName'],
+    'accountNumber'       => $_POST['accountNumber'],
+    'ifscCode'            => $_POST['ifscCode'],
+    'returnOrderItem'     => $returnOrderItem,
+  );
+  // $json = json_encode($params);
+  // $client = drubiz_api_client();
+  // $response = $client->get($endpoint . '?' . http_build_query($json));
+  // $raw_json = $response->getBody();
+  // $data = json_decode($raw_json, TRUE);
+  // toCheckSession($data);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','data','endpoint','returnOrderItem','json'), 1) . '</pre>');
+  // echo json_encode($data);
+  // return theme('myaccount_return_order',array('order'=>$data)); 
+}
+
 function myaccount_review_rating() {
   $endpoint = 'eCommerceProductReview';
   $jsessionid = get_user_jsessionid();

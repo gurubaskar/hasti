@@ -1220,48 +1220,105 @@ function savePersonalInfo(){
 
 jQuery(document).ready(function(){
     jQuery('#refundType').on('change', function() {
-        alert("The text has been changed.");
+      var selectedReturnValue = jQuery('#refundType').val();
+      if(selectedReturnValue == 'RTN_REFUND') {
+        jQuery('.bankDetails').show();
+      } else {
+        jQuery('.bankDetails').hide();
+      }
     });
-
+    jQuery(".returnProduct").click(function(){
+      var itemChecked = jQuery(".returnProduct").is(":checked");
+      if(itemChecked > 0) {
+        jQuery('.refundTypeDisplay').show();
+      } else {
+        jQuery('.refundTypeDisplay').hide();
+        jQuery('.bankDetails').hide();
+      }
+    });
     jQuery(".returnSubmit").click(function(){
+      var orderId = jQuery("#orderId").val();
       var itemChecked = jQuery(".returnProduct:checked").length;
       if(itemChecked > 0) {
-      var checkedVals = jQuery('.returnProduct:checkbox:checked').map(function() {
+        var selectedReturnValue = jQuery('#refundType').val();
+        if(selectedReturnValue == 0) {
+          alert("Please select Refund type");
+          return false;
+        }
+        var checkedVals = jQuery('.returnProduct:checkbox:checked').map(function() {
             return this.value;
         }).get();
         var productIds = checkedVals.join(",");
-        alert(productIds);
+        var splitProductId = productIds.split(',');
+        var returnReasonId = [];
+        var data = '';
+        // console.log(str_array);
+        for(var i = 0; i < splitProductId.length; i++) {
+           // Trim the excess whitespace.
+           returnReasonId.push(jQuery("#returnReason_" + splitProductId[i]).val());
+           // Add additional code here, such as:
+           
+        }
+       
 
-    /*var orderId = jQuery(this).data('cancel-id');
-    var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
-    var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').attr('value');
-    var data = "";
+        if(selectedReturnValue == 'RTN_REFUND') {
+          var accountHolderName = jQuery('#accountHolderName').val();
+          var bankName = jQuery('#bankName').val();
+          var accountNumber = jQuery('#accountNumber').val();
+          var ifscCode = jQuery('#ifscCode').val();
+
+          if(accountHolderName == '') {
+            alert('Enter account holder Name.');
+            return false;
+          }
+          if(bankName == '') {
+            alert('Enter Bank Name');
+            return false;
+          }
+          if(accountNumber == '') {
+            alert('Enter Accouont Number');
+            return false;
+          }
+          if(ifscCode == '') {
+            alert('Enter IFSC code');
+            return false;
+          }
+
+          data += 'orderId=' + orderId + '&accountHolderName=' + accountHolderName + '&bankName=' + bankName + '&accountNumber=' + accountNumber + '&ifscCode=' + ifscCode + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
+
+        }
+// alert(jQuery("#returnReason_00001_100044-1").val());
+    // var orderId = jQuery(this).data('cancel-id');
+    // var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
+    // var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').attr('value');
+    // var data = "";
     // data += 'orderId=' + orderId;
+    alert(data);
     loading();
     jQuery.ajax({
       type: "POST",
-      url: Drupal.settings.basePath + 'drubiz/cancelOrder1',
-      data: 'orderId=' + orderId + '&reasionId=' + reasionId + '&reasonComments=' + reasonComments,
+      url: Drupal.settings.basePath + 'drubiz/returnOrder',
+      data: data,
       success: function(data) {
         if (data['isError'] == 'false') {
           alert(data['_EVENT_MESSAGE_']);
           close_loading();
-          document.location = Drupal.settings.basePath + 'account/orders';        
+          // document.location = Drupal.settings.basePath + 'account/orders';        
         }
-        else if (data['isError'] == 'true') {
-          alert(data['_EVENT_MESSAGE_']);
-          close_loading();
-        } else {
-          alert(data['_ERROR_MESSAGE_']);
-          close_loading();
-        }
+        // else if (data['isError'] == 'true') {
+        //   alert(data['_EVENT_MESSAGE_']);
+        //   close_loading();
+        // } else {
+        //   alert(data['_ERROR_MESSAGE_']);
+        //   close_loading();
+        // }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus + ': ' + errorThrown);
         close_loading();
       },
       dataType: 'json'
-    });*/
+    });
     } else {
         alert("Please select item");
         return false;

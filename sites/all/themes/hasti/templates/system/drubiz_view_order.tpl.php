@@ -51,7 +51,7 @@
                       </div>
                       <div class="cartrow">
                         <label>Price:</label>
-                        <span>&#8377. <?php echo format_money($cart_product['unitPrice']) ?></span>
+                        <span>&#8377;. <?php echo format_money($cart_product['unitPrice']) ?></span>
                       </div>
                       <?php $selected_features = get_selected_features($product_variant); ?>
                       <?php foreach ($selected_features as $selected_feature_name => $selected_feature_value): ?>

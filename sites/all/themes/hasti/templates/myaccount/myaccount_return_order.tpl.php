@@ -44,6 +44,7 @@
       </table>
     </div>
     <div id="no-more-tables">
+      <input type="hidden" name="orderId" id="orderId" value="<?php echo $order['orderId'];?>">
       <table class="table-bordered table-striped table-condensed cf returnOrderDetail">
         <thead>
           <tr>
@@ -68,7 +69,7 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($order['returnableOrderItems'] as $key => $orderValue) { 
+        <?php foreach ($order['orderItems'] as $key => $orderValue) { 
           $nid = get_nid_from_variant_product_id($orderValue['productId']);
           $node = node_load($nid);
           $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
@@ -87,10 +88,11 @@
               ?>
             </td>
             <td data-title="Return">
-              <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $orderValue['productId'];?>">
+              <?php $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'];?>
+              <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $selectedReturnProductId;?>">
             </td>
             <td data-title="Reason">
-              <select id="returnReason">
+              <select id="returnReason_<?php echo $selectedReturnProductId;?>">
                 <?php foreach ($order['returnReasons'] as $key => $returnValue) { ?>
                     <option value="<?php echo $returnValue['returnReasonId'];?>"><?php echo $returnValue['description'];?></option>
                 <?php } ?>
@@ -106,7 +108,7 @@
         <tbody>
       </table>
     </div>
-    <div id="page-wrap">
+    <div id="page-wrap" class="refundTypeDisplay" style="display: none;">
       <table>
         <thead>
           <tr>
@@ -115,19 +117,24 @@
             </td>
             <td>
             <select id="refundType">
-            <?php foreach ($order['returnTypes'] as $key => $refundValue) { ?>
+              <option value="0">Please select</option>            
+              <?php foreach ($order['returnTypes'] as $key => $refundValue) { ?>
                 <option value="<?php echo $refundValue['returnTypeId'];?>"><?php echo $refundValue['description'];?></option>
-            <?php } ?>
+              <?php } ?>
             </select>
             </td>
           </tr>
         </thead>
       </table>
     </div>
+    <div class="bankDetails" style="display: none;">
+      Account Holder Name <input type="textbox" name="accountHolderName" id="accountHolderName">
+      Bank Name <input type="textbox" name="bankName" id="bankName">
+      Account Number <input type="textbox" name="accountNumber" id="accountNumber">
+      IFSC Code <input type="textbox" name="ifscCode" id="ifscCode">
+    </div>
     <div id="returnSubmit" class="details-btns returnSubmit">
       <a href="">Submit</a>
     </div>
   </div>
-  
-  
 </div>
