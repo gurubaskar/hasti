@@ -175,6 +175,18 @@ if(!empty($_GET['from'])) {
       </div>
       <div class="cartbox">
         <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
+          <div id="walletOption">
+          <div><b>Total amount to be paid &#8377;. <?php $grandTotal = get_user_cart();
+          echo $grandTotal['orderGrandTotal'];?></b></div>          
+          <?php if($walletAmount > 0){?>
+             <div>
+             <input type="checkbox" name="walletamt" id="wallet" class="chkwallet">
+             <span style="margin-left: 33px;margin-top: 5px;">Use wallet Amount - &#8377;.<?php echo $walletAmount;?> </span></div>
+               <div>(Your current balance is &#8377;.<?php echo $walletAmount;?>)</div>
+               <div id="balance" style="display: none">select an option to pay balance : </div>
+           <?php } ?>
+          </div>
+          <div><hr></div>
           <div id="paymentOption">
           <span>
             <input type="radio" name="radiobtn" id="COD"><label>COD</label>
@@ -188,7 +200,7 @@ if(!empty($_GET['from'])) {
               <input type="text" name="OTPValue" id="OTPValue" maxlength="6">
               <div class="btns-wrap">
               <?php $grandTotal = get_user_cart();?>
-                <p>Amount payable at the time of delivery <b>&#8377;. <?php echo $grandTotal['orderGrandTotal'];?></b></p>
+                <!--p>Amount payable at the time of delivery <b>&#8377;. <?php echo $grandTotal['orderGrandTotal'];?></b></p-->
                 <p>In order to confirm your order,please click on "Send OTP" button and enter One Time Password here</p>
                 <a href="#" class="validateOTP">Validate OTP</a>
               </div>
@@ -201,8 +213,11 @@ if(!empty($_GET['from'])) {
             </div>
           </span>
           </div>
-          <div class="btns-wrap placeOrderOTP" id="placeOrderOTP" style="display: none;">
+          <div class="btns-wrap placeOrderOTP" id="placeOrderOTP" style="display:none;">
             OTP verified successfully. Please click below "Place Order" button.<br /><br />
+            <a href="#" class="placeOrderBtn">Place Order</a>
+          </div>
+           <div class="btns-wrap" id="placeOrderStoreCredit" style="display:none;">           
             <a href="#" class="placeOrderBtn">Place Order</a>
           </div>
         </div>

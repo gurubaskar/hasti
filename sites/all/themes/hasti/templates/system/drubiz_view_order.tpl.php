@@ -83,9 +83,9 @@
               <div class="icon-container">
                 <ul>
                   <li>
-                    <a href="#"><img src="<?php echo current_theme_path();?> /images/print.png" id="print"></a>
+                    <a href="<?php echo url('print_invoice.php')?>?orderid=<?php echo $order['orderId'] ?>&partyid=<?php echo $partyId ?>" target="_blank"><img src="<?php echo current_theme_path();?> /images/print.png" id="print"></a>
                     <?php $partyId=get_user_party_id();?>
-                    <a href="<?php echo url('print_invoice.php')?>?orderid=<?php echo $order['orderId'] ?>&partyid=<?php echo $partyId ?>">Print</a>
+                    <a href="<?php echo url('print_invoice.php')?>?orderid=<?php echo $order['orderId'] ?>&partyid=<?php echo $partyId ?>" target="_blank">Print</a>
                   </li>
                   <li>
                     <a href="<?php echo url('contact-us');?>"><img src="<?php echo current_theme_path();?> /images/contact.png" id="contact"></a>

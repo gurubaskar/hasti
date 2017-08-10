@@ -7,7 +7,7 @@
   <h3>My Wallet</h3>
   <div id="demo-top-bar">
     <div id="no-more-tables">
-      My Wallet Amount : &#8377;.<?php echo $walletAmount['partyStoreCreditBalance'];?>    
+      My Wallet Amount : &#8377;.<?php echo $walletAmount;?>    
     </div>
   </div>
 </div>

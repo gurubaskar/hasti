@@ -217,6 +217,17 @@ function import_data(){
   echo json_encode($response);  
   exit;  
 }*/
+function get_selected_contactMechId(){
+  $client = drubiz_api_client();
+  $addressendpoint = 'getPostalAddressSelect';  
+  $jsessionid = get_user_jsessionid();
+  $addressendpoint.= (';jsessionid=' . urlencode($jsessionid));
+  $addressresponse = $client->get($addressendpoint);
+  $addressraw_json =  $addressresponse->getBody();
+  $addressdata = json_decode($addressraw_json, TRUE);
+  $contactMechId = $addressdata['contactMechId'];
+  return $contactMechId;
+}
 /**
  * Page callback for /send-otp
  */
@@ -226,8 +237,11 @@ function drubiz_send_otp() {
   if (!empty($jsessionid)) {
     $endpoint .= (';jsessionid=' . urlencode($jsessionid));
   }
+  $params = array(
+    'contactMechId' =>  get_selected_contactMechId(),
+  );
   $client = drubiz_api_client();
-  $response = $client->get($endpoint);
+  $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
 
@@ -264,19 +278,11 @@ function drubiz_validate_otp() {
 }
 
 function online_payment() {
-  $client = drubiz_api_client();
-  $addressendpoint = 'getPostalAddressSelect';  
-  $jsessionid = get_user_jsessionid();
-  $addressendpoint.= (';jsessionid=' . urlencode($jsessionid));
-  $addressresponse = $client->get($addressendpoint);
-  $addressraw_json =  $addressresponse->getBody();
-  $addressdata = json_decode($addressraw_json, TRUE);
-  $contactMechId = $addressdata['contactMechId'];
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('addressdata','addressendpoint','contactMechId'), 1) . '</pre>');
+  $client = drubiz_api_client();  
   $endpoint = 'ccAvenueSubmitOrder';
   $params = array(
       'partyId' =>get_user_party_id(),
-      'id' => $contactMechId,
+      'id' => get_selected_contactMechId(),
   );
   $jsessionid = get_user_jsessionid();
   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
@@ -415,7 +421,8 @@ function drubiz_checkout_payment() {
   // )));
   // $raw_json = $response->getBody();
   // $storeCredit = json_decode($raw_json,TRUE);
-return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'addresses'=>get_user_addresses()));
+  $walletdata = get_wallet_amount();
+return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'addresses'=>get_user_addresses(),'walletAmount'=>$walletdata)));
 }
 
 /**
@@ -1736,8 +1743,7 @@ function myaccount_review_rating() {
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('party_id', 'data'), 1) . '</pre>');
   return theme('myaccount_review_rating',array("review"=>$data));
 }
-
-function myaccount_my_wallet(){   
+function get_wallet_amount(){
   $client = drubiz_api_client();
   $endpoint = 'partyStoreCreditPayment';  
   $params = array(
@@ -1752,5 +1758,42 @@ function myaccount_my_wallet(){
   $data = json_decode($raw_json, TRUE);
   //toCheckSession($data);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','endpoint'), 1) . '</pre>');
+  return $data['partyStoreCreditBalance'];
+}
+function myaccount_my_wallet(){   
+  $data = get_wallet_amount();
   return theme('myaccount_my_wallet',array('walletAmount' => $data));   
+}
+function wallet_store_credit(){
+  $client = drubiz_api_client();
+  $partyId=get_user_party_id();
+  $jsessionid = get_user_jsessionid();
+  $checkboxvalue = $_POST['chkval'];
+  $grandTotal = get_user_cart();
+
+  if($checkboxvalue == 1){
+    $endpoint = 'singlePageAddStoreCredit'; 
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
+     $params = array(
+      'productStoreId' => 'WOI_STORE',
+      'partyId'         => $partyId,
+      'storeCreditAmount' => $grandTotal['orderGrandTotal']
+    );
+    $response = $client->get($endpoint . '?' . http_build_query($params));
+    $raw_json = $response->getBody();
+    $data = json_decode($raw_json, TRUE);
+  }else{
+    $endpoint = 'singlePageRemoveStoreCredit'; 
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
+    $response = $client->get($endpoint);
+    $raw_json = $response->getBody();
+    $data = json_decode($raw_json, TRUE);
+  }
+   watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','data','endpoint'), 1) . '</pre>');
+   echo json_encode($data);
+   //theme('drubiz_checkout_payment', array('walletData' => $data));
 }
