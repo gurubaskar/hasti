@@ -1324,5 +1324,66 @@ jQuery(document).ready(function(){
         return false;
       }
   });
-
+    jQuery(".chkwallet").on('change', function() { 
+      if(jQuery(this).is(":checked")) {        
+        var chkval = 1;
+        data = 'chkval=' + chkval;
+        jQuery.ajax({
+          type: "POST",
+          url: Drupal.settings.basePath + 'account/store-credit',
+          data: data,
+          success: function(data) {
+            console.log(data);
+            if (data['isError'] == 'false' && data['status']=='Pass') {
+              //alert(data['_EVENT_MESSAGE_']);
+              close_loading(); 
+              jQuery('#balance').show(); 
+              jQuery("#balance").append('<div>' + data['remainingCartTotal'] + '</div>');       
+              if(data['remainingCartTotal'] == 0){
+                jQuery('#paymentOption').hide();
+                jQuery('#placeOrderStoreCredit').show(); 
+              }
+              //document.location = Drupal.settings.basePath +'checkout-payment';
+            } else {
+              alert(data['_ERROR_MESSAGE_']);
+              close_loading();
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+            console.log(textStatus + ': ' + errorThrown);
+            close_loading();
+          },
+          dataType: 'json'
+      });
+      }else{
+        var chkval = 0;
+        data = 'chkval=' + chkval;
+        jQuery.ajax({
+          type: "POST",
+          url: Drupal.settings.basePath + 'account/store-credit',
+          data: data,
+          success: function(data) {
+            console.log(data);
+            if (data['isError'] == 'false' && data['status']=='Pass') {
+              //alert(data['_EVENT_MESSAGE_']);
+              close_loading(); 
+              jQuery('#balance').hide(); 
+              if(data['remainingCartTotal'] != 0){
+                jQuery('#paymentOption').show();                 
+              }
+            } else {
+              alert(data['_ERROR_MESSAGE_']);
+              close_loading();
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+            console.log(textStatus + ': ' + errorThrown);
+            close_loading();
+          },
+          dataType: 'json'
+      });
+      }      
+  });
 });

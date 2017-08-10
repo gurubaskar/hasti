@@ -743,7 +743,13 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-
+ $items['account/store-credit'] = array(
+    'title'             => 'Checkout Address',
+    'description'       => "Checkout Address",
+    'page callback'     => 'wallet_store_credit',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   $items['drubiz/remove-store-credit'] = array(
     'title'             => 'Remove Store Credit',
     'description'       => "Remove Store Credit",

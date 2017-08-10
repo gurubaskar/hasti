@@ -8,7 +8,7 @@ drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 $orderid = $_GET['orderid'];
 $partyId = $_GET['partyid'];
 //href="print_invoice.php?orderid=WOI10845&partyid=10201"
-$orderInformation = print_order_invoice('WOI10845','10201');
+$orderInformation = print_order_invoice($orderid,$partyId);
 //echo "<pre>";print_r($orderInformation);
 //echo $orderInformation['orderId'];
 $pdf = new PDF();
@@ -49,7 +49,7 @@ foreach($orderInformation['OrderHeader'] as $order){
 $html.='<tr>
 		  <td height="30">'.$order['productName'][0].'</td>
 		  <td height="30">'.$order['productName'][0].'</td>
-		  <td height="30">'.$order['quantity'].'</td>
+		  <td height="30">'.round($order['quantity']).'</td>
 		  <td height="30">'.$order['unitPrice'].'</td>
 		  <td height="30">'.$order['unitPrice'].'</td>
 		</tr>';	
