@@ -422,7 +422,7 @@ function drubiz_checkout_payment() {
   // $raw_json = $response->getBody();
   // $storeCredit = json_decode($raw_json,TRUE);
   $walletdata = get_wallet_amount();
-return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'addresses'=>get_user_addresses(),'walletAmount'=>$walletdata)));
+return theme('drubiz_checkout_payment', array('cart' => get_user_cart(),'addresses'=>get_user_addresses(),'walletAmount'=>$walletdata));
 }
 
 /**
