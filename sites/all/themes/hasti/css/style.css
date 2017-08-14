@@ -417,7 +417,7 @@ a:focus{text-decoration:none !important;}
 .static-content p u{font-size:20px; margin:10px 0 8px 0; font-weight:bold; text-decoration:none; float:left;}
 .static-content p strong{color:#000; font-weight:bold;}
 .policy-left, .faq-left{background:#eaeaea; height:100%; float:left; padding:10px 30px 10px 30px !important; margin-bottom:25px;}
-#returns-policy .heading-bar, #security .heading-bar, #privacy-policy .heading-bar, #infringement .heading-bar, #faq .heading-bar, #cancellation .heading-bar, #try-buy .heading-bar, .faq-right #payment .heading-bar, #return-exchange .heading-bar{margin:0;}
+#returns-policy .heading-bar, #security .heading-bar, #privacy-policy .heading-bar, #infringement .heading-bar, #faq .heading-bar, #cancellation .heading-bar, #try-buy .heading-bar, .faq-right #payment .heading-bar, #return-exchange .heading-bar, #payment .heading-bar{margin:0;}
 #returns-policy .heading-bar h2, #terms-of-use .heading-bar h2, #security .heading-bar h2, #privacy-policy .heading-bar h2, #infringement .heading-bar h2, #faq .heading-bar h2, #tracking-order .heading-bar h2, #cancellation .heading-bar h2, #try-buy .heading-bar h2, .faq-right #payment .heading-bar h2, #return-exchange .heading-bar h2{top:-27px;}
 #returns-policy>.col-xs-12.col-sm-12.col-md-12, #terms-of-use>.col-xs-12.col-sm-12.col-md-12, #security>.col-xs-12.col-sm-12.col-md-12, #privacy-policy>.col-xs-12.col-sm-12.col-md-12, #infringement>.col-xs-12.col-sm-12.col-md-12, #faq>.col-xs-12.col-sm-12.col-md-12, #tracking-order>.col-xs-12.col-sm-12.col-md-12, #cancellation>.col-xs-12.col-sm-12.col-md-12, #try-buy>.col-xs-12.col-sm-12.col-md-12, .faq-right #payment>.col-xs-12.col-sm-12.col-md-12, #return-exchange>.col-xs-12.col-sm-12.col-md-12{padding:0;}
 
@@ -621,6 +621,9 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .reviewRatings tbody td{vertical-align:middle;}
 
 .myorders #eCommerceOrderDetail, .myorders #eCommerceOrderDetail .orderDetailShippingGroup{float:left; width:100%;}
+.myaccount-right.myorders .shippingDetail{float:left; width:100%; padding:5px 20px 15px 20px; margin-bottom:20px;}
+.myaccount-right.myorders .shippingDetail span{color:#6d6e70;}
+.myaccount-right.myorders .shippingDetail table td a, .myaccount-right.myorders .shippingDetail table td a:hover{color:#0081c5 !important;}
 
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
@@ -752,7 +755,7 @@ a:focus{text-decoration:none !important;}
     border: none; 
 }
 /************************ RESPONSIVE TABLE DESKTOP CODE ***********************/
-.table-bordered {
+.table-bordered, .myaccount-right.myorders .shippingDetail {
     border-width: 1px;
     border-style: solid;
     border-color: rgb(221, 221, 221);
@@ -774,7 +777,7 @@ a:focus{text-decoration:none !important;}
 .returnDetail thead td{color:#000; font-weight:500; width:33%;}
 .returnDetail tbody td, .returnOrderDetail tbody td{color:#6d6e70; font-weight:400;}
 .myorders #no-more-tables{margin-bottom:20px;}
-.returnOrderDetail thead, .myaccount-right .reviewRatings thead{background:#eaeaea;}
+.returnOrderDetail thead, .myaccount-right .reviewRatings thead, .myaccount-right.myorders .returnOrderDetail{background:#eaeaea;}
 .returnOrderDetail thead td, .myaccount-right .reviewRatings thead td{padding:5px; color:#000; font-weight:500;}
 .returnOrderDetail .ui-btn-icon-right{padding:7px 20px 7px 5px; border:1px solid #ddd; box-shadow: none;}
 .returnOrderDetail .ui-select .ui-btn>span:not(.ui-li-count){font-size:13px; color:#6d6e70; font-weight:400;}
