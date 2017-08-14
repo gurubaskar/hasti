@@ -43,15 +43,15 @@
 					</div>
 				</div>
 				<div class="details-btns">
-					<?php if($status == 'Delivered') :?>
-					<a class="returnorder" data-return-id="<?php echo $product_variant->product_id; ?>" data-ajax="false">Return</a>
+					<?php if($status == 'Completed' || $status == "Return Requested" || $status == "Returned " || $status == "Return Cancelled") :?>
+					<a class="returnOrder" href="<?php echo url('account/returnOrder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Return Order</a>
 				<?php endif;?>
 					<?php if($status == 'Approved') :?>
 						<a href="#cancelWindow_<?php echo $order['orderId'];?>" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" class="ordercancel">Cancel Order</a>
 					<!-- <a href="#cancelWindow" class="ordercancel" data-ajax="false">Cancel Order</a> -->
 					<?php endif;?>
 					<a class="reorder" href="<?php echo url('account/reorder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Re-Order</a>
-					<a class="returnOrder" href="<?php echo url('account/returnOrder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Return Order</a>
+					<!-- <a class="returnOrder" href="<?php echo url('account/returnOrder');?>/<?php echo $order['orderId'];?>" data-ajax="false">Return Order</a> -->
 				</div>
 			</div>
 			<?php
