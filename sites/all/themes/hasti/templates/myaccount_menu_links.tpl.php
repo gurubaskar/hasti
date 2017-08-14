@@ -3,6 +3,7 @@
 $arg = arg(1);
 $active = "active";
 $myOrder = "";
+$returnOrderItem = "";
 $trackOrder = "";
 $review = "";
 $myWallet = "";
@@ -12,6 +13,9 @@ $addressClass = "";
 
 if($arg == 'orders' || $arg == 'returnOrder' || $arg == 'reorder') {
 	$myOrder = $active;
+}
+if($arg == 'return-order') {
+	$returnOrderItem = $active;
 }
 if($arg == 'review-rating') {
 	$review = $active;
@@ -32,6 +36,7 @@ if($arg == 'change-password') {
 		<h3>Orders</h3>
 		<ul>
 			<li><a href="<?php echo url('account/orders');?>" data-ajax="false" class="<?php echo $myOrder;?>" >My Order</a></li>
+			<li><a href="<?php echo url('account/return-order');?>" data-ajax="false" class="<?php echo $returnOrderItem;?>">Return Order</a></li>
 			<li><a href="<?php echo url('account/');?>" data-ajax="false" class="<?php echo $trackOrder;?>">Track Order</a></li>
 		</ul>
 	</li>

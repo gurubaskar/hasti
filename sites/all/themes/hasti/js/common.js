@@ -1300,18 +1300,14 @@ jQuery(document).ready(function(){
       url: Drupal.settings.basePath + 'drubiz/returnOrder',
       data: data,
       success: function(data) {
-        if (data['isError'] == 'false') {
-          alert(data['_EVENT_MESSAGE_']);
+        if (data['status'] == 'pass') {
+          // alert(data['_EVENT_MESSAGE_']);
+          // close_loading();
+          document.location = Drupal.settings.basePath + 'account/orders';        
+        } else {
+          alert(data['_ERROR_MESSAGE_']);
           close_loading();
-          // document.location = Drupal.settings.basePath + 'account/orders';        
         }
-        // else if (data['isError'] == 'true') {
-        //   alert(data['_EVENT_MESSAGE_']);
-        //   close_loading();
-        // } else {
-        //   alert(data['_ERROR_MESSAGE_']);
-        //   close_loading();
-        // }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus + ': ' + errorThrown);

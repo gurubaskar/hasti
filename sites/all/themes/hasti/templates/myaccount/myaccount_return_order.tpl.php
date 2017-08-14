@@ -77,7 +77,13 @@
         ?>
           <tr>
             <td data-title="Product Name">
-              <?php echo $orderValue['itemDescription'];?>
+              <?php 
+                echo $orderValue['itemDescription'];
+                $isReturned = $orderValue['isReturned'];
+                if($isReturned == 'Y') {
+                  echo "<br />Note: You have already requested <br />a Return for this product.";
+                }
+              ?>
             </td>
             <td data-title="Image">
               <img class="order-img" alt="<?php echo $orderValue['itemDescription'];?>" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
@@ -88,8 +94,11 @@
               ?>
             </td>
             <td data-title="Return">
-              <?php $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'];?>
-              <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $selectedReturnProductId;?>">
+              <?php 
+              if($isReturned == 'N') {
+                $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'];?>
+                <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $selectedReturnProductId;?>">
+              <?php } ?>
             </td>
             <td data-title="Reason">
               <select id="returnReason_<?php echo $selectedReturnProductId;?>">

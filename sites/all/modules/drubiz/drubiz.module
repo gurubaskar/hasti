@@ -867,6 +867,14 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+  $items['account/return-order'] = array(
+    'title'             => 'returnOrderList',
+    'description'       => "returnOrderList",
+    'page callback'     => 'myaccount_return_order_list',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  
   return $items;
 }
 
@@ -981,6 +989,10 @@ function drubiz_theme() {
      'myaccount_return_order' => array(
       'path'            => $drubiz_path,
       'template'        => 'myaccount_return_order',
+    ),
+     'myaccount_return_order_list' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'myaccount_return_order_list',
     ),
      'myaccount_loyalty' => array(
      'path'            => $drubiz_path,
