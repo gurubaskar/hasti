@@ -78,6 +78,7 @@ a:focus{text-decoration:none !important;}
 #navbar{margin-bottom:0px;}
 #navbar a.logo{margin:5px 0 0 0;}
 #navbar img{float:left;}
+.ui-page-theme-a .ui-btn:active, html .ui-bar-a .ui-btn:active, html .ui-body-a .ui-btn:active, html body .ui-group-theme-a .ui-btn:active, html head+body .ui-btn.ui-btn-a:active{background-color:inherit !important; border-color:inherit !important; text-shadow:none !important;}
 /*#navbar .navbar-btn{margin-top:5px; margin-bottom:0;}*/
 .menu{float:left; margin-top:29px; margin-left:20px;}
 .menu ul li{float:left;}
@@ -106,6 +107,9 @@ a:focus{text-decoration:none !important;}
 #footer ul li.printrest{width:30px !important; height:30px; float:left; background:url('./../images/main-img.png') no-repeat -4px -150px; position:relative; padding:15px 10px; margin:0 3% 0 0;}
 #footer ul li.twitter{width:30px !important; height:30px; float:left; background:url('./../images/main-img.png') no-repeat -7px -197px; position:relative; padding:15px 10px; margin:0 3% 0 0;}
 #footer ul li.in{width:30px !important; height:30px; float:left; background:url('./../images/main-img.png') no-repeat -7px -239px; position:relative; padding:15px 10px; }
+
+
+.ui-page-theme-a .ui-btn:focus, html .ui-bar-a .ui-btn:focus, html .ui-body-a .ui-btn:focus, html body .ui-group-theme-a .ui-btn:focus, html head+body .ui-btn.ui-btn-a:focus, .ui-page-theme-a .ui-focus, html .ui-bar-a .ui-focus, html .ui-body-a .ui-focus, html body .ui-group-theme-a .ui-focus, html head+body .ui-btn-a.ui-focus, html head+body .ui-body-a.ui-focus{text-shadow:none !important;}
 
 /************* mega menu ****************/
    .menu ul#eCommerceNavBarMenu{
@@ -444,9 +448,12 @@ a:focus{text-decoration:none !important;}
 .remove{background:url('./../images/main-img.png') no-repeat -5px -446px; padding:10px 28px; font-weight:normal;}
 .update{background:url('./../images/main-img.png') no-repeat -5px -477px; padding:10px 28px;}
 .edit{margin:10px 0; padding-right:0 !important;}
-#subtotal, .alltotal{float:right; width:100%; text-align:right; margin:15px 0;}
-#subtotal label, .alltotal label{ color:#6d6e70; font-size:28px !important; font-weight:normal; margin-right:5px !important; display:inline-block !important;}
-#subtotal span, .alltotal span{color:#0081c5; font-size:28px; font-weight:normal;}
+#subtotal, .alltotal, .myaccount-right.myorders .subTotal, .myaccount-right.myorders .grandTotal{float:right; width:100%; text-align:right; margin:15px 0;}
+#subtotal label, .alltotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child{color:#6d6e70; font-size:28px !important; font-weight:normal; margin-right:5px !important; display:inline-block !important;}
+#subtotal span, .alltotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.myorders .grandTotal span{color:#0081c5; font-size:28px; font-weight:normal;}
+.myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child{margin-right:3px;}
+.myaccount-right.myorders .grandTotal{margin:0 !important;}
+.myaccount-right.myorders .returnOrderDetail tbody td{vertical-align:middle !important;}
 #cart .btns-wrap{margin:20px 0; float:right; width:100%;}
 #cart .btns-wrap span{float:right; margin-left:10px; margin-right:0;}
 .checkpin{float:right; width:420px;}
@@ -599,7 +606,7 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
 .basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
-.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}
+/*.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}*/
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
 .mob-search input[type="text"]{width:94% !important; padding:10px; border:0;}
@@ -624,6 +631,12 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders .shippingDetail{float:left; width:100%; padding:5px 20px 15px 20px; margin-bottom:20px;}
 .myaccount-right.myorders .shippingDetail span{color:#6d6e70;}
 .myaccount-right.myorders .shippingDetail table td a, .myaccount-right.myorders .shippingDetail table td a:hover{color:#0081c5 !important;}
+
+#cancelComments, #cancelReason-button, .cancelord{height:auto; border:none; margin:15px 0 7px 0; padding:10px; color:#6d6e70; background-color:#fff; line-height:24px; float:left; width:100%;}
+#cancelComments{height:42px !important; text-align:center;}
+#cancelWindow_WOI10911-popup .cancelord{padding:5px 7px !important; margin:15px 0 7px 0;}
+#cancelWindow_WOI10911-popup .ui-icon-delete
+#cancelComments{text-align:center;}
 
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
@@ -654,7 +667,8 @@ a:focus{text-decoration:none !important;}
 .ui-popup.signin .remember a{padding-left:30px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
 .signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 7px; margin:25px 0 15px 0;}
-.signin-btn #signin{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:23px; font-weight:normal; margin:25px 0 15px 0;}
+.signin-btn #signin, .cancelord{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:23px; font-weight:normal; margin:0;}
+.signin-btn .ui-input-btn.ui-btn{padding:5px 0 !important;}
 .ui-input-text, .signin-btn{width:400px !important; float:left;}
 .checkpin .ui-input-text{width:auto !important;}
 .checkpin a{color:#fff !important; font-weight:normal !important;}
@@ -1083,7 +1097,7 @@ a:focus{text-decoration:none !important;}
     #homepage .row1 .col-xs-6, #homepage .row3 .col-xs-6{width:100%;}
     #homepage .story-wrap h3{font-size:23px; line-height:28px;}
     .myorders #past-orders .details-btns{width:100%;}
-    #homepage, #breadcrumb .container-fluid>.col-xs-12, #cart, .cartbox .img-wrap, .cartbox .cart-details, .cartbox .cart-details .details-right, .checkoutwrap-left, .checkout-right, .checkout-right #checkout-login>.col-xs-12{padding:0 !important;}
+    #homepage, #breadcrumb .container-fluid>.col-xs-12, #cart, .cartbox .img-wrap, .cartbox .cart-details, .cartbox .cart-details .details-right, .checkoutwrap-left, .checkout-right, .checkout-right #checkout-login>.col-xs-12, .leftMenuWrap{padding:0 !important;}
     #cart #subtotal span{font-size:28px;}
 }
 @media(max-width:439px){
