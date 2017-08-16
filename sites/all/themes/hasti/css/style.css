@@ -605,7 +605,7 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
 /*.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}*/
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
@@ -633,10 +633,13 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders .shippingDetail table td a, .myaccount-right.myorders .shippingDetail table td a:hover{color:#0081c5 !important;}
 
 #cancelComments, #cancelReason-button, .cancelord{height:auto; border:none; margin:15px 0 7px 0; padding:10px; color:#6d6e70; background-color:#fff; line-height:24px; float:left; width:100%;}
-#cancelComments{height:42px !important; text-align:center;}
+#cancelComments{height:42px !important; text-align:center; font-size:16px; font-weight:bold;}
 #cancelWindow_WOI10911-popup .cancelord{padding:5px 7px !important; margin:15px 0 7px 0;}
 #cancelWindow_WOI10911-popup .ui-icon-delete
-#cancelComments{text-align:center;}
+#cancelReason option{padding:5px;}
+
+.details-btns.returnSubmit{float:right; position:inherit;}
+.details-btns.returnSubmit a{width:auto;}
 
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
@@ -791,13 +794,14 @@ a:focus{text-decoration:none !important;}
 .returnDetail thead td{color:#000; font-weight:500; width:33%;}
 .returnDetail tbody td, .returnOrderDetail tbody td{color:#6d6e70; font-weight:400;}
 .myorders #no-more-tables{margin-bottom:20px;}
-.returnOrderDetail thead, .myaccount-right .reviewRatings thead, .myaccount-right.myorders .returnOrderDetail{background:#eaeaea;}
+.returnOrderDetail thead, .myaccount-right .reviewRatings thead, .myaccount-right.myorders .returnOrderDetail, .returnDetail thead{background:#eaeaea;}
 .returnOrderDetail thead td, .myaccount-right .reviewRatings thead td{padding:5px; color:#000; font-weight:500;}
 .returnOrderDetail .ui-btn-icon-right{padding:7px 20px 7px 5px; border:1px solid #ddd; box-shadow: none;}
 .returnOrderDetail .ui-select .ui-btn>span:not(.ui-li-count){font-size:13px; color:#6d6e70; font-weight:400;}
 .returnOrderDetail .ui-btn-icon-right:after{right:5px; width:12px !important; height:12px !important; top:15px; background-color:#6d6e70 !important;}
 .returnOrderDetail .ui-select .ui-btn select{font-size:13px; color:#6d6e70; padding:5px;}
 .returnOrderDetail .ui-checkbox{top:-20px;}
+.myaccount-right.reOrder .returnDetail{padding:0;}
 
 /**************** RESPONSIVE TABLE DESKTOP CODE END ******************/
 
@@ -872,7 +876,9 @@ a:focus{text-decoration:none !important;}
     .mob-nav{display:block;}
     /*.menu{display:none;}*/
 }
-
+@media only screen and (min-width:993px){
+  .myaccount-right.myorders .cartbox .details-btns{width:27%;}  
+}
 @media only screen and (max-width:992px) and (min-width:768px){
     .pdp .sizechart{float:left; margin-bottom:0; width:100%;}
     .pdp .sizechart p{margin-top:5px; margin-bottom:15px;}
@@ -925,6 +931,9 @@ a:focus{text-decoration:none !important;}
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
     .icon-wrap .icon-container{width:61%;}
     .box{height:385px !important;}
+}
+@media only screen and (max-width:767px) and (min-width:481px){
+    .myaccount-right.myorders .cartbox .details-btns{width:50%;}
 }
 @media only screen and (max-width:767px) and (min-width:441px){
     .box{height:auto; max-height:470px;}
