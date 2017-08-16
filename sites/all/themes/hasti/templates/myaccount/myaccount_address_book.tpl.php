@@ -5,9 +5,7 @@
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
   <div class="col-xs-12 col-sm-12 col-md-12" id="address-book">
-    <div class="heading-bar">
-      <h2>Address Book</h2>
-    </div>
+    <h3>Address Book</h3>
     <?php foreach($address_list as $k=>$addr) { ?>
       <div class="addressbox" id="delete_<?php echo $addr['contactMechId'] ;?>">
         <div class="col-xs-12 col-sm-12 col-md-12 pleft address">

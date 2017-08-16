@@ -815,7 +815,8 @@ function cancelOrderReason() {
   $endpoint = 'cancelOrderReason';
   $jsessionid = get_user_jsessionid();
   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-  $response = $client->get($endpoint . '?' . http_build_query());
+  // $response = $client->get($endpoint . '?' . http_build_query());
+  $response = $client->get($endpoint);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
@@ -1703,18 +1704,30 @@ function myaccount_return_order_details() {
                                "productId" => $seqProductId[1]);
   }
     
+  $params = "";
+  $selectedReundType = $_POST['returnTypeId'];
 
-  $params = array(
-    'orderId'             => $_POST['orderId'],
-    'fromPartyId'         => get_user_party_id(),
-    'destinationFacilityId' => 'WOI_FAC',
-    'codRefund'           => 'Y',
-    'accountHolderName'   => $_POST['accountHolderName'],
-    'bankName'            => $_POST['bankName'],
-    'accountNumber'       => $_POST['accountNumber'],
-    'ifscCode'            => $_POST['ifscCode'],
-    'returnOrderItem'     => $returnOrderItem,
-  );
+  if($selectedReundType == "RTN_REFUND") {
+    $params = array(
+      'orderId'             => $_POST['orderId'],
+      'fromPartyId'         => get_user_party_id(),
+      'destinationFacilityId' => 'WOI_FAC',
+      'codRefund'           => 'Y',
+      'accountHolderName'   => $_POST['accountHolderName'],
+      'bankName'            => $_POST['bankName'],
+      'accountNumber'       => $_POST['accountNumber'],
+      'ifscCode'            => $_POST['ifscCode'],
+      'returnOrderItem'     => $returnOrderItem,
+    );
+  } else {
+    $params = array(
+      'orderId'             => $_POST['orderId'],
+      'fromPartyId'         => get_user_party_id(),
+      'destinationFacilityId' => 'WOI_FAC',
+      'codRefund'           => 'N',
+      'returnOrderItem'     => $returnOrderItem,
+    );
+  }
   $json = json_encode($params);
   $client = drubiz_api_client();
   // $response = $client->get($endpoint . '?' . http_build_query($json));

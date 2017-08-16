@@ -118,7 +118,7 @@ if(!empty($_GET['from'])) {
       </div>
       <div id="order-confirm">
         <label>Order Confirmation will be sent to:</label>
-        <span>&#43; 911234567890</span>
+        <span>&#43;91 <?php echo $cart['DefaultPhoneNumber'][0]; ?></span>
       </div>
       <div class="btns-wrap">
         <span><a href="#" class="buy-now" onclick="openDeliveryAddress();">Continue</a></span>

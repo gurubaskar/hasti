@@ -57,7 +57,7 @@
 			<?php
 			  	$reasonList = cancelOrderReason();
 			  ?>
-			<div data-role="popup" id="cancelWindow_<?php echo $order['orderId'];?>" class="ui-content signin" style="max-width:700px">
+			<div data-role="popup" id="cancelWindow_<?php echo $order['orderId'];?>" class="ui-content signin cancelOrder-wrap" style="max-width:700px">
 			  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 			  <div >
 			  <h3>Cancel Order</h3>
@@ -70,8 +70,8 @@
 			  	</select>
 			  	<input type="hidden" name="" value="<?php echo $order['orderId'];?>" id="cancel-id1">
 			    <!--<input type="button" value="Submit" onclick="cancelOrder(<?php //echo $order['orderId'];?>);">-->
-			    <a href="" class="cancelord" data-role="button" data-ajax="false" data-cancel-id="<?php echo $order['orderId'];?>">Submit</a>
-			    <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="">Cancel</a>
+			    <a href="" class="cancelord submit-btn" data-role="button" data-ajax="false" data-cancel-id="<?php echo $order['orderId'];?>">Submit</a>
+			    <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="cancel-btn">Cancel</a>
 			  </div>
 			</div>
 		<?php } endforeach; 
