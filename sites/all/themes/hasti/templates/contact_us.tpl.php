@@ -10,7 +10,7 @@
         <li><a href="#try-buy">Feedback</a></li>
       </ul>
     </div>
-    <div class="col-xs-12 col-sm-8 col-md-9">
+    <div class="col-xs-12 col-sm-8 col-md-9 contact-right">
       <div id="faq" class="tab-content">
         <div class="col-xs-12 col-sm-12 col-md-12">
           <div class="heading-bar">
