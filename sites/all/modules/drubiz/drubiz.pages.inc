@@ -1211,17 +1211,17 @@ function myaccount_orders(){
   $orders = get_user_orders();
   $order_details = array();
 
-  $isSession = order_details($order_value['orderId']);
-  if($isSession['isNewSession'] == 'true' or $isSession['isNewSession'] == 1) {
+  // $isSession = order_details($order_value['orderId']);
+  // if($isSession['isNewSession'] == 'true' or $isSession['isNewSession'] == 1) {
     foreach ($orders['OrderHeader'] as $order_key => $order_value) {
       $order_details[$order_value['orderId']] = order_details($order_value['orderId']);
     }
     return theme('myaccount_orders', array(
       'orders' => get_user_orders(),'order_details' => $order_details,
     ));
-  } else {
-    drupal_goto('user/logout');
-  }
+  // } else {
+  //   drupal_goto('user/logout');
+  // }
 }
 
 function order_details($order_id) {
