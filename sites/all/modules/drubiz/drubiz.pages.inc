@@ -1186,7 +1186,8 @@ function myaccount_update_profile() {
 }
 
 function myaccount_order_detail($order_id){
-  return theme('myaccount_order_detail', array('order'=>myorder_details($order_id)));
+  $track = trackOrder($order_id);
+  return theme('myaccount_order_detail', array('order'=>myorder_details($order_id), 'track'=>$track['OrderHeader']));
 }
 
 function myaccount_loyalty(){

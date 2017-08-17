@@ -1573,6 +1573,7 @@ print render($fivestar);*/
     '#size' => 10,
     '#attributes' => array('maxlength' => 250),
     '#required' => TRUE,
+    '#resizable' => FALSE,
   );
   $form['productid_field'] = array(
      '#type' => 'hidden',
@@ -1631,5 +1632,24 @@ function displayPDPReviewandRating($productId) {
   $data = json_decode($raw_json, TRUE);
   // toCheckSession($data);
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params'), 1) . '</pre>');
+  return $data;
+}
+
+function trackOrder($orderId) {
+  $endpoint = 'trackOrderDetail';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'orderId'=>$orderId,
+    'partyId' => get_user_party_id(),
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  // toCheckSession($data);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params'), 1) . '</pre>');
   return $data;
 }

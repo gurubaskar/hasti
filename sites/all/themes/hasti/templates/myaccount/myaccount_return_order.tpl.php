@@ -6,7 +6,7 @@
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
   <h3>My Orders</h3>
-  <?php if(count($order) > 0) {?>
+  <?php if(count($order['orderId']) > 0 ) {?>
   <div id="demo-top-bar">
     <div id="no-more-tables">
       <table class="table-bordered table-striped table-condensed cf returnDetail">
