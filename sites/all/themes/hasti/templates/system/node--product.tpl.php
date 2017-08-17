@@ -365,7 +365,7 @@
             </div>
             <div class="btns-wrap">
               <span><a href="#" class="shareStory">Share this story</a></span>
-              <!-- <span><a href="#">Your Feedback</a></span> -->
+              <span><a href="#" id="review-btn">Write a review</a></span>
             </div>
           </div>
           <div style="clear: both; display: none;" id="socialIcons">
@@ -375,19 +375,21 @@
             <?php echo $storyInfo->_ERROR_MESSAGE_;?>
           <?php endif;?>
         </div>
-        <?php
-          $comments_form = drupal_get_form('drubiz_hasti_comments_form');
-          $comments_form['productid_field']['#value'] = $product->product_id;
-        // var_dump($comments_form['my_field']['#value']);
-            print drupal_render($comments_form);
-        ?>
+        <div id="reviewForm">
+          <?php
+            $comments_form = drupal_get_form('drubiz_hasti_comments_form');
+            $comments_form['productid_field']['#value'] = $product->product_id;
+          // var_dump($comments_form['my_field']['#value']);
+              print drupal_render($comments_form);
+          ?>
+        </div>
         <div class="PDPReview">
           <?php 
             $rating = displayPDPReviewandRating($product->product_id);
             if(count($rating['review']) > 0) {
               foreach ($rating['review'] as $key => $ratingValue) {
           ?>
-            <span><?php echo $ratingValue['reviewTitle'];?></span>
+            Review Title:<span><?php echo $ratingValue['reviewTitle'];?></span><br />
             <span><?php echo $ratingValue['productReview'];?></span>
             <span><?php echo $ratingValue['reviewNickName'];?></span>
             <span><?php echo date("d/m/Y H:s",strtotime($ratingValue['postedDateTime']));?></span>
