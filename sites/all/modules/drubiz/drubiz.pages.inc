@@ -1528,11 +1528,8 @@ function drubiz_checkout_address(){
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
-
   echo json_encode($data);
-
 }
 
 function drubiz_delete_address() {
@@ -1832,4 +1829,28 @@ function wallet_store_credit(){
    watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','data','endpoint'), 1) . '</pre>');
    echo json_encode($data);
    //theme('drubiz_checkout_payment', array('walletData' => $data));
+}
+/**
+* Page call back for cart page pincode check
+*/
+function check_pincode(){
+  $client = drubiz_api_client();
+  $endpoint = 'pincodeSearchNew';
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $params = array(
+      'pincode' =>$_POST['pincode'],
+  );
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  $cart_response = get_user_cart();
+  $cartData['orderShippingTotal'] = $cart_response['orderShippingTotal'];
+  $cartData['orderGrandTotal'] = $cart_response['orderGrandTotal'];
+  $cartData['cartSubTotal'] = $cart_response['cartSubTotal'];
+  //$cartValue = $cart_response['orderShippingTotal'].'-'.$cart_response['orderGrandTotal'].'-'.$cart_response['cartSubTotal'];
+  $respnseData = array_merge($cartData,$data);
+   watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','endpoint', 'data','cartData','respnseData'), 1) . '</pre>');
+  echo json_encode($respnseData); 
+  //return theme('drubiz_cart',array('deliverycharge' => $data));   
 }

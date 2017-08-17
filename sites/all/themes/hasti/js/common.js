@@ -261,6 +261,39 @@ $(document).ready(function () {
   });
 })(jQuery);
 
+/*******************Check Pin*************************/
+function checkPin(){
+  var pincode = jQuery('#pincode').val();
+  var data = 'pincode=' + pincode;
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'check-pin',
+    data: data,
+    success: function(data) {
+      //console.log(data);
+      if (data['isError'] == 'true') {
+        //alert(data['_ERROR_MESSAGE_']);
+        jQuery('#pincodeerror').show();
+        close_loading();
+      } else {
+        //alert(data['deliveryCharges']);      
+        close_loading();
+        jQuery("#shippingcharge").html(data['deliveryCharges']);
+        jQuery("#subtotalamount").html(data['cartSubTotal']);
+        jQuery("#totalamount").html(data['orderGrandTotal']);  
+        jQuery('#pincodeerror').hide();
+        //document.location = Drupal.settings.basePath + 'cart';   
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });  
+}
 /*********************Sign UP**************************/
 function hastiSignIn(){
   var data_firstName                  = jQuery('#signUpForm').find('[name=firstName]:first').val();
@@ -800,8 +833,6 @@ function openDeliveryAddress() {
 }
 
 function openPaymentMethod() {
-  var numberOfCheckedRadio = jQuery('input:radio:checked').length;
-  if(numberOfCheckedRadio > 0) {
  jQuery("#order-summary").hide();
  jQuery("#checkout-login").hide(); 
  jQuery("#delivery-address").hide();
@@ -821,10 +852,6 @@ function openPaymentMethod() {
 
  jQuery('li a').removeClass("active");
  jQuery('#paymentMethod').addClass('active');
-  } else {
-    alert("Please select a address");
-    return false;
-  }
 }
 /*************** mega menu *****************/
 
@@ -1293,7 +1320,6 @@ jQuery(document).ready(function(){
           data += 'orderId=' + orderId + '&accountHolderName=' + accountHolderName + '&bankName=' + bankName + '&accountNumber=' + accountNumber + '&ifscCode=' + ifscCode + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
 
         }
-        data += 'orderId=' + orderId + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
 // alert(jQuery("#returnReason_00001_100044-1").val());
     // var orderId = jQuery(this).data('cancel-id');
     // var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
