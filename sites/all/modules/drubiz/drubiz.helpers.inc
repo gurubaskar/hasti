@@ -217,10 +217,6 @@ function drubiz_import_data($xls_files,$flag=false) {
     $facet_value          = $data['Facet Value'];
     $manufacturer         = $data['Manufacturer'];
     $store_price          = $data['Store Price'];
-    //For product facility - prasadk
-    $product_facility     = $data['Product Facility'];
-    //For product story - amey
-    $product_story        = $data['Product Story'];
     
 
 
@@ -234,9 +230,6 @@ function drubiz_import_data($xls_files,$flag=false) {
     $facet_group_keyed          = array();
     $facet_value_keyed          = array();
     $store_price_keyed          = array();
-    //For product facility - prasadk
-    $product_facility_keyed     = array();
-    $product_story_keyed        = array();
     $master_product_lookup = array();
 
    // echo "Catalog: $catalog_name" . PHP_EOL;
@@ -347,42 +340,7 @@ function drubiz_import_data($xls_files,$flag=false) {
       $store_price_keyed[$master_product_id][$product_id][$product_store_id]['sales_price'] = $c['sales_price'];
     }
     
-    // Product Facility
-    $debug[] = "Getting keyed Product Facilities...";
-    foreach ($product_facility as $i => $c) {
-      if ($i == 0) {
-        $store_product_facility_header = array_map('variableize', $c);
-        continue;
-      }
-//      echo "C before  = <pre>";
-//      print_r($c);
-//      echo "</pre>";
-      $c = array_combine($store_product_facility_header, $c);
-//      echo "C after  = <pre>";
-//      print_r($c);
-//      echo "</pre>";
-      if (empty($product_facility_keyed[$c['product_id']])) {
-        $product_facility_keyed[$c['product_id']] = array();
-      }
-      $product_facility_keyed[$c['product_id']][$c['product_id']] = $c;
-    }
     
-    // Story
-    echo "Getting product stories...";
-    foreach ($product_story as $i => $ps) {
-      if ($i == 0) {
-          $product_story_header = array_map('variableize', $ps);
-        continue;
-      }
-      $ps = array_combine($product_story_header, $ps);
-      
-      if (empty($product_story_keyed[$ps['product_id']])) {
-        $product_story_keyed[$ps['product_id']] = array();
-      } 
-      $product_story_keyed[$ps['product_id']][$ps['story_id']]= $ps;
-     }
-    echo " DONE!" . PHP_EOL;
-
    // echo "... DONE!" . PHP_EOL;
    // echo DRUBIZ_IMPORT_DELIMITER . PHP_EOL;
 
@@ -689,10 +647,7 @@ function drubiz_import_data($xls_files,$flag=false) {
             
             $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_associations = $product_association_keyed[$product_id];
             $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_store_prices = $store_price_keyed[$product_id];
-            $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_stories = $product_story_keyed[$product_id];
-            if(isset($product_facility_keyed[$product_id])) {
-              $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_facility = $product_facility_keyed[$product_id];
-            }
+            
           }
           else {
             $final_product = &$final_products[$master_product_id];
@@ -701,10 +656,7 @@ function drubiz_import_data($xls_files,$flag=false) {
             }
             if (!product_variant_exists($final_product, $p['product_id'])) {
               $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_variants->{$p['product_id']} = $p;
-            }
-            if(isset($product_facility_keyed[$p['product_id']])) {
-              $final_product->field_system_data[LANGUAGE_NONE][0]['value']->product_facility = $product_facility_keyed[$p['product_id']];
-            }
+            }            
           }
 
           // Common code for both master & variants.
