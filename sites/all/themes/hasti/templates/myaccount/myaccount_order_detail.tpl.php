@@ -175,6 +175,10 @@ ol.progtrckr li.progtrckr-todo:before {
       <div class="subTotal">
         <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
       </div>
+      <div id="shipping">
+        <label>Shipping Charge:</label>
+        <span>&#8377; <?php echo format_money($order['orderShippingTotal']);?></span>
+      </div>
       <div class="grandTotal">
         <span>Grand Total</span><span>&#8377;. <?php echo format_money($order['orderGrandTotal']);?></span>
       </div>

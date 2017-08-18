@@ -159,9 +159,10 @@ require_once 'vendor/autoload.php';
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Sign in</h3>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
-    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
-    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
-    <span class="remember"><!--input type="checkbox" name="re" id="re" value="on"--> 
+    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
+    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>">
+    <span class="remember">
+    <input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> />
     <a href="#">Remember Me</a></span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">

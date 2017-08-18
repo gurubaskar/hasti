@@ -558,6 +558,18 @@ function drubiz_user() {
         drupal_set_message('User logged in!');
         // dsm($raw_headers);
         // dsm($_SESSION['drubiz']);
+        //login the user in
+        if(!empty($re)) {
+            setcookie ("username",$username,time()+ (10 * 365 * 24 * 60 * 60));
+            setcookie ("password",$password,time()+ (10 * 365 * 24 * 60 * 60));      
+        }else{ //remember me not checked
+            if(isset($_COOKIE["username"])) {
+              setcookie ("username","");
+            }
+            if(isset($_COOKIE["password"])) {
+              setcookie ("password","");
+            }
+        }
         if (!empty($_POST['REDIR'])) {
           drupal_goto();
         }
