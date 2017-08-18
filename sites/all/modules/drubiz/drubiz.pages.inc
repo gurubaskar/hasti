@@ -395,6 +395,7 @@ function drubiz_add_address() {
         'contactMechId'           => $_POST['data_contactMechId'],
       );
     }
+  
     $params = array_merge($params_add, $params_edit);
     $endpoint = 'updateAddressBookNew';
     $jsessionid = get_user_jsessionid();

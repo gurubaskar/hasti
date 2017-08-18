@@ -379,7 +379,7 @@
             </div>
             <div class="btns-wrap">
               <span><a href="#" class="shareStory">Share this story</a></span>
-              <span><a href="#" id="review-btn">Write a review</a></span>
+              <span><a href="#" id="review-btn" onclick="reviewAction();">Write a review</a></span>
             </div>
           </div>
           <div style="clear: both; display: none;" id="socialIcons">
