@@ -332,6 +332,32 @@
           <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>">Buy Now</a></span>
         </div>
         <p><?php echo $body[0]['safe_value'] ?></p>
+        <div id="review-wrap">
+          <h2>Product Reviews</h2>
+          <div class="PDPReview">
+            <?php 
+                $rating = displayPDPReviewandRating($product->product_id);
+                if(count($rating['review']) > 0) {
+                  foreach ($rating['review'] as $key => $ratingValue) {
+              ?>
+                <div class="review-row"><label>Review Title: </label><span><?php echo $ratingValue['reviewTitle'];?></span></div>
+                <div class="review-row"><label>Review: </label><span><?php echo $ratingValue['productReview'];?></span></div>
+                <div class="review-row"><label>Nickname: </label><span><?php echo $ratingValue['reviewNickName'];?></span></div>
+                <div class="review-row"><label>Review Date: </label><span><?php echo date("d/m/Y H:s",strtotime($ratingValue['postedDateTime']));?></span></div>
+                <div class="review-row"><label>Overall Rating: </label><span><?php
+                  $rating = $ratingValue['productRating'];
+                  $ratingAverage = $rating * 20;
+                  $path = drupal_get_path('module', 'fivestar');      
+                  drupal_add_js($path . '/js/fivestar.js');
+                  drupal_add_css($path . '/css/fivestar.css');
+                  echo theme('fivestar_static', array('rating' => $ratingAverage, 'stars' => 5, 'tag' => 'vote'));?>
+                </span>
+              </div>
+              <?php }
+                }
+            ?>
+          </div>
+        </div>
         <div class="story-wrap">
           <h2>Story</h2>
           <?php $storyInfo = pdp_story_info($product->product_id); 
@@ -383,28 +409,7 @@
               print drupal_render($comments_form);
           ?>
         </div>
-        <div class="PDPReview">
-          <?php 
-            $rating = displayPDPReviewandRating($product->product_id);
-            if(count($rating['review']) > 0) {
-              foreach ($rating['review'] as $key => $ratingValue) {
-          ?>
-            Review Title:<span><?php echo $ratingValue['reviewTitle'];?></span><br />
-            <span><?php echo $ratingValue['productReview'];?></span>
-            <span><?php echo $ratingValue['reviewNickName'];?></span>
-            <span><?php echo date("d/m/Y H:s",strtotime($ratingValue['postedDateTime']));?></span>
-            <span><?php
-              $rating = $ratingValue['productRating'];
-              $ratingAverage = $rating * 20;
-              $path = drupal_get_path('module', 'fivestar');      
-              drupal_add_js($path . '/js/fivestar.js');
-              drupal_add_css($path . '/css/fivestar.css');
-              echo theme('fivestar_static', array('rating' => $ratingAverage, 'stars' => 5, 'tag' => 'vote'));?>
-            </span>
-          <?php }
-            }
-          ?>
-        </div>
+        
       </div>
     <!-- </div> -->
 
