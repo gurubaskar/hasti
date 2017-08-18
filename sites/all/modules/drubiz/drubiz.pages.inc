@@ -1202,7 +1202,12 @@ function myaccount_order_detail($order_id){
 }
 
 function myaccount_track_order_list() {
-  return theme('myaccount_track_order_list', array('orders'=>get_user_orders()));
+  global $user;
+  if($user->uid > 0) {
+    return theme('myaccount_track_order_list', array('orders'=>get_user_orders()));
+  } else {
+    drupal_goto();
+  }
 }
 
 function myaccount_track_order_details($order_id) {
