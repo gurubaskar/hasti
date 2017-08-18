@@ -60,6 +60,7 @@
             </td>
             <td>
               Return
+              <input type="checkbox" id="checkAll">
             </td>
             <td>
               Reason
@@ -104,9 +105,24 @@
               <?php } ?>
             </td>
             <td data-title="Reason">
-              <select id="returnReason_<?php echo $selectedReturnProductId;?>">
-                <?php foreach ($order['returnReasons'] as $key => $returnValue) { ?>
-                    <option value="<?php echo $returnValue['returnReasonId'];?>"><?php echo $returnValue['description'];?></option>
+            <?php
+              $returnReasonIdSelected = '';
+              $disabled = '';
+              if($isReturned == 'Y') {
+                $returnReasonIdSelected = $orderValue['returnReasonId'];
+                $disabled = 'disabled';
+              }
+            ?>
+              <select id="returnReason_<?php echo $selectedReturnProductId;?>" <?php echo $disabled;?> >
+                <?php 
+                  foreach ($order['returnReasons'] as $key => $returnValue) { 
+                    $selected = '';
+                    $returnReasonId = $returnValue['returnReasonId'];
+                    if($returnReasonIdSelected == $returnReasonId) {
+                      $selected = 'selected';
+                    }
+                  ?>
+                    <option value="<?php echo $returnValue['returnReasonId'];?>" <?php echo $selected;?>><?php echo $returnValue['description'];?></option>
                 <?php } ?>
               </select>
             </td>
