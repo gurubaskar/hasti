@@ -310,6 +310,10 @@ a:focus{text-decoration:none !important;}
 .pdp .pdp-right #reviewForm .form-group .fivestar-widget{margin-bottom:15px;}
 .pdp .pdp-right #reviewForm textarea.ui-input-text{height:100px !important;}
 .pdp .pdp-right #reviewForm .btn-primary{border:none; float:right; width:auto;}
+.pdp .pdp-right #review-wrap, .pdp .pdp-right #review-wrap .PDPReview{float:left; width:100%;}
+.pdp .pdp-right #review-wrap .PDPReview{border:1px solid #d3d2d2; padding:15px 20px; margin-bottom:20px;}
+.pdp .pdp-right #review-wrap .PDPReview .review-row{float:left; width:100%; margin:2px 0;}
+.pdp .pdp-right #review-wrap .PDPReview .review-row label{width:auto; float:left; padding-right:2px; font-size:15px;}
 
 
 .pdp .title, .pdp .size{border-bottom:1px solid #adafb2; margin-bottom:15px; padding-bottom:20px; float:left; width:100%;}
@@ -340,7 +344,7 @@ a:focus{text-decoration:none !important;}
 .pdp .btns-wrap span a.wish-icon{background:url('./../images/main-img.png') no-repeat 0px -330px;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
-.pdp .story-wrap h2, .pdp .price-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
+.pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
 .storyimg-wrap{float:left; width:100%; margin-top:15px;}
 .pleft{padding-left:0 !important;}
 .pright{padding-right:0 !important;}
