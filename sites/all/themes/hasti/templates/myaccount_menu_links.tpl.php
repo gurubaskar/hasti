@@ -11,11 +11,14 @@ $personalInfo = "";
 $changePwd = "";
 $addressClass = "";
 
-if($arg == 'orders' || $arg == 'returnOrder' || $arg == 'reorder') {
+if($arg == 'orders' || $arg == 'returnOrder' || $arg == 'reorder' || $arg == 'orders-details') {
 	$myOrder = $active;
 }
 if($arg == 'return-order') {
 	$returnOrderItem = $active;
+}
+if($arg == 'track-order') {
+	$trackOrder = $active;
 }
 if($arg == 'review-rating') {
 	$review = $active;
@@ -37,7 +40,7 @@ if($arg == 'change-password') {
 		<ul>
 			<li><a href="<?php echo url('account/orders');?>" data-ajax="false" class="<?php echo $myOrder;?>" >My Order</a></li>
 			<li><a href="<?php echo url('account/return-order');?>" data-ajax="false" class="<?php echo $returnOrderItem;?>">Return Order</a></li>
-			<li><a href="<?php echo url('account/');?>" data-ajax="false" class="<?php echo $trackOrder;?>">Track Order</a></li>
+			<li><a href="<?php echo url('account/track-order');?>" data-ajax="false" class="<?php echo $trackOrder;?>">Track Order</a></li>
 		</ul>
 	</li>
 	<li>
