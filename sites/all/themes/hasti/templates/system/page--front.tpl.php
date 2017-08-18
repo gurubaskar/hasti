@@ -91,7 +91,7 @@ require_once 'vendor/autoload.php';
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
-            <li><a href="#"><?php echo t('Track Order');?></a></li>
+            <li><a href="<?php echo url('account/track-order');?>"><?php echo t('Track Order');?></a></li>
             <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>
 
              <?php if($GLOBALS['user']->uid != 0):?>
@@ -128,10 +128,10 @@ require_once 'vendor/autoload.php';
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Sign in</h3>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
-    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>">
-    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>">
+    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
+    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>">
   </form>
-  <span class="remember"><!--input type="checkbox" name="re" id="re" value="on"--> <a href="#">Remember Me</a></span>
+  <span class="remember"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /> <a href="#">Remember Me</a></span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
@@ -397,7 +397,7 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns" target="_blank"><?php echo t('Cancellation & Returns');?></a></li>
               <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy" target="_blank"><?php echo t('Shipping Policy');?></a></li>
               <li><a href="<?php echo url('contact-us')?>" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
-              <li><a href="#" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
+              <li><a href="<?php echo url('account/track-order');?>" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">

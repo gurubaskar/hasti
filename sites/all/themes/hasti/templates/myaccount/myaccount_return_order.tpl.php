@@ -6,6 +6,7 @@
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
   <h3>My Orders</h3>
+  <?php if(count($order['orderId']) > 0 ) {?>
   <div id="demo-top-bar">
     <div id="no-more-tables">
       <table class="table-bordered table-striped table-condensed cf returnDetail">
@@ -98,6 +99,8 @@
               if($isReturned == 'N') {
                 $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'];?>
                 <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $selectedReturnProductId;?>">
+              <?php } else { ?>
+                <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="" value="" disabled>
               <?php } ?>
             </td>
             <td data-title="Reason">
@@ -146,4 +149,7 @@
       <a href="">Submit</a>
     </div>
   </div>
+  <?php } else { ?>
+    <div>No Orders</div>
+  <?php } ?>
 </div>

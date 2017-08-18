@@ -76,6 +76,14 @@
                 <?php endforeach; ?>
               </div>
             </div>
+          <div id="subtotal">
+            <label>SubTotal:</label>
+            <span>&#8377; <?php echo format_money($order['paymentSubTotal']);?></span>
+          </div>
+          <div id="shipping">
+            <label>Shipping Charge:</label>
+            <span>&#8377; <?php echo format_money($order['orderShippingTotal']);?></span>
+          </div>          
             <div class="alltotal">
               <label>Total:</label><span>&#8377. <?php echo format_money($cart_product['orderGrandTotal']) ?></span>
             </div>

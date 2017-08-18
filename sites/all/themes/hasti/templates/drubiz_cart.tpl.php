@@ -62,16 +62,24 @@
           </div>
         </div>
         <?php }?>
+        
         <div id="subtotal">
-          <label>Sub Total:</label><span>&#8377. <?php echo format_money($cart['cartSubTotal']);?></span>
+          <label>Sub Total:</label><span>&#8377. <span id="subtotalamount"><?php echo format_money($cart['cartSubTotal']);?></span></span>
         </div>
-
+        <div id="shipping">
+          <label>Shipping Charge:</label><span>&#8377. <span id="shippingcharge"><?php echo format_money($cart['orderShippingTotal']);?></span></span>
+        </div>
+        <div id="total">
+          <label>Grand Total:</label><span>&#8377. <span id="totalamount"><?php echo format_money($cart['orderGrandTotal']);?></span></span>
+        </div>
         <div class="btns-wrap">
           <span><a href="<?php echo url('checkout-payment');?>" data-ajax="false" class="place-order">Place Order</a></span>
           <span><a href="<?php echo url();?>" class="continue">Continue Shopping</a></span>
-          <div class="checkpin"><input type="text" placeholder="Enter Your Pin"><a href="#" class="check">Check</a></div>
+          <div class="checkpin"><input type="text" id="pincode" placeholder="Enter Your Pin"><a href="#" class="check" onclick="checkPin();">Check</a></div>
         </div>
-
+          <div id="pincodeerror" style="display: none;">
+             Unfortunately, we do not ship to your PIN Code!
+          </div>
         <div class="bottomimg-wrap">
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
             <span><img src="<?php echo current_theme_path();?> /images/secure.png" /></span>

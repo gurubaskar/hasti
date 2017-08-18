@@ -116,9 +116,17 @@ if(!empty($_GET['from'])) {
         <label>Amount Payable:</label>
         <span>&#8377; <?php echo format_money($cart['cartSubTotal']);?></span>
       </div>
+      <div id="shipping">
+        <label>Shipping Charge:</label>
+        <span>&#8377; <?php echo format_money($cart['orderShippingTotal']);?></span>
+      </div>
+      <div id="total">
+        <label>Grand Total:</label>
+        <span>&#8377; <?php echo format_money($cart['orderGrandTotal']);?></span>
+      </div>
       <div id="order-confirm">
         <label>Order Confirmation will be sent to:</label>
-        <span>&#43; 911234567890</span>
+        <span>&#43;91 <?php echo $cart['DefaultPhoneNumber'][0]; ?></span>
       </div>
       <div class="btns-wrap">
         <span><a href="#" class="buy-now" onclick="openDeliveryAddress();">Continue</a></span>

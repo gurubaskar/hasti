@@ -261,6 +261,39 @@ $(document).ready(function () {
   });
 })(jQuery);
 
+/*******************Check Pin*************************/
+function checkPin(){
+  var pincode = jQuery('#pincode').val();
+  var data = 'pincode=' + pincode;
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'check-pin',
+    data: data,
+    success: function(data) {
+      //console.log(data);
+      if (data['isError'] == 'true') {
+        //alert(data['_ERROR_MESSAGE_']);
+        jQuery('#pincodeerror').show();
+        close_loading();
+      } else {
+        //alert(data['deliveryCharges']);      
+        close_loading();
+        jQuery("#shippingcharge").html(data['deliveryCharges']);
+        jQuery("#subtotalamount").html(data['cartSubTotal']);
+        jQuery("#totalamount").html(data['orderGrandTotal']);  
+        jQuery('#pincodeerror').hide();
+        //document.location = Drupal.settings.basePath + 'cart';   
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+      console.log(textStatus + ': ' + errorThrown);
+      close_loading();
+    },
+    dataType: 'json'
+  });  
+}
 /*********************Sign UP**************************/
 function hastiSignIn(){
   var data_firstName                  = jQuery('#signUpForm').find('[name=firstName]:first').val();
@@ -298,17 +331,19 @@ function hastiSignIn(){
 }
 
 /*******************Sign IN*************************/
-function signInHasti(){
+function signInHasti(){ 
   var data_USERNAME = jQuery('#signInForm').find('[name=USERNAME]:first').val();
   var data_PASSWORD = jQuery('#signInForm').find('[name=PASSWORD]:first').val();
-  var remember = jQuery('#re').val();
+  var remember = jQuery('#remember').val();
   var params = jQuery(location).attr('pathname');
   var checkout = params.split("/");
+  var data = 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD)+'&remember='+remember;
   loading();
+  //alert(data);
   jQuery.ajax({
     type: "POST",
     url: Drupal.settings.basePath + 'drubiz/user',
-    data: 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD)+'&remember'+remember,
+    data: data,
     
     success: function(data) {
       // console.log(data);

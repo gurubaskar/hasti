@@ -301,6 +301,21 @@ a:focus{text-decoration:none !important;}
 .pdp .pdp-right .story-wrap{margin:0;}
 .pdp .pdp-right .story-wrap #socialIcons, .pdp .pdp-right .story-wrap #socialIcons ul{float:left; width:100%;}
 .pdp .pdp-right .story-wrap #socialIcons ul li{float:left; width:auto; margin-right:18px; margin-top:10px;}
+.pdp .pdp-right #reviewForm, .pdp .pdp-right .PDPReview, .pdp .pdp-right #reviewForm .form-group{float:left; width:100%;}
+.pdp .pdp-right #reviewForm{margin:15px 0;}
+.pdp .pdp-right #reviewForm label{font-size:15px; margin:0;}
+.pdp .pdp-right #reviewForm .ui-input-text{width:100% !important; float:left;}
+.pdp .pdp-right #reviewForm input[type="text"]{width:60% !important;}
+.pdp .pdp-right #reviewForm .form-group .ui-select{display:none;}
+.pdp .pdp-right #reviewForm .form-group .fivestar-widget{margin-bottom:15px;}
+.pdp .pdp-right #reviewForm textarea.ui-input-text{height:100px !important;}
+.pdp .pdp-right #reviewForm .btn-primary{border:none; float:right; width:auto;}
+.pdp .pdp-right #review-wrap, .pdp .pdp-right #review-wrap .PDPReview{float:left; width:100%;}
+.pdp .pdp-right #review-wrap .PDPReview{border:1px solid #d3d2d2; padding:15px 20px; margin-bottom:20px;}
+.pdp .pdp-right #review-wrap .PDPReview .review-row{float:left; width:100%; margin:2px 0;}
+.pdp .pdp-right #review-wrap .PDPReview .review-row label{width:auto; float:left; padding-right:2px; font-size:15px;}
+
+
 .pdp .title, .pdp .size{border-bottom:1px solid #adafb2; margin-bottom:15px; padding-bottom:20px; float:left; width:100%;}
 .pdp .title{margin-top:0;}
 .pdp .title h2{font-family:'Roboto'; font-size:28px; color:#58595b; margin-bottom:15px; line-height:28px;}
@@ -329,7 +344,7 @@ a:focus{text-decoration:none !important;}
 .pdp .btns-wrap span a.wish-icon{background:url('./../images/main-img.png') no-repeat 0px -330px;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
-.pdp .story-wrap h2, .pdp .price-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
+.pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
 .storyimg-wrap{float:left; width:100%; margin-top:15px;}
 .pleft{padding-left:0 !important;}
 .pright{padding-right:0 !important;}
@@ -448,12 +463,13 @@ a:focus{text-decoration:none !important;}
 .remove{background:url('./../images/main-img.png') no-repeat -5px -446px; padding:10px 28px; font-weight:normal;}
 .update{background:url('./../images/main-img.png') no-repeat -5px -477px; padding:10px 28px;}
 .edit{margin:10px 0; padding-right:0 !important;}
-#subtotal, .alltotal, .myaccount-right.myorders .subTotal, .myaccount-right.myorders .grandTotal{float:right; width:100%; text-align:right; margin:15px 0;}
-#subtotal label, .alltotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child{color:#6d6e70; font-size:28px !important; font-weight:normal; margin-right:5px !important; display:inline-block !important;}
-#subtotal span, .alltotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.myorders .grandTotal span{color:#0081c5; font-size:28px; font-weight:normal;}
+#subtotal, .alltotal{float:right; width:100%; text-align:right; margin:15px 0;}
+.myaccount-right.reOrder .subTotal, .myaccount-right.reOrder .grandTotal, .myaccount-right.myorders .subTotal, .myaccount-right.myorders .grandTotal{float:right; width:100%; text-align:right; margin:0px 0 7px 0;}
+#subtotal label, .alltotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child, .myaccount-right.reOrder .subTotal span:first-child, .myaccount-right.reOrder .grandTotal span:first-child{color:#6d6e70; font-size:25px !important; font-weight:normal; margin-right:5px !important; display:inline-block !important;}
+#subtotal span, .alltotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.myorders .grandTotal span, .myaccount-right.reOrder .subTotal span, .myaccount-right.reOrder .grandTotal span{color:#0081c5; font-size:25px; font-weight:normal;}
 .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child{margin-right:3px;}
 .myaccount-right.myorders .grandTotal{margin:0 !important;}
-.myaccount-right.myorders .returnOrderDetail tbody td{vertical-align:middle !important;}
+.myaccount-right.myorders .returnOrderDetail tbody td, .myaccount-right.reOrder .returnDetail tbody tr td{vertical-align:middle !important;}
 #cart .btns-wrap{margin:20px 0; float:right; width:100%;}
 #cart .btns-wrap span{float:right; margin-left:10px; margin-right:0;}
 .checkpin{float:right; width:420px;}
@@ -552,7 +568,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.wishlist .btns-wrap span a{text-align:left; margin-left:62px; width:auto; padding:10px 0; float:left; color:#fff; font-weight:400;}
 .myaccount-right.wishlist .cartbox .qty, .myaccount-right.wishlist .cartbox .size, .myorders .cart-details span{border:0;}
 .myaccount-right .form-wrap{margin:5px 0 10px 0;}
-.myaccount-right .form-wrap .form-row label{color:#6d6e70; font-weight:400; font-size:15px; margin-top:5px;}
+.myaccount-right .form-wrap .form-row label, .contact-right .form-wrap .form-row label{color:#6d6e70; font-weight:400; font-size:15px; margin-top:5px;}
 .myaccount-right .form-wrap .form-row .ui-input-text{width:auto !important;}
 .myaccount-right .form-wrap .btns-wrap a{float:left !important;}
 .myaccount-right .heading-bar{margin-top:0;}
@@ -601,11 +617,11 @@ a:focus{text-decoration:none !important;}
 .form-wrap .form-row .ui-select .ui-btn{border:1px solid #d3d2d2; color:#6d6e70; font-size:14px; padding:10px; box-shadow:none !important;}
 .form-wrap .form-row .ui-btn-icon-right:after{background-color:#6d6e70 !important;}
 .form-wrap .form-row .ui-select .ui-btn>span:not(.ui-li-count){font-weight:300; text-align:left;}
-.form-wrap .form-row input[type="text"], .form-wrap .form-row .ui-select select{width:300px; font-size:14px; padding:10px; color:#6d6e70; font-weight:300; float:left; border:1px solid #d3d2d2;}
+.form-wrap .form-row input[type="text"], .form-wrap .form-row .ui-select select, .pdp .pdp-right #reviewForm input[type="text"]{width:300px; font-size:14px; padding:10px; color:#6d6e70; font-weight:300; float:left; border:1px solid #d3d2d2;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
 /*.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}*/
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
@@ -629,7 +645,7 @@ a:focus{text-decoration:none !important;}
 
 .myorders #eCommerceOrderDetail, .myorders #eCommerceOrderDetail .orderDetailShippingGroup{float:left; width:100%;}
 .myaccount-right.myorders .shippingDetail{float:left; width:100%; padding:5px 20px 15px 20px; margin-bottom:20px;}
-.myaccount-right.myorders .shippingDetail span{color:#6d6e70;}
+.myaccount-right.myorders .shippingDetail span{color:#6d6e70; display:block;}
 .myaccount-right.myorders .shippingDetail table td a, .myaccount-right.myorders .shippingDetail table td a:hover{color:#0081c5 !important;}
 
 #cancelComments, #cancelReason-button, .cancelord{height:auto; border:none; margin:15px 0 7px 0; padding:10px; color:#6d6e70; background-color:#fff; line-height:24px; float:left; width:100%;}
@@ -640,6 +656,18 @@ a:focus{text-decoration:none !important;}
 
 .details-btns.returnSubmit{float:right; position:inherit;}
 .details-btns.returnSubmit a{width:auto;}
+.myaccount-right.reOrder .returnDetail tbody tr td{padding-bottom:15px !important;}
+.myaccount-right.reOrder .returnDetail tbody tr td .ui-checkbox input{position:inherit;}
+#addContactus .form-row #choose-file{padding-left:0;}
+
+.contact-right{padding-left:30px !important; padding-right:10px !important;}
+.contact-right .col-xs-12.col-sm-12.col-md-12{padding-left:0;}
+#addContactus #js_content{width:300px !important; height:100px !important;}
+#addContactus .textCounter{width:100%; float:left; padding:5px 0 0 168px;}
+
+.ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:auto; padding:9px 40px; float:left; margin-right:10px; margin-top:20px; background-color:#fff !important; color:#00b04c !important; font-size:16px !important; font-weight:400 !important; border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important; top:0 !important; right:0 !important; border:none !important; text-shadow:none !important}
+.myaccount-right.myorders .refundTypeDisplay{float:left; width:auto;}
+
 
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
@@ -654,7 +682,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right #changepwd h3{display:none;}
 .myaccount-right .change-pwd .forgot-btn, .myaccount-right .change-pwd .forgot-btn .ui-input-btn{float:left; width:100%;}
 .myaccount-right .change-pwd .forgot-btn .ui-input-btn{padding:10px 0 !important; margin:0 !important; background:#fff;}
-
+.reorderBtn a{background-color:#00b04c !important; border:none !important; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400 !important; width:auto; float:right; text-shadow:none !important;}
 
 /***************************  popup code starts  ***************************/
 #signInForm .ui-input-text, #signInPopup .signin-btn{width:100% !important;}
@@ -791,17 +819,18 @@ a:focus{text-decoration:none !important;}
 .returnOrderDetail.table-striped>tbody>tr:nth-of-type(even), .myaccount-right .reviewRatings>tbody>tr:nth-of-type(even){background-color:#f2f2f2 !important;}
 .myorders #no-more-tables, .returnDetail, .returnOrderDetail{float:left; width:100%;}
 .returnDetail{padding:10px; border-collapse:inherit;}
-.returnDetail thead td{color:#000; font-weight:500; width:33%;}
+.myaccount-right.myorders .returnDetail thead td{color:#000; font-weight:500; width:33%;}
+.myaccount-right.myorders .returnDetail{padding:0;}
 .returnDetail tbody td, .returnOrderDetail tbody td{color:#6d6e70; font-weight:400;}
-.myorders #no-more-tables{margin-bottom:20px;}
-.returnOrderDetail thead, .myaccount-right .reviewRatings thead, .myaccount-right.myorders .returnOrderDetail, .returnDetail thead{background:#eaeaea;}
+/*.myorders #no-more-tables{margin-bottom:20px;}*/
+.returnOrderDetail thead, .myaccount-right .reviewRatings thead,/* .myaccount-right.myorders .returnOrderDetail,*/ .returnDetail thead{background:#eaeaea;}
 .returnOrderDetail thead td, .myaccount-right .reviewRatings thead td{padding:5px; color:#000; font-weight:500;}
 .returnOrderDetail .ui-btn-icon-right{padding:7px 20px 7px 5px; border:1px solid #ddd; box-shadow: none;}
 .returnOrderDetail .ui-select .ui-btn>span:not(.ui-li-count){font-size:13px; color:#6d6e70; font-weight:400;}
 .returnOrderDetail .ui-btn-icon-right:after{right:5px; width:12px !important; height:12px !important; top:15px; background-color:#6d6e70 !important;}
 .returnOrderDetail .ui-select .ui-btn select{font-size:13px; color:#6d6e70; padding:5px;}
 .returnOrderDetail .ui-checkbox{top:-20px;}
-.myaccount-right.reOrder .returnDetail{padding:0;}
+.myaccount-right.reOrder .returnDetail, .myaccount-right.myorders .returnOrderDetail{padding:0; margin-bottom:25px;}
 
 /**************** RESPONSIVE TABLE DESKTOP CODE END ******************/
 
@@ -951,7 +980,7 @@ a:focus{text-decoration:none !important;}
     .plp-right .col-xs-12{width:50%;}
     .icon-wrap .icon-container{width:80%;}
 }
-@media (max-width:980px){
+@media (max-width:991px){
     .myaccount-right .addressbox{width:100%;}
 }
 
@@ -1020,12 +1049,14 @@ a:focus{text-decoration:none !important;}
     .row3 .video{margin-top:15px;}
     .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{margin-top:20px;}
     .myaccount-left, .checkout-left{margin-bottom:20px;}
-    .myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}
-    .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select{width:60% !important;}
-    .myaccount-right .form-wrap .form-row input[type="text"], .myaccount-right .form-wrap .form-row .ui-select select{width:100%;}
+    /*.myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}*/
+    .myaccount-right .form-wrap .form-row .ui-input-text, .myaccount-right .form-wrap .form-row .ui-select, #addContactus .form-row .ui-input-text, #addContactus #js_content{width:59% !important;}
+    .myaccount-right .form-wrap .form-row input[type="text"], .myaccount-right .form-wrap .form-row .ui-select select, #addContactus .form-row input[type="text"]{width:100%;}
     #changepwd{margin:10px auto 20px auto !important;}
     .policy-right, .faq-right, .cartbox .cart-details .details-left, .cartbox .cart-details .edit{padding:0 !important;}
     #navbar a.logo{margin:0;}
+    .contact-right{padding:25px 0 0 0 !important;}
+    .contact-right .col-xs-12.col-sm-12.col-md-12{padding-right:0 !important;}
 }
 
 @media (max-width:600px){
@@ -1046,6 +1077,9 @@ a:focus{text-decoration:none !important;}
     .cartbox .total{padding-left:0;}
     #footer .social-wrap{width:100%; padding:0 15px;}
     #cart .img-wrap, #cart .cart-details{padding:0;}
+    .contact-right #addContactus .ui-input-text, .contact-right #addContactus #js_content{width:100% !important;}
+    #addContactus .textCounter{padding:5px 0 0 0;}
+
 }
 
 @media (max-width:550px){
@@ -1108,6 +1142,9 @@ a:focus{text-decoration:none !important;}
     .myorders #past-orders .details-btns{width:100%;}
     #homepage, #breadcrumb .container-fluid>.col-xs-12, #cart, .cartbox .img-wrap, .cartbox .cart-details, .cartbox .cart-details .details-right, .checkoutwrap-left, .checkout-right, .checkout-right #checkout-login>.col-xs-12, .leftMenuWrap{padding:0 !important;}
     #cart #subtotal span{font-size:28px;}
+    .myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}
+    .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:100%;}
+    .ui-popup.signin.cancelOrder-wrap .cancel-btn{margin-top:5px;}
 }
 @media(max-width:439px){
     .plp .plp-right .box{height:auto !important; max-height:100% !important;}
@@ -1122,6 +1159,7 @@ a:focus{text-decoration:none !important;}
     .pdp .size .available, .pdp .color .available{width:100%; margin-bottom:8px;}
     #subtotal label{width:auto; margin-bottom:15px;}
     .form-wrap .btns-wrap a{width:92%; margin-bottom:15px; float:left;}  
+    .form-wrap#addpersonalinfo .btns-wrap a{width:99%;}
     .details-left, .details-right, .edit, .cart-details{padding:0 !important;}  
     .cartbox{padding:15px 15px 20px 15px;}
     .checkout-right #order-summary .img-wrap{width:60% !important;}

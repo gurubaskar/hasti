@@ -558,6 +558,18 @@ function drubiz_user() {
         drupal_set_message('User logged in!');
         // dsm($raw_headers);
         // dsm($_SESSION['drubiz']);
+        //login the user in
+        if(!empty($re)) {
+            setcookie ("username",$username,time()+ (10 * 365 * 24 * 60 * 60));
+            setcookie ("password",$password,time()+ (10 * 365 * 24 * 60 * 60));      
+        }else{ //remember me not checked
+            if(isset($_COOKIE["username"])) {
+              setcookie ("username","");
+            }
+            if(isset($_COOKIE["password"])) {
+              setcookie ("password","");
+            }
+        }
         if (!empty($_POST['REDIR'])) {
           drupal_goto();
         }
@@ -815,7 +827,8 @@ function cancelOrderReason() {
   $endpoint = 'cancelOrderReason';
   $jsessionid = get_user_jsessionid();
   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-  $response = $client->get($endpoint . '?' . http_build_query());
+  // $response = $client->get($endpoint . '?' . http_build_query());
+  $response = $client->get($endpoint);
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data'), 1) . '</pre>');
@@ -1188,6 +1201,20 @@ function myaccount_order_detail($order_id){
   return theme('myaccount_order_detail', array('order'=>myorder_details($order_id)));
 }
 
+function myaccount_track_order_list() {
+  global $user;
+  if($user->uid > 0) {
+    return theme('myaccount_track_order_list', array('orders'=>get_user_orders()));
+  } else {
+    drupal_goto();
+  }
+}
+
+function myaccount_track_order_details($order_id) {
+  $track = trackOrder($order_id);
+  return theme('myaccount_track_order_details', array('order'=>myorder_details($order_id), 'track'=>$track['OrderHeader']));
+}
+
 function myaccount_loyalty(){
   return theme('myaccount_loyalty', array('loyalty'=>drubiz_view_loyalty()));
 }
@@ -1210,17 +1237,17 @@ function myaccount_orders(){
   $orders = get_user_orders();
   $order_details = array();
 
-  $isSession = order_details($order_value['orderId']);
-  if($isSession['isNewSession'] == 'true' or $isSession['isNewSession'] == 1) {
+  // $isSession = order_details($order_value['orderId']);
+  // if($isSession['isNewSession'] == 'true' or $isSession['isNewSession'] == 1) {
     foreach ($orders['OrderHeader'] as $order_key => $order_value) {
       $order_details[$order_value['orderId']] = order_details($order_value['orderId']);
     }
     return theme('myaccount_orders', array(
       'orders' => get_user_orders(),'order_details' => $order_details,
     ));
-  } else {
-    drupal_goto('user/logout');
-  }
+  // } else {
+  //   drupal_goto('user/logout');
+  // }
 }
 
 function order_details($order_id) {
@@ -1527,11 +1554,8 @@ function drubiz_checkout_address(){
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
-
   echo json_encode($data);
-
 }
 
 function drubiz_delete_address() {
@@ -1703,18 +1727,30 @@ function myaccount_return_order_details() {
                                "productId" => $seqProductId[1]);
   }
     
+  $params = "";
+  $selectedReundType = $_POST['returnTypeId'];
 
-  $params = array(
-    'orderId'             => $_POST['orderId'],
-    'fromPartyId'         => get_user_party_id(),
-    'destinationFacilityId' => 'WOI_FAC',
-    'codRefund'           => 'Y',
-    'accountHolderName'   => $_POST['accountHolderName'],
-    'bankName'            => $_POST['bankName'],
-    'accountNumber'       => $_POST['accountNumber'],
-    'ifscCode'            => $_POST['ifscCode'],
-    'returnOrderItem'     => $returnOrderItem,
-  );
+  if($selectedReundType == "RTN_REFUND") {
+    $params = array(
+      'orderId'             => $_POST['orderId'],
+      'fromPartyId'         => get_user_party_id(),
+      'destinationFacilityId' => 'WOI_FAC',
+      'codRefund'           => 'Y',
+      'accountHolderName'   => $_POST['accountHolderName'],
+      'bankName'            => $_POST['bankName'],
+      'accountNumber'       => $_POST['accountNumber'],
+      'ifscCode'            => $_POST['ifscCode'],
+      'returnOrderItem'     => $returnOrderItem,
+    );
+  } else {
+    $params = array(
+      'orderId'             => $_POST['orderId'],
+      'fromPartyId'         => get_user_party_id(),
+      'destinationFacilityId' => 'WOI_FAC',
+      'codRefund'           => 'N',
+      'returnOrderItem'     => $returnOrderItem,
+    );
+  }
   $json = json_encode($params);
   $client = drubiz_api_client();
   // $response = $client->get($endpoint . '?' . http_build_query($json));
@@ -1819,4 +1855,28 @@ function wallet_store_credit(){
    watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','data','endpoint'), 1) . '</pre>');
    echo json_encode($data);
    //theme('drubiz_checkout_payment', array('walletData' => $data));
+}
+/**
+* Page call back for cart page pincode check
+*/
+function check_pincode(){
+  $client = drubiz_api_client();
+  $endpoint = 'pincodeSearchNew';
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  $params = array(
+      'pincode' =>$_POST['pincode'],
+  );
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  $cart_response = get_user_cart();
+  $cartData['orderShippingTotal'] = $cart_response['orderShippingTotal'];
+  $cartData['orderGrandTotal'] = $cart_response['orderGrandTotal'];
+  $cartData['cartSubTotal'] = $cart_response['cartSubTotal'];
+  //$cartValue = $cart_response['orderShippingTotal'].'-'.$cart_response['orderGrandTotal'].'-'.$cart_response['cartSubTotal'];
+  $respnseData = array_merge($cartData,$data);
+   watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','endpoint', 'data','cartData','respnseData'), 1) . '</pre>');
+  echo json_encode($respnseData); 
+  //return theme('drubiz_cart',array('deliverycharge' => $data));   
 }
