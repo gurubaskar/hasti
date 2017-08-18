@@ -162,8 +162,8 @@ require_once 'vendor/autoload.php';
     <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
     <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>">
     <span class="remember">
-    <input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> />
-    <a href="#">Remember Me</a></span>
+    <input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /><span>
+    Remember Me</span></span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
@@ -283,8 +283,9 @@ require_once 'vendor/autoload.php';
 <!-- content -->
 <div id="eCommercePageBody"></div>
   <?php //print_r($drubiz_domain);?>
-  <?php if ($breadcrumb):
+  <?php 
     if(arg(0) != "node") {
+      if ($breadcrumb):
   ?>
     <div id="breadcrumb">
        <div class="container-fluid">
@@ -293,7 +294,8 @@ require_once 'vendor/autoload.php';
           </div>
         </div>
     </div>
-    <?php } else { ?>
+    <?php endif;
+    } else { ?>
     <div id="breadcrumb">
        <div class="container-fluid">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -301,7 +303,7 @@ require_once 'vendor/autoload.php';
           </div>
         </div>
     </div>
-  <?php } endif; ?>
+  <?php }  ?>
   <div id="content" class="plp">
     <div class="container-fluid">
       <?php if ($search_filter_sidebar): ?>

@@ -131,7 +131,7 @@ require_once 'vendor/autoload.php';
     <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
     <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>">
   </form>
-  <span class="remember"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /> <a href="#">Remember Me</a></span>
+  <span class="remember"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /><span> Remember Me</span></span>
   <div class="signin-btn">
     <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
