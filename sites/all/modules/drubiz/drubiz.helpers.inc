@@ -1571,7 +1571,7 @@ print render($fivestar);*/
     '#title' => 'Comments',
     '#wysiwyg' => false,
     '#size' => 10,
-    '#attributes' => array('maxlength' => 250),
+    '#attributes' => array('maxlength' => 250,'placeholder' => t('Not exceeding 250 characters!')),
     '#required' => TRUE,
     '#resizable' => FALSE,
   );
@@ -1600,6 +1600,7 @@ function drubiz_hasti_comments_form_submit($form, &$form_state) {
   $params = array(
     'productId'     => $productid,
     'REVIEW_TEXT'   => $comments,
+    'productStoreId'=>'WOI_STORE',
     'REVIEW_NICK_NAME'=> $nickname,
     'CLIENT'        => 'Hasti',
     'overallRate'   => $ratings,
