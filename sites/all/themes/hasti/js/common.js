@@ -946,6 +946,8 @@ function replaceDetailImage(largeImageUrl, detailImageUrl)
         {
             var detailimagePath;
             document.getElementById("js_mainImage").setAttribute("src",largeImageUrl);
+            document.getElementById("js_mainImage").setAttribute("data-zoom-image",largeImageUrl);
+            jQuery(".js_productLargeImage").elevateZoom();
             if(document.getElementById('js_largeImage'))
             {
                 setDetailImage(detailImageUrl);
@@ -974,7 +976,7 @@ function replaceDetailImage(largeImageUrl, detailImageUrl)
         };
         image.onload = function ()
         {
-            jQuery('.innerZoom').jqzoom(zoomOptions);
+//            jQuery('.innerZoom').jqzoom(zoomOptions);
         };
 
     }
@@ -993,7 +995,8 @@ function replaceDetailImage(largeImageUrl, detailImageUrl)
             };
             image.onload = function ()
             {
-                jQuery('.innerZoom').jqzoom(zoomOptions);
+//                jQuery('.innerZoom').jqzoom(zoomOptions);
+                jQuery('.innerZoom').elevateZoom();
             };
         });
     }
