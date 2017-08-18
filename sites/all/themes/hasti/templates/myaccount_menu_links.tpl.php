@@ -17,7 +17,7 @@ if($arg == 'orders' || $arg == 'returnOrder' || $arg == 'reorder' || $arg == 'or
 if($arg == 'return-order') {
 	$returnOrderItem = $active;
 }
-if($arg == 'track-order') {
+if($arg == 'track-order' || $arg == 'trackOrder') {
 	$trackOrder = $active;
 }
 if($arg == 'review-rating') {

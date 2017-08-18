@@ -431,10 +431,10 @@ function addAddress(){
     data: data,
     success: function(data) {
       //console.log(data);
-      if (data['isError'] == 'true') {
+      if(data['status'] == 'fail'){
         alert(data['_ERROR_MESSAGE_']);
         close_loading();
-      } else {
+      }else {
         if(orderAddress == 'order') {
           document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
         } else {
@@ -1425,6 +1425,11 @@ jQuery(document).ready(function(){
   });
 });
 
+/******Review page*****/
+function reviewAction(){
+  jQuery("#reviewForm").toggle();
+}
+
 jQuery(function($) {
 	  $("form[name='signUpForm']").validate({
 		showErrors: function(errorMap, errorList) {
@@ -1449,3 +1454,6 @@ jQuery(function($) {
       }
     })
   });
+
+
+
