@@ -56,57 +56,32 @@ ol.progtrckr li.progtrckr-todo:before {
     font-size: 2.2em;
     bottom: -1.2em;
 }
-
 </style>
-<?php //krumo($order) ?>
 <div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
   <div class=" myaccount-left">
     <?php echo theme('myaccount_menu_links'); ?>
   </div>
 </div>
-
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
   <h3>Order Details</h3>
   <div id="demo-top-bar">
-    <div id="no-more-tables">
-      <table class="table-bordered table-striped table-condensed cf returnDetail">
-        <thead>
-          <tr>
-            <td>
-              Order Id
-            </td>
-            <td>
-              Order Status
-            </td>
-            <td>
-              Amount Paid
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-title="Order Id">
-              <?php echo $order['orderId']; ?>
-            </td>
-            <td data-title="Order Status">
-              <?php echo $order['OrderHeader'][0]['statusId'];?>
-            </td>
-            <td data-title="Amount Paid">
-              &#8377;. <?php echo format_money($order['orderGrandTotal']) ?>
-            </td>
-          </tr>
-        <tbody>
-      </table>
+    <div>
+      <div class="trackOrderDetails">
+        <h4>Order Details</h4>
+        Order Id: <span><?php echo $order['orderId']; ?></span>
+        Order Status: <span><?php echo $order['OrderHeader'][0]['statusId'];?></span>
+        Amount Paid: <span>&#8377;. <?php echo format_money($order['orderGrandTotal']); ?></span>
+        Tracking Number: <span><?php echo $track[0]['trackingNumber'];?></span>
+      </div>
+      <div class="shippingDetail">
+        <h4>Shipping Address</h4>
+        <span><?php echo $order['shippingAddress'][0]['toName'] ?></span>
+        <span><?php echo $order['shippingAddress'][0]['address1'] . ' ' . $order['shippingAddress'][0]['address2'] ?></span>
+        <span><?php echo $order['shippingAddress'][0]['city'] ?>,</span>
+        <span><?php echo $order['shippingAddress'][0]['stateProvinceGeoId'] ?>,<?php echo $order['shippingAddress'][0]['postalCode'] ?></span>
+        <span><?php echo $order['shippingAddress'][0]['contactNumber'] ?></span>
+      </div>
     </div>
-    <div class="shippingDetail">
-      <h4>Shipping Address</h4>
-      <span><?php echo $order['shippingAddress'][0]['toName'] ?></span>
-      <span><?php echo $order['shippingAddress'][0]['address1'] . ' ' . $order['shippingAddress'][0]['address2'] ?></span>
-      <span><?php echo $order['shippingAddress'][0]['city'] ?>,</span>
-      <span><?php echo $order['shippingAddress'][0]['stateProvinceGeoId'] ?>,<?php echo $order['shippingAddress'][0]['postalCode'] ?></span>
-      <span><?php echo $order['shippingAddress'][0]['contactNumber'] ?></span>
-    </div>
-    
     <div id="no-more-tables">
       <table class="table-bordered table-striped table-condensed cf returnOrderDetail">
         <thead>
@@ -159,6 +134,9 @@ ol.progtrckr li.progtrckr-todo:before {
       </table>
       <div class="subTotal">
         <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
+      </div>
+      <div class="subTotal">
+        <span>Shipping Total</span><span>&#8377;. <?php echo format_money($order['orderShippingTotal']);?></span>
       </div>
       <div class="grandTotal">
         <span>Grand Total</span><span>&#8377;. <?php echo format_money($order['orderGrandTotal']);?></span>

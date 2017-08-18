@@ -124,7 +124,7 @@ require_once 'vendor/autoload.php';
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
-            <li><a href="#"><?php echo t('Track Order');?></a></li>
+            <li><a href="<?php echo url('account/track-order');?>"><?php echo t('Track Order');?></a></li>
             <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>            
              <?php if($GLOBALS['user']->uid != 0):?>
               <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
@@ -359,7 +359,7 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns" target="_blank"><?php echo t('Cancellation & Returns');?></a></li>
               <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy" target="_blank"><?php echo t('Shipping Policy');?></a></li>
               <li><a href="<?php echo url('contact-us')?>" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
-              <li><a href="#" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
+              <li><a href="<?php echo url('account/track-order');?>" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
