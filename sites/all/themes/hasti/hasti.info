@@ -47,7 +47,6 @@ stylesheets[all][] = css/style.css
 stylesheets[all][] = css/jquery.mobile-1.4.5.min.css
 stylesheets[all][] = css/bootstrap.min.css
 
-//scripts[] = js/jquery.jqzoom-core.js
 scripts[] = js/jquery.validate.js
 scripts[] = js/jquery.bxslider.min.js
 scripts[] = js/jquery.mCustomScrollbar.concat.min.js

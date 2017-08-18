@@ -1273,9 +1273,20 @@ jQuery(document).ready(function(){
       if(itemChecked > 0) {
         jQuery('.refundTypeDisplay').show();
       } else {
+        jQuery('input:checkbox').prop('checked', false);
         jQuery('.refundTypeDisplay').hide();
         jQuery('.bankDetails').hide();
       }
+    });
+    jQuery('#checkAll').click(function () {    
+       jQuery('input:checkbox').prop('checked', this.checked);
+         var itemChecked = jQuery(".returnProduct").is(":checked");
+        if(itemChecked > 0) {
+          jQuery('.refundTypeDisplay').show();
+        } else {
+          jQuery('.refundTypeDisplay').hide();
+          jQuery('.bankDetails').hide();
+        }    
     });
     jQuery(".returnSubmit").click(function(){
       var orderId = jQuery("#orderId").val();
