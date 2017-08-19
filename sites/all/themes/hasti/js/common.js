@@ -1459,7 +1459,7 @@ jQuery(function($) {
   $('#signUpPop').click(function() {
     $("form").trigger('reset');
     $('#signup_errormsgs').html('');
-  });  
+  });
 });
 
 jQuery(function($) {
