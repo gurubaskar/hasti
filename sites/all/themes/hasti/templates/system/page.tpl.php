@@ -147,11 +147,10 @@ require_once 'vendor/autoload.php';
       data-msg-required="The First Name is required." id="" data-rule-required="true">    
     <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" 
       data-msg-required="The Last Name is required." id="" data-rule-required="true">   
-          
     <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" 
-      data-msg-required="The Mobile number is required." id="" data-rule-required="true">
+      data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
     <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" 
-      data-msg-required="The Email Id is required." id="" data-rule-required="true">
+      data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
     <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" 
       data-msg-required="The Password is required." id="" data-rule-required="true">
     <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" 
