@@ -464,39 +464,7 @@ jQuery(document).ready(function() {
 });
 
 function editAddress(){
-  if(jQuery('#firstname').val() == ''){
-    alert('Enter First Name.');
-    return false;
-  }
-  if(jQuery('#lastname').val() == ''){
-    alert('Enter Last Name.');
-    return false;
-  }
-  if(jQuery('#address1').val() == ''){
-    alert('Enter Address 1.');
-    return false;
-  }
-  if(jQuery('#address2').val() == ''){
-    alert('Enter Address 2.');
-    return false;
-  }
-  if(jQuery('#city').val() == ''){
-    alert('Enter City.');
-    return false;
-  }
-  if(jQuery('#state').val() == ''){
-    alert('Select State.');
-    return false;
-  }
-  if(jQuery('#zipcode').val() == ''){
-    alert('Enter zipcode.');
-    return false;
-  }
-  if(jQuery('#mobile').val() == ''){
-    alert('Enter mobile.');
-    return false;
-  }
-
+  
   var data_firstname   = jQuery('#editNewAddress').find('[name=firstname]:first').val();
   var data_lastname    = jQuery('#editNewAddress').find('[name=lastname]:first').val();
   var data_address1    = jQuery('#editNewAddress').find('[name=address1]:first').val();
@@ -517,7 +485,10 @@ function editAddress(){
     success: function(data) {
       //console.log(data);
       if (data['isError'] == 'true') {
-        alert(data['_ERROR_MESSAGE_']);
+        //alert(data['_ERROR_MESSAGE_']);
+        var errormsgs = data['error_messages'].join("\n");
+          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#signup_errormsgs").focus();
         close_loading();
       } else {
         document.location = Drupal.settings.basePath + 'account/address-book';
@@ -760,14 +731,14 @@ function onImgError(elem,type) {
 function checkEmail() {
   var email = jQuery("#emailid").val();
   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  if (email == "") {
+  /*if (email == "") {
       alert("Please Enter your Email");
       return false;
   }
   if (!filter.test(email)) {
       alert("Please enter a valid email address");
       return false;
-  }
+  }*/
   loading();
   jQuery.ajax({
     type: "POST",
@@ -781,6 +752,9 @@ function checkEmail() {
       }
       else {
         alert(data['_ERROR_MESSAGE_LIST_'][0]['message']);
+          var errormsgs = data['_ERROR_MESSAGE_LIST_'][0]['message'].join("\n");
+          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#signup_errormsgs").focus();
         close_loading();
       }
     },
@@ -1578,6 +1552,54 @@ jQuery(function($) {
     },
     submitHandler: function(form) {
       addAddress();
+    }
+  })
+});
+jQuery(function($) {
+  $("form[name='editaddressForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      editAddress();
+    }
+  })
+});
+jQuery(function($) {
+  $("form[name='forgotpwdForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      checkEmail();
     }
   })
 });

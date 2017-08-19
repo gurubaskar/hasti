@@ -185,15 +185,18 @@ require_once 'vendor/autoload.php';
   <span class="google"><a href="<?php echo url('google-config.php')?>">SIGN IN WITH GOOGLE</a></span>
   </div>
   <div id="forgotPopup">
-
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Forgot Password</h3>
+  <div id="forgot_errormsgs" style=""></div>
+  <form method="post" action="<?php echo url('forgotPassword') ?>" id="forgotpwdForm" name="forgotpwdForm">
   <p>Enter your Email Address here to receive a new password</p>
-  <input type="text" id="emailid" placeholder="* Email Id">
+  <input type="text" id="emailid" placeholder="* Email Id" data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
   <div class="forgot-btn">
-    <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
+     <input type="submit" class="basic-btn" value="Continue" id="Continue">
+    <!--input type="button" value="Continue" id="Continue" onclick="checkEmail();"-->
     <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
   </div>
+</form>
   </div>
 </div>
 <!-- header -->
