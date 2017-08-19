@@ -274,7 +274,10 @@ function checkPin(){
       //console.log(data);
       if (data['isError'] == 'true') {
         //alert(data['_ERROR_MESSAGE_']);
-        jQuery('#pincodeerror').show();
+        //jQuery('#pincodeerror').show();
+        var errormsgs = data['_ERROR_MESSAGE_'];
+          jQuery("#pincodeerror").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#pincodeerror").focus();
         close_loading();
       } else {
         //alert(data['deliveryCharges']);      
@@ -1456,13 +1459,6 @@ jQuery(function($) {
       hastiSignIn();
     }
   });
-  $('#signUpPop').click(function() {
-    $("form").trigger('reset');
-    $('#signup_errormsgs').html('');
-  });
-});
-
-jQuery(function($) {
   $("form[name='signInForm']").validate({
   showErrors: function(errorMap, errorList) {
         // Clean up any tooltips for valid elements
@@ -1484,9 +1480,7 @@ jQuery(function($) {
     submitHandler: function(form) {
       signInHasti();
     }
-  })
-});
-jQuery(function($) {
+  });
   $("form[name='contactusForm']").validate({
   showErrors: function(errorMap, errorList) {
         // Clean up any tooltips for valid elements
@@ -1508,9 +1502,7 @@ jQuery(function($) {
     submitHandler: function(form) {
       contactus();
     }
-  })
-});
-jQuery(function($) {
+  });
   $("form[name='personalinfoForm']").validate({
   showErrors: function(errorMap, errorList) {
         // Clean up any tooltips for valid elements
@@ -1532,10 +1524,7 @@ jQuery(function($) {
     submitHandler: function(form) {
       savePersonalInfo();
     }
-  })
-});
-
-jQuery(function($) {
+  });
   $("form[name='addressForm']").validate({
   showErrors: function(errorMap, errorList) {
         // Clean up any tooltips for valid elements
@@ -1557,10 +1546,8 @@ jQuery(function($) {
     submitHandler: function(form) {
       addAddress();
     }
-  })
-});
-jQuery(function($) {
-  $("form[name='editaddressForm']").validate({
+  });
+   $("form[name='editaddressForm']").validate({
   showErrors: function(errorMap, errorList) {
         // Clean up any tooltips for valid elements
         $.each(this.validElements(), function (index, element) {
@@ -1581,10 +1568,8 @@ jQuery(function($) {
     submitHandler: function(form) {
       editAddress();
     }
-  })
-});
-jQuery(function($) {
-  $("form[name='forgotpwdForm']").validate({
+  });
+   $("form[name='forgotpwdForm']").validate({
   showErrors: function(errorMap, errorList) {
         // Clean up any tooltips for valid elements
         $.each(this.validElements(), function (index, element) {
@@ -1605,5 +1590,36 @@ jQuery(function($) {
     submitHandler: function(form) {
       checkEmail();
     }
-  })
+  });
+  $("form[name='pinchkForm']").validate({
+    showErrors: function(errorMap, errorList) {
+          // Clean up any tooltips for valid elements
+          $.each(this.validElements(), function (index, element) {
+              var $element = $(element);
+              $element.data("title", "") // Clear the title - there is no error associated anymore
+                  .removeClass("error")
+                  .tooltip("destroy");
+          });
+          // Create new tooltips for invalid elements
+          $.each(errorList, function (index, error) {
+              var $element = $(error.element);
+              $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                  .data("title", error.message)
+                  .addClass("error")
+                  .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+          });
+      },
+      submitHandler: function(form) {
+        checkPin();
+      }
+    });
+  $('#signUpPop').click(function() {
+    $("form").trigger('reset');
+    $('#signup_errormsgs').html('');
+  });
+
+  $('#signInPop').click(function() {
+    $("form").trigger('reset');
+    $('#signup_errormsgs').html('');
+  });
 });
