@@ -21,7 +21,6 @@
 			?>
 			<div class="cartbox">
 				Order Id: <span><a href="<?php echo url('account/returnOrder/' . $order['orderId']) ?>"><?php echo $order['orderId'] ?></a></span>
-				Return Order Id: <span><a href="<?php echo url('account/returnOrder/' . $order['orderId']) ?>"><?php echo $order['returnId'] ?></a></span>
 				<div class="col-xs-12 col-sm-3 col-md-2 img-wrap">
 					<img alt="<?php echo $product->product_name ?>" src="<?php echo drubiz_image($product_variant->plp_image_alt) ?>" class="productCartListImage" height="140" width="105" onmouseover="src='<?php echo drubiz_image($product_variant->plp_image_alt) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product_variant->plp_image) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
 				</div>
