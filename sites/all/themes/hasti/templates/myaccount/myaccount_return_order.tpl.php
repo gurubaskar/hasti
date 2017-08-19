@@ -56,6 +56,9 @@
               Image
             </td>
             <td>
+              Quantity
+            </td>
+            <td>
               Price
             </td>
             <td>
@@ -90,6 +93,11 @@
             <td data-title="Image">
               <img class="order-img" alt="<?php echo $orderValue['itemDescription'];?>" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
             </td>
+            <td data-title="Quantity">
+              <?php 
+                echo $orderValue['quantity'];
+              ?>
+            </td>
             <td data-title="Price">&#8377;.
               <?php 
                 echo $orderValue['unitPrice'];
@@ -98,7 +106,7 @@
             <td data-title="Return">
               <?php 
               if($isReturned == 'N') {
-                $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'];?>
+                $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'].'_'.$orderValue['quantity'];?>
                 <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $selectedReturnProductId;?>">
               <?php } else { ?>
                 <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="" value="" disabled>
