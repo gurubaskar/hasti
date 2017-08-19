@@ -65,15 +65,15 @@ ol.progtrckr li.progtrckr-todo:before {
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
   <h3>Order Details</h3>
   <div id="demo-top-bar">
-    <div>
+    <div class="shippingDetail">
       <div class="trackOrderDetails">
         <h4>Order Details</h4>
-        Order Id: <span><?php echo $order['orderId']; ?></span>
-        Order Status: <span><?php echo $order['OrderHeader'][0]['statusId'];?></span>
-        Amount Paid: <span>&#8377;. <?php echo format_money($order['orderGrandTotal']); ?></span>
-        Tracking Number: <span><?php echo $track[0]['trackingNumber'];?></span>
+        <p><label>Order Id: </label><span><?php echo $order['orderId']; ?></span></p>
+        <p><label>Order Status: </label><span><?php echo $order['OrderHeader'][0]['statusId'];?></span></p>
+        <p><label>Amount Paid: </label><span>&#8377;. <?php echo format_money($order['orderGrandTotal']); ?></span></p>
+        <p><label>Tracking Number: </label><span><?php echo $track[0]['trackingNumber'];?></span></p>
       </div>
-      <div class="shippingDetail">
+      <div class="details-wrap">
         <h4>Shipping Address</h4>
         <span><?php echo $order['shippingAddress'][0]['toName'] ?></span>
         <span><?php echo $order['shippingAddress'][0]['address1'] . ' ' . $order['shippingAddress'][0]['address2'] ?></span>

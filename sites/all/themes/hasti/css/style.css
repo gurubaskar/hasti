@@ -654,9 +654,16 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .reviewRatings tbody td{vertical-align:middle;}
 
 .myorders #eCommerceOrderDetail, .myorders #eCommerceOrderDetail .orderDetailShippingGroup{float:left; width:100%;}
-.myaccount-right.myorders .shippingDetail{float:left; width:100%; padding:5px 20px 15px 20px; margin-bottom:20px; margin-top:20px;}
+.myaccount-right.myorders .shippingDetail{float:left; width:100%; padding:5px 20px 15px 20px; margin-bottom:20px;}
 .myaccount-right.myorders .shippingDetail span{color:#6d6e70; display:block;}
 .myaccount-right.myorders .shippingDetail table td a, .myaccount-right.myorders .shippingDetail table td a:hover{color:#0081c5 !important;}
+.myaccount-right.myorders .shippingDetail .trackOrderDetails{float:left; width:50%;}
+.myaccount-right.myorders .shippingDetail .trackOrderDetails h4, .myaccount-right.myorders .shippingDetail .details-wrap h4{font-weight:500; margin:15px 0; }
+.myaccount-right.myorders .shippingDetail .trackOrderDetails p{float:left; width:100%; margin:0;}
+.myaccount-right.myorders .shippingDetail .trackOrderDetails label{font-size:15px; float:left; padding-right:5px; width:auto; margin-bottom:5px;}
+.myaccount-right.myorders .shippingDetail .details-wrap span{font-size:15px; float:left; padding-right:5px; width:100%; margin-bottom:5px;}
+
+.myaccount-right.myorders .shippingDetail .details-wrap{float:left; width:45%; border-left:1px solid #ddd; padding-left:30px;}
 
 #cancelComments, #cancelReason-button, .cancelord{height:auto; border:none; margin:15px 0 7px 0; padding:10px; color:#6d6e70; background-color:#fff; line-height:24px; float:left; width:100%;}
 #cancelComments{height:42px !important; text-align:center; font-size:16px; font-weight:bold;}
@@ -706,7 +713,7 @@ a:focus{text-decoration:none !important;}
 .remember{background:url('./../images/main-img.png') no-repeat -4px -502px; position:relative; padding:11px; width:378px !important; float:left; margin-top:10px;}
 .remember .ui-checkbox{margin:0 !important; width:auto;}
 .remember #remember{margin:3px 0 0 23px !important; width:16px !important; height:16px !important;}
-.remember a{margin:3px 0 0 50px !important; float:left;}
+.remember span{margin:3px 0 0 50px !important; float:left;}
 .ui-popup.signin a, .ui-popup.signin a:hover{color:#fff !important; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:0px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
@@ -1093,6 +1100,10 @@ a:focus{text-decoration:none !important;}
     #cart .img-wrap, #cart .cart-details{padding:0;}
     .contact-right #addContactus .ui-input-text, .contact-right #addContactus #js_content{width:100% !important;}
     #addContactus .textCounter{padding:5px 0 0 0;}
+    .myaccount-right.myorders .shippingDetail .trackOrderDetails, .myaccount-right.myorders .shippingDetail .details-wrap{width:100%;}
+    .myaccount-right.myorders .shippingDetail .trackOrderDetails{border-bottom:1px solid #ddd; padding-bottom:10px;}
+    .myaccount-right.myorders .shippingDetail .details-wrap{ border-left:none; padding-left:0px;}
+
 
 }
 

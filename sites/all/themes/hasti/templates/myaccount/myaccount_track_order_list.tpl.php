@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
-	<h3>My Orders</h3>
+	<h3>Track Order</h3>
 	<div id="recent-orders">
 		<?php 
 		if(count($orders['OrderHeader']) > 0) {
