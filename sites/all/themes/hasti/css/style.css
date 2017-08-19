@@ -684,6 +684,15 @@ a:focus{text-decoration:none !important;}
 
 .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:auto; padding:9px 40px; float:left; margin-right:10px; margin-top:20px; background-color:#fff !important; color:#00b04c !important; font-size:16px !important; font-weight:400 !important; border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important; top:0 !important; right:0 !important; border:none !important; text-shadow:none !important}
 .myaccount-right.myorders .refundTypeDisplay{float:left; width:auto;}
+.myaccount-right.returnOrderItem .details-left #orderid-wrap{margin-bottom:15px; float:left; width:100%;}
+.myaccount-right.returnOrderItem .cartbox{width:47%; margin-right:15px;}
+.myaccount-right.returnOrderItem .cartbox{padding:20px 0 5px 0; margin-bottom:15px;}
+.myaccount-right.returnOrderItem .cartbox .img-wrap img{width:auto;}
+.myaccount-right.myorders table.returnOrderDetail .ui-checkbox{width:18px; top:-17px;}
+.myaccount-right.myorders table.returnOrderDetail input[type=checkbox]{width:18px; height:18px;}
+.ui-checkbox input:disabled, .ui-radio input:disabled{clip:initial !important;}
+.ui-disabled, .ui-state-disabled, button[disabled], .ui-select .ui-btn.ui-state-disabled{opacity: 0.5 !important;}
+
 
 
 /******************************* change pwd ******************************/
@@ -760,6 +769,69 @@ a:focus{text-decoration:none !important;}
     margin:0px !important;
 }
 
+/************************** track order API starts *************************/
+.myaccount-right.myorders .track-container{width:100%; float:left; margin:10px 0 0 0;}
+.myaccount-right.myorders #track-wrap{width:100%; float:left; padding:20px; border:1px solid #ddd; background-color:#eaeaea; margin:0 0 20px 0;}
+
+#track-wrap ol.progtrckr {
+    margin:0;
+    padding:0 0 30px 0;
+    list-style-type none;
+}
+
+#track-wrap ol.progtrckr li {
+    display: inline-block;
+    text-align: center;
+    line-height: 3.5em;
+}
+
+#track-wrap ol.progtrckr[data-progtrckr-steps="2"] li { width: 49%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="3"] li { width: 33%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="4"] li { width: 24%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="5"] li { width: 25%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="6"] li { width: 16%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="7"] li { width: 14%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="8"] li { width: 12%; }
+#track-wrap ol.progtrckr[data-progtrckr-steps="9"] li { width: 11%; }
+
+#track-wrap ol.progtrckr li.progtrckr-done {
+    color: black;
+    border-bottom: 4px solid yellowgreen;
+}
+#track-wrap ol.progtrckr li.progtrckr-todo {
+    color: silver; 
+    border-bottom: 4px solid silver;
+}
+
+#track-wrap ol.progtrckr li:after {
+    content: "\00a0\00a0";
+}
+#track-wrap ol.progtrckr li:before {
+    position: relative;
+    bottom: -2.5em;
+    float: left;
+    left: 50%;
+    line-height: 1em;
+}
+#track-wrap ol.progtrckr li.progtrckr-done:before {
+    content: "\2713";
+    color: white;
+    background-color: yellowgreen;
+    height: 2.2em;
+    width: 2.2em;
+    line-height: 2.2em;
+    border: none;
+    border-radius: 2.2em;
+}
+#track-wrap ol.progtrckr li.progtrckr-todo:before {
+    content: "\039F";
+    color: silver;
+    background-color: white;
+    font-size: 2.2em;
+    bottom: -1.2em;
+}
+
+/************************** track order API end *************************/
 
 /************* mobmenu **************/
 #eCommerceNavBar .show-on-mobile{
@@ -939,6 +1011,7 @@ a:focus{text-decoration:none !important;}
     .details-btns, .myorders #past-orders .details-btns{position:relative; width:100%; float:right; right:0px;}
     .details-btns a{margin-bottom:0; margin-top:10px; margin-right:10px !important; width:30%;}
     .checkout-right .addressbox{width:93% !important;}
+    .myaccount-right.returnOrderItem .cartbox{width:100%;}
 }
 
 @media only screen and (max-width:1024px) and (min-width:901px){
@@ -953,6 +1026,7 @@ a:focus{text-decoration:none !important;}
 @media only screen and (max-width:860px) and (min-width:768px){
      #eCommerceNavBarMenu li:hover>ul li.subLevel{width:23%;}
      #footer .icons-wrap ul li{margin:0 1% 0 0;}
+     #track-wrap ol.progtrckr li.progtrckr-done{font-size:12px;}
 }
 
 @media only screen and (max-width:1024px) and (min-width:768px){
@@ -1078,6 +1152,7 @@ a:focus{text-decoration:none !important;}
     #navbar a.logo{margin:0;}
     .contact-right{padding:25px 0 0 0 !important;}
     .contact-right .col-xs-12.col-sm-12.col-md-12{padding-right:0 !important;}
+    .myaccount-right.returnOrderItem .cartbox{width:100%;}
 }
 
 @media (max-width:600px){
@@ -1103,7 +1178,7 @@ a:focus{text-decoration:none !important;}
     .myaccount-right.myorders .shippingDetail .trackOrderDetails, .myaccount-right.myorders .shippingDetail .details-wrap{width:100%;}
     .myaccount-right.myorders .shippingDetail .trackOrderDetails{border-bottom:1px solid #ddd; padding-bottom:10px;}
     .myaccount-right.myorders .shippingDetail .details-wrap{ border-left:none; padding-left:0px;}
-
+    .track-container{display:none;}
 
 }
 
@@ -1170,6 +1245,9 @@ a:focus{text-decoration:none !important;}
     .myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}
     .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:100%;}
     .ui-popup.signin.cancelOrder-wrap .cancel-btn{margin-top:5px;}
+    .myaccount-right.returnOrderItem .cartbox .img-wrap{width:35%;}
+    .myaccount-right.returnOrderItem .cartbox .cart-details{width:65%;}
+
 }
 @media(max-width:439px){
     .plp .plp-right .box{height:auto !important; max-height:100% !important;}

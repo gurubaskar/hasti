@@ -62,7 +62,6 @@
               Price
             </td>
             <td>
-              Return
               <input type="checkbox" id="checkAll">
             </td>
             <td>
