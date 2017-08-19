@@ -1,5 +1,8 @@
 <?php
 
+$profile = get_user_profile();
+toCheckSession($profile);
+
 $arg = arg(1);
 $active = "active";
 $myOrder = "";
