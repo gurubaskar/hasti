@@ -75,11 +75,15 @@
         <div class="btns-wrap">
           <span><a href="<?php echo url('checkout-payment');?>" data-ajax="false" class="place-order">Place Order</a></span>
           <span><a href="<?php echo url();?>" class="continue">Continue Shopping</a></span>
-          <div class="checkpin"><input type="text" id="pincode" placeholder="Enter Your Pin"><a href="#" class="check" onclick="checkPin();">Check</a></div>
-        </div>
-          <div id="pincodeerror" style="display: none;">
-             Unfortunately, we do not ship to your PIN Code!
+          <div class="checkpin">
+          <form method="post" action="<?php echo url('check-pin') ?>" id="pinchkForm" name="pinchkForm">
+          <div id="pincodeerror"></div>
+          <input type="text" id="pincode" placeholder="Enter Your Pin" data-msg-required="Zipcode is required." id="" data-rule-required="true" maxlength="6" data-rule-minlength="6">
+          <input type="submit" value="Check" class="basic-btn">
+          <!--a href="#" class="check" onclick="checkPin();">Check</a-->
+          </form>
           </div>
+        </div>          
         <div class="bottomimg-wrap">
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
             <span><img src="<?php echo current_theme_path();?> /images/secure.png" /></span>
