@@ -20,12 +20,13 @@
 	        $status = $order['statusId'];
 			?>
 			<div class="cartbox">
-				Order Id: <span><a href="<?php echo url('account/returnOrder/' . $order['orderId']) ?>"><?php echo $order['orderId'] ?></a></span>
-				<div class="col-xs-12 col-sm-3 col-md-2 img-wrap">
+				<div class="col-xs-3 col-sm-3 col-md-4 img-wrap">
 					<img alt="<?php echo $product->product_name ?>" src="<?php echo drubiz_image($product_variant->plp_image_alt) ?>" class="productCartListImage" height="140" width="105" onmouseover="src='<?php echo drubiz_image($product_variant->plp_image_alt) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product_variant->plp_image) ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
 				</div>
-				<div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
+				<div class="col-xs-9 col-sm-9 col-md-8 cart-details pright">
 					<div class="col-xs-12 col-sm-12 col-md-12 details-left">
+						<div id="orderid-wrap"> Order Id: <span><a href="<?php echo url('account/returnOrder/' . $order['orderId']) ?>"><?php echo $order['orderId'] ?></a></span>
+						</div>
 						<div class="cartrow">
 							<label>Grand Total:</label><span>&#8377;. <?php echo format_money($order['grandTotal']) ?></span>
 						</div>
