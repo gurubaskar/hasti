@@ -368,10 +368,10 @@
               <div class="video">
                 <?php 
                 if(!empty($storyInfo->storyVideo[0]) and $storyInfo->storyVideo[0] != null) {?>
-                <video width="250" height="240" controls class="img-responsive">
-                  <source src="<?php print current_theme_path() . $storyInfo->storyVideo[0];?>" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
+                <span class="video">
+                  <a class="colorbox-load" href=<?php print current_theme_path() . $storyInfo->storyVideo[0];?>?width=853&amp;height=480&amp;iframe=true&amp;autoplay=1">
+                  <img src="<?php print current_theme_path();?>/images/h-img5.jpg"  class="img-responsive"/></a>
+                </span>
                 <?php } if(!empty($storyInfo->Image4[0]) and $storyInfo->Image4[0] != null) {?>
                 <img src="<?php print current_theme_path() . $storyInfo->Image4[0] ?>" class="img-responsive" />
                 <?php } ?>
