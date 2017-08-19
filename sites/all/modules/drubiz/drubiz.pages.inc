@@ -505,6 +505,7 @@ function drubiz_user_change_password() {
         $return['error_messages'][] = $error['message'];
       }
   }
+  watchdog(__FUNCTION__, print_r(compact('request', 'data','return'), 1));
   echo json_encode($return);
 }
 
@@ -711,7 +712,8 @@ function drubiz_user_register() {
     $return['error_messages'][] = 'Please enter a valid email.';
   }
   else if (!empty($user_exists->uid)) {
-    $return['error_messages'][] = 'You are already registered. Please login or use the forgot password feature.';
+    //$return['error_messages'][] = 'You are already registered. Please login or use the forgot password feature.';
+    $return['error_messages'][] = 'An account already exists with this emailid Continue to Login.';
   }
   else {
     // /createPersonAndUserLoginResponse?PHONE_MOBILE_CONTACT_OTHER=9490052752&userLoginId=bavya@gmail.com&currentPassword=123456&currentPasswordVerify=123456&firstName=Bavya&lastName=Sri

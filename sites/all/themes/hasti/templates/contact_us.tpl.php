@@ -23,28 +23,30 @@
             <div class="success-msg" style="display: none">
               Succesfully Submitted
             </div> 
+            <div id="signup_errormsgs" style=""></div>
             <style type="text/css">.ui-select {position: static;}</style>
+             <form method="post" action="<?php echo url('save-contact-us') ?>" id="contactusForm" name="contactusForm">
             <div id="addContactus" name="addContactus">          
               <?php 
               if($GLOBALS['user']->uid != 0):
               ?>
               <div class="form-row">
                 <label>First Name</label>
-                <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $_SESSION['drubiz']['session']['firstName']; ?>">
+                <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $_SESSION['drubiz']['session']['firstName']; ?>" data-msg-required="FirstName can't be Empty" id="" data-rule-required="true">
               </div>          
               <div class="form-row">
                 <label>Email Id</label>
-                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo $GLOBALS['user']->mail; ?>" maxlength="200">
+                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo $GLOBALS['user']->mail; ?>" maxlength="200" data-msg-required="Please Enter your Email" id="" data-rule-required="true">
               </div>
               <?php endif; ?>
              <?php if($GLOBALS['user']->uid == 0):?>
               <div class="form-row">
                 <label>First Name</label>
-                <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>">
+                <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>" data-msg-required="FirstName can't be Empty" id="" data-rule-required="true">
               </div>          
               <div class="form-row">
                 <label>Email Id</label>
-                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo t('@ Email');?>" maxlength="200">
+                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo t('@ Email');?>" maxlength="200" data-msg-required="Please Enter your Email" id="" data-rule-required="true">
               </div>
               <?php endif; ?>
               <div class="form-row">
@@ -53,7 +55,7 @@
               </div>
               <div class="form-row">
                 <label>Mobile No</label>
-                <input type="text" name="conactUsPhone" id="conactUsPhone" placeholder="<?php echo t('*Mobile No / Phone No');?>">
+                <input type="text" name="conactUsPhone" id="conactUsPhone" placeholder="<?php echo t('*Mobile No / Phone No');?>" data-msg-required="Phone Number cant't be Empty" id="" data-rule-required="true">
               </div>          
               <div class="form-row">
                 <label>Upload Image</label>
@@ -61,15 +63,17 @@
               </div>
               <div class="form-row">
                 <label>Message</label>
-               <textarea name="content" id="js_content" placeholder="*Type Your Message Here..." class="content characterLimit" cols="35" rows="5" maxlength="100"></textarea>
+               <textarea name="content" id="js_content" placeholder="*Type Your Message Here..." class="content characterLimit" cols="35" rows="5" maxlength="100" data-msg-required="Massage can't be Empty" id="" data-rule-required="true"></textarea>
                <span class="js_textCounter textCounter">100 characters left</span>
                <input type="hidden" name="content_MANDATORY" value="Y">
               </div>         
               <div class="btns-wrap">
-                <a href="#" class="contact-us" onclick="contactus()">Save</a>
+                <input type="submit" value="Save" class="contact-us" id="contactus">
+                <!--a href="#" class="contact-us" onclick="contactus()">Save</a-->
                 <a href="<?php echo url('account/address-book');?>" class="">Cancel</a>
               </div>
             </div>
+            </form>
           </div>
         </div>
           </div>

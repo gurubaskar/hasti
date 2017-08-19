@@ -947,15 +947,41 @@ $('.validateOTP').click(function(e) {
           dataType: 'json'
         });
   })
+  jQuery(function($) {
+  $("form[name='changepwdForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      submitChangePasswd();
+    }
+  })
+});
 
-  $('#js_submitChangePasswdBtn').click(function(e) {
-    e.preventDefault();
+  //$('#js_submitChangePasswdBtn').click(function(e) {
+  function submitChangePasswd(){
+   // e.preventDefault();
     
     var data_OLD_PASSWORD     = $('[name=OLD_PASSWORD]:first').val();
     var data_NEW_PASSWORD     = $('[name=NEW_PASSWORD]:first').val();
     var data_CONFIRM_PASSWORD = $('[name=CONFIRM_PASSWORD]:first').val();
 
     var post_data = 'OLD_PASSWORD=' + encodeURIComponent(data_OLD_PASSWORD) + '&NEW_PASSWORD=' + encodeURIComponent(data_NEW_PASSWORD) + '&CONFIRM_PASSWORD=' + encodeURIComponent(data_CONFIRM_PASSWORD);
+    //alert(post_data);
     loading();
     $.ajax({
       type: "POST",
@@ -964,7 +990,11 @@ $('.validateOTP').click(function(e) {
       success: function(data) {
         // console.log(data);
         if (data['error']) {
-          alert("Error updating password!\n" + data['error_messages'].join("\n"));
+         // alert("Error updating password!\n" + data['error_messages'].join("\n"));
+          var errormsgs = data['error_messages'].join("\n");
+          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#signup_errormsgs").focus();
+           close_loading();
         }
         else {
           alert(data['error_messages']);
@@ -979,7 +1009,7 @@ $('.validateOTP').click(function(e) {
       },
       dataType: 'json'
     });
-  });
+  }
 
   $('#js_submitProfileBtn').click(function(e) {
     e.preventDefault();

@@ -365,7 +365,9 @@ function signInHasti(){
         }
       }
       else {
-        alert(data['error_messages'].join("\n"));
+        var errormsgs = data['error_messages'].join("\n");
+        jQuery("#signin_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+        jQuery("#signin_errormsgs").focus();
         close_loading();
       }
     },
@@ -379,7 +381,7 @@ function signInHasti(){
 }
 
 function addAddress(){
-  if(jQuery('#firstname').val() == ''){
+  /*if(jQuery('#firstname').val() == ''){
     alert('Enter First Name.');
     return false;
   }
@@ -410,7 +412,7 @@ function addAddress(){
   if(jQuery('#mobile').val() == ''){
     alert('Enter mobile.');
     return false;
-  }
+  }*/
 
   var data_firstname   = jQuery('#addNewAddress').find('[name=firstname]:first').val();
   var data_lastname    = jQuery('#addNewAddress').find('[name=lastname]:first').val();
@@ -432,7 +434,10 @@ function addAddress(){
     success: function(data) {
       //console.log(data);
       if(data['status'] == 'fail'){
-        alert(data['_ERROR_MESSAGE_']);
+        //alert(data['_ERROR_MESSAGE_']);
+          var errormsgs = data['error_messages'].join("\n");
+          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#signup_errormsgs").focus();
         close_loading();
       }else {
         if(orderAddress == 'order') {
@@ -1166,7 +1171,7 @@ function contactus(){
   var data_phoneNumber = jQuery('#conactUsPhone').val();
   var data_msg = jQuery('#js_content').val();
    var choosefile = jQuery('#choose-file').val();
-  if(data_firstName == ''){
+  /*if(data_firstName == ''){
     alert("FirstName can't be Empty");
     return false;
   }
@@ -1185,7 +1190,7 @@ function contactus(){
   if(data_msg == ''){
     alert("Massage can't be Empty");
     return false;
-  }
+  }*/
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&email=' + encodeURIComponent(email)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
   if(data_orderIdNumber != ''){
       data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber)+ '&data_msg='+data_msg+ '&file='+choosefile;
@@ -1204,7 +1209,11 @@ function contactus(){
             jQuery('#addContactus').hide();
             //document.location = Drupal.settings.basePath +'contact-us';
           } else {
-            alert(data['_ERROR_MESSAGE_']);
+            //alert(data['_ERROR_MESSAGE_']);
+            var errormsgs = data['error_messages'].join("\n");
+            jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+            jQuery("#signup_errormsgs").focus();
+            jQuery('.success-msg').hide();
             close_loading();
           }
         },
@@ -1222,7 +1231,7 @@ function savePersonalInfo(){
   var data_lastName = jQuery('#lastName').val();
   var data_phoneNumber = jQuery('#phoneNumber').val();
   var data_gender = jQuery('#gender').val();
-  if(data_firstName == ''){
+  /*if(data_firstName == ''){
     alert("FirstName can't be Empty");
     return false;
   }
@@ -1233,7 +1242,7 @@ function savePersonalInfo(){
   if(data_phoneNumber == ''){
     alert("Phone Number cant't be Empty");
     return false;
-  }
+  }*/
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&data_lastName=' + encodeURIComponent(data_lastName)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
   if(data_gender != ''){
       data = data + '&data_gender=' + encodeURIComponent(data_gender);
@@ -1252,7 +1261,9 @@ function savePersonalInfo(){
           jQuery('#addpersonalinfo').hide();
           //document.location = Drupal.settings.basePath +'account/profile';
         } else {
-          alert(data['_ERROR_MESSAGE_']);
+          var errormsgs = data['error_messages'].join("\n");
+          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#signup_errormsgs").focus();
           close_loading();
         }
       },
@@ -1473,5 +1484,100 @@ jQuery(function($) {
     })
   });
 
+jQuery(function($) {
+  $("form[name='signInForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      signInHasti();
+    }
+  })
+});
+jQuery(function($) {
+  $("form[name='contactusForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      contactus();
+    }
+  })
+});
+jQuery(function($) {
+  $("form[name='personalinfoForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      savePersonalInfo();
+    }
+  })
+});
 
-
+jQuery(function($) {
+  $("form[name='addressForm']").validate({
+  showErrors: function(errorMap, errorList) {
+        // Clean up any tooltips for valid elements
+        $.each(this.validElements(), function (index, element) {
+            var $element = $(element);
+            $element.data("title", "") // Clear the title - there is no error associated anymore
+                .removeClass("error")
+                .tooltip("destroy");
+        });
+        // Create new tooltips for invalid elements
+        $.each(errorList, function (index, error) {
+            var $element = $(error.element);
+            $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                .data("title", error.message)
+                .addClass("error")
+                .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+        });
+    },
+    submitHandler: function(form) {
+      addAddress();
+    }
+  })
+});
