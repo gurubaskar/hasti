@@ -192,7 +192,7 @@ require_once 'vendor/autoload.php';
   <p>Enter your Email Address here to receive a new password</p>
   <input type="text" id="emailid" placeholder="* Email Id" data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
   <div class="forgot-btn">
-     <input type="submit" class="basic-btn" value="Continue" id="Continue">
+     <input type="submit" value="Continue" id="Continue">
     <!--input type="button" value="Continue" id="Continue" onclick="checkEmail();"-->
     <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
   </div>
