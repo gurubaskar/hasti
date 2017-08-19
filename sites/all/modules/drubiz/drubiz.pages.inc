@@ -1723,7 +1723,7 @@ function myaccount_return_order_details() {
     $seqProductId = explode('_',$productIds[$i]);
     $returnOrderItem[] = array("orderItemSeqId"=> $seqProductId[0],
                                "returnTypeId"=> $returnTypeId,
-                               "returnQuantity" => "1",
+                               "returnQuantity" => $seqProductId[2],
                                "returnReasonId" => $returnReasonId[$i],
                                "productId" => $seqProductId[1]);
   }

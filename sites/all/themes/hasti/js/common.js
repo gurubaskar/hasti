@@ -838,6 +838,8 @@ function openDeliveryAddress() {
 }
 
 function openPaymentMethod() {
+   var numberOfCheckedRadio = jQuery('input:radio:checked').length;
+  if(numberOfCheckedRadio > 0) {
  jQuery("#order-summary").hide();
  jQuery("#checkout-login").hide(); 
  jQuery("#delivery-address").hide();
@@ -857,6 +859,10 @@ function openPaymentMethod() {
 
  jQuery('li a').removeClass("active");
  jQuery('#paymentMethod').addClass('active');
+ } else {
+    alert("Please select a address");
+    return false;
+  }
 }
 /*************** mega menu *****************/
 
@@ -1339,13 +1345,14 @@ jQuery(document).ready(function(){
           data += 'orderId=' + orderId + '&accountHolderName=' + accountHolderName + '&bankName=' + bankName + '&accountNumber=' + accountNumber + '&ifscCode=' + ifscCode + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
 
         }
+        data += 'orderId=' + orderId + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
 // alert(jQuery("#returnReason_00001_100044-1").val());
     // var orderId = jQuery(this).data('cancel-id');
     // var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
     // var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').attr('value');
     // var data = "";
     // data += 'orderId=' + orderId;
-    alert(data);
+    // alert(data);
     loading();
     jQuery.ajax({
       type: "POST",
