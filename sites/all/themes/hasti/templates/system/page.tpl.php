@@ -139,7 +139,7 @@ require_once 'vendor/autoload.php';
   </div>
 </div>
 <div data-role="popup" id="positionWindow" class="ui-content signin" style="max-width:700px">
-  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" id="closetag">Close</a>
   <h3>Sign up</h3>
   <div id="signup_errormsgs" style=""></div>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">       
@@ -147,8 +147,7 @@ require_once 'vendor/autoload.php';
       data-msg-required="The First Name is required." id="" data-rule-required="true">    
     <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" 
       data-msg-required="The Last Name is required." id="" data-rule-required="true">   
-    <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" 
-      data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
+    <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
     <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" 
       data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
     <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" 
@@ -164,18 +163,19 @@ require_once 'vendor/autoload.php';
 </div>
 
 <div data-role="popup" id="signInWindow" class="ui-content signin" style="max-width:700px">
-
-  <div id="signInPopup">
-  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+<div id="signInPopup">
+  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" id="closetag">Close</a>
   <h3>Sign in</h3>
+  <div id="signin_errormsgs" style=""></div>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
-    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
-    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>">
+    <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>"  data-msg-required="The username is required." id="" data-rule-required="true">
+    <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>" data-msg-required="The Password is required." id="" data-rule-required="true">
     <span class="remember">
     <input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /><span>
     Remember Me</span></span>
   <div class="signin-btn">
-    <input type="button" value="Sign In" id="signin" onclick="signInHasti();">
+    <!--input type="button" value="Sign In" id="signin" onclick="signInHasti();"-->
+    <input type="submit" value="Sign In" id="signin">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
     <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
   </div>
