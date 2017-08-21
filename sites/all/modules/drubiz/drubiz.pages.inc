@@ -169,8 +169,8 @@ function drubiz_checkout_final() {
 * callback for Import data 
 */
 function import_data(){
-  //$file_name = $_GET['filename'];
-  $file_name = 'drubiz_data/catalog_hasti.xls';
+  $file_name = $_GET['filename'];
+  //$file_name = 'drubiz_data/catalog_hasti.xls';
   $xls_files = array(
     'hasti'   => $file_name,
   );
