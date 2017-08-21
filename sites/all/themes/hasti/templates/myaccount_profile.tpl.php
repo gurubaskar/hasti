@@ -14,11 +14,11 @@
    <div id="signup_errormsgs" style=""></div>
     <div class="form-wrap" id="addpersonalinfo">
       <div class="form-row">
-        <label>First Name</label>
+        <label><span class="required">*</span>First Name</label>
         <input type="text" id="firstName" value="<?php echo $profile['firstName'];?>" data-msg-required="FirstName can't be Empty" id="" data-rule-required="true">
       </div>
       <div class="form-row">
-        <label>Last Name</label>
+        <label><span class="required">*</span>Last Name</label>
         <input type="text" id="lastName" value="<?php echo $profile['lastName'] ;?>" data-msg-required="lastName can't be Empty" id="" data-rule-required="true">
       </div>
       <div class="form-row">
@@ -30,11 +30,11 @@
         </select>
       </div>
       <div class="form-row">
-        <label>Email Id</label>
+        <label><span class="required">*</span>Email Id</label>
         <input type="text" value="<?php echo $profile['emailAddress'];?>" disabled="disabled" data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
       </div>
       <div class="form-row">
-        <label>Phone Number</label>
+        <label><span class="required">*</span>Phone Number</label>
         <input type="text" id="phoneNumber" maxlength="10" value="<?php echo $profile['mobileNumber'];?>" data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
       </div>
       <div class="btns-wrap">

@@ -31,21 +31,21 @@
               if($GLOBALS['user']->uid != 0):
               ?>
               <div class="form-row">
-                <label>First Name</label>
+                <label><span class="required">*</span>First Name</label>
                 <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $_SESSION['drubiz']['session']['firstName']; ?>" data-msg-required="FirstName can't be Empty" id="" data-rule-required="true">
               </div>          
               <div class="form-row">
-                <label>Email Id</label>
-                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo $GLOBALS['user']->mail; ?>" maxlength="200" data-msg-required="Please Enter your Email" id="" data-rule-required="true">
+                <label><span class="required">*</span>Email Id</label>
+                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" value="<?php echo $GLOBALS['user']->mail; ?>" maxlength="200" data-msg-required="Please Enter your Email" id="" data-rule-required="true">
               </div>
               <?php endif; ?>
              <?php if($GLOBALS['user']->uid == 0):?>
               <div class="form-row">
-                <label>First Name</label>
+                <label><span class="required">*</span>First Name</label>
                 <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>" data-msg-required="FirstName can't be Empty" id="" data-rule-required="true">
               </div>          
               <div class="form-row">
-                <label>Email Id</label>
+                <label><span class="required">*</span>Email Id</label>
                  <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo t('@ Email');?>" maxlength="200" data-msg-required="Please Enter your Email" id="" data-rule-required="true">
               </div>
               <?php endif; ?>
@@ -54,7 +54,7 @@
                 <input type="text" name="orderIdNumber" id="orderIdNumber" placeholder="<?php echo t('Purchase Order Number (Optional)');?>">
               </div>
               <div class="form-row">
-                <label>Mobile No</label>
+                <label><span class="required">*</span>Mobile No</label>
                 <input type="text" name="conactUsPhone" id="conactUsPhone" placeholder="<?php echo t('*Mobile No / Phone No');?>" data-msg-required="Phone Number cant't be Empty" id="" data-rule-required="true">
               </div>          
               <div class="form-row">
@@ -62,7 +62,7 @@
               <input type="file" name="choose-file" class="disabled-text" id="choose-file">
               </div>
               <div class="form-row">
-                <label>Message</label>
+                <label><span class="required">*</span>Message</label>
                <textarea name="content" id="js_content" placeholder="*Type Your Message Here..." class="content characterLimit" cols="35" rows="5" maxlength="100" data-msg-required="Massage can't be Empty" id="" data-rule-required="true"></textarea>
                <span class="js_textCounter textCounter">100 characters left</span>
                <input type="hidden" name="content_MANDATORY" value="Y">
