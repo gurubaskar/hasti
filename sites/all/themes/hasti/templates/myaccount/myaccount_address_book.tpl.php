@@ -28,7 +28,9 @@
       </div>
     <?php } ?>
     <div class="btns-wrap">
+    <?php if(count($address_list) < 4){ ?>
       <span class="new-address"><a href="<?php echo url('account/add-address') ?>" class="buy-now">Add New Address</a></span>
+    <?php }?>
       <a href="<?php echo url('account/profile') ?>" class="standardBtn negative"><span><i class="fa fa-angle-double-left"></i><?php echo t('<< Back');?></span></a>
     </div>
   </div>

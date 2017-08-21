@@ -171,8 +171,9 @@ if(!empty($_GET['from'])) {
       </div>
       <?php } ?>
       <div class="btns-wrap">
+        <?php if(count($addresses['postalAddressList']) < 4){ ?>
         <span class="new-address"><a href="<?php echo url('account/add-address') ?>?back=order" class="buy-now">Add New Address</a></span>
-        <?php if(count($addresses['postalAddressList']) > 0) {?>
+        <?php } if(count($addresses['postalAddressList']) > 0) {?>
           <span class="continue"><a href="#" class="buy-now" onclick="openPaymentMethod();">Continue</a></span>
         <?php } else { ?>
           <span class="continue"><a href="#" class="buy-now disabled">Continue</a></span>
