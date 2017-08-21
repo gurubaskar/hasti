@@ -62,10 +62,14 @@
         <tbody>
       </table>
       <div class="subTotal">
-        <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
+        <div class="price1-wrap">
+          <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
+        </div>
       </div>
       <div class="grandTotal">
-        <span>Grand Total</span><span>&#8377;. <?php echo format_money($order['orderGrandTotal']);?></span>
+        <div class="price1-wrap">
+          <span>Grand Total</span><span>&#8377;. <?php echo format_money($order['orderGrandTotal']);?></span>
+        </div>
       </div>
       <div class="reorderBtn">
         <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="reoderItem">Reorder Selected item</a>

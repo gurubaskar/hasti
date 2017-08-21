@@ -113,16 +113,22 @@ if(!empty($_GET['from'])) {
       </div>
       <?php }?>
       <div id="subtotal">
-        <label>Amount Payable:</label>
-        <span>&#8377; <?php echo format_money($cart['cartSubTotal']);?></span>
+        <div class="price1-wrap">
+          <label>Amount Payable:</label>
+          <span>&#8377; <?php echo format_money($cart['cartSubTotal']);?></span>
+        </div>
       </div>
       <div id="shipping">
-        <label>Shipping Charge:</label>
-        <span>&#8377; <?php echo format_money($cart['orderShippingTotal']);?></span>
+        <div class="price1-wrap">
+          <label>Shipping Charge:</label>
+          <span>&#8377; <?php echo format_money($cart['orderShippingTotal']);?></span>
+        </div>
       </div>
       <div id="total">
-        <label>Grand Total:</label>
-        <span>&#8377; <?php echo format_money($cart['orderGrandTotal']);?></span>
+        <div class="price1-wrap">
+          <label>Grand Total:</label>
+          <span>&#8377; <?php echo format_money($cart['orderGrandTotal']);?></span>
+        </div>
       </div>
       <div id="order-confirm">
         <label>Order Confirmation will be sent to:</label>
