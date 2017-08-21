@@ -163,10 +163,18 @@
       </table>
     </div>
     <div class="bankDetails" style="display: none;">
-      Account Holder Name <input type="textbox" name="accountHolderName" id="accountHolderName">
-      Bank Name <input type="textbox" name="bankName" id="bankName">
-      Account Number <input type="textbox" name="accountNumber" id="accountNumber">
-      IFSC Code <input type="textbox" name="ifscCode" id="ifscCode">
+      <div class="form-row">
+        <label>Account Holder Name</label> <input type="textbox" name="accountHolderName" id="accountHolderName">
+      </div>
+      <div class="form-row">
+        <label>Bank Name</label> <input type="textbox" name="bankName" id="bankName">
+      </div>
+      <div class="form-row">
+        <label>Account Number</label> <input type="textbox" name="accountNumber" id="accountNumber">
+      </div>
+      <div class="form-row">
+        <label>IFSC Code</label> <input type="textbox" name="ifscCode" id="ifscCode">
+      </div>
     </div>
     <div id="returnSubmit" class="details-btns returnSubmit">
       <a href="">Submit</a>
