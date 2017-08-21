@@ -704,6 +704,53 @@ a:focus{text-decoration:none !important;}
 .order-confirmation .details-wrap .product-wrap:last-child{border-bottom:none;}
 .order-confirmation .edit{position:absolute; right:0; bottom:0; margin-bottom:12px;}
 .myaccount-right .price1-wrap, #cart .price1-wrap, .checkout-right .price1-wrap{width:auto; float:right;}
+.myaccount-right.myorders .bankDetails {
+    width: 100%;
+    float: left;
+    border: 1px solid #d3d2d2;
+    padding: 20px 25px 5px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.myaccount-right.myorders .bankDetails label {
+    width: 170px;
+    float: left;
+    color: #6d6e70;
+    font-weight: 400;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.myaccount-right.myorders .bankDetails input {
+    width: 300px;
+    font-size: 14px;
+    padding: 10px;
+    color: #6d6e70;
+    font-weight: 300;
+    float: left;
+    border: 1px solid #d3d2d2;
+}
+.myaccount-right.myorders .bankDetails .form-row {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+#refundType-button {
+    font-size: 14px;
+    padding: 10px;
+    color: #6d6e70;
+    font-weight: 300;
+    float: left;
+    border: 1px solid #d3d2d2;
+    box-shadow: none;
+    width: 125px;
+    text-align: left;
+}
+#refundType:after {
+    background-color: #6d6e70 !important;
+}
+#refundType-button.ui-btn-icon-right:after {
+    background-color: #6d6e70 !important;
+}
 
 
 /******************************* change pwd ******************************/
