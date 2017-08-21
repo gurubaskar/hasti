@@ -604,7 +604,7 @@ a:focus{text-decoration:none !important;}
 .qty-plus{background:url('./../images/main-img.png') no-repeat -7px -605px; padding:9px 11px; }
 .qty-minus{background:url('./../images/main-img.png') no-repeat -42px -608px; padding:5px 11px; margin-right:5px;}
 .order-confirmation .cartbox h3{margin-top:0; margin-bottom:12px;}
-.order-confirmation .cartbox .total{padding-left:0;}
+.order-confirmation .cartbox .total{padding-left:0; width:100%; text-align:right;}
 .order-confirmation .cartbox .total span, .cart-details .edit .total span{color:#00b04c; font-weight:bold !important;}
 .confirmation-wrap, .details-wrap{float:left; width:100%;}
 .confirmation-wrap p{color:#000;}
@@ -614,8 +614,8 @@ a:focus{text-decoration:none !important;}
 .delivery-wrap p span{color:#0081c5;}
 .order-confirmation .delivery-wrap p span, .order-confirmation a{font-weight:normal;}
 .icon-wrap{float:left; width:100%; margin:20px 0;}
-.icon-wrap .icon-container{margin:0 auto; width:35%;}
-.icon-wrap .icon-container ul li{float:left; margin:0 10px; width:27%; text-align:center;}
+.icon-wrap .icon-container{margin:0 auto; width:23%;}
+.icon-wrap .icon-container ul li{float:left; margin:0 10px; width:40%; text-align:center;}
 .icon-wrap .icon-container ul li a{color:#000; display:block; margin-bottom:10px; height:55px;}
 .details-btns{position:absolute; right:30px; display:block;}
 .details-btns a{float:right; font-weight:bold; display:block; width:55%; text-align:center; color:#000 !important; padding:7px; margin-bottom:15px; border:1px solid #00b04c;}
@@ -631,7 +631,7 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400; border:none;}
 /*.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}*/
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
@@ -692,7 +692,10 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders table.returnOrderDetail input[type=checkbox]{width:18px; height:18px;}
 .ui-checkbox input:disabled, .ui-radio input:disabled{clip:initial !important;}
 .ui-disabled, .ui-state-disabled, button[disabled], .ui-select .ui-btn.ui-state-disabled{opacity: 0.5 !important;}
-
+/*.myaccount-right.myorders .returnOrderDetail tbody td */
+.order-confirmation .details-wrap .product-wrap{border-bottom:1px solid #ddd; margin-bottom:20px; float:left; width:100%;}
+.order-confirmation .details-wrap .product-wrap:last-child{border-bottom:none;}
+.order-confirmation .edit{position:absolute; right:0; bottom:0; margin-bottom:12px;}
 
 
 /******************************* change pwd ******************************/
@@ -1007,7 +1010,7 @@ a:focus{text-decoration:none !important;}
     .storyimg-wrap .btns-wrap span{width:300px; margin-bottom:10px;}
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
     .checkout .addressbox{width:93% !important;}
-    .icon-wrap .icon-container{width:49%;}
+    .icon-wrap .icon-container{width:30%;}
     .details-btns, .myorders #past-orders .details-btns{position:relative; width:100%; float:right; right:0px;}
     .details-btns a{margin-bottom:0; margin-top:10px; margin-right:10px !important; width:30%;}
     .checkout-right .addressbox{width:93% !important;}
@@ -1053,7 +1056,7 @@ a:focus{text-decoration:none !important;}
 @media only screen and (max-width:767px) and (min-width:640px){
     .plp-right .col-xs-12{width:33.333%;}
     .bottomimg-wrap .img-box:nth-of-type(3){border:none;}
-    .icon-wrap .icon-container{width:61%;}
+    .icon-wrap .icon-container{width:34%;}
     .box{height:385px !important;}
 }
 @media only screen and (max-width:767px) and (min-width:481px){
@@ -1073,7 +1076,7 @@ a:focus{text-decoration:none !important;}
 
 @media only screen and (max-width:639px) and (min-width:440px){
     .plp-right .col-xs-12{width:50%;}
-    .icon-wrap .icon-container{width:80%;}
+    .icon-wrap .icon-container{width:48%;}
 }
 @media (max-width:991px){
     .myaccount-right .addressbox{width:100%;}
@@ -1160,6 +1163,7 @@ a:focus{text-decoration:none !important;}
     .cart-details .details-left, .cart-details .details-right{width:100%; padding:0;}
     .cart-details .total{width:100%;}
     .cart-details .total div{float:left;}
+    .order-confirmation .cart-details .total div{float:right;}
     .edit-wrap{width:100%; margin-bottom:20px;}
     .total{padding-left:0;}
     .checkout-right input[type="text"], .checkout-right .checkoutbtn-wrap input[type="button"]{width:100%;}
@@ -1247,6 +1251,8 @@ a:focus{text-decoration:none !important;}
     .ui-popup.signin.cancelOrder-wrap .cancel-btn{margin-top:5px;}
     .myaccount-right.returnOrderItem .cartbox .img-wrap{width:35%;}
     .myaccount-right.returnOrderItem .cartbox .cart-details{width:65%;}
+    .order-confirmation .edit{position:inherit;}
+    .order-confirmation .cart-details .total div{float:left;}
 
 }
 @media(max-width:439px){
@@ -1256,6 +1262,8 @@ a:focus{text-decoration:none !important;}
     #footer .social-wrap ul li{float:none !important; display:inline; padding:10px 17px;}
     #footer .social-wrap{position:relative; top:-10px; padding:0;}
     #footer ul li.facebook a{padding:0 !important;}
+    .icon-wrap .icon-container{width:55%;}
+
 }
 
 @media (max-width:400px){
