@@ -345,6 +345,8 @@ a:focus{text-decoration:none !important;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
 .pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
+.pdp .pdp-right .fivestar-default{width:100%; float:left; margin:15px 0 0 0;}
+.pdp .pdp-right .PDPReview .fivestar-default{width:auto; float:left; margin:2px 0 0 0;}
 .storyimg-wrap{float:left; width:100%; margin-top:15px;}
 .pleft{padding-left:0 !important;}
 .pright{padding-right:0 !important;}
@@ -470,20 +472,20 @@ a:focus{text-decoration:none !important;}
 
 #cart #subtotal, .myaccount-right.reOrder .subTotal, .myaccount-right.myorders .subTotal, #cart #shipping, #order-summary #subtotal, #order-summary #shipping, .myaccount-right.myorders #shipping{float:right; width:100%; text-align:right; margin:0px 0 7px 0;}
 
-#subtotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.reOrder .subTotal span:first-child, #cart #shipping label, #order-summary #shipping label, .myaccount-right.myorders #shipping label{color:#6d6e70; font-size:20px !important; font-weight:normal; margin:0 7px 0 0 !important; display:inline-block !important;}
+#subtotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.reOrder .subTotal span:first-child, #cart #shipping label, #order-summary #shipping label, .myaccount-right.myorders #shipping label{color:#6d6e70; font-size:20px !important; font-weight:normal; margin:0 7px 0 0 !important; display:inline-block !important; width:150px; float:left; text-align:right;}
 
-.alltotal label, .myaccount-right.myorders .grandTotal span:first-child,.myaccount-right.reOrder .grandTotal span:first-child, #cart #total label, #order-summary #total label{color:#6d6e70; font-size:25px !important; font-weight:normal; margin:0 7px 0 0!important; display:inline-block !important; font-weight:600;}
+.alltotal label, .myaccount-right.myorders .grandTotal span:first-child,.myaccount-right.reOrder .grandTotal span:first-child, #cart #total label, #order-summary #total label{color:#6d6e70; font-size:25px !important; font-weight:normal; margin:0 7px 0 0!important; display:inline-block !important; font-weight:600; width:150px; float:left; text-align:right;} 
 
-#subtotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.reOrder .subTotal span, #cart #shipping span, #order-summary #shipping span, .myaccount-right.myorders #shipping span{color:#0081c5; font-size:20px; font-weight:normal;}
+#subtotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.reOrder .subTotal span, #cart #shipping span, #order-summary #shipping span, .myaccount-right.myorders #shipping span{color:#0081c5; font-size:20px; font-weight:normal; width:130px; text-align:right; float:right;}
 
- .alltotal span,.myaccount-right.myorders .grandTotal span, .myaccount-right.reOrder .grandTotal span, #cart #total span, #order-summary #total span{color:#0081c5; font-size:25px; font-weight:normal; font-weight:600;}
+ .alltotal span,.myaccount-right.myorders .grandTotal span, .myaccount-right.reOrder .grandTotal span, #cart #total span, #order-summary #total span{color:#0081c5; font-size:25px; font-weight:normal; font-weight:600; width:130px; float:left;}
 
 .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child{margin-right:3px;}
 .myaccount-right.myorders .returnOrderDetail tbody td, .myaccount-right.reOrder .returnDetail tbody tr td{vertical-align:middle !important;}
 #cart .btns-wrap{margin:20px 0; float:right; width:100%;}
 #cart .btns-wrap span{float:right; margin-left:10px; margin-right:0;}
-.checkpin{float:right; width:422px;}
-.checkpin input[type="text"]{width:300px; padding:10px; line-height:20px; position:relative; border:1px solid #a9a9a9;}
+.checkpin{float:right; width:421px;}
+.checkpin input[type="text"]{width:300px; padding:10px; line-height:19px; position:relative; border:1px solid #a9a9a9;}
 .checkpin a{background:#00b04c; width:120px; float:right; position:absolute;}
 .bottomimg-wrap{margin:30px 0 20px 0;}
 .bottomimg-wrap .img-box span{height:80px;}
@@ -491,6 +493,7 @@ a:focus{text-decoration:none !important;}
 .bottomimg-wrap .img-box:last-child{border:0;}
 .bottomimg-wrap .img-box span, .bottomimg-wrap .img-box p{width:100%; float:left; text-align:center;}
 .bottomimg-wrap .img-box p{padding-top:20px; font-size:16px; color:#000;}
+.myaccount-right.reOrder .returnDetail tbody tr td input[type="checkbox"]{z-index:0;}
 
 /****************************  Check out starts  *************************/
 .contact-left, .myaccount-left{background:#eaeaea; height:100%; float:left; padding:25px 30px 25px 30px !important;}
@@ -631,7 +634,8 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400; border:none;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400; border:none; line-height:16px;}
+#addContactus a.ui-link{margin-left:10px;}
 /*.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}*/
 .search-section{position:relative;}
 .mob-search{width:100%; height:auto; border:1px solid #000; background:#fff; position:absolute; right:0; top:72px; z-index:1;}
@@ -699,6 +703,7 @@ a:focus{text-decoration:none !important;}
 .order-confirmation .details-wrap .product-wrap{border-bottom:1px solid #ddd; margin-bottom:20px; float:left; width:100%;}
 .order-confirmation .details-wrap .product-wrap:last-child{border-bottom:none;}
 .order-confirmation .edit{position:absolute; right:0; bottom:0; margin-bottom:12px;}
+.myaccount-right .price1-wrap, #cart .price1-wrap, .checkout-right .price1-wrap{width:auto; float:right;}
 
 
 /******************************* change pwd ******************************/
@@ -733,7 +738,7 @@ a:focus{text-decoration:none !important;}
 .ui-popup.signin .remember a{padding-left:0px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
 .signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 7px; margin:25px 0 15px 0;}
-.signin-btn #signin, .cancelord{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:23px; font-weight:normal; margin:0;}
+.signin-btn #signin, .cancelord{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:23px; font-weight:normal; margin:0; border:none;}
 .signin-btn .ui-input-btn.ui-btn{padding:5px 0 !important;}
 .ui-input-text, .signin-btn{width:400px !important; float:left;}
 .checkpin .ui-input-text{width:auto !important;}
@@ -975,7 +980,7 @@ a:focus{text-decoration:none !important;}
         position: absolute;
         /* Top/left values mimic padding */
         top: 6px;
-        left: 6px;
+        left: 10px;
         width: 45%; 
         padding-right: 10px; 
         white-space: nowrap;
@@ -1087,7 +1092,8 @@ a:focus{text-decoration:none !important;}
 
 @media (max-width:885px){
     .checkpin{width:100%; float:left;  margin-top:15px;}
-    .checkpin .ui-input-text{width:75% !important;}
+    .checkpin .ui-input-text{width:100% !important;}
+    .checkpin input[type="submit"]{position:absolute; right:15px;}
     .checkpin input[type="text"]{width:100%;}
     .checkpin a{width:24%;}
     .order-confirmation .cartbox .total{width:100%;}
@@ -1256,6 +1262,7 @@ a:focus{text-decoration:none !important;}
     .myaccount-right.returnOrderItem .cartbox .cart-details{width:65%;}
     .order-confirmation .edit{position:inherit;}
     .order-confirmation .cart-details .total div{float:left;}
+    .checkpin input[type="submit"]{right:0 !important;}
 
 }
 @media(max-width:439px){
@@ -1270,7 +1277,7 @@ a:focus{text-decoration:none !important;}
 }
 
 @media (max-width:400px){
-    .pdp .size .available, .pdp .color .available{width:100%; margin-bottom:8px;}
+    .pdp .size .available, .pdp .color .available, #addContactus .contact-us{width:100%; margin-bottom:8px;}
     #subtotal label{width:auto; margin-bottom:15px;}
     .form-wrap .btns-wrap a{width:92%; margin-bottom:15px; float:left;}  
     .form-wrap#addpersonalinfo .btns-wrap a{width:99%;}
@@ -1278,12 +1285,13 @@ a:focus{text-decoration:none !important;}
     .cartbox{padding:15px 15px 20px 15px;}
     .checkout-right #order-summary .img-wrap{width:60% !important;}
     .checkout-right #order-summary .cart-details{width:100% !important;}
-    .myaccount-right .form-wrap .btns-wrap, .myaccount-right #addNewAddress .btns-wrap a{width:100%;}
+    .myaccount-right .form-wrap .btns-wrap, .myaccount-right #addNewAddress .btns-wrap a, #addContactus .btns-wrap{width:100%;}
     .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn{padding:10px 24px !important;}
     #navbar a.logo{width:60%;}
     #navbar img{max-width:100%;}
     .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -640px; height:40px;}
     .mob-search{top:61px;}
+    #addContactus a.ui-link{width:100%; margin:5px 0 0 0;}
 }
 
 @media (max-width:370px){

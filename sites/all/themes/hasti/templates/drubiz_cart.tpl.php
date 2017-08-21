@@ -64,13 +64,19 @@
         <?php }?>
         
         <div id="subtotal">
-          <label>Sub Total:</label><span>&#8377. <span id="subtotalamount"><?php echo format_money($cart['cartSubTotal']);?></span></span>
+          <div class="price1-wrap">
+            <label>Sub Total:</label> <span id="subtotalamount">&#8377. <?php echo format_money($cart['cartSubTotal']);?></span>
+          </div>
         </div>
         <div id="shipping">
-          <label>Shipping Charge:</label><span>&#8377. <span id="shippingcharge"><?php echo format_money($cart['orderShippingTotal']);?></span></span>
+          <div class="price1-wrap">
+           <label>Shipping Charge:</label><span id="shippingcharge">&#8377. <?php echo format_money($cart['orderShippingTotal']);?></span>
+          </div>
         </div>
         <div id="total">
-          <label>Grand Total:</label><span>&#8377. <span id="totalamount"><?php echo format_money($cart['orderGrandTotal']);?></span></span>
+          <div class="price1-wrap">
+            <label>Grand Total:</label><span id="totalamount">&#8377. <?php echo format_money($cart['orderGrandTotal']);?></span>
+          </div>
         </div>
         <div class="btns-wrap">
           <span><a href="<?php echo url('checkout-payment');?>" data-ajax="false" class="place-order">Place Order</a></span>
