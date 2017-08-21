@@ -482,7 +482,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders .returnOrderDetail tbody td, .myaccount-right.reOrder .returnDetail tbody tr td{vertical-align:middle !important;}
 #cart .btns-wrap{margin:20px 0; float:right; width:100%;}
 #cart .btns-wrap span{float:right; margin-left:10px; margin-right:0;}
-.checkpin{float:right; width:420px;}
+.checkpin{float:right; width:422px;}
 .checkpin input[type="text"]{width:300px; padding:10px; line-height:20px; position:relative; border:1px solid #a9a9a9;}
 .checkpin a{background:#00b04c; width:120px; float:right; position:absolute;}
 .bottomimg-wrap{margin:30px 0 20px 0;}
@@ -683,7 +683,10 @@ a:focus{text-decoration:none !important;}
 #addContactus .textCounter{width:100%; float:left; padding:5px 0 0 168px;}
 
 .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:auto; padding:9px 40px; float:left; margin-right:10px; margin-top:20px; background-color:#fff !important; color:#00b04c !important; font-size:16px !important; font-weight:400 !important; border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important; top:0 !important; right:0 !important; border:none !important; text-shadow:none !important}
-.myaccount-right.myorders .refundTypeDisplay{float:left; width:auto;}
+.myaccount-right.myorders .refundTypeDisplay{float:left; width:100%;}
+.myaccount-right.myorders .refundTypeDisplay tr td{margin-right:5px; float:left;}
+.myaccount-right.myorders .refundTypeDisplay tr td:first-child{margin-top:19px;}
+.myaccount-right.myorders .refundTypeDisplay tr td select option{color:#000 !important;}
 .myaccount-right.returnOrderItem .details-left #orderid-wrap{margin-bottom:15px; float:left; width:100%;}
 .myaccount-right.returnOrderItem .cartbox{width:47%; margin-right:15px;}
 .myaccount-right.returnOrderItem .cartbox{padding:20px 0 5px 0; margin-bottom:15px;}
