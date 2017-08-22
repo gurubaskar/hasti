@@ -698,7 +698,7 @@ a:focus{text-decoration:none !important;}
 .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:auto; padding:9px 40px; float:left; margin-right:10px; margin-top:20px; background-color:#fff !important; color:#00b04c !important; font-size:16px !important; font-weight:400 !important; border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important; top:0 !important; right:0 !important; border:none !important; text-shadow:none !important}
 .myaccount-right.myorders .refundTypeDisplay{float:left; width:100%;}
 .myaccount-right.myorders .refundTypeDisplay tr td{margin-right:5px; float:left;}
-.myaccount-right.myorders .refundTypeDisplay tr td:first-child{margin-top:19px;}
+.myaccount-right.myorders .refundTypeDisplay tr td:first-child{margin-top:15px;}
 .myaccount-right.myorders .refundTypeDisplay tr td select option{color:#000 !important;}
 .myaccount-right.returnOrderItem .details-left #orderid-wrap{margin-bottom:15px; float:left; width:100%;}
 .myaccount-right.returnOrderItem .cartbox{width:47%; margin-right:15px;}
@@ -745,11 +745,11 @@ a:focus{text-decoration:none !important;}
 }
 #refundType-button {
     font-size: 14px;
-    padding: 10px;
+    padding: 7px 10px;
     color: #6d6e70;
     font-weight: 300;
     float: left;
-    border: 1px solid #d3d2d2;
+    border: 1px solid #d3d2d2 !important;
     box-shadow: none;
     width: 125px;
     text-align: left;
@@ -760,13 +760,28 @@ a:focus{text-decoration:none !important;}
 #refundType-button.ui-btn-icon-right:after {
     background-color: #6d6e70 !important;
 }
-
-
+.myaccount-right.myorders .ui-checkbox input {
+    z-index: 0 ;
+}
+.forgot-btn #Continue, .forgot-btn #back {
+    text-indent: 0;
+    opacity: 1;
+    background: #00b04c;
+    width: 37%;
+    padding: 10px;
+    color: #fff !important;
+    font-weight: normal;
+    text-align: center;
+    font-size: 17px;
+    border: 0;
+    z-index: 0;
+}
 /******************************* change pwd ******************************/
 #changepwd{margin:40px auto 20px auto; padding:25px; width:450px !important; height:auto !important;}
 #changepwd h3{margin:5px 0 15px 0;}
 #changepwd input[type="password"]{margin:15px 0 4px 0 !important; border:none;}
 .forgot-btn{margin-top:35px !important;}
+.checkout-right .forgot-btn{margin-top:20px !important;}
 .forgot-btn #js_submitChangePasswdBtn{border:none; width:100%; background:none; padding:5px 7px; font-weight:bold;}
 .myaccount-right .change-pwd{width:480px;}
 .myaccount-right .forgot-btn{padding:0; margin-top:15px;}
@@ -793,7 +808,7 @@ a:focus{text-decoration:none !important;}
 .ui-popup.signin a, .ui-popup.signin a:hover{color:#fff !important; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:0px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
-.signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 7px; margin:25px 0 15px 0;}
+.signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 0px; margin:25px 0 15px 0; width:100%; float:left;}
 .signin-btn #signin, .cancelord{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:23px; font-weight:600; margin:0; border:none;}
 .signin-btn #signin{margin:20px 0 0 0 !important;}
 .signin-btn .ui-input-btn.ui-btn{padding:5px 0 !important;}
