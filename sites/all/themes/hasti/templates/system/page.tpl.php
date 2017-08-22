@@ -112,6 +112,7 @@ require_once 'vendor/autoload.php';
     $smSubCategoryName = "&f[2]=sm_field_subcategory".$collon.rawurlencode($smFieldName);
     $c = $get_category_names[$i];
     $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
+    if($drubiz_category_names[$catalogName][trim($get_category_names[$i])])
     $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
   }
   
@@ -150,8 +151,7 @@ require_once 'vendor/autoload.php';
     <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
     <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" 
       data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
-    <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" 
-      data-msg-required="The Password is required." id="" data-rule-required="true">
+    <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" data-msg-required="The Password is required." id="" data-rule-required="true" data-rule-minlength="6">
     <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" 
       data-msg-required="The Confirm Password is required." id="" data-rule-required="true">
    
@@ -365,7 +365,8 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('about-us')?>" alt="About Us" target="_blank"><?php echo t('About Us');?></a></li>
               <li><a href="#" alt="Press Release" target="_blank"><?php echo t('Press Release');?></a></li>
               <li><a href="#" alt="News & Events" target="_blank"><?php echo t('News & Events');?></a></li>
-              <li><a href="<?php echo url('faq')?>" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li>            
+              <li><a href="<?php echo url('faq')?>" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li> 
+              <li><a href="<?php echo url('story-list')?>" alt="Story List" target="_blank"><?php echo t('Story List');?></a></li>            
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
