@@ -304,8 +304,8 @@ a:focus{text-decoration:none !important;}
 .pdp .pdp-left .mCSB_container a img{max-width:100%; height:auto;}
 .pdp .pdp-left .mCSB_scrollTools{right:-5px; display:none !important;}
 .pdp .pdp-right .story-wrap{margin:0;}
-.pdp .pdp-right .story-wrap #socialIcons, .pdp .pdp-right .story-wrap #socialIcons ul{float:left; width:100%;}
-.pdp .pdp-right .story-wrap #socialIcons ul li{float:left; width:auto; margin-right:18px; margin-top:10px;}
+.pdp .pdp-right .story-wrap #socialIcons, .pdp .pdp-right .story-wrap #socialIcons ul, .story-detail #socialIcons, .story-detail #socialIcons ul{float:left; width:100%;}
+.pdp .pdp-right .story-wrap #socialIcons ul li, .story-detail #socialIcons ul li{float:left; width:auto; margin-right:18px; margin-top:10px;}
 .pdp .pdp-right #reviewForm, .pdp .pdp-right .PDPReview, .pdp .pdp-right #reviewForm .form-group{float:left; width:100%;}
 .pdp .pdp-right #reviewForm{margin:15px 0;}
 .pdp .pdp-right #reviewForm label{font-size:15px; margin:0;}
@@ -343,9 +343,9 @@ a:focus{text-decoration:none !important;}
 
 .pdp .btns-wrap{float:left; width:100%; margin:30px 0 15px 0;}
 #cart .btns-wrap span{background:#00b04c; width:184px; float:left; margin-right:10px;}
-.pdp .btns-wrap span{background:#00b04c; width:179px; float:left; margin-right:10px;}
+.pdp .btns-wrap span, .story-detail span{background:#00b04c; width:179px; float:left; margin-right:10px;}
 .pdp .btns-wrap span a{font-weight:normal;}
-.pdp .btns-wrap span a, #cart .btns-wrap span a, .checkpin a, .checkout-right .btns-wrap span a, .payment-method .btns-wrap a{text-align:center; color:#fff; float:left; width:100%; padding:10px 0; font-size:16px; font-weight:normal;}
+.pdp .btns-wrap span a, #cart .btns-wrap span a, .checkpin a, .checkout-right .btns-wrap span a, .payment-method .btns-wrap a, .story-detail span a, .story-detail span a:hover{text-align:center; color:#fff; float:left; width:100%; padding:10px 0; font-size:16px; font-weight:normal;}
 .pdp .btns-wrap span a.wish-icon{background:url('./../images/main-img.png') no-repeat 0px -330px;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
@@ -437,12 +437,16 @@ a:focus{text-decoration:none !important;}
 }
 /******************* Static pages starts ********************/
 .static-content{float:left; width:100%;}
-.static-content h1{font-family:'BPscript'; font-size:35px; line-height:28px; font-weight:500; color:#0081c5; margin-top:0; margin-bottom:15px;}
+.static-content h1, .story-detail h3{font-family:'BPscript'; font-size:35px; line-height:28px; font-weight:500; color:#0081c5; margin-top:0; margin-bottom:15px;}
 .static-content p{font-size:15px; line-height:24px; color:#000;}
 .static-content a{color:#0080c1;}
 .static-content p u{font-size:20px; margin:10px 0 8px 0; font-weight:bold; text-decoration:none; float:left;}
 .static-content p strong{color:#000; font-weight:bold;}
 .policy-left, .faq-left{background:#eaeaea; height:100%; float:left; padding:10px 30px 10px 30px !important; margin-bottom:25px;}
+.story-detail p{font-size:14px; line-height:25px; text-align:justify;}
+.story-detail .btns-wrap{margin:20px 0 15px 0; float:left; width:100%;}
+/*.story-detail .shareStory{margin:15px 0; float:left; width:100%; font-weight:600; color:#0081c5;}
+.story-detail .shareStory:hover{color:#0081c5;}*/
 #returns-policy .heading-bar, #security .heading-bar, #privacy-policy .heading-bar, #infringement .heading-bar, #faq .heading-bar, #cancellation .heading-bar, #try-buy .heading-bar, .faq-right #payment .heading-bar, #return-exchange .heading-bar, #payment .heading-bar{margin:0;}
 #returns-policy .heading-bar h2, #terms-of-use .heading-bar h2, #security .heading-bar h2, #privacy-policy .heading-bar h2, #infringement .heading-bar h2, #faq .heading-bar h2, #tracking-order .heading-bar h2, #cancellation .heading-bar h2, #try-buy .heading-bar h2, .faq-right #payment .heading-bar h2, #return-exchange .heading-bar h2{top:-27px;}
 #returns-policy>.col-xs-12.col-sm-12.col-md-12, #terms-of-use>.col-xs-12.col-sm-12.col-md-12, #security>.col-xs-12.col-sm-12.col-md-12, #privacy-policy>.col-xs-12.col-sm-12.col-md-12, #infringement>.col-xs-12.col-sm-12.col-md-12, #faq>.col-xs-12.col-sm-12.col-md-12, #tracking-order>.col-xs-12.col-sm-12.col-md-12, #cancellation>.col-xs-12.col-sm-12.col-md-12, #try-buy>.col-xs-12.col-sm-12.col-md-12, .faq-right #payment>.col-xs-12.col-sm-12.col-md-12, #return-exchange>.col-xs-12.col-sm-12.col-md-12{padding:0;}
@@ -1308,7 +1312,7 @@ a:focus{text-decoration:none !important;}
     .myorders #past-orders .details-btns{width:100%;}
     #homepage, #breadcrumb .container-fluid>.col-xs-12, #cart, .cartbox .img-wrap, .cartbox .cart-details, .cartbox .cart-details .details-right, .checkoutwrap-left, .checkout-right, .checkout-right #checkout-login>.col-xs-12, .leftMenuWrap{padding:0 !important;}
     #cart #subtotal span{font-size:28px;}
-    .myaccount-right, .myaccount-right>div.col-xs-12{padding:0 !important;}
+    .myaccount-right, .myaccount-right>div.col-xs-12, .story-detail{padding:0 !important;}
     .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:100%;}
     .ui-popup.signin.cancelOrder-wrap .cancel-btn{margin-top:5px;}
     .myaccount-right.returnOrderItem .cartbox .img-wrap{width:35%;}

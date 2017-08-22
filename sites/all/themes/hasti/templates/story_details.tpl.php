@@ -1,5 +1,5 @@
 
-<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="col-xs-12 col-sm-12 col-md-12 story-detail">
 <h3> <?php echo $storyDetails['storyDetail'][0]['storyName'];?></h3>
 <div id="">
 <?php //echo "<pre>";print_r($storyDetails['storyDetail'][0]['storyVideo']);?>
