@@ -1551,13 +1551,13 @@ function drubiz_hasti_comments_form($form, &$form_state) {
     '#type' => 'textfield',
     '#title' => 'Nickname',
     '#size' => 10,
-    '#required' => TRUE,
+    '#attributes' => array('data-msg-required' => t('The Nick Name is required.'),'data-rule-required'=>'true'),
   );
   $form['reviewTitle'] = array(
     '#type' => 'textfield',
     '#title' => 'Review Title',
     '#size' => 10,
-    '#required' => TRUE,
+    '#attributes' => array('data-msg-required' => t('The Review title is required.'),'data-rule-required'=>'true'),
   );
   $form['ratings'] = array(
     '#type' => 'fivestar',
@@ -1571,7 +1571,7 @@ print render($fivestar);*/
     '#title' => 'Comments',
     '#wysiwyg' => false,
     '#size' => 10,
-    '#attributes' => array('maxlength' => 250,'placeholder' => t('Not exceeding 250 characters!')),
+    '#attributes' => array('data-msg-required' => t('The Review Comments is required.'),'data-rule-required'=>'true','maxlength' => 250,'placeholder' => t('Not exceeding 250 characters!')),
     '#required' => TRUE,
     '#resizable' => FALSE,
   );
@@ -1583,7 +1583,7 @@ print render($fivestar);*/
     '#value' => 'Submit',
     '#submit' => array('drubiz_hasti_comments_form_submit'),
   );
-  $form['#attributes'] = array('data-ajax' => 'false');
+  $form['#attributes'] = array('data-ajax' => 'false', 'name' => 'hasti_comments_fn');
   // $form['#submit'] = array('drubiz_hasti_comments_form_submit'); 
    return $form;
 }

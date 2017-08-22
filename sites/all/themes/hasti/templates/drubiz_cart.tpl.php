@@ -83,36 +83,36 @@
           <span><a href="<?php echo url();?>" class="continue">Continue Shopping</a></span>
           <div class="checkpin">
           <form method="post" action="<?php echo url('check-pin') ?>" id="pinchkForm" name="pinchkForm">
-          <div id="pincodeerror"></div>
           <input type="text" id="pincode" placeholder="Enter Your Pin" data-msg-required="Zipcode is required." id="" data-rule-required="true" maxlength="6" data-rule-minlength="6">
           <input type="submit" value="Check" class="basic-btn">
+          <div id="pincodeerror"></div>
           <!--a href="#" class="check" onclick="checkPin();">Check</a-->
           </form>
           </div>
         </div>          
         <div class="bottomimg-wrap">
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><img src="<?php echo current_theme_path();?> /images/secure.png" /></span>
+            <span><img src="<?php echo current_theme_path();?>/images/secure.png" /></span>
             <p>Secure <br/>Payments</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><img src="<?php echo current_theme_path();?> /images/return.png" /></span>
+            <span><img src="<?php echo current_theme_path();?>/images/return.png" /></span>
             <p>Free & Easy <br/> Return</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><img src="<?php echo current_theme_path();?> /images/products.png" /></span>
+            <span><img src="<?php echo current_theme_path();?>/images/products.png" /></span>
             <p>Original <br/>Products</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><img src="<?php echo current_theme_path();?> /images/protection.png" /></span>
+            <span><img src="<?php echo current_theme_path();?>/images/protection.png" /></span>
             <p>100% Buyer <br/> Protection</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><img src="<?php echo current_theme_path();?> /images/transparent.png" /></span>
+            <span><img src="<?php echo current_theme_path();?>/images/transparent.png" /></span>
             <p>Transparent <br/> Pricing</p>
           </div>
           <div class="img-box col-xs-4 col-sm-4 col-md-2">
-            <span><img src="<?php echo current_theme_path();?> /images/handmade.png" /></span>
+            <span><img src="<?php echo current_theme_path();?>/images/handmade.png" /></span>
             <p>Handmade <br/>Products</p>
           </div>
         </div>
