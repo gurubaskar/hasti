@@ -52,7 +52,7 @@
           </div>
           <div class="form-row">
             <label>Zipcode</label>
-            <input type="text" maxlength="6" name="zipcode" id="zipcode"  data-msg-required="Zipcode can't be Empty" data-rule-required="true">
+            <input type="text" maxlength="6" name="zipcode" id="zipcode"  data-msg-required="Zipcode can't be Empty" data-rule-required="true" data-rule-minlength="6">
           </div>
           <div class="form-row">
             <label>Mobile</label>
