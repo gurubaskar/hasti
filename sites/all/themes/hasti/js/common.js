@@ -193,8 +193,10 @@ $(document).ready(function () {
           });
     });
     $('.address-delete').click(function(){
-      if (confirm("Are you sure want to delete address?") ) {
-        var conatctMechId = $(this).data('contactmechid');
+      var thisid = $(this).attr('data-contactMechId');
+      bootbox.confirm("Are you sure want to delete address?", function(result){ 
+        if(result == true) {
+        var conatctMechId = thisid;
         loading();
         $.ajax({
               type: "POST",
@@ -205,16 +207,14 @@ $(document).ready(function () {
                 $('#delete_'+conatctMechId).hide();
               },
               error: function(jqXHR, textStatus, errorThrown) {
-                alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+                bootbox.alert('We are facing some technical difficulties at the moment. Please try again after some time.');
                 console.log(textStatus + ': ' + errorThrown);
                 close_loading();
               },
               dataType: 'json'
             });
-        
-      } else {
-        return false;
-      }
+       } 
+        });
     });
     $('.setdefault-address').click(function(){
       var conatctMechId = $(this).data('contactmechid');

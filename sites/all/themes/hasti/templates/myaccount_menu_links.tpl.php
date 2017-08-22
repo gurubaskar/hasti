@@ -26,6 +26,9 @@ if($arg == 'track-order' || $arg == 'trackOrder') {
 if($arg == 'review-rating') {
 	$review = $active;
 }
+if($arg == 'my-wallet') {
+	$myWallet = $active;
+}
 if($arg == 'profile') {
 	$personalInfo = $active;
 }
