@@ -1344,14 +1344,15 @@ function get_user_profile() {
  */
 function ofbiz_login($username, $password) {
   // /validateLoginResponse?USERNAME=nikhitha945@gmail.com&PASSWORD=123456
+  //eCommerceLoginResponse?USERNAME=test@gmail.com&PASSWORD=123456
   $client = drubiz_api_client();
-  $response = $client->get('validateLoginResponse?' . http_build_query(array(
+  $response = $client->get('eCommerceLoginResponse?' . http_build_query(array(
     'USERNAME' => $username,
     'PASSWORD' => $password,
   )));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, 'test login ' . 'validateLoginResponse?' . http_build_query(array(
+  watchdog(__FUNCTION__, 'test login ' . 'eCommerceLoginResponse?' . http_build_query(array(
     'USERNAME' => $username,
     'PASSWORD' => $password,
   )) . ' $data = ' . print_r($data, 1));
