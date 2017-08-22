@@ -39,40 +39,50 @@ if(!empty($_GET['from'])) {
       <?php }else{ ?>
         <div id="signInPopup">
           <h3>Sign In</h3>
-          <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
-            <input type="text" placeholder="* User Name" id="" name="USERNAME">
-            <input type="password" placeholder="* Password" id="" name="PASSWORD">
-            <span class="remember"><a href="#">Remember Me</a></span>
-          </form>
-          <div class="checkoutbtn-wrap">
-            <input type="button" value="Sign In" id="signinorder" onclick="signInHasti();">
+          <div id="signin_errormsgs" style=""></div>
+          <form method="post" action="<?php echo url('drubiz/user') ?>" id="chksignInForm" name="chksignInForm">
+            <input type="text" placeholder="* User Name" id="" name="USERNAME" data-msg-required="The username is required." data-rule-required="true">
+            <input type="password" placeholder="* Password" id="" name="PASSWORD"  data-msg-required="The Password is required." data-rule-required="true">
+            <span class="remember"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /><span> Remember Me</span></span>
+            <!--input type="button" value="Sign In" id="signinorder" onclick="signInHasti();"-->
+            <input type="submit" value="Sign In" id="signinorder">
+            </form>          
+          <div class="checkoutbtn-wrap">            
             <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
-            <span class="facebook"><a href="facebook-config.php" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
-            <span class="google"><a href="google-config.php" class="ui-link">SIGN IN WITH GOOGLE</a></span>
+            <span class="facebook"><a href="<?php echo url('facebook-config.php')?>" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
+            <span class="google"><a href="<?php echo url('google-config.php')?>" class="ui-link">SIGN IN WITH GOOGLE</a></span>
           </div>
+          
         </div>
         <div id="forgotPopup">
           <h3>Forgot Password</h3>
+          <div id="forgot_errormsgs" style=""></div>
+          <form method="post" action="<?php echo url('forgotPassword') ?>" id="checkoutforgotpwdForm" name="checkoutforgotpwdForm">
           <p>Enter your Email Address here to receive a new password</p>
-          <input type="text" id="emailid" placeholder="* Email Id">
+          <input type="text" id="emailid" placeholder="* Email Id" data-msg-required="The Email Id is required." data-rule-required="true" data-rule-email="true">
           <div class="forgot-btn">
-            <input type="button" value="Continue" id="Continue" onclick="checkEmail();">
+            <!--input type="button" value="Continue" id="Continue" onclick="checkEmail();"-->
+            <input type="submit" value="Continue" id="Continue">
             <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
           </div>
+          </form>
         </div>
 
         <h3 class="signup">Sign Up</h3>
-        <form method="post" action="<?php echo url('drubiz/user') ?>" id="signUpForm" name="signUpForm">
-          <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" id="">
-          <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" id="">
-          <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" id="">
-          <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" id="">
-          <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" id="">
-          <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" id="">
-        </form> 
+        <div id="signup_errormsgs" style=""></div>
+        <form method="post" action="<?php echo url('drubiz/user') ?>" id="checkoutsignUpForm" name="checkoutsignUpForm">
+          <input type="text" name ="firstName" placeholder="<?php echo t('* First Name');?>" data-msg-required="The First Name is required." id="" data-rule-required="true">
+          <input type="text" name="lastName" placeholder="<?php echo t('* Last Name');?>" data-msg-required="The Last Name is required." id="" data-rule-required="true">
+          <input type="text" name="PHONE_MOBILE_CONTACT_OTHER" placeholder="<?php echo t('* Mobile');?>" data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
+          <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
+          <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" data-msg-required="The Password is required." id="" data-rule-required="true">
+          <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" data-msg-required="The Confirm Password is required." id="" data-rule-required="true">
         <div class="checkoutbtn-wrap">
-          <input type="button" value="Sign Up" id="signin" onclick="hastiSignIn();">
+        <input type="submit" value="Save" id="signin">
+          <!--input type="button" value="Sign Up" id="signin" onclick="hastiSignIn();"-->
         </div>
+        </form> 
+        
       <?php } ?>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-4"></div>
