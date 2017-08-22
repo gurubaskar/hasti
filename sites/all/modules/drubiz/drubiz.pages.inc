@@ -450,13 +450,11 @@ function drubiz_user_change_password() {
   if($current_password == $new_password) {
     $return['error'] = TRUE;
     $return['error_messages'][] = 'Current and New Password are same!';
-  }
-  if (strlen($new_password) > 0 || strlen($confirm_new_password) > 0) {
+  }else if (strlen($new_password) > 0 || strlen($confirm_new_password) > 0) {
     if (strlen($new_password) < 6) {
       $return['error'] = TRUE;
       $return['error_messages'][] = 'Passwords should be minimum six characters';
-    } 
-    if ($new_password != $confirm_new_password) {
+    }else if ($new_password != $confirm_new_password) {
       $return['error'] = TRUE;
       $return['error_messages'][] = 'The specified passwords do not match!';
     }
@@ -497,12 +495,12 @@ function drubiz_user_change_password() {
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
   toCheckSession($data);
   if($data['isError'] == 'false') {
-    $return['error_messages'][] = $data['_EVENT_MESSAGE_'];
+    $return['error_messages'][] = '';//$data['_EVENT_MESSAGE_'];
   } else {
     $return['error'] = TRUE;
     // $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
      foreach ((array)@$data['_ERROR_MESSAGE_LIST_'] as $error) {
-        $return['error_messages'][] = $error['message'];
+        $return['error_messages'][] = '';//$error['message'];
       }
   }
   watchdog(__FUNCTION__, print_r(compact('request', 'data','return'), 1));
@@ -1882,4 +1880,32 @@ function check_pincode(){
    watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','endpoint', 'data','cartData','respnseData'), 1) . '</pre>');
   echo json_encode($respnseData); 
   //return theme('drubiz_cart',array('deliverycharge' => $data));   
+}
+
+/**
+ * Page callback for drubiz_story_list
+ */
+function drubiz_story_list(){
+  $client = drubiz_api_client();
+  $endpoint = 'getHastiStories';  
+  $response = $client->get($endpoint);
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);  
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data'), 1) .'</pre>');
+  return theme('story',array('storyArray' => $data));
+}
+/**
+ * Page callback for drubiz_story_list_details
+ */
+function drubiz_story_details($storyid){
+  $client = drubiz_api_client();
+  $endpoint = 'getHastiStoryDetail';  
+  $params = array(
+      'storyId' =>$storyid,
+  );
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','endpoint', 'data'), 1) .'</pre>');
+  return theme('story_details', array('storyDetails' => $data));
 }

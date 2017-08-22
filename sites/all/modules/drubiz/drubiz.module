@@ -334,6 +334,21 @@ function drubiz_menu() {
     'file'              => 'drubiz.pages.inc',
   );
 
+  $items['story-list'] = array(
+    'title'             => 'Story List',
+    'description'       => "Story list",
+    'page callback'     => 'drubiz_story_list',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+  $items['story-details/%'] = array(
+    'title'             => 'Story Details',
+    'description'       => "Story Details",
+    'page callback'     => 'drubiz_story_details',
+    'page arguments'    => array(1),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   $items['drubiz/add-to-cart'] = array(
     'title'             => 'Add to Cart',
     'description'       => "Add to Cart",
@@ -1070,6 +1085,14 @@ function drubiz_theme() {
     'myaccount_love_list' => array(
       'path'            => $drubiz_path,
       'template'        => 'myaccount_love_list',
+    ),
+    'story' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'story',
+    ),
+    'story_details' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'story_details',
     ),
     'drubiz_set_gift_message' => array(
       'path'            => $drubiz_path,
