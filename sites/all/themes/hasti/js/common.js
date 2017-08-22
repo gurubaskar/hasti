@@ -438,7 +438,7 @@ function addAddress(){
       //console.log(data);
       if(data['status'] == 'fail'){
         //alert(data['_ERROR_MESSAGE_']);
-          var errormsgs = data['error_messages'].join("\n");
+          var errormsgs = data['_ERROR_MESSAGE_'];
           jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
           jQuery("#signup_errormsgs").focus();
         close_loading();
@@ -489,7 +489,7 @@ function editAddress(){
       //console.log(data);
       if (data['isError'] == 'true') {
         //alert(data['_ERROR_MESSAGE_']);
-        var errormsgs = data['error_messages'].join("\n");
+        var errormsgs = data['_ERROR_MESSAGE_'];
           jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
           jQuery("#signup_errormsgs").focus();
         close_loading();
@@ -755,7 +755,7 @@ function checkEmail() {
       }
       else {
         alert(data['_ERROR_MESSAGE_LIST_'][0]['message']);
-          var errormsgs = data['_ERROR_MESSAGE_LIST_'][0]['message'].join("\n");
+          var errormsgs = data['_ERROR_MESSAGE_LIST_'][0]['message'];
           jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
           jQuery("#signup_errormsgs").focus();
         close_loading();
@@ -1187,7 +1187,7 @@ function contactus(){
             //document.location = Drupal.settings.basePath +'contact-us';
           } else {
             //alert(data['_ERROR_MESSAGE_']);
-            var errormsgs = data['error_messages'].join("\n");
+            var errormsgs = data['_ERROR_MESSAGE_'];
             jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
             jQuery("#signup_errormsgs").focus();
             jQuery('.success-msg').hide();
@@ -1238,7 +1238,7 @@ function savePersonalInfo(){
           jQuery('#addpersonalinfo').hide();
           //document.location = Drupal.settings.basePath +'account/profile';
         } else {
-          var errormsgs = data['error_messages'].join("\n");
+          var errormsgs = data['_ERROR_MESSAGE_'];
           jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
           jQuery("#signup_errormsgs").focus();
           close_loading();
