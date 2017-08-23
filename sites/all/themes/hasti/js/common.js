@@ -1282,7 +1282,8 @@ jQuery(document).ready(function(){
           jQuery('.bankDetails').hide();
         }    
     });
-    jQuery(".returnSubmit").click(function(){
+    //jQuery(".returnSubmit").click(function(){
+      function refundReturn(){
       var orderId = jQuery("#orderId").val();
       var itemChecked = jQuery(".returnProduct:checked").length;
       if(itemChecked > 0) {
@@ -1305,15 +1306,13 @@ jQuery(document).ready(function(){
            // Add additional code here, such as:
            
         }
-       
-
         if(selectedReturnValue == 'RTN_REFUND') {
           var accountHolderName = jQuery('#accountHolderName').val();
           var bankName = jQuery('#bankName').val();
           var accountNumber = jQuery('#accountNumber').val();
           var ifscCode = jQuery('#ifscCode').val();
 
-          if(accountHolderName == '') {
+          /*if(accountHolderName == '') {
             alert('Enter account holder Name.');
             return false;
           }
@@ -1329,7 +1328,7 @@ jQuery(document).ready(function(){
             alert('Enter IFSC code');
             return false;
           }
-
+          */
           data += 'orderId=' + orderId + '&accountHolderName=' + accountHolderName + '&bankName=' + bankName + '&accountNumber=' + accountNumber + '&ifscCode=' + ifscCode + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
 
         }
@@ -1366,7 +1365,7 @@ jQuery(document).ready(function(){
         alert("Please select item");
         return false;
       }
-  });
+  }
     jQuery(".chkwallet").on('change', function() { 
       if(jQuery(this).is(":checked")) {        
         var chkval = 1;
@@ -1680,7 +1679,28 @@ $("form[name='chksignInForm']").validate({
         checkPin();
       }
     });
-
+    $("form[name='refundForm']").validate({
+    showErrors: function(errorMap, errorList) {
+          // Clean up any tooltips for valid elements
+          $.each(this.validElements(), function (index, element) {
+              var $element = $(element);
+              $element.data("title", "") // Clear the title - there is no error associated anymore
+                  .removeClass("error")
+                  .tooltip("destroy");
+          });
+          // Create new tooltips for invalid elements
+          $.each(errorList, function (index, error) {
+              var $element = $(error.element);
+              $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                  .data("title", error.message)
+                  .addClass("error")
+                  .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+          });
+      },
+      submitHandler: function(form) {
+        refundReturn();
+      }
+    });
   $("form[name='hasti_comments_fn']").validate({
     showErrors: function(errorMap, errorList) {
           // Clean up any tooltips for valid elements
