@@ -437,7 +437,7 @@ a:focus{text-decoration:none !important;}
 }
 /******************* Static pages starts ********************/
 .static-content{float:left; width:100%;}
-.static-content h1, .story-detail h3{font-family:'BPscript'; font-size:35px; line-height:28px; font-weight:500; color:#0081c5; margin-top:0; margin-bottom:15px;}
+.static-content h1, .story-detail h3, #story h3{font-family:'BPscript'; font-size:35px; line-height:28px; font-weight:500; color:#0081c5; margin-top:0; margin-bottom:15px;}
 .static-content p{font-size:15px; line-height:24px; color:#000;}
 .static-content a{color:#0080c1;}
 .static-content p u{font-size:20px; margin:10px 0 8px 0; font-weight:bold; text-decoration:none; float:left;}
@@ -644,6 +644,10 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
 .basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400; border:none; line-height:16px;}
+.modal-footer button.btn-primary{background:#00b04c; color:#fff !important; padding:10px 20px; font-size:15px; font-weight:400; border:none; line-height:16px; border:none; border-radius:0;}
+.modal-footer .btn-default{border:1px solid #00b04c; color:#000; border-radius:0;}
+.modal-body .bootbox-close-button
+.modal-footer button.btn-primary:hover, .modal-footer button.btn-primary:active:hover{background:#00b04c;}
 #addContactus a.ui-link{margin-left:10px;}
 /*.contact-us{float:left; width:auto; margin-left:170px; margin-top:5px;background:#000000;}*/
 .search-section{position:relative;}
@@ -1417,3 +1421,7 @@ a:focus{text-decoration:none !important;}
   color:#C0392B;background-color:#5b5958; padding: 7px; font-weight:normal; font-size:13px; float:left; width:100%;
 }
 .ui-select .ui-btn select option{padding:5px !important; font-size:13px;}
+.modal-dialog{top:140px !important;}
+/*.fixed-header{ position: fixed;
+          top:0; left:0;
+          width: 100%;}*/
