@@ -1351,7 +1351,10 @@ jQuery(document).ready(function(){
           // close_loading();
           document.location = Drupal.settings.basePath + 'account/orders';        
         } else {
-          alert(data['_ERROR_MESSAGE_']);
+          //alert(data['_ERROR_MESSAGE_']);
+          var errormsgs = data['_ERROR_MESSAGE_'];
+          jQuery("#return_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#return_errormsgs").focus();
           close_loading();
         }
       },
