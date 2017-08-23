@@ -163,22 +163,27 @@
       </table>
     </div>
     <div class="bankDetails" style="display: none;">
+      <form method="post" action="<?php echo url('drubiz/returnOrder') ?>" id="refundForm" name="refundForm"> 
       <div class="form-row">
-        <label>Account Holder Name</label> <input type="textbox" name="accountHolderName" id="accountHolderName">
+        <label>Account Holder Name</label> <input type="textbox" name="accountHolderName" id="accountHolderName" data-msg-required="Enter the Account holder name" data-rule-required="true" placeholder="<?php echo t('* Account holder name');?>">
       </div>
       <div class="form-row">
-        <label>Bank Name</label> <input type="textbox" name="bankName" id="bankName">
+        <label>Bank Name</label> <input type="textbox" name="bankName" id="bankName" data-msg-required="Enter the bank name" data-rule-required="true" placeholder="<?php echo t('* Bank name');?>">
       </div>
       <div class="form-row">
-        <label>Account Number</label> <input type="textbox" name="accountNumber" id="accountNumber">
+        <label>Account Number</label> <input type="textbox" name="accountNumber" id="accountNumber" data-msg-required="Enter the Account number" data-rule-required="true" placeholder="<?php echo t('* Account Number');?>">
       </div>
       <div class="form-row">
-        <label>IFSC Code</label> <input type="textbox" name="ifscCode" id="ifscCode">
+        <label>IFSC Code</label> <input type="textbox" name="ifscCode" id="ifscCode" data-msg-required="Enter the ifsc code" data-rule-required="true" placeholder="<?php echo t('* IFSC code');?>">
       </div>
+       <!--div id="returnSubmit" class="details-btns returnSubmit">
+        <a href="">Submit</a-->
+      <div>
+        <input type="submit" value="Save" class="details-btns returnSubmit">
+      </div>
+      </form>
     </div>
-    <div id="returnSubmit" class="details-btns returnSubmit">
-      <a href="">Submit</a>
-    </div>
+   
   </div>
   <?php } else { ?>
     <div>No Orders</div>

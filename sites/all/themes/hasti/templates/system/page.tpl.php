@@ -152,8 +152,7 @@ require_once 'vendor/autoload.php';
     <input type="text" name="userLoginId" placeholder="<?php echo t('* Email Id');?>" 
       data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
     <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" data-msg-required="The Password is required." id="" data-rule-required="true" data-rule-minlength="6">
-    <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" 
-      data-msg-required="The Confirm Password is required." id="" data-rule-required="true">
+    <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" data-msg-required="The Confirm Password is required." id="" data-rule-required="true">
    
     <div class="signin-btn">
 <!--      <input type="button" value="Save" id="signin" onclick="hastiSignIn();">-->
