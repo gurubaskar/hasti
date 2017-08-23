@@ -512,7 +512,7 @@ jQuery(document).ready(function(){
     jQuery(".cancelord").click(function(){
     var orderId = jQuery(this).data('cancel-id');
     var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
-    var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').attr('value');
+    var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').val();
     var data = "";
     // data += 'orderId=' + orderId;
     loading();
