@@ -166,25 +166,29 @@
       <div id="return_errormsgs" style=""></div>
       <form method="post" action="<?php echo url('drubiz/returnOrder') ?>" id="refundForm" name="refundForm"> 
       <div class="form-row">
-        <label>Account Holder Name</label> <input type="textbox" name="accountHolderName" id="accountHolderName" data-msg-required="Enter the Account holder name" data-rule-required="true" placeholder="<?php echo t('* Account holder name');?>">
+        <label>*Account Holder Name</label> <input type="textbox" name="accountHolderName" id="accountHolderName" data-msg-required="Enter the Account holder name" data-rule-required="true">
       </div>
       <div class="form-row">
-        <label>Bank Name</label> <input type="textbox" name="bankName" id="bankName" data-msg-required="Enter the bank name" data-rule-required="true" placeholder="<?php echo t('* Bank name');?>">
+        <label>*Bank Name</label> <input type="textbox" name="bankName" id="bankName" data-msg-required="Enter the bank name" data-rule-required="true">
       </div>
       <div class="form-row">
-        <label>Account Number</label> <input type="textbox" name="accountNumber" id="accountNumber" data-msg-required="Enter the Account number" data-rule-required="true" placeholder="<?php echo t('* Account Number');?>">
+        <label>*Account Number</label> <input type="textbox" name="accountNumber" id="accountNumber" data-msg-required="Enter the Account number" data-rule-required="true">
       </div>
       <div class="form-row">
-        <label>IFSC Code</label> <input type="textbox" name="ifscCode" id="ifscCode" data-msg-required="Enter the ifsc code" data-rule-required="true" placeholder="<?php echo t('* IFSC code');?>">
+        <label>*IFSC Code</label> <input type="textbox" name="ifscCode" id="ifscCode" data-msg-required="Enter the ifsc code" data-rule-required="true">
       </div>
        <!--div id="returnSubmit" class="details-btns returnSubmit">
         <a href="">Submit</a-->
       <div>
-        <input type="submit" value="Save" class="details-btns returnSubmit">
+        <input type="submit" value="Submit" class="basic-btn">
       </div>
       </form>
     </div>
-   
+   <div id="storecredit" style="display: none">
+      <div id="returnSubmit" class="details-btns returnSubmit">
+        <a href="">Submit</a>
+      </div>
+   </div>
   </div>
   <?php } else { ?>
     <div>No Orders</div>

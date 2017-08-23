@@ -1282,7 +1282,14 @@ jQuery(document).ready(function(){
           jQuery('.bankDetails').hide();
         }    
     });
-    //jQuery(".returnSubmit").click(function(){
+    jQuery("#refundType").on('change', function() {
+      var selectedReturnValue = jQuery('#refundType').val();
+      if(selectedReturnValue == 'RTN_CREDIT') {
+        jQuery('#storecredit').show();
+      }else{
+         jQuery('#storecredit').hide();
+      }
+    });
       function refundReturn(){
       var orderId = jQuery("#orderId").val();
       var itemChecked = jQuery(".returnProduct:checked").length;
@@ -1306,7 +1313,7 @@ jQuery(document).ready(function(){
            // Add additional code here, such as:
            
         }
-        if(selectedReturnValue == 'RTN_REFUND') {
+        if(selectedReturnValue == 'RTN_REFUND') {         
           var accountHolderName = jQuery('#accountHolderName').val();
           var bankName = jQuery('#bankName').val();
           var accountNumber = jQuery('#accountNumber').val();
