@@ -5,7 +5,7 @@
 </div>
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
 <form method="post" action="<?php echo url('drubiz/add-address') ?>" id="addressForm" name="addressForm">
-  <div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="col-xs-12 col-sm-12 col-md-12" id="add-address">
     <div class="heading-bar">
       <h2><?php echo t('Add Address');?></h2>
     </div>

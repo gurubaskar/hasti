@@ -1214,7 +1214,7 @@ a:focus{text-decoration:none !important;}
     #eCommerceNavBarMenu li:hover>ul{width:100% !important;}
     #eCommerceNavBarMenu ul{border:0 !important;}
     #eCommerceNavBarMenu>ul>li>a{padding:4px 13px;}
-    #eCommerceNavBarMenu li:hover>ul{padding:0 !important;}
+    #eCommerceNavBarMenu li:hover>ul, .myaccount-right #add-address{padding:0 !important;}
     #eCommerceNavBar > ul > li > ul > li:first-child{margin-top:0 !important;}
     .checkout-right{padding-left:0 !important; padding-right:0 !important;}
     .checkout-right #order-confirm{margin-top:0 !important;}
@@ -1237,6 +1237,7 @@ a:focus{text-decoration:none !important;}
     .contact-right{padding:25px 0 0 0 !important;}
     .contact-right .col-xs-12.col-sm-12.col-md-12{padding-right:0 !important;}
     .myaccount-right.returnOrderItem .cartbox{width:100%;}
+    .plp .plp-right .text-center{padding-right:15px;}
 }
 
 @media (max-width:600px){
@@ -1357,13 +1358,15 @@ a:focus{text-decoration:none !important;}
     .cartbox{padding:15px 15px 20px 15px;}
     .checkout-right #order-summary .img-wrap{width:60% !important;}
     .checkout-right #order-summary .cart-details{width:100% !important;}
-    .myaccount-right .form-wrap .btns-wrap, .myaccount-right #addNewAddress .btns-wrap a, #addContactus .btns-wrap{width:100%;}
+    .myaccount-right .form-wrap .btns-wrap, .myaccount-right #addNewAddress .btns-wrap a, #addContactus .btns-wrap, .myaccount-right #addNewAddress .btns-wrap input[type="submit"]{width:100%;}
     .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn{padding:10px 24px !important;}
     #navbar a.logo{width:60%;}
     #navbar img{max-width:100%;}
     .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -640px; height:40px;}
     .mob-search{top:61px;}
     #addContactus a.ui-link{width:100%; margin:5px 0 0 0;}
+    .pagination>li>a, .pagination>li>span{padding:6px 8px !important;}
+
 }
 
 @media (max-width:370px){
@@ -1413,3 +1416,4 @@ a:focus{text-decoration:none !important;}
 .err_msgs {
   color:#C0392B;background-color:#5b5958; padding: 7px; font-weight:normal; font-size:13px; float:left; width:100%;
 }
+.ui-select .ui-btn select option{padding:5px !important; font-size:13px;}
