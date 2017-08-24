@@ -522,15 +522,24 @@ jQuery(document).ready(function(){
       data: 'orderId=' + orderId + '&reasionId=' + reasionId + '&reasonComments=' + reasonComments,
       success: function(data) {
         if (data['isError'] == 'false') {
-          alert(data['_EVENT_MESSAGE_']);
+          //alert(data['_EVENT_MESSAGE_']);
+          var errormsgs = data['_EVENT_MESSAGE_'];
+          jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#cancelordermsg").focus();
           close_loading();
-          document.location = Drupal.settings.basePath + 'account/orders';        
+          //document.location = Drupal.settings.basePath + 'account/orders';        
         }
         else if (data['isError'] == 'true') {
-          alert(data['_EVENT_MESSAGE_']);
+          //alert(data['_EVENT_MESSAGE_']);            
+          var errormsgs = data['_EVENT_MESSAGE_'];
+          jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#cancelordermsg").focus();
           close_loading();
         } else {
-          alert(data['_ERROR_MESSAGE_']);
+          //alert(data['_ERROR_MESSAGE_']);          
+          var errormsgs = data['_ERROR_MESSAGE_'];
+          jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#cancelordermsg").focus();
           close_loading();
         }
       },

@@ -61,7 +61,8 @@
 			  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 			  <div >
 			  <h3>Cancel Order</h3>
-			    <textarea id="cancelComments">cancelWindow_<?php echo $order['orderId'];?></textarea>
+			    <!--textarea id="cancelComments">cancelWindow_<?php echo $order['orderId'];?></textarea-->
+			  	<div id="cancelordermsg"></div>
 			  	<select id="cancelReason">
 			  		<?php
 			  		foreach ($reasonList['cancelReasonList'] as $key => $reasonValue) { ?>
@@ -133,7 +134,8 @@
 			  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 			  <div >
 			  <h3>Cancel Order</h3>
-			    <textarea id="cancelComments">cancelWindow_<?php echo $order['orderId'];?></textarea>
+			    <!--textarea id="cancelComments">cancelWindow_<?php echo $order['orderId'];?></textarea-->
+			    <div id="cancelordermsg"></div>
 			  	<select id="cancelReason">
 			  		<?php
 			  		foreach ($reasonList['cancelReasonList'] as $key => $reasonValue) { ?>

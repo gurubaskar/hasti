@@ -62,7 +62,7 @@
         <tbody>
       </table>
       <div class="subTotal">
-        <div class="price1-wrap">
+        <div class="price1-wrap"><?php print_r($order);?>
           <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
         </div>
       </div>
