@@ -1743,4 +1743,11 @@ $("form[name='chksignInForm']").validate({
     $("form").trigger('reset');
     $('#signup_errormsgs').html('');
   });
+  
+  $('#newmember_signup').click(function() {
+    jQuery('#closetag').click();
+    setTimeout(function () {
+        jQuery('#signUpPop').click();
+    }, 200);
+      });  
 });

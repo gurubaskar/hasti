@@ -176,7 +176,7 @@ require_once 'vendor/autoload.php';
     <!--input type="button" value="Sign In" id="signin" onclick="signInHasti();"-->
     <input type="submit" value="Sign In" id="signin">
     <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
-    <span class="new-signup"><i>New Member?</i> <a href="#">Sign Up</a></span>
+    <span class="new-signup"><i>New Member?</i> <a href="#" id="newmember_signup">Sign Up</a></span>
   </div>
     </form>
   <span class="facebook">
