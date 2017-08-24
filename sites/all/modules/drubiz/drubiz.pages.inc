@@ -467,16 +467,27 @@ function drubiz_user_change_password() {
   // $update_password = drubiz_change_password($current_password, $new_password);
 
   $client = drubiz_api_client();
-  $endpoint = 'validateCustomerPasswordResponse';
-  $params = array(
+  if($_SESSION['drubiz']['requirePasswordChange'] == 'N') {
+    $endpoint = 'validateCustomerPasswordResponse';
+    $params = array(
       'partyId'         => get_user_party_id(),
-    'productStoreId'  => 'WOI_STORE',
-    'USERNAME'        => $user->mail,
-    'CUSTOMER_EMAIL'  => $user->mail,
-    'OLD_PASSWORD'    => $current_password,
-    'PASSWORD'        => $new_password,
-    'CONFIRM_PASSWORD' => $new_password,
-  );
+      'productStoreId'  => 'WOI_STORE',
+      'USERNAME'        => $user->mail,
+      'CUSTOMER_EMAIL'  => $user->mail,
+      'OLD_PASSWORD'    => $current_password,
+      'PASSWORD'        => $new_password,
+      'CONFIRM_PASSWORD' => $new_password,
+    );
+  } else {
+    $endpoint = 'eCommerceLoginChangePasswordResponse';
+    $params = array(
+      'USERNAME'            => $user->mail,
+      'PASSWORD'            => $current_password,
+      'newPassword'         => $new_password,
+      'newPasswordVerify'   => $new_password,
+      'requirePasswordChange' => 'Y',
+    );
+  }
   // $request = 'validateCustomerPasswordResponse?' . http_build_query(array(
   //   'partyId'         => get_user_party_id(),
   //   'productStoreId'  => 'WOI_STORE',
@@ -487,6 +498,8 @@ function drubiz_user_change_password() {
   //   'CONFIRM_PASSWORD' => $new_password,
   // ));
   // $response = $client->get($request);
+  //http://localhost:8080/eCommerceLoginChangePasswordResponse;jsessionid=A0AD826F3034C511E0F4C9E4D6E6F0E1.jvm1?USERNAME=nikshithas29@gmail.com&PASSWORD=V4FkUQ&newPassword=123456&newPasswordVerify=123456&requirePasswordChange=Y
+
   $jsessionid = get_user_jsessionid();
   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
   $response = $client->get($endpoint . '?' . http_build_query($params));
@@ -495,7 +508,7 @@ function drubiz_user_change_password() {
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
   toCheckSession($data);
   if($data['isError'] == 'false') {
-    $return['error_messages'][] = '';//$data['_EVENT_MESSAGE_'];
+    $return['error_messages'][] = $data['_SUCCESS_MESSAGE_'];//$data['_EVENT_MESSAGE_'];
   } else {
     $return['error'] = TRUE;
     // $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
@@ -503,7 +516,7 @@ function drubiz_user_change_password() {
         $return['error_messages'][] = '';//$error['message'];
       }
   }
-  watchdog(__FUNCTION__, print_r(compact('request', 'data','return'), 1));
+  watchdog(__FUNCTION__, print_r(compact('request', 'data','return','endpoint'), 1));
   echo json_encode($return);
 }
 
