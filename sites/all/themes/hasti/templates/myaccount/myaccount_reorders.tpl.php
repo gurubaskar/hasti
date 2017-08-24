@@ -49,7 +49,7 @@
               <?php echo (int)$cart_product['quantity'];?>
             </td>
             <td data-title="Item Status">
-              <?php echo $order['OrderHeader'][0]['statusId'] ?>
+              <?php echo $order['OrderHeader'][0]['statusId']; ?>
             </td>
             <td data-title="Sub Total">
               &#8377;. <?php echo format_money($cart_product['unitPrice'] * (int)$cart_product['quantity']);?>
@@ -62,10 +62,16 @@
         <tbody>
       </table>
       <div class="subTotal">
-        <div class="price1-wrap"><?php print_r($order);?>
+        <div class="price1-wrap"><?php //echo "<pre>";print_r($order);?>
           <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
         </div>
+      </div>    
+      <div class="shipping">
+        <div class="price1-wrap"><?php //print_r($order);?>
+          <span>SHipping Charge</span><span>&#8377;. <?php echo format_money($order['orderShippingTotal']);?></span>
+        </div>
       </div>
+
       <div class="grandTotal">
         <div class="price1-wrap">
           <span>Grand Total</span><span>&#8377;. <?php echo format_money($order['orderGrandTotal']);?></span>
