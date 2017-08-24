@@ -7,8 +7,8 @@
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right returnOrderItem">
 	<h3>Return Orders</h3>
 	<div id="past-orders" class="tab-content">
-		<?php 
-			// if(count($orders['OrderHeader']) > 0) {
+		<?php //echo count($orders['OrderHeader']);
+			if(count($orders['OrderHeader']) > 0) {
 			foreach ($returnOrder['returnedOrders'] as $key => $order): 
 				$orderDate = strtotime($order['orderDate']);
 				// $dateInterval = strtotime("-2 weeks");
@@ -41,5 +41,8 @@
 			</div>			
 		<?php endforeach; ?>
 	<!-- </div> -->
+	<?php } else { ?>
+    <div>No Orders to return</div>
+  <?php } ?>
 	</div>
 </div>
