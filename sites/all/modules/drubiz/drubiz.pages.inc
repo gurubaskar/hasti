@@ -508,7 +508,7 @@ function drubiz_user_change_password() {
   // watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data'), 1) . '</pre>');
   toCheckSession($data);
   if($data['isError'] == 'false') {
-    $return['error_messages'][] = '';//$data['_EVENT_MESSAGE_'];
+    $return['error_messages'][] = $data['_SUCCESS_MESSAGE_'];//$data['_EVENT_MESSAGE_'];
   } else {
     $return['error'] = TRUE;
     // $return['error_messages'][] = $data['_ERROR_MESSAGE_'];
