@@ -77,15 +77,21 @@
               </div>
             </div>
           <div id="subtotal">
-            <label>SubTotal:</label>
-            <span>&#8377; <?php echo format_money($order['paymentSubTotal']);?></span>
+            <div class="price1-wrap">
+              <label>SubTotal:</label>
+              <span>&#8377; <?php echo format_money($order['paymentSubTotal']);?></span>
+            </div>
           </div>
           <div id="shipping">
-            <label>Shipping Charge:</label>
-            <span>&#8377; <?php echo format_money($order['orderShippingTotal']);?></span>
+            <div class="price1-wrap">
+              <label>Shipping Charge:</label>
+              <span>&#8377; <?php echo format_money($order['orderShippingTotal']);?></span>
+            </div>
           </div>          
             <div class="alltotal">
-              <label>Total:</label><span>&#8377. <?php echo format_money($cart_product['orderGrandTotal']) ?></span>
+              <div class="price1-wrap">
+                <label>Total:</label><span>&#8377. <?php echo format_money($cart_product['orderGrandTotal']) ?></span>
+              </div>
             </div>
             <div class="icon-wrap">
               <div class="icon-container">
