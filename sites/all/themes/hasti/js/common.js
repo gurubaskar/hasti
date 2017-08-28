@@ -1,3 +1,27 @@
+var ajaxErrorMsg = "We are facing some technical difficulties at the moment. Please try again after some time.";
+var ajaxSuccess = "success";
+var ajaxInfo = "info";
+var ajaxWarning = "warning";
+var ajaxDanger = "danger";
+
+function ajaxErrorMsgDisplay(msg,type='info',delay='3000') {
+  jQuery.notify({
+    message: msg,
+  },
+  {
+    type: type,
+    delay: delay,
+    placement: {
+      from: "top",
+      align: "center"
+    },
+    animate: {
+      enter: 'animated fadeInDown',
+      exit: 'animated fadeOutUp'
+    },
+  });
+}
+
 (function($) {
   $( window ).on( "load", function() { 
     $(".select-wrap") .hide();
@@ -207,8 +231,8 @@ $(document).ready(function () {
                 $('#delete_'+conatctMechId).hide();
               },
               error: function(jqXHR, textStatus, errorThrown) {
-                bootbox.alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-                console.log(textStatus + ': ' + errorThrown);
+                ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+                //console.log(textStatus + ': ' + errorThrown);
                 close_loading();
               },
               dataType: 'json'
@@ -446,6 +470,8 @@ function addAddress(){
         if(orderAddress == 'order') {
           document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
         } else {
+          close_loading();
+          ajaxErrorMsgDisplay("added success",ajaxInfo,'7000');
           document.location = Drupal.settings.basePath + 'account/address-book';
         }
       }
