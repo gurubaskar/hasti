@@ -648,6 +648,8 @@ a:focus{text-decoration:none !important;}
     margin-left: 0px !important;
     font-family: 'Roboto';
 }
+.alert.alert-info{top:140px !important;}
+.bootbox-close-button{right: -15px; background-color: #000 !important; border-radius: 50px; width: 22px; height: 22px; opacity: 1 !important; color: #fff !important; top: -13px;}
 .form-wrap{width:100%; float:left; margin:20px 0;}
 .required{color:#BF0000; margin-right:2px; width:auto;}
 .form-wrap .form-row{float:left; width:100%; margin-bottom:15px;}
@@ -1178,7 +1180,9 @@ a:focus{text-decoration:none !important;}
 
 @media only screen and (max-width:639px) and (min-width:440px){
     .plp-right .col-xs-12{width:50%;}
-    .icon-wrap .icon-container{width:48%;}
+}
+@media only screen and (max-width:639px) and (min-width:481px){
+    .icon-wrap .icon-container{width:60%;}
 }
 @media (max-width:991px){
     .myaccount-right .addressbox{width:100%;}
@@ -1327,8 +1331,8 @@ a:focus{text-decoration:none !important;}
     .myaccount-right.wishlist .btns-wrap span a{text-align:center; margin:0; padding:8px 15px;}
     .myaccount-right.wishlist .btns-wrap{bottom:0;}
     .myaccount-right.wishlist .cart-details{padding-left:0;}
-    .icon-wrap .icon-container{width:100%;}
-    .icon-wrap .icon-container ul li{width:25%;}
+    .icon-wrap .icon-container{width:70%;}
+    .icon-wrap .icon-container ul li{width:40%;}
     .icon-wrap .icon-container ul li img{max-width:75%; height:auto;}
     .myorders .tabing-wrap .tabing-btns{font-size:16px;}
     .myorders .tabing-wrap .tab-active{padding:7px 10px;}
@@ -1367,7 +1371,7 @@ a:focus{text-decoration:none !important;}
     #footer .social-wrap ul li{float:none !important; display:inline; padding:10px 17px;}
     #footer .social-wrap{position:relative; top:-10px; padding:0;}
     #footer ul li.facebook a{padding:0 !important;}
-    .icon-wrap .icon-container{width:55%;}
+    /*.icon-wrap .icon-container{width:55%;}*/
 
 }
 
