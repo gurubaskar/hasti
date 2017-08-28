@@ -594,7 +594,32 @@ $(document).ready(function() {
       dataType: 'json'
     });
   });
-
+  $('.removeWishlist').click(function(e) {
+    e.preventDefault();
+    var index = $(this).data('delete-id');
+    loading();
+    $.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'drubiz/delete-item',
+      data: 'index=' + index,
+      success: function(data) {
+        // console.log(data);
+        if (data['isError'] == 'false') {
+          document.location = Drupal.settings.basePath + 'account/love-list';
+        }
+        else {
+          alert('Error deleting item.');
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        console.log(textStatus + ': ' + errorThrown);
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
   $('.cart-product-edit').click(function(e) {
     e.preventDefault();
     var product_id = $(this).closest('.cartItem').data('product-id');
