@@ -85,9 +85,10 @@
           <form method="post" action="<?php echo url('check-pin') ?>" id="pinchkForm" name="pinchkForm">
           <input type="text" id="pincode" placeholder="Enter Your Pin" data-msg-required="Zipcode is required." id="" data-rule-required="true" maxlength="6" data-rule-minlength="6">
           <input type="submit" value="Check" class="basic-btn">
-          <div id="pincodeerror"></div>
+          
           <!--a href="#" class="check" onclick="checkPin();">Check</a-->
           </form>
+          <div id="pincodeerror"></div>
           </div>
         </div>          
         <div class="bottomimg-wrap">
