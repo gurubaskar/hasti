@@ -389,7 +389,7 @@
             <?php echo $storyInfo->_ERROR_MESSAGE_;?>
           <?php endif;?>
         </div>
-        <div id="reviewForm">
+        <div id="reviewForm" style="display: none">
           <?php
             $comments_form = drupal_get_form('drubiz_hasti_comments_form');
             $comments_form['productid_field']['#value'] = $product->product_id;
@@ -434,4 +434,3 @@
     <?php drupal_add_js(drupal_get_path('theme', 'hasti') . '/js/jquery.elevatezoom.js'); ?>
 <!--   </div> -->
 </div>
-

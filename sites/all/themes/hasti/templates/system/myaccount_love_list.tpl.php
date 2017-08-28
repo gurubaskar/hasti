@@ -3,12 +3,17 @@
 Please login to view the view list
 <?php } else { ?>
 <div id="eCommerceShowWishList" class="eCommerceShowWishList">
+<div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
+  <div class=" myaccount-left">
+    <?php echo theme('myaccount_menu_links'); ?>
+  </div>
+</div>
   <?php if(empty($wishlist['wishListItemDetails'])){?>
     <div class="no-items-wishlist">
       No Items in your Wishlist
     </div>
   <?php }else{?>
-      <div class="col-xs-12 col-sm-12 col-md-12 myaccount-right wishlist">
+      <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right wishlist">
       <h3>My Wishlist</h3>
       <?php 
         foreach ($wishlist['wishListItemDetails']  as $wishList_key => $wishList_value) :
@@ -50,7 +55,7 @@ Please login to view the view list
             </div>
           </div>
           <div class="wishList_cls_btn wish-delete details-right" data-delete-id="delete_<?php echo $wishList_value['shoppingListItemSeqId'];?>">
-            <a class="remove" title="Remove Item" href="#">Remove</a>
+            <a class="removeWishlist" title="Remove Item" href="#">Remove</a>
           </div>
           <div class="btns-wrap">
             <span>
