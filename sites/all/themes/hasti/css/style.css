@@ -54,14 +54,29 @@ body{font-size:14px; line-height:20px; font-family:'Roboto';}
 p{margin-bottom:7px; line-height:22px;}
 a:focus{text-decoration:none !important;}
 .nopad{padding:0;}
-#topnav{width:100%; float:left; background:#009989; padding:6px 0;}
+#topnav{/*width:100%; float:left; background:#009989; padding:6px 0;*/
+    width: 100%;
+    float: left;
+    background: #009989;
+    padding: 6px 0;
+    position: fixed;
+    z-index: 999999;
+}
 #topnav p{color:#fff;  margin-bottom:0px; }
 .siteHeaderLinks ul{float:right; margin-bottom:0;}
 .siteHeaderLinks ul li{border-right:none; float:left; padding:0 0 0 10px;}
 .siteHeaderLinks ul li a{margin-right:0; color: #fff !important; font-size: 10px !important;  text-transform:uppercase; font-weight: bold; padding: 0 7px 0 0 !important; border-right: 1px solid #fff !important; border:0; text-shadow: 0; box-shadow:none;}
 .siteHeaderLinks ul li a:hover{color:#ccc; text-decoration:none;}
 
-#header{width:100%; float:left; border-bottom:1px solid #00b04c; margin:30px 0 25px 0; position:relative;}
+#header{/*width:100%; float:left; border-bottom:1px solid #00b04c; margin:30px 0 25px 0; position:relative;*/
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #00b04c;
+    padding: 60px 0 0px 0;
+    position: fixed;
+    z-index: 99999;
+    background: #FFF;
+}
 #header .search-wrap{float:right;}
 #header .search{float:right; padding:20px; cursor:pointer; position:relative; width:70%; margin-right:15px;}
 #header .search .ui-input-text{width:auto !important; float:right;}
@@ -87,7 +102,13 @@ a:focus{text-decoration:none !important;}
 .menu .topLevel{width:auto; float:left; /*padding:10px 20px;*/}
 
 
-#content{float:left; width:100%; margin-bottom:20px; z-index:-1;}
+#content{/*float:left; width:100%; margin-bottom:20px; z-index:-1;*/
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    z-index: -1;
+    padding-top: 155px;
+}
 
 #footer{width:100%; float:left; background:url('./../images/footer-bg.jpg') no-repeat top left; padding:20px 0; position:relative; text-align:center;}
 #footer ul li{display:block; padding:0 0 15px 0; text-align:left;}
@@ -1183,6 +1204,38 @@ a:focus{text-decoration:none !important;}
 }
 @media only screen and (max-width:639px) and (min-width:481px){
     .icon-wrap .icon-container{width:60%;}
+}
+@media (max-width:1110px){
+    #content {
+        padding-top: 215px;
+    }
+}
+@media (max-width:1023px){
+    #topnav {
+        width: 100%;
+        float: left;
+        background: #009989;
+        padding: 6px 0;
+        position: relative;
+        z-index: 999999;
+    }
+    #header {
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #00b04c;
+        margin: 25px 0 25px 0;
+        padding:0;
+        position: relative;
+        z-index: 99999;
+        background: none;
+    }
+    #content {
+        float: left;
+        width: 100%;
+        margin-bottom: 20px;
+        z-index: -1;
+        padding-top: 0;
+    }
 }
 @media (max-width:991px){
     .myaccount-right .addressbox{width:100%;}
