@@ -78,7 +78,7 @@ if(!empty($_GET['from'])) {
           <input type="password" name="currentPassword" placeholder="<?php echo t('* Password');?>" data-msg-required="The Password is required." id="" data-rule-required="true">
           <input type="password" name="currentPasswordVerify" placeholder="<?php echo t('* Re-enter');?>" data-msg-required="The Confirm Password is required." id="" data-rule-required="true">
         <div class="checkoutbtn-wrap">
-        <input type="submit" value="Save" id="signin">
+        <input type="submit" value="Sign Up" id="signin">
           <!--input type="button" value="Sign Up" id="signin" onclick="hastiSignIn();"-->
         </div>
         </form> 

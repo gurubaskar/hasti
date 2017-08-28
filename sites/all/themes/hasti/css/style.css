@@ -71,7 +71,7 @@ a:focus{text-decoration:none !important;}
 #header .search #solr-suggestions a{padding:4px 7px;  margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:300; float:left; width:98.5%;}
 #header .search #solr-suggestions a:hover{background:#00b04c; color:#fff;}
 #header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:35px; position:relative;}
-#header .cart a{position:absolute; opacity:0.7; right:-6px; top:3px; width:19px; height:19px; border-radius:50px; background-color:#009989;}
+#header .cart a{position:absolute; opacity:0.7; right:12px; top:0px; width:19px; height:19px; border-radius:50px; background-color:#009989;}
 #header .cart p{padding-left:33px;}
 #header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:20px;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
@@ -530,11 +530,13 @@ a:focus{text-decoration:none !important;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
 .checkout-right input[type="text"]:first-child, .checkout-right input[type="password"]:first-child{margin:0px 0 10px 0;}
-.checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -540px; padding:11px; float:left; width:100%;}
+.checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -539px; padding:11px; float:left; width:100%;}
 .checkout-right .remember span{padding-left:25px; font-weight:normal; font-size:15px; color:#6d6e70;}
 .checkout-right .checkoutbtn-wrap{margin:25px 0; float:left; width:100%;}
 .checkout-right .checkoutbtn-wrap input[type="button"]{text-indent:0; opacity:1; background:#00b04c; width:75%; padding:10px; color:#fff !important; font-weight:normal; text-align:center; font-size:17px; border:0; z-index:0;}
-.checkout-right .forgot-pwd{width:100%; float:left; font-weight:bold; padding-top:10px; font-weight:bold; font-size:15px;}
+.checkout-right #chksignInForm #signinorder {text-indent:0; opacity:1; background:#00b04c; width:75%; padding:10px; color:#fff !important; font-weight:normal; text-align:center; font-size:17px; border:0; z-index:0;}
+.checkout-right #checkoutsignUpForm #signin {text-indent:0; opacity:1; background:#00b04c; width:75%; padding:10px; color:#fff !important; font-weight:normal; text-align:center; font-size:17px; border:0; z-index:0;}
+.checkout-right .forgot-pwd{width:100%; float:left; font-weight:bold; padding-top:0px; margin-top:0px; font-weight:bold; font-size:15px;}
 .checkout-right .forgot-pwd a{color:#000;}
 .checkout-right .facebook{width:75%; float:left; background:#456198; text-align:center; font-weight:normal; font-size:14px; margin:20px 0 10px 0 !important; padding:5px 0;}
 .checkout-right .facebook a{background:url('./../images/main-img.png') no-repeat 0px -7px; position: relative; padding: 6px; width: 96% !important; float: left; color:#fff !important; font-weight:normal;}
@@ -566,6 +568,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right #delivery-address .btns-wrap .buy-now{float:left;}
 .checkout-right .address .phno span, .checkout-right .address .phno label{font-size:14px; width:auto; float:left; color:#6d6e70; font-weight:normal;}
 .checkout-right #signInForm>div.ui-input-text, .checkout-right #signUpForm>div.ui-input-text{width:100% !important; float:left;}
+.checkout-right #chksignInForm>div.ui-input-text, .checkout-right #checkoutsignUpForm>div.ui-input-text{width:100% !important; float:left;}
 .checkout-right .checkoutbtn-wrap .ui-btn{border:none; box-shadow:none; text-align:inherit !important; cursor:default;}
 .checkout-right .payment-method #paymentOption{width:100%; float:left;}
 .checkout-right .displayOTP .ui-input-text{width:100% !important; float:left;}
@@ -631,6 +634,20 @@ a:focus{text-decoration:none !important;}
 .icon-wrap .icon-container ul li a{color:#000; display:block; margin-bottom:10px; height:55px;}
 .details-btns{position:absolute; right:30px; display:block;}
 .details-btns a{float:right; font-weight:bold; display:block; width:55%; text-align:center; color:#000 !important; padding:7px; margin-bottom:15px; border:1px solid #00b04c;}
+.myorders .cartbox .details-btns a {
+    font-family: 'Roboto';
+}
+#pincodeerror {
+    width:100%;
+    float:left;
+}
+#pincodeerror .err_msgs {
+    background: none !important;
+    float: left !important;
+    width: 100% !important;
+    margin-left: 0px !important;
+    font-family: 'Roboto';
+}
 .form-wrap{width:100%; float:left; margin:20px 0;}
 .required{color:#BF0000; margin-right:2px; width:auto;}
 .form-wrap .form-row{float:left; width:100%; margin-bottom:15px;}
@@ -809,6 +826,7 @@ a:focus{text-decoration:none !important;}
 .remember .ui-checkbox{margin:0 !important; width:auto;}
 .remember #remember{margin:3px 0 0 23px !important; width:16px !important; height:16px !important;}
 .remember span{margin:3px 0 0 50px !important; float:left;}
+#chksignInForm .remember span{margin:2px 0 0 25px !important; float:left;}
 .ui-popup.signin a, .ui-popup.signin a:hover{color:#fff !important; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:0px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
