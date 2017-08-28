@@ -282,9 +282,9 @@ function checkPin(){
       } else {
         //alert(data['deliveryCharges']);      
         close_loading();
-        jQuery("#shippingcharge").html(data['deliveryCharges']);
-        jQuery("#subtotalamount").html(data['cartSubTotal']);
-        jQuery("#totalamount").html(data['orderGrandTotal']);  
+        jQuery("#shippingcharge").html('&#8377;.'+data['deliveryCharges']+'.00');
+        jQuery("#subtotalamount").html('&#8377;.'+data['cartSubTotal']+'.00');
+        jQuery("#totalamount").html('&#8377;.'+data['orderGrandTotal']+'.00');  
         jQuery('#pincodeerror').hide();
         //document.location = Drupal.settings.basePath + 'cart';   
       }
@@ -506,13 +506,14 @@ function editAddress(){
   });
 
 }
-
-
-jQuery(document).ready(function(){
-    jQuery(".cancelord").click(function(){
-    var orderId = jQuery(this).data('cancel-id');
-    var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
-    var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').val();
+   // jQuery(".cancelord").click(function(){
+function cancelOrder(){//alert('hi');
+    var orderId = jQuery('#cancel-id').val();//jQuery(this).data('cancel-id');
+    //alert(orderId);
+    //var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
+    //var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').val();
+    var reasionId = jQuery('#cancelReason').val();
+    var reasonComments = jQuery('#cancelComments').val();
     var data = "";
     // data += 'orderId=' + orderId;
     loading();
@@ -527,7 +528,7 @@ jQuery(document).ready(function(){
           jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
           jQuery("#cancelordermsg").focus();
           close_loading();
-          //document.location = Drupal.settings.basePath + 'account/orders';        
+          document.location = Drupal.settings.basePath + 'account/orders';        
         }
         else if (data['isError'] == 'true') {
           //alert(data['_EVENT_MESSAGE_']);            
@@ -549,7 +550,10 @@ jQuery(document).ready(function(){
       },
       dataType: 'json'
     });
-  });
+  }
+
+jQuery(document).ready(function(){
+
   jQuery(".shareStory").click(function(){
     jQuery('#socialIcons').toggle();
   });
@@ -1698,6 +1702,29 @@ $("form[name='chksignInForm']").validate({
         checkPin();
       }
     });
+$("form[name='cancelOrderForm']").validate({
+    showErrors: function(errorMap, errorList) {
+          // Clean up any tooltips for valid elements
+          $.each(this.validElements(), function (index, element) {
+              var $element = $(element);
+              $element.data("title", "") // Clear the title - there is no error associated anymore
+                  .removeClass("error")
+                  .tooltip("destroy");
+          });
+          // Create new tooltips for invalid elements
+          $.each(errorList, function (index, error) {
+              var $element = $(error.element);
+              $element.tooltip("destroy") // Destroy any pre-existing tooltip so we can repopulate with new tooltip content
+                  .data("title", error.message)
+                  .addClass("error")
+                  .tooltip(); // Create a new tooltip based on the error messsage we just set in the title
+          });
+      },
+      submitHandler: function(form) {
+        cancelOrder();
+      }
+    });
+
     $("form[name='refundForm']").validate({
     showErrors: function(errorMap, errorList) {
           // Clean up any tooltips for valid elements
