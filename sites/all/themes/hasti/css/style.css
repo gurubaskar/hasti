@@ -861,7 +861,7 @@ a:focus{text-decoration:none !important;}
 .checkpin .ui-input-text{width:auto !important;}
 .checkpin a{color:#fff !important; font-weight:normal !important;}
 .ui-shadow-inset{box-shadow:none !important; -webkit-box-shadow:none !important; -moz-box-shadow:none !important; -o-box-shadow:none !important;}
-.ui-popup-container{height:100%;}
+.ui-popup-container{height:100%; z-index:99999 !important;}
 .forgot-pwd{float:left; width:auto; font-weight:normal; font-size:14px; margin-top:10px;}
 .new-signup{float:right; width:auto; font-weight:normal; font-size:14px; margin-top:10px;}
 .ui-mobile .ui-page-active{overflow-x: visible !important;}
