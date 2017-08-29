@@ -4,13 +4,12 @@ var ajaxInfo = "info";
 var ajaxWarning = "warning";
 var ajaxDanger = "danger";
 
-function ajaxErrorMsgDisplay(msg,type='info',delay='3000') {
+function ajaxErrorMsgDisplay(msg,type='info') {
   jQuery.notify({
     message: msg,
   },
   {
     type: type,
-    delay: delay,
     placement: {
       from: "top",
       align: "center"
@@ -209,8 +208,7 @@ $(document).ready(function () {
               close_loading();
             },
             error: function(jqXHR, textStatus, errorThrown) {
-              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-              console.log(textStatus + ': ' + errorThrown);
+              ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
               close_loading();
             },
             dataType: 'json'
@@ -258,8 +256,7 @@ $(document).ready(function () {
               }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-              alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-              console.log(textStatus + ': ' + errorThrown);
+              ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
               close_loading();
             },
             dataType: 'json'
@@ -314,8 +311,7 @@ function checkPin(){
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-      console.log(textStatus + ': ' + errorThrown);
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       close_loading();
     },
     dataType: 'json'
@@ -352,8 +348,7 @@ function hastiSignIn(){
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-      console.log(textStatus + ': ' + errorThrown);
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       close_loading();
     },
     dataType: 'json'
@@ -399,8 +394,7 @@ function signInHasti(){
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-      console.log(textStatus + ': ' + errorThrown);
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       close_loading();
     },
     dataType: 'json'
@@ -471,14 +465,17 @@ function addAddress(){
           document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
         } else {
           close_loading();
-          ajaxErrorMsgDisplay("added success",ajaxInfo,'7000');
-          document.location = Drupal.settings.basePath + 'account/address-book';
+          ajaxErrorMsgDisplay("added success",ajaxInfo);
+          setTimeout(function () {
+            document.location = Drupal.settings.basePath + 'account/address-book';
+          }, 2000);
+          
+          
         }
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-      console.log(textStatus + ': ' + errorThrown);
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       close_loading();
     },
     dataType: 'json'
@@ -524,8 +521,7 @@ function editAddress(){
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-      console.log(textStatus + ': ' + errorThrown);
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       close_loading();
     },
     dataType: 'json'
@@ -1234,8 +1230,7 @@ function contactus(){
           }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-          console.log(textStatus + ': ' + errorThrown);
+          ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
           close_loading();
         },
         dataType: 'json'
@@ -1284,8 +1279,7 @@ function savePersonalInfo(){
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -1441,8 +1435,7 @@ jQuery(document).ready(function(){
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-            console.log(textStatus + ': ' + errorThrown);
+            ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
             close_loading();
           },
           dataType: 'json'
@@ -1469,8 +1462,7 @@ jQuery(document).ready(function(){
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-            console.log(textStatus + ': ' + errorThrown);
+            ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
             close_loading();
           },
           dataType: 'json'
