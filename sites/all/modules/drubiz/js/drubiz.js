@@ -31,8 +31,7 @@ $(document).ready(function() {
                 close_loading();
               },
               error: function(jqXHR, textStatus, errorThrown) {
-                alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-                console.log(textStatus + ': ' + errorThrown);
+                ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
                 close_loading();
               },
               dataType: 'json'
@@ -214,8 +213,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -251,8 +249,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -300,8 +297,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -331,8 +327,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -381,7 +376,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         //console.log(textStatus + ': ' + errorThrown);
         close_loading();
       },
@@ -467,8 +462,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -493,7 +487,8 @@ $(document).ready(function() {
       var quantity = 1; // commented due to no quantity selectable. $('#quantity').val();
     }
     if(product_id == null || product_id == undefined){
-      alert('Please select a size of your choice');
+      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxInfo);
+      // alert('Please select a size of your choice');
       return;
     }
     var action = $(this).attr('id') == 'js_addToCart_buynow' ? 'buy_now' : 'add';
@@ -524,8 +519,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -541,7 +535,8 @@ $(document).ready(function() {
       var quantity = 1;
     }
     if(product_id == undefined || product_id == null){
-      alert('Please select a variant');
+      // alert('Please select a variant');
+      ajaxErrorMsgDisplay('Please select a variant',ajaxInfo);
       return;
     }
     // alert(product_id+'--'+quantity);
@@ -582,13 +577,13 @@ $(document).ready(function() {
           document.location = Drupal.settings.basePath + 'cart';
         }
         else {
-          alert('Error deleting item.');
+          ajaxErrorMsgDisplay('Error deleting item.',ajaxInfo);
+          // alert('Error deleting item.');
           close_loading();
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -608,13 +603,15 @@ $(document).ready(function() {
           document.location = Drupal.settings.basePath + 'account/love-list';
         }
         else {
-          alert('Error deleting item.');
+          ajaxErrorMsgDisplay('Error deleting item.',ajaxInfo);
+          // alert('Error deleting item.');
           close_loading();
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        // alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        // console.log(textStatus + ': ' + errorThrown);
         close_loading();
       },
       dataType: 'json'
@@ -638,7 +635,8 @@ $(document).ready(function() {
         quantity = Number(quantity) + 1;
       }else{
         if(Number(quantity) <= Number(1)){
-          alert('Quantity cannot be zero');
+          ajaxErrorMsgDisplay('Quantity cannot be zero',ajaxInfo);
+          // alert('Quantity cannot be zero');
           return 0;
         }else{
           quantity = Number(quantity) - 1;
@@ -659,13 +657,13 @@ $(document).ready(function() {
           document.location = Drupal.settings.basePath + 'cart';
         }
         else {
-          alert('Error modifying item.');
+          ajaxErrorMsgDisplay('Error modifying item.',ajaxInfo);
+          // alert('Error modifying item.');
           close_loading();
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -698,8 +696,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -767,8 +764,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -792,8 +788,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -833,8 +828,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        close_loading();
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       },
       dataType: 'json'
     });
@@ -860,8 +854,7 @@ $('.validateOTP').click(function(e) {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        close_loading();
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       },
       dataType: 'json'
     });
@@ -883,7 +876,7 @@ $('.validateOTP').click(function(e) {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -963,7 +956,8 @@ $('.validateOTP').click(function(e) {
                 document.location = Drupal.settings.basePath + 'account/love-list';
             }
             else {
-              alert('Server Down! Please try again Later');
+              ajaxErrorMsgDisplay('Server Down! Please try again Later',ajaxInfo);
+              // alert('Server Down! Please try again Later');
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -1028,7 +1022,7 @@ $('.validateOTP').click(function(e) {
         close_loading();
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         console.log(textStatus + ': ' + errorThrown);
         close_loading();
       },
@@ -1059,8 +1053,7 @@ $('.validateOTP').click(function(e) {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        alert('We are facing some technical difficulties at the moment. Please try again after some time.');
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
         close_loading();
       },
       dataType: 'json'
@@ -1247,7 +1240,8 @@ function remove_wishlist(sequenceId){
         
       }
       else {
-        alert('Server Down! Please try again Later');
+        ajaxErrorMsgDisplay('Server Down! Please try again Later',ajaxInfo);
+        // alert('Server Down! Please try again Later');
         flag = 'false';
       }
     },
@@ -1366,7 +1360,8 @@ function showPlpSizeGuide1(selectFeatureDiv , productId) {
         }
       }
       else {
-        alert('Server Down! Please try again Later');
+        ajaxErrorMsgDisplay('Server Down! Please try again Later',ajaxInfo);
+        // alert('Server Down! Please try again Later');
         flag = 'false';
       }
     },
