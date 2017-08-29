@@ -882,21 +882,21 @@ function drubiz_menu() {
     'file'              => 'drubiz.pages.inc',
   );
   $items['drubiz/returnOrder'] = array(
-    'title'             => 'returnOrder',
+    'title'             => 'Return Order',
     'description'       => "returnOrder",
     'page callback'     => 'myaccount_return_order_details',
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
   $items['account/return-order'] = array(
-    'title'             => 'returnOrderList',
+    'title'             => 'Return Order List',
     'description'       => "returnOrderList",
     'page callback'     => 'myaccount_return_order_list',
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
   $items['account/track-order'] = array(
-    'title'             => 'trackOrderList',
+    'title'             => 'Track Order List',
     'description'       => "trackOrderList",
     'page callback'     => 'myaccount_track_order_list',
     'access arguments'  => array('access content'),

@@ -828,6 +828,7 @@ $(document).ready(function() {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
+        close_loading();
         ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       },
       dataType: 'json'
@@ -854,6 +855,7 @@ $('.validateOTP').click(function(e) {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
+        close_loading();
         ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
       },
       dataType: 'json'
