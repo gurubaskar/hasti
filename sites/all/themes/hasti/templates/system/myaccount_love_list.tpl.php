@@ -3,17 +3,17 @@
 Please login to view the view list
 <?php } else { ?>
 <div id="eCommerceShowWishList" class="eCommerceShowWishList">
-<div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
+<!--div class="col-xs-12 col-sm-4 col-md-3 leftMenuWrap">
   <div class=" myaccount-left">
-    <?php echo theme('myaccount_menu_links'); ?>
+    <?php //echo theme('myaccount_menu_links'); ?>
   </div>
-</div>
+</div-->
   <?php if(empty($wishlist['wishListItemDetails'])){?>
     <div class="no-items-wishlist">
       No Items in your Wishlist
     </div>
   <?php }else{?>
-      <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right wishlist">
+      <div class="col-xs-12 col-sm-12 col-md-12 myaccount-right wishlist">
       <h3>My Wishlist</h3>
       <?php 
         foreach ($wishlist['wishListItemDetails']  as $wishList_key => $wishList_value) :
