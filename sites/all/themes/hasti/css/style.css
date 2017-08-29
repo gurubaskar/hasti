@@ -252,7 +252,7 @@ a:focus{text-decoration:none !important;}
 .row1 .video img, .row2 .video img, .row3 .video img{width:100%;}
 
 /************************* PLP starts ***********************/
-#breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:16px;}
+#breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:16px; /*padding-top:155px;*/}
 #breadcrumb a{padding:0 5px;}
 #breadcrumb a:first-child{padding-left:0px;}
 .plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:100%; margin-right:15px;}
@@ -807,7 +807,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders .ui-checkbox input {
     z-index: 0 ;
 }
-.forgot-btn #Continue, .forgot-btn #back {
+.checkout-right .forgot-btn #Continue, .checkout-right .forgot-btn #back {
     text-indent: 0;
     opacity: 1;
     background: #00b04c;
@@ -853,8 +853,9 @@ a:focus{text-decoration:none !important;}
 .ui-popup.signin a, .ui-popup.signin a:hover{color:#fff !important; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:0px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
-.signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:23px !important; font-weight:normal; padding:5px 0px; margin:25px 0 15px 0; width:100%; float:left;}
-.signin-btn #signin, .cancelord{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:23px; font-weight:600; margin:0; border:none;}
+.signin .ui-input-btn.ui-btn, .forgot-btn{ border:none; color:#00b04c; font-size:22px !important; font-weight:normal; padding:5px 0px; margin:25px 0 15px 0; width:100%; float:left;}
+#signInWindow .forgot-btn input[type="submit"], #signInWindow .forgot-btn input[type="button"]{width:auto !important; padding:5px 20px !important; margin-top:15px !important; margin-right:10px !important;}
+.signin-btn #signin, .cancelord, #signInWindow .forgot-btn input[type="submit"], #signInWindow .forgot-btn input[type="button"]{width:100%; float:left; background:#fff !important; padding:5px 7px; font-size:22px; font-weight:600; margin:0; border:none;}
 .signin-btn #signin{margin:20px 0 0 0 !important;}
 .signin-btn .ui-input-btn.ui-btn{padding:5px 0 !important;}
 .ui-input-text, .signin-btn{width:400px !important; float:left;}
