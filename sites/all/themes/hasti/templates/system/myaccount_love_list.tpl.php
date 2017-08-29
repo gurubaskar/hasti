@@ -16,7 +16,7 @@ Please login to view the view list
       <div class="col-xs-12 col-sm-12 col-md-12 myaccount-right wishlist">
       <h3>My Wishlist</h3>
       <?php 
-        foreach ($wishlist['wishListItemDetails']  as $wishList_key => $wishList_value) :
+        foreach($wishlist['wishListItemDetails']  as $wishList_key => $wishList_value) :
       ?>
       <?php
         $nid = get_nid_from_variant_product_id($wishList_value['productId']);

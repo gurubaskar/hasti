@@ -1410,39 +1410,44 @@ jQuery(document).ready(function(){
       }
   }
     jQuery(".chkwallet").on('change', function() { 
+      var walletmoney = jQuery('#walletmoney').val();
+       var totalamount = jQuery('#totalamount').val();
       if(jQuery(this).is(":checked")) {        
         var chkval = 1;
-        data = 'chkval=' + chkval;
+        data = 'chkval=' + chkval +'&walletmoney='+walletmoney;
         jQuery.ajax({
           type: "POST",
           url: Drupal.settings.basePath + 'account/store-credit',
           data: data,
           success: function(data) {
-            console.log(data);
+            //console.log(data);
             if (data['isError'] == 'false' && data['status']=='Pass') {
               //alert(data['_EVENT_MESSAGE_']);
               close_loading(); 
               jQuery('#balance').show(); 
-              jQuery("#balance").append('<div>' + data['remainingCartTotal'] + '</div>');       
+              var availablebalance = (walletmoney-totalamount);
+              jQuery("#balance").html('<div>select an option to pay balance : ' + data['remainingCartTotal'] + '</div>');       
+              jQuery("#remainingamt").html('(Available balance is &#8377;.' + availablebalance + ')');
               if(data['remainingCartTotal'] == 0){
                 jQuery('#paymentOption').hide();
                 jQuery('#placeOrderStoreCredit').show(); 
               }
               //document.location = Drupal.settings.basePath +'checkout-payment';
             } else {
-              alert(data['_ERROR_MESSAGE_']);
+              //alert(data['_ERROR_MESSAGE_']);
               close_loading();
             }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-            ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+            alert('We are facing some technical difficulties at the moment. Please try again after some time.');
+            console.log(textStatus + ': ' + errorThrown);
             close_loading();
           },
           dataType: 'json'
       });
       }else{
         var chkval = 0;
-        data = 'chkval=' + chkval;
+        data = 'chkval=' + chkval +'&walletmoney='+walletmoney;
         jQuery.ajax({
           type: "POST",
           url: Drupal.settings.basePath + 'account/store-credit',
@@ -1453,6 +1458,7 @@ jQuery(document).ready(function(){
               //alert(data['_EVENT_MESSAGE_']);
               close_loading(); 
               jQuery('#balance').hide(); 
+              jQuery("#remainingamt").html('(Available balance is &#8377;.' + walletmoney + ')');
               if(data['remainingCartTotal'] != 0){
                 jQuery('#paymentOption').show();                 
               }
