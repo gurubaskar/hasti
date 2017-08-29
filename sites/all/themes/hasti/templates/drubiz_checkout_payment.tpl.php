@@ -192,7 +192,6 @@ if(!empty($_GET['from'])) {
     </div>
   </div>
   <!--delivery address end -->
-
   <div id="payment-method" class="" style="display: none;">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="heading-bar">
@@ -206,8 +205,10 @@ if(!empty($_GET['from'])) {
           <?php if($walletAmount > 0){?>
              <div>
              <input type="checkbox" name="walletamt" id="wallet" class="chkwallet">
+             <input type="hidden" name="walletmoney" id="walletmoney" value="<?php echo $walletAmount;?>">
+             <input type="hidden" name="totalamount" id="totalamount" value="<?php echo $grandTotal['orderGrandTotal'];?>">
              <span style="margin-left: 33px;margin-top: 5px;">Use wallet Amount - &#8377;.<?php echo $walletAmount;?> </span></div>
-               <div>(Your current balance is &#8377;.<?php echo $walletAmount;?>)</div>
+               <div id="remainingamt">(Available balance is &#8377;.<?php echo $walletAmount;?>)</div>
                <div id="balance" style="display: none">select an option to pay balance : </div>
            <?php } ?>
           </div>

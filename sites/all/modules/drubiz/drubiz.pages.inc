@@ -1842,6 +1842,7 @@ function wallet_store_credit(){
   $partyId=get_user_party_id();
   $jsessionid = get_user_jsessionid();
   $checkboxvalue = $_POST['chkval'];
+  $walletAmnt = $_POST['walletmoney'];
   $grandTotal = get_user_cart();
 
   if($checkboxvalue == 1){
@@ -1849,10 +1850,15 @@ function wallet_store_credit(){
     if (!empty($jsessionid)) {
       $endpoint .= (';jsessionid=' . urlencode($jsessionid));
     }
+    if($walletAmnt >= $grandTotal['orderGrandTotal']){
+        $amount = $grandTotal['orderGrandTotal'];
+    }else{
+        $amount = $walletAmnt;
+    }
      $params = array(
       'productStoreId' => 'WOI_STORE',
       'partyId'         => $partyId,
-      'storeCreditAmount' => $grandTotal['orderGrandTotal']
+      'storeCreditAmount' => $amount//$grandTotal['orderGrandTotal']
     );
     $response = $client->get($endpoint . '?' . http_build_query($params));
     $raw_json = $response->getBody();
