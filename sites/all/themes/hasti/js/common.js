@@ -247,11 +247,13 @@ $(document).ready(function () {
             data: 'contactMechId=' + conatctMechId,
             success: function(data) {
               if (data['isError'] == 'false') {
-                alert(data['_EVENT_MESSAGE_']);
+                ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']);
+                // alert(data['_EVENT_MESSAGE_']);
                 close_loading();
                 document.location = Drupal.settings.basePath +'account/address-book';
               } else {
-                alert(data['_ERROR_MESSAGE_']);
+                ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+                // alert(data['_ERROR_MESSAGE_']);
                 close_loading();
               }
             },
@@ -596,12 +598,14 @@ jQuery(document).ready(function(){
           document.location = "https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id="+merchantId+"&encRequest="+encRequest+"&access_code="+accessCode;
         }
         else {
-          alert(data['_ERROR_MESSAGE_']);
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+          // alert(data['_ERROR_MESSAGE_']);
           close_loading();
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        // console.log(textStatus + ': ' + errorThrown);
         close_loading();
       },
       dataType: 'json'
@@ -637,14 +641,16 @@ jQuery(document).ready(function(){
           },
           error: function(jqXHR, textStatus, errorThrown) {
             // alert(textStatus + ': ' + errorThrown);
-            console.log(textStatus + ': ' + errorThrown);
+            ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+            // console.log(textStatus + ': ' + errorThrown);
             // return false;
             close_loading();
           },
           dataType: 'json'
         });
       } else {
-        alert("Please select item");
+        ajaxErrorMsgDisplay("Please select item",ajaxInfo);
+        // alert("Please select item");
         return false;
       }
       return false;
@@ -797,7 +803,8 @@ function checkEmail() {
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      console.log(textStatus + ': ' + errorThrown);
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+      // console.log(textStatus + ': ' + errorThrown);
       close_loading();
     },
     dataType: 'json'
@@ -877,7 +884,8 @@ function openPaymentMethod() {
  jQuery('li a').removeClass("active");
  jQuery('#paymentMethod').addClass('active');
  } else {
-    alert("Please select a address");
+    ajaxErrorMsgDisplay("Please select a address");
+    // alert("Please select a address");
     return false;
   }
 }
@@ -1329,7 +1337,8 @@ jQuery(document).ready(function(){
       if(itemChecked > 0) {
         var selectedReturnValue = jQuery('#refundType').val();
         if(selectedReturnValue == 0) {
-          alert("Please select Refund type");
+          ajaxErrorMsgDisplay("Please select Refund type");
+          // alert("Please select Refund type");
           return false;
         }
         var checkedVals = jQuery('.returnProduct:checkbox:checked').map(function() {
@@ -1405,7 +1414,8 @@ jQuery(document).ready(function(){
       dataType: 'json'
     });
     } else {
-        alert("Please select item");
+        ajaxErrorMsgDisplay("Please select item");
+        // alert("Please select item");
         return false;
       }
   }
