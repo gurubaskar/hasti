@@ -299,12 +299,14 @@ function checkPin(){
         //alert(data['_ERROR_MESSAGE_']);
         //jQuery('#pincodeerror').show();
         var errormsgs = data['_ERROR_MESSAGE_'];
-          jQuery("#pincodeerror").html('<span class="err_msgs">'+errormsgs+'</span>');
+          ajaxErrorMsgDisplay(errormsgs);
+          // jQuery("#pincodeerror").html('<span class="err_msgs">'+errormsgs+'</span>');
           jQuery("#pincodeerror").focus();
         close_loading();
       } else {
         //alert(data['deliveryCharges']);      
         close_loading();
+        ajaxErrorMsgDisplay(data['message']);
         jQuery("#shippingcharge").html('&#8377;.'+data['deliveryCharges']+'.00');
         jQuery("#subtotalamount").html('&#8377;.'+data['cartSubTotal']+'.00');
         jQuery("#totalamount").html('&#8377;.'+data['orderGrandTotal']+'.00');  

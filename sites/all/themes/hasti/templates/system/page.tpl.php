@@ -295,28 +295,28 @@ require_once 'vendor/autoload.php';
 <!-- content -->
 <div id="eCommercePageBody"></div>
   <?php //print_r($drubiz_domain);?>
-  <?php 
-    if(arg(0) != "node") {
-      if ($breadcrumb):
-  ?>
-    <div id="breadcrumb">
-       <div class="container-fluid">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <?php print clean_breadcrumb($breadcrumb); ?>
-          </div>
-        </div>
-    </div>
-    <?php endif;
-    } else { ?>
-    <div id="breadcrumb">
-       <div class="container-fluid">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <?php echo  $breadcrumbList.'&nbsp;'.$product->product_name;?>
-          </div>
-        </div>
-    </div>
-  <?php }  ?>
   <div id="content" class="plp">
+    <?php 
+      if(arg(0) != "node") {
+        if ($breadcrumb):
+    ?>
+      <div id="breadcrumb">
+         <div class="container-fluid">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <?php print clean_breadcrumb($breadcrumb); ?>
+            </div>
+          </div>
+      </div>
+      <?php endif;
+      } else { ?>
+      <div id="breadcrumb">
+         <div class="container-fluid">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <?php echo  $breadcrumbList.'&nbsp;'.$product->product_name;?>
+            </div>
+          </div>
+      </div>
+    <?php }  ?>
     <div class="container-fluid">
       <?php if ($search_filter_sidebar): ?>
           <div class="col-xs-0 col-sm-3 col-md-3">
