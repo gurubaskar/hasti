@@ -109,6 +109,13 @@ a:focus{text-decoration:none !important;}
     z-index: -1;
     padding-top: 155px;
 }
+#content.pdp{/*float:left; width:100%; margin-bottom:20px; z-index:-1;*/
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    z-index: -1;
+    padding-top: 0;
+}
 
 #footer{width:100%; float:left; background:url('./../images/footer-bg.jpg') no-repeat top left; padding:20px 0; position:relative; text-align:center;}
 #footer ul li{display:block; padding:0 0 15px 0; text-align:left;}
@@ -252,7 +259,7 @@ a:focus{text-decoration:none !important;}
 .row1 .video img, .row2 .video img, .row3 .video img{width:100%;}
 
 /************************* PLP starts ***********************/
-#breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:16px; /*padding-top:155px;*/}
+#breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:14px; /*padding-top:155px;*/}
 #breadcrumb a{padding:0 5px;}
 #breadcrumb a:first-child{padding-left:0px;}
 .plp .plp-left{background:#f6f6f6; float:left; padding:10px 0 30px 0; width:100%; margin-right:15px;}
