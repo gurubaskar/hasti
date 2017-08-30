@@ -105,17 +105,21 @@ require_once 'vendor/autoload.php';
   $smSubCategoryName = "";
   for($i=0;$i<$cntCategory;$i++) {
     if($i==0) {
-      $smCategory = "&f[1]=sm_field_category".$collon;
-      $smCategoryName = urlencode($drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
+      $smCategory = "&f[1]=sm_field_category_id".$collon;
+      // $smCategoryName = urlencode($drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
+      $smCategoryName = $get_category_names[$i];
     }
-    $smFieldName = str_replace('&', '&amp;',$drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
-    $smSubCategoryName = "&f[2]=sm_field_subcategory".$collon.rawurlencode($smFieldName);
+    // $smFieldName = str_replace('&', '&amp;',$drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
+    $smFieldName = trim($get_category_names[$i]);
+    // $smSubCategoryName = "&f[2]=sm_field_subcategory".$collon.rawurlencode($smFieldName);
+    $smSubCategoryName = "&f[2]=sm_field_subcategory_id".$collon.rawurlencode($smFieldName);
     $c = $get_category_names[$i];
     $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
     if($drubiz_category_names[$catalogName][trim($get_category_names[$i])])
     $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
   }
-  
+  $homeurl = url();
+  $home = "<a href=$homeurl>Home</a>&nbsp;/&nbsp;";
 ?>
 
 <div id="topnav">
@@ -297,6 +301,7 @@ require_once 'vendor/autoload.php';
   <?php //print_r($drubiz_domain);?>
   <div id="content" class="plp">
     <?php 
+      if(arg(0) == "node" || arg(0) == "search") {
       if(arg(0) != "node") {
         if ($breadcrumb):
     ?>
@@ -312,11 +317,11 @@ require_once 'vendor/autoload.php';
       <div id="breadcrumb">
          <div class="container-fluid">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <?php echo  $breadcrumbList.'&nbsp;'.$product->product_name;?>
+              <?php echo $home . $breadcrumbList.'&nbsp;'.$product->product_name;?>
             </div>
           </div>
       </div>
-    <?php }  ?>
+    <?php } } ?>
     <div class="container-fluid">
       <?php if ($search_filter_sidebar): ?>
           <div class="col-xs-0 col-sm-3 col-md-3">
