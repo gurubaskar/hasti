@@ -796,6 +796,7 @@ function drubiz_user_register() {
       }
     }
   }
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('request', 'data','return'), 1) . '</pre>');
   echo json_encode($return);
 }
 

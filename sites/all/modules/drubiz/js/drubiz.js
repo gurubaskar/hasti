@@ -510,6 +510,7 @@ $(document).ready(function() {
             document.location = Drupal.settings.basePath + 'cart';
           } else {
             jQuery.notify("1 Item added to the cart.");
+            jQuery(".plp_selectableFeature").css("display","none");
             update_mini_cart();
           }
         }
