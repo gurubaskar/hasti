@@ -35,7 +35,7 @@
           </div>
           <div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
             <div class="col-xs-6 col-sm-6 col-md-5 details-left">
-              <h4><?php echo $cart_value['internalName']; ?></h4>
+              <h4><a href="<?php echo url('/node/'.$node->nid);?>"><?php echo $cart_value['internalName']; ?></a></h4>
               <div class="cartrow"><label>Qty:</label>
                 <span class="qty-minus" data-index="<?php echo $cart_key;?>"></span>
                 <span class="qty"><?php echo $cart_value['quantity']; ?></span>
