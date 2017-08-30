@@ -492,7 +492,7 @@ a:focus{text-decoration:none !important;}
 .cartbox .total span, .cartbox .total label{font-size:18px !important;}
 .cartbox .total{padding-right:0;}
 .edit-warp, .bottomimg-wrap{width:100%; float:left;}
-.remove{background:url('./../images/main-img.png') no-repeat -5px -446px; padding:10px 28px; font-weight:normal;}
+.remove, .removeWishlist{background:url('./../images/main-img.png') no-repeat -5px -446px; padding:10px 28px; font-weight:normal;}
 .update{background:url('./../images/main-img.png') no-repeat -5px -477px; padding:10px 28px;}
 .edit{margin:10px 0; padding-right:0 !important;}
 
@@ -608,7 +608,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-left ul li a{font-weight:300; padding:6px 0; font-size:15px;}
 .myaccount-right.wishlist .cartbox{width:47.5%; margin-right:20px; padding:15px 25px 20px 25px !important; margin-bottom:10px;}
 .myaccount-right.wishlist .details-right{float:right; margin-top:5px;}
-.myaccount-right.wishlist .details-right .remove{padding:6px 0 2px 28px; float:right;}
+.myaccount-right.wishlist .details-right .remove, .myaccount-right.wishlist .details-right .removeWishlist{padding:6px 0 2px 28px; float:right;}
 .myaccount-right.wishlist .btns-wrap{position:absolute; width:100%; right:0; bottom:10px;}
 .myaccount-right.wishlist .btns-wrap span{background:url('./../images/main-img.png') no-repeat 15px -286px #00b04c; float:right; width:170px; cursor:pointer;}
 .myaccount-right.wishlist .btns-wrap span a{text-align:left; margin-left:62px; width:auto; padding:10px 0; float:left; color:#fff; font-weight:400;}
