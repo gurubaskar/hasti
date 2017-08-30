@@ -392,6 +392,7 @@ function drubiz_import_data($xls_files,$flag=false) {
     db_query("DELETE FROM {menu_links} WHERE menu_name = :main_menu_name", array(':main_menu_name' => $main_menu_name));
     foreach ($category_tree as $category_id => $subcategories) {
       $category_name = trim((string)$category_keyed[$category_id]['category_name']);
+      $category_id = trim((string)$category_keyed[$category_id]['product_category_id']);
       $item = array(
         'link_title' => $category_name,
         'link_path' => 'search/site',
@@ -400,7 +401,7 @@ function drubiz_import_data($xls_files,$flag=false) {
           'query' => array(
             'f' => array(
               'sm_field_catalog:' . htmlentities($catalog_name),
-              'sm_field_category:' . htmlentities($category_name),
+              'sm_field_category_id:' . htmlentities($category_id),
             ),
           ),
         ),
@@ -412,6 +413,8 @@ function drubiz_import_data($xls_files,$flag=false) {
 
       foreach ($subcategories as $subcategory_id => $sub_subcategories) {
         $subcategory_name = trim((string)$category_keyed[$subcategory_id]['category_name']);
+        $subcategory_id_no = trim((string)$category_keyed[$subcategory_id]['product_category_id']);
+        watchdog("subcategory and idno = ", $subcategory_id.", ".$subcategory_id_no);
         $item = array(
           'link_title' => $subcategory_name,
           'link_path' => 'search/site',
@@ -420,8 +423,8 @@ function drubiz_import_data($xls_files,$flag=false) {
             'query' => array(
               'f' => array(
                 'sm_field_catalog:' . htmlentities($catalog_name),
-                'sm_field_category:' . htmlentities($category_name),
-                'sm_field_subcategory:' . htmlentities($subcategory_name),
+                'sm_field_category_id:' . htmlentities($category_id),
+                'sm_field_subcategory_id:' . htmlentities($subcategory_id_no),
               ),
             ),
           ),
@@ -433,6 +436,7 @@ function drubiz_import_data($xls_files,$flag=false) {
 
         foreach ($sub_subcategories as $sub_subcategory_id => $sub_sub_subcategories) {
           $sub_subcategory_name = trim((string)$category_keyed[$sub_subcategory_id]['category_name']);
+          $sub_subcategory_id_no = trim((string)$category_keyed[$sub_subcategory_id]['product_category_id']);
           $item = array(
             'link_title' => $sub_subcategory_name,
             'link_path' => 'search/site',
@@ -441,8 +445,9 @@ function drubiz_import_data($xls_files,$flag=false) {
               'query' => array(
                 'f' => array(
                   'sm_field_catalog:' . htmlentities($catalog_name),
-                  'sm_field_category:' . htmlentities($category_name),
-                  'sm_field_subcategory:' . htmlentities($sub_subcategory_name),
+                  'sm_field_category_id:' . htmlentities($category_id),
+                  'sm_field_subcategory_id:' . htmlentities($subcategory_id),
+                  'sm_field_sub_subcategory_id:' . htmlentities($sub_subcategory_id_no),
                 ),
               ),
             ),
@@ -578,11 +583,14 @@ function drubiz_import_data($xls_files,$flag=false) {
 
             $category_delta = 0;
             $subcategory_delta = 0;
+            $sub_subcategory_delta = 0;
 
             $final_product->field_category = array();
             $final_product->field_category_id = array();
             $final_product->field_subcategory = array();
             $final_product->field_subcategory_id = array();
+            $final_product->field_sub_subcategory = array();
+            $final_product->field_sub_subcategory_id = array();
             foreach ($valid_product_categories as $product_category_id) {
               $parent_category_id = $category_parents[$product_category_id];
               $parent_parent_category_id = $category_parents[$parent_category_id];
@@ -610,10 +618,10 @@ function drubiz_import_data($xls_files,$flag=false) {
                     $subcategory_delta++;
                   }
 
-                  if (!field_value_exists($final_product, 'field_subcategory_id', $product_category_id)) {
-                    $final_product->field_subcategory[LANGUAGE_NONE][$subcategory_delta]['value'] = trim((string)$category_keyed[$product_category_id]['category_name']);
-                    $final_product->field_subcategory_id[LANGUAGE_NONE][$subcategory_delta]['value'] = $product_category_id;
-                    $subcategory_delta++;
+                  if (!field_value_exists($final_product, 'field_sub_subcategory_id', $product_category_id)) {
+                    $final_product->field_sub_subcategory[LANGUAGE_NONE][$sub_subcategory_delta]['value'] = trim((string)$category_keyed[$product_category_id]['category_name']);
+                    $final_product->field_sub_subcategory_id[LANGUAGE_NONE][$sub_subcategory_delta]['value'] = $product_category_id;
+                    $sub_subcategory_delta++;
                   }
                 }
                 else {
@@ -628,6 +636,12 @@ function drubiz_import_data($xls_files,$flag=false) {
                     $final_product->field_subcategory[LANGUAGE_NONE][$subcategory_delta]['value'] = trim((string)$category_keyed[$product_category_id]['category_name']);
                     $final_product->field_subcategory_id[LANGUAGE_NONE][$subcategory_delta]['value'] = $product_category_id;
                     $subcategory_delta++;
+                  }
+                  
+                  if (!field_value_exists($final_product, 'field_sub_subcategory_id', $product_category_id)) {
+                    $final_product->field_sub_subcategory[LANGUAGE_NONE][$sub_subcategory_delta]['value'] = trim((string)$category_keyed[$product_category_id]['category_name']);
+                    $final_product->field_sub_subcategory_id[LANGUAGE_NONE][$sub_subcategory_delta]['value'] = $product_category_id;
+                    $sub_subcategory_delta++;
                   }
                 }
               }

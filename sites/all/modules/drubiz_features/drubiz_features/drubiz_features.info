@@ -75,3 +75,4 @@ features_exclude[field_instance][node-product-field_technique] = node-product-fi
 features_exclude[field_instance][node-product-field_type] = node-product-field_type
 features_exclude[field_instance][node-product-field_weaver] = node-product-field_weaver
 features_exclude[field_instance][node-product-field_yarn] = node-product-field_yarn
+project path = sites/all/modules/drubiz_features
