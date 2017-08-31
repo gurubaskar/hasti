@@ -200,19 +200,18 @@ if(!empty($_GET['from'])) {
       <div class="cartbox">
         <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
           <div id="walletOption">
-          <div><b>Total amount to be paid &#8377;. <?php $grandTotal = get_user_cart();
-          echo $grandTotal['orderGrandTotal'];?></b></div>          
+          <div class="wallet-total"><p>Total amount to be paid</p> <span class="price">&#8377;. <?php $grandTotal = get_user_cart();
+          echo $grandTotal['orderGrandTotal'];?></span></div>          
           <?php if($walletAmount > 0){?>
-             <div>
+             <div class="wallet-amt">
              <input type="checkbox" name="walletamt" id="wallet" class="chkwallet">
              <input type="hidden" name="walletmoney" id="walletmoney" value="<?php echo $walletAmount;?>">
              <input type="hidden" name="totalamount" id="totalamount" value="<?php echo $grandTotal['orderGrandTotal'];?>">
-             <span style="margin-left: 33px;margin-top: 5px;">Use wallet Amount - &#8377;.<?php echo $walletAmount;?> </span></div>
-               <div id="remainingamt">(Available balance is &#8377;.<?php echo $walletAmount;?>)</div>
+             <p>Use wallet Amount </p><span class="price"> &#8377;.<?php echo $walletAmount;?></span></div>
+               <div id="remainingamt"><p>Available balance is</p><span> &#8377;.<?php echo $walletAmount;?></span></div>
                <div id="balance" style="display: none">select an option to pay balance : </div>
            <?php } ?>
           </div>
-          <div><hr></div>
           <div id="paymentOption">
           <span>
             <input type="radio" name="radiobtn" id="COD"><label>COD</label>
