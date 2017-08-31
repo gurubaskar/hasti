@@ -340,7 +340,8 @@ require_once 'vendor/autoload.php';
               <div class="col-xs-12 col-sm-3 col-md-3 pright">
                 <img src="<?php print current_theme_path();?>/images/h-row-img1.jpg"  class="img-responsive"/>
                 <span class="video">
-                  <img src="<?php print current_theme_path();?>/images/h-row-img2.jpg"  class="img-responsive"/>
+                  <a class="colorbox-load" href=<?php print current_theme_path();?>\osafe_theme\images\Story_video\Home_Video2.mp4?width=853&amp;height=480&amp;iframe=true&amp;autoplay=1">
+                  <img src="<?php print current_theme_path();?>/images/h-row-img2.jpg"  class="img-responsive"/></a>
                 </span>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6 pright bigimg">

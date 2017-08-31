@@ -132,7 +132,7 @@ Drupal.facetapi.makeCheckbox = function() {
       type: "GET",
       url: href,
       success: function(data) {
-         var body = data.substring(data.indexOf("<body>")+6,data.indexOf("</body>"));
+         var body = data.substring(data.indexOf("<body>"),data.indexOf("</body>"));
         jQuery('body').html(body);
       },
       error: function(jqXHR, textStatus, errorThrown) {
