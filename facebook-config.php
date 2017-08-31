@@ -56,7 +56,13 @@ if ( isset( $session ) ) {
     $responseData = fb_google_api_login_request($fbfirstname,$fblastname,$fbemail,$gender);
     /* ---- header location after session ----*/
  //header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
-   header("Location: http://www.hastti.com/index.php");
+  $_SESSION['url'] = $_SERVER['REQUEST_URI'];
+  if(isset($_SESSION['url'])){
+    $url = $_SESSION['url']; // holds url for last page visited.
+  } else{
+    $url = "index.php"; // default page for 
+  } 
+   header("Location: http://www.hastti.com/".$url);
 } else {
   $loginUrl = $helper->getLoginUrl(array(
    'scope' => 'email'
