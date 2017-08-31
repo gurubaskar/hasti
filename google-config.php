@@ -11,9 +11,9 @@ drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 $client_secret = '2aNHpIHrIeMdGyUJyZGz1igB';
 $redirect_uri = 'http://www.hasti.dev/drubiz_hasti/google-config.php';*/
 
-$client_id='1272075537-dfnaisoj0p5v39ehg779cs62s4u2iie6.apps.googleusercontent.com'; 
-$client_secret = 'COVUoGtiU4RCZAYuNcuGUFCg';
-$redirect_uri = 'http://www.hastti.com/google-config.php';
+$client_id='1272075537-jljqh6kmh1shr5g483ca6g8fighgvt74.apps.googleusercontent.com'; 
+$client_secret = '5JXORhCBJukgvzlrr5_xUyCk';
+$redirect_uri = 'https://www.hastti.com/google-config.php';
 
 //incase of logout request, just unset the session var
 if (isset($_GET['logout'])) {
@@ -79,9 +79,14 @@ if (isset($authUrl)){
 	$gemail=$user->email;
 	$gender=$user->gender;	
 	$responseData = fb_google_api_login_request($gfirstname,$glastname,$gemail,$gender);
-	
+	$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+  if(isset($_SESSION['url'])){
+    $url = $_SESSION['url']; // holds url for last page visited.
+  } else{
+    $url = "index.php"; // default page for 
+  }    
 	//header('Location:http://www.hasti.dev/drubiz_hasti/index.php');
-	header('Location:http://www.hastti.com/index.php');
+	header('Location:http://www.hastti.com/'.$url);
 }
 ?>
 
