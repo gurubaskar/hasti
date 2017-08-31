@@ -60,7 +60,8 @@ function hasti_breadcrumb($variables) {
       }
     }
   }
-  $breadcrumb_final = array_slice($variables['breadcrumb'], 0, -1);
+  //$breadcrumb_final = array_slice($variables['breadcrumb'], 0, -1);
+  $breadcrumb_final = $variables['breadcrumb'];
   global $base_path;
   $home_breadcrumb = '<a href="'.$base_path.'">Home</a>';
   if(count($breadcrumb_final) > 0) {
@@ -75,5 +76,4 @@ function hasti_breadcrumb($variables) {
     'type' => 'ol',
   ));
   return $output;
-  
 }

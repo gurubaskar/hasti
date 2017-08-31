@@ -103,11 +103,11 @@ require_once 'vendor/autoload.php';
   $smCategory= "";
   $smCategoryName = "";
   $smSubCategoryName = "";
-  for($i=0;$i<$cntCategory;$i++) {
+  /*for($i=0;$i<$cntCategory;$i++) {
     if($i==0) {
       $smCategory = "&f[1]=sm_field_category_id".$collon;
       // $smCategoryName = urlencode($drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
-      $smCategoryName = $get_category_names[$i];
+      $smCategoryName = trim($get_category_names[$i]);
     }
     // $smFieldName = str_replace('&', '&amp;',$drubiz_category_names[$catalogName][trim($get_category_names[$i])]);
     $smFieldName = trim($get_category_names[$i]);
@@ -117,7 +117,36 @@ require_once 'vendor/autoload.php';
     $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
     if($drubiz_category_names[$catalogName][trim($get_category_names[$i])])
     $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
+  }*/
+
+  for($i=0;$i<$cntCategory;$i++) {
+    if($i==0) {
+      $smCategory = "&f[1]=sm_field_category_id".$collon;
+      $smCategoryName = trim($get_category_names[$i]);
+      $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
+      $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
+    }
+    if($i == 1) {
+      $smFieldName = trim($get_category_names[$i]);
+      $smSubCategoryName = "&f[2]=sm_field_subcategory_id".$collon.rawurlencode($smFieldName);
+      // $c = $get_category_names[$i];
+      $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName;
+      if($drubiz_category_names[$catalogName][trim($get_category_names[$i])])
+      $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
+    }
+    if($i == 2) {
+      $smFieldName = trim($get_category_names[1]);
+      $smSubCategoryName = "&f[2]=sm_field_subcategory_id".$collon.rawurlencode($smFieldName);
+      // $c = $get_category_names[$i];
+      $smFieldName1 = trim($get_category_names[$i]);
+      $smSubCategoryName1 = "&f[3]=sm_field_sub_subcategory_id".$collon.rawurlencode($smFieldName1);
+      // $c = $get_category_names[$i];
+      $url = url('search/site').$smCatalog.$smCategory.$smCategoryName.$smSubCategoryName.$smSubCategoryName1;
+      if($drubiz_category_names[$catalogName][trim($get_category_names[$i])])
+      $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
+    }
   }
+
   $homeurl = url();
   $home = "<a href=$homeurl>Home</a>&nbsp;/&nbsp;";
 ?>
