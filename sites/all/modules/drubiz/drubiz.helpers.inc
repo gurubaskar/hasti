@@ -1194,7 +1194,7 @@ function get_user_cart() {
   $endpoint = 'eCommerceShowcartResponse';
   $params = array();
   $party_id = get_user_party_id();
-  if (empty($GLOBALS['user']->uid)) {
+  /*if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
     // /eCommerceShowcartNew;jsessionid=807E961CDA1FE828F6DA4E92C032DD79.jvm1
     $jsessionid = get_user_jsessionid();
@@ -1209,7 +1209,11 @@ function get_user_cart() {
     // Logged in user
     // /eCommerceShowcartNew?partyId=10010
     $params['partyId'] = $party_id;
-  }
+  }*/
+  // if (!empty($jsessionid)) {
+  $jsessionid = get_user_jsessionid();
+  $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  // }
   $client = drubiz_api_client();
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
