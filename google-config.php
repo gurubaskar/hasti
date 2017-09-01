@@ -65,7 +65,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 } else {
   $authUrl = $client->createAuthUrl();
 }
-
+//$_SESSION['redirecturl'] = $_GET['redirurl'];
 
 //Display user info or display login url as per the info we have.
 if (isset($authUrl)){ 
@@ -78,15 +78,18 @@ if (isset($authUrl)){
 	$glastname=$user->familyName;
 	$gemail=$user->email;
 	$gender=$user->gender;	
-	$responseData = fb_google_api_login_request($gfirstname,$glastname,$gemail,$gender);
-	$_SESSION['url'] = $_SERVER['REQUEST_URI'];
-  if(isset($_SESSION['url'])){
-    $url = $_SESSION['url']; // holds url for last page visited.
+  $pageurl = $_SESSION['redirurl'];
+	$responseData = fb_google_api_login_request($gfirstname,$glastname,$gemail,$gender,$pageurl);
+	$reurl = $_SESSION['drubiz']['session']['redirecturl'];
+  if(isset($reurl)){
+    $url = $reurl; // holds url for last page visited.
+    header('Location:'.$url);
   } else{
     $url = "index.php"; // default page for 
+    header('Location:http://www.hastti.com/index.php');
   }    
 	//header('Location:http://www.hasti.dev/drubiz_hasti/index.php');
-	header('Location:http://www.hastti.com/'.$url);
+	
 }
 ?>
 

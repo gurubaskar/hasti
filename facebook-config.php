@@ -41,7 +41,7 @@ if ( isset( $session ) ) {
   // get response  GraphLocation::className()
   $graphObject = $response->getGraphObject(GraphUser::className());
   $fbid = $graphObject->getProperty('id');              // To Get Facebook ID
-	  $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
+    $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
     $fbemail = $graphObject->getProperty('email');    // To Get Facebook email ID
 
     // added only for offbiz service facebook login
@@ -51,18 +51,21 @@ if ( isset( $session ) ) {
     //end
     /* ---- Session Variables -----*/
     $_SESSION['FBID'] = $fbid;           
-
+    $pageurl = $_SESSION['redirurl'];
     //call cack for offbiz service
-    $responseData = fb_google_api_login_request($fbfirstname,$fblastname,$fbemail,$gender);
+    $responseData = fb_google_api_login_request($fbfirstname,$fblastname,$fbemail,$gender,$pageurl);
     /* ---- header location after session ----*/
- //header("Location: http://www.hasti.dev/drubiz_hasti/index.php");
-  $_SESSION['url'] = $_SERVER['REQUEST_URI'];
-  if(isset($_SESSION['url'])){
-    $url = $_SESSION['url']; // holds url for last page visited.
+ //
+  $reurl = $_SESSION['drubiz']['session']['redirecturl'];
+  if(isset($reurl)){
+    $url = $reurl; // holds url for last page visited.
+    header('Location:'.$url);
   } else{
-    $url = "index.php"; // default page for 
+    $url = "/index.php"; // default page for 
+    header('Location:http://www.hastti.com/index.php');
   } 
-   header("Location: http://www.hastti.com/".$url);
+  //header("Location: http://www.hasti.dev/drubiz_hasti".$url);
+  // header("Location: http://www.hastti.com".$url);
 } else {
   $loginUrl = $helper->getLoginUrl(array(
    'scope' => 'email'

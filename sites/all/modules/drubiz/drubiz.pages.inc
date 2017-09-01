@@ -516,7 +516,7 @@ function drubiz_user_change_password() {
         $return['error_messages'][] = '';//$error['message'];
       }
   }
-  watchdog(__FUNCTION__, print_r(compact('request', 'data','return','endpoint'), 1));
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('response', 'data', 'return'), 1) . '</pre>');
   echo json_encode($return);
 }
 
@@ -599,7 +599,7 @@ function drubiz_user() {
   else {
     $return['error_messages'][] = 'Invalid username / password.';
   }
-
+  watchdog(__FUNCTION__, print_r(compact('response', 'data','return'), 1));
   echo json_encode($return);
 }
 
