@@ -236,7 +236,7 @@ require_once 'vendor/autoload.php';
 <!-- header -->
 <div id="header">
   <div class="container-fluid">
-    <div class="col-xxs-10 col-xs-8 col-sm-4 col-md-8 col-lg-7" id="navbar">
+    <div class="col-xxs-10 col-xs-8 col-sm-4 col-md-8 col-lg-8" id="navbar">
         <div class="mob-nav"></div>
         <?php if ($logo): ?>
           <a class="logo navbar-btn pull-left" data-ajax="false" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
@@ -294,7 +294,7 @@ require_once 'vendor/autoload.php';
             </ul>
         </div>
       </div>
-      <div class="col-xxs-2 col-xs-4 col-sm-8 col-md-4 col-lg-5 search-section">
+      <div class="col-xxs-2 col-xs-4 col-sm-8 col-md-4 col-lg-4 search-section">
         <div class="cart">
           <a href="<?php echo url('cart') ?>" data-ajax="false" title="My Cart">
           <span class="count" id="mini-cart-count"></span></a>
