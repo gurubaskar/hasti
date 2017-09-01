@@ -516,7 +516,8 @@ $(document).ready(function() {
           }
         }
         else {
-          alert(data['_ERROR_MESSAGE_']);
+          // alert(data['_ERROR_MESSAGE_']);
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
           close_loading();
         }
       },
@@ -553,7 +554,8 @@ $(document).ready(function() {
           close_loading();
         }
         else {
-          alert(data['_EVENT_MESSAGE_']+' Error adding item.');
+          // alert(data['_EVENT_MESSAGE_']+' Error adding item.');
+          ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');
           close_loading();
         }
       },
@@ -820,7 +822,8 @@ $(document).ready(function() {
       success: function(data) {
          console.log(data);
         if (typeof data['_ERROR_MESSAGE_'] != 'undefined' && data['_ERROR_MESSAGE_'].length > 0) {
-          alert(data['_ERROR_MESSAGE_']);
+          // alert(data['_ERROR_MESSAGE_']);
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
           close_loading();
         }
         else {
@@ -847,7 +850,8 @@ $('.validateOTP').click(function(e) {
       data: 'otp=' + otp,
       success: function(data) {
         if (data['status'] == 'fail' && data['isError'] == 'true') {
-          alert(data['_ERROR_MESSAGE_']);
+          // alert(data['_ERROR_MESSAGE_']);
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
           close_loading();
         }
         else {

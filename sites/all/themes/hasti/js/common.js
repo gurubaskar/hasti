@@ -633,12 +633,14 @@ jQuery(document).ready(function(){
           data: 'productIds=' + productIds,
           success: function(data) {
             if (data['isError_0'] == 'false') {
-              alert(data['_EVENT_MESSAGE_0']);
+              // alert(data['_EVENT_MESSAGE_0']);
+              ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_0']);
               close_loading();
               document.location = Drupal.settings.basePath + 'cart';        
             }
             else {
-              alert(data['_ERROR_MESSAGE_']);
+              // alert(data['_ERROR_MESSAGE_']);
+              ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
               close_loading();
             }
           },
