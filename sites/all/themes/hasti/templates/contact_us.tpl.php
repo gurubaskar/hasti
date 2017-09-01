@@ -1,4 +1,4 @@
-<div id="content" class="checkout">
+<div id="" class="checkout">
   <div class="container-fluid">
     <!-- <div class="row"> -->
     <div class="col-xs-12 col-sm-4 col-md-3 contact-left">

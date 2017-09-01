@@ -93,6 +93,7 @@ require_once 'vendor/autoload.php';
   $get_category_names = explode(',', $product->product_category_id);
 
   $catalogName = $drubiz_domain['catalog'];
+  //print_r($_SERVER);
 ?>
 
 <?php 
@@ -213,9 +214,10 @@ require_once 'vendor/autoload.php';
   </div>
     </form>
   <span class="facebook">
+  <?php $_SESSION['page_url'] = $_SERVER['HTTP_REFERER'];?>
   <a href="<?php echo url('facebook-config.php')?>">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="<?php echo url('google-config.php')?>">SIGN IN WITH GOOGLE</a></span>
-  </div>
+    </div>
   <div id="forgotPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Forgot Password</h3>

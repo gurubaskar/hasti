@@ -75,7 +75,7 @@ function print_order_invoice($orderid, $partyid){
 /**
 * call back for facebook login
 **/
-function fb_google_api_login_request($fname,$lname,$email,$gender){
+function fb_google_api_login_request($fname,$lname,$email,$gender,$redirurl){
   //https://localhost:8443/eCommerceFacebookLoginResponse?isFBLogin=connected&fbEmail=induspro9@gmail.com&fbFirst_name=Indu&fbLast_name=S&fbGender=F
   $endpoint = 'eCommerceFacebookLoginResponse';
   $client = drubiz_api_client();
@@ -135,6 +135,8 @@ function fb_google_api_login_request($fname,$lname,$email,$gender){
         $return['error'] = FALSE;
         drupal_set_message('User logged in!');
         $_SESSION['drubiz']['session']['firstName']=$fname;
+        $_SESSION['drubiz']['session']['redirecturl']=$redirurl;
+        $pageredirecturl = $redirurl;
         // dsm($raw_headers);
         // dsm($_SESSION['drubiz']);
         if (!empty($_POST['REDIR'])) {
@@ -147,7 +149,7 @@ function fb_google_api_login_request($fname,$lname,$email,$gender){
       }
     }
  
-    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'fbdata','account','uid','user_exists','user'), 1) . '</pre>'); 
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'fbdata','account','uid','pageredirecturl','user'), 1) . '</pre>'); 
   return $return;
 }
 
@@ -1598,6 +1600,7 @@ print render($fivestar);*/
     '#value' => 'Submit',
     '#submit' => array('drubiz_hasti_comments_form_submit'),
   );
+  //$form['#submit'][] = 'drubiz_hasti_comments_form_submit';
   $form['#attributes'] = array('data-ajax' => 'false', 'name' => 'hasti_comments_fn');
   // $form['#submit'] = array('drubiz_hasti_comments_form_submit'); 
    return $form;
@@ -1628,8 +1631,8 @@ function drubiz_hasti_comments_form_submit($form, &$form_state) {
   $raw_json =  $response->getBody();
   $data = json_decode($raw_json, TRUE);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data','endpoint'), 1) . '</pre>');
+   //drupal_set_message(t('The form has been submitted.'));
   // echo json_encode($data);
-
 }
 
 function displayPDPReviewandRating($productId) {

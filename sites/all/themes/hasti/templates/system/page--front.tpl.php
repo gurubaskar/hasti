@@ -82,7 +82,7 @@ require_once 'vendor/autoload.php';
 
   $drubiz_category_names = json_decode(json_decode(json_encode(variable_get('drubiz_category_names'))),true);
   $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images'));
-  
+  //print_r($_SERVER);
 ?>
 <div id="topnav">
   <div class="container-fluid">
@@ -146,8 +146,10 @@ require_once 'vendor/autoload.php';
   </div>
   </form>
   <span class="facebook">
+ <?php $_SESSION['redirurl'] = $_SERVER['HTTP_REFERER'];?>
   <a href="<?php echo url('facebook-config.php')?>">SIGN IN WITH FACEBOOK</a></span>
   <span class="google"><a href="<?php echo url('google-config.php')?>">SIGN IN WITH GOOGLE</a></span>
+ 
   </div>
    <div id="forgotPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
