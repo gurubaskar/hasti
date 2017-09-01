@@ -63,6 +63,7 @@ a:focus{text-decoration:none !important;}
     z-index: 999999;
 }
 #topnav p{color:#fff;  margin-bottom:0px; }
+#topnav .header-content, #topnav .siteHeaderLinks{padding:0 15px !important;}
 .siteHeaderLinks ul{float:right; margin-bottom:0;}
 .siteHeaderLinks ul li{border-right:none; float:left; padding:0 0 0 10px;}
 .siteHeaderLinks ul li a{margin-right:0; color: #fff !important; font-size: 10px !important;  text-transform:uppercase; font-weight: bold; padding: 0 7px 0 0 !important; border-right: 1px solid #fff !important; border:0; text-shadow: 0; box-shadow:none;}
@@ -90,7 +91,7 @@ a:focus{text-decoration:none !important;}
 #header .cart p{padding-left:33px;}
 #header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:20px;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
-#navbar{margin-bottom:0px;}
+#navbar{margin-bottom:0px; padding-right:0;}
 #navbar a.logo{margin:5px 0 0 0;}
 #navbar img{float:left;}
 .ui-page-theme-a .ui-btn:active, html .ui-bar-a .ui-btn:active, html .ui-body-a .ui-btn:active, html body .ui-group-theme-a .ui-btn:active, html head+body .ui-btn.ui-btn-a:active{background-color:inherit !important; border-color:inherit !important; text-shadow:none !important;}
@@ -226,6 +227,7 @@ a:focus{text-decoration:none !important;}
         padding: 0;
         background: none; margin-top:5px;
     }
+    #eCommerceNavBarMenu li:hover>ul li.subLevel img{max-width:100%;}
     #eCommerceNavBarMenu li:hover>ul li.subLevel>ul>li{
         width: 100%;
         float: left;
@@ -280,7 +282,7 @@ a:focus{text-decoration:none !important;}
 #size-wrap li{float:left; width:auto; margin-right:15px;}
 
 .plp .plp-right .text-center{float:right; padding-top:20px;}
-.plp .plp-right .sortby{padding:0;}
+/*.plp .plp-right .sortby{padding:0;}*/
 .plp .plp-right{margin:0 0 30px 0;}
 /*.plp .plp-right .box:hover{border:1px solid red;}*/
 .plp .plp-right .col-xs-12.col-sm-4.col-md-3{padding-left:0;}
@@ -580,7 +582,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right .address h4{margin-bottom:20px; margin-top:10px; font-weight:normal; font-size:17px; float:left;}
 .checkout-right .addressbox .address>.ui-radio{float:left; width:100%; position:inherit; margin:0;}
 .checkout-right .addressbox .address>.ui-radio input{position:absolute; top:0; margin:0; position:inherit; width:17px; height:17px; left:0; z-index:0;}
-.checkout-right .addressbox{width:47% !important; margin-right:15px; padding:15px; position:relative;}
+.checkout-right .addressbox{width:47% !important; margin-right:15px; padding:15px; position:relative; min-height:280px;}
 .checkout-right .address span{float:left; width:100%; padding-bottom:6px; font-weight:normal; color:#6d6e70;}
 .checkout-right .address .phno{padding-top:15px; width:100%; float:left;}
 .checkout-right .address .phno span, .checkout .address .phno label{width:auto; float:left; color:#6d6e70; font-weight:bold;}
@@ -983,7 +985,7 @@ a:focus{text-decoration:none !important;}
 #eCommerceNavBar .show-on-mobile{
     display: block;
     position: absolute !important;
-    top:63px;
+    top:73px;
     width:300px !important; left:0px;
 }
 #eCommerceNavBar ul#eCommerceNavBarMenu{float:left; z-index:1;}
@@ -1410,7 +1412,7 @@ a:focus{text-decoration:none !important;}
     .pdp .stock ul li{width:100%; margin-bottom:10px;}
     .details-btns{position:relative; width:100%; float:right; right:0px;}
     .details-btns a{width:100%;}
-    #navbar, .search-section{padding:0 !important;}
+    #navbar, .search-section, #topnav .header-content, #topnav .siteHeaderLinks{padding:0 !important;}
     .mobsearch-icon{margin-right:10px;}
     .mob-nav{width:40px; margin-right:10px;}
     .mob-search input[type="text"]{width:86%;}
@@ -1518,6 +1520,5 @@ a:focus{text-decoration:none !important;}
 }
 .ui-select .ui-btn select option{padding:5px !important; font-size:13px;}
 .modal-dialog{top:140px !important;}
-/*.fixed-header{ position: fixed;
-          top:0; left:0;
-          width: 100%;}*/
+/*#eCommerceNavBarMenu li:hover>ul, #eCommerceNavBarMenu li:hover>ul li.subLevel, #eCommerceNavBar > ul > li > ul > li > ul{display:block !important;}*/
+.plp #content{padding-top:0;}
