@@ -19,28 +19,28 @@
             $stateList = $state['stateList'];
           ?>
           <div class="form-row">
-            <label>First Name</label>
+            <label><span class="required">*</span>First Name</label>
             <input type="text" maxlength="20" class="" name="firstname" id="firstname"  data-msg-required="FirstName can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Last Name</label>
+            <label><span class="required">*</span>Last Name</label>
             <input type="text" maxlength="20" class="" name="lastname" id="lastname" data-msg-required="Lastname can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Address 1</label>
+            <label><span class="required">*</span>Address 1</label>
             <input type="text" name="address1" id="address1" data-msg-required="Address1 can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Address 2</label>
+            <label><span class="required">*</span>Address 2</label>
             <input type="text" name="address2" id="address2" data-msg-required="Address2 can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>City</label>
+            <label><span class="required">*</span>City</label>
             <input type="text" name="city" id="city" data-msg-required="City can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>State</label>
-            <select name="state" id="state">
+            <label><span class="required">*</span>State</label>
+            <select name="state" id="state" data-msg-required="Select State" data-rule-required="true">
             <?php foreach ($stateList as $key => $value) { ?>
               <option value="<?php echo $value['geoId']?>"><?php echo $value['geoName']?></option>
             <?php } ?>
@@ -51,11 +51,11 @@
             <input type="text" name="country" class="disabled-text" value="India" disabled>
           </div>
           <div class="form-row">
-            <label>Zipcode</label>
+            <label><span class="required">*</span>Zipcode</label>
             <input type="text" maxlength="6" name="zipcode" id="zipcode"  data-msg-required="Zipcode can't be Empty" data-rule-required="true" data-rule-minlength="6">
           </div>
           <div class="form-row">
-            <label>Mobile</label>
+            <label><span class="required">*</span>Mobile</label>
             <input type="text" maxlength="10" name="mobile" id="mobile"  data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
           </div>
           <div class="btns-wrap">          

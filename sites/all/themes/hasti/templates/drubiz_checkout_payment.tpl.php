@@ -48,13 +48,13 @@ if(!empty($_GET['from'])) {
             <input type="submit" value="Sign In" id="signinorder">
             </form>          
           <div class="checkoutbtn-wrap">            
-            <span class="forgot-pwd"><a href="#" onclick="openForgotPassword()">Forgot Password?</a></span>
+            <span class="forgot-pwd"><a href="#" onclick="opencheckoutForgotPassword()">Forgot Password?</a></span>
             <span class="facebook"><a href="<?php echo url('facebook-config.php')?>" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
             <span class="google"><a href="<?php echo url('google-config.php')?>" class="ui-link">SIGN IN WITH GOOGLE</a></span>
           </div>
           
         </div>
-        <div id="forgotPopup">
+        <div id="forgotPopupCheckout">
           <h3>Forgot Password</h3>
           <div id="forgot_errormsgs" style=""></div>
           <form method="post" action="<?php echo url('forgotPassword') ?>" id="checkoutforgotpwdForm" name="checkoutforgotpwdForm">

@@ -6,6 +6,25 @@
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right myorders">
   <h3>Track Order Details</h3>
   <div id="demo-top-bar">
+  <div class="track-container">
+      <!--h3>Track your Status</h3-->
+      <div id="track-wrap">
+        <?php
+          $trackList = "";
+          foreach ($track as $key => $trackValue) { 
+            $trackList = $trackValue['statusList'];
+          }
+          $li = '';
+          foreach ($trackList as $key => $statusValue) { 
+            $li .= '<li class="progtrckr-done">'.$statusValue.'</li><!--';
+            $li .= '-->';
+          } 
+        ?>  
+        <ol class="progtrckr" data-progtrckr-steps="5">
+          <?php echo $li;?>
+        </ol>
+      </div>
+    </div>
     <div class="shippingDetail">
       <div class="trackOrderDetails">
         <h4>Order Details</h4>
@@ -89,24 +108,6 @@
         </div>
       </div>
     </div>
-    <div class="track-container">
-      <h3>Track your Status</h3>
-      <div id="track-wrap">
-        <?php
-          $trackList = "";
-          foreach ($track as $key => $trackValue) { 
-            $trackList = $trackValue['statusList'];
-          }
-          $li = '';
-          foreach ($trackList as $key => $statusValue) { 
-            $li .= '<li class="progtrckr-done">'.$statusValue.'</li><!--';
-            $li .= '-->';
-          } 
-        ?>  
-        <ol class="progtrckr" data-progtrckr-steps="5">
-          <?php echo $li;?>
-        </ol>
-      </div>
-    </div>
+    
   </div>
 </div>
