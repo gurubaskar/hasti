@@ -9,7 +9,7 @@
               </div>
               <div class="cartbox">
                 <p>Thank you for shopping with us. We would like to let you know that Hasti has received your order and is preparing for its shipment. Your order delivery details are stated below.</p>
-                <p>If you would like to view the status of your order or make any changes to it, please visit '<a href="#">Track order</a>'</p>
+                <p>If you would like to view the status of your order or make any changes to it, please visit '<a href="<?php echo url('account/trackOrder/')?><?php echo $order['orderId'] ?>">Track order</a>'</p>
                 <div class="col-xs-12 col-sm-6 col-md-6 pleft delivery-wrap">
                   <p>Your Estimated Delivery date is : <br/><span calss="delivery-details">Thursday, May 30 2017 - Friday May 31, 2017</span></p>
                   <p>Your Purchase invoice has been sent to your email id which is:<br/> <span calss="delivery-details"><?php echo $GLOBALS['user']->mail;?></span></p>
