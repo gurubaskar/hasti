@@ -28,6 +28,7 @@ function ajaxErrorMsgDisplay(msg,type='info') {
     $(".wishlist-options").hide();
     $(".mob-search").hide();
     $("#forgotPopup").hide();
+    $("#forgotPopupCheckout").hide();
   });
 
  $(document).ready(function(){
@@ -818,7 +819,11 @@ function openForgotPassword() {
   jQuery("#forgotPopup").show();
   jQuery("#emailid").val("");
 }
-
+function opencheckoutForgotPassword() {
+  jQuery("#signInPopup").hide();
+  jQuery("#forgotPopupCheckout").show();
+  jQuery("#emailid").val("");
+}
 function openSignIn() {
  jQuery("#signInPopup").show();
  jQuery("#forgotPopup").hide(); 

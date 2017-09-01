@@ -20,27 +20,27 @@
             $stateList = $state['stateList'];
           ?>
           <div class="form-row">
-            <label>First Name</label>
+            <label><span class="required">*</span>First Name</label>
             <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $toName[0];?>"  data-msg-required="FirstName can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Last Name</label>
+            <label><span class="required">*</span>Last Name</label>
             <input type="text" maxlength="20" class="" name="lastname" id="lastname" value="<?php echo $toName[1];?>" data-msg-required="Lastname can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Address 1</label>
+            <label><span class="required">*</span>Address 1</label>
             <input type="text" name="address1" id="address1" value="<?php echo $addr['address1'];?>" data-msg-required="Address1 can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Address 2</label>
+            <label><span class="required">*</span>Address 2</label>
             <input type="text" name="address2" id="address2" value="<?php echo $addr['address2'];?>" data-msg-required="Address2 can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>City</label>
+            <label><span class="required">*</span>City</label>
             <input type="text" name="city" id="city" value="<?php echo $addr['city'];?>" data-msg-required="City can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>State</label>
+            <label><span class="required">*</span>State</label>
             <select name="state" id="state">
               <?php foreach ($stateList as $key => $value) { 
                 $checked = '';
@@ -57,12 +57,12 @@
             <input type="text" name="country" class="disabled-text" value="India" disabled>
           </div>
           <div class="form-row">
-            <label>Zip Code</label>
+            <label><span class="required">*</span>Zip Code</label>
             <input type="hidden" name="addressid" class="" value="<?php echo $addr['contactMechId'];?>">
             <input type="text" maxlength="6" name="zipcode" id="zipcode" value="<?php echo $addr['postalCode'];?>"  data-msg-required="Zipcode can't be Empty" data-rule-required="true">
           </div>
           <div class="form-row">
-            <label>Mobile</label>
+            <label><span class="required">*</span>Mobile</label>
             <input type="text" maxlength="10" name="mobile" id="mobile" value="<?php echo $addr['contactNumber'];?>" data-msg-required="The Mobile number is required." id="" data-rule-required="true" data-rule-number="true" data-rule-minlength="10">
           </div>
           <div class="btns-wrap">
