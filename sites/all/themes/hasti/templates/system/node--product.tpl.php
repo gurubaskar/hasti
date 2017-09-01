@@ -347,10 +347,10 @@
         </div>
         <p><?php echo $body[0]['safe_value'] ?></p>
         <div class="story-wrap">
-          <h2>Story</h2>
           <?php $storyInfo = pdp_story_info($product->product_id); 
             if($storyInfo->isError == 'false') :
           ?>
+          <h2>Story</h2>
           <?php if(!empty($storyInfo->storyDescription[0]) and $storyInfo->storyDescription[0] != null) { ?>
           <p><?php echo $storyInfo->storyDescription[0]; ?></p>
           <?php } ?>
@@ -377,17 +377,15 @@
                 <?php } ?>
               </div>
             </div>
-            <div class="btns-wrap">
-              <span><a href="#" class="shareStory">Share this story</a></span>
-              <span><a href="#" id="review-btn" onclick="reviewAction();">Write a review</a></span>
-            </div>
+          </div>
+          <?php endif;?>
+          <div class="btns-wrap">
+            <span><a href="#" class="shareStory">Share this Product</a></span>
+            <span><a href="#" id="review-btn" onclick="reviewAction();">Write a review</a></span>
           </div>
           <div style="clear: both; display: none;" id="socialIcons">
-              <?php print render($region['social_share']); ?>
-            </div>
-          <?php else : ?>
-            <?php echo $storyInfo->_ERROR_MESSAGE_;?>
-          <?php endif;?>
+            <?php print render($region['social_share']); ?>
+          </div>
         </div>
         <div id="reviewForm" style="display: none">
           <?php
