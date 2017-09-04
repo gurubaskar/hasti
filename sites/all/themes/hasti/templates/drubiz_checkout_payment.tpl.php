@@ -37,13 +37,13 @@ if(!empty($_GET['from'])) {
           <a href="<?php echo url('user/logout'); ?>"><input type="button" value="Logout" id="logout"></a>
         </div>
       <?php }else{ ?>
-        <div id="signInPopup">
+        <div id="signInPopupCheckout">
           <h3>Sign In</h3>
           <div id="signin_errormsgs" style=""></div>
           <form method="post" action="<?php echo url('drubiz/user') ?>" id="chksignInForm" name="chksignInForm">
-            <input type="text" placeholder="* User Name" id="" name="USERNAME" data-msg-required="The username is required." data-rule-required="true">
-            <input type="password" placeholder="* Password" id="" name="PASSWORD"  data-msg-required="The Password is required." data-rule-required="true">
-            <span class="remember"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /><span> Remember Me</span></span>
+            <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>" data-msg-required="The username is required." id="USERNAME" data-rule-required="true">
+          <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>"  data-msg-required="The Password is required." id="PASSWORD" data-rule-required="true">  
+        <span class="remember"><input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> /><span> Remember Me</span></span>
             <!--input type="button" value="Sign In" id="signinorder" onclick="signInHasti();"-->
             <input type="submit" value="Sign In" id="signinorder">
             </form>          
@@ -51,8 +51,7 @@ if(!empty($_GET['from'])) {
             <span class="forgot-pwd"><a href="#" onclick="opencheckoutForgotPassword()">Forgot Password?</a></span>
             <span class="facebook"><a href="<?php echo url('facebook-config.php')?>" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
             <span class="google"><a href="<?php echo url('google-config.php')?>" class="ui-link">SIGN IN WITH GOOGLE</a></span>
-          </div>
-          
+          </div>          
         </div>
         <div id="forgotPopupCheckout">
           <h3>Forgot Password</h3>
@@ -63,7 +62,7 @@ if(!empty($_GET['from'])) {
           <div class="forgot-btn">
             <!--input type="button" value="Continue" id="Continue" onclick="checkEmail();"-->
             <input type="submit" value="Continue" id="Continue">
-            <input type="button" value="Back" id="back" onclick="closeForgotPassword();">
+            <input type="button" value="Back" id="back" onclick="closeForgotPasswordchkout();">
           </div>
           </form>
         </div>

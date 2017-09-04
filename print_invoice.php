@@ -11,6 +11,7 @@ $partyId = $_GET['partyid'];
 $orderInformation = print_order_invoice($orderid,$partyId);
 //echo "<pre>";print_r($orderInformation);
 //echo $orderInformation['orderId'];
+define('INR',chr(128));
 $pdf = new PDF();
 $pdf->AddPage('P'); 
 $pdf->SetFont('Arial','B',16);
@@ -50,28 +51,26 @@ $html.='<tr>
 		  <td height="30">'.$order['productName'][0].'</td>
 		  <td height="30">'.$order['productName'][0].'</td>
 		  <td height="30">'.round($order['quantity']).'</td>
-		  <td height="30">'.$order['unitPrice'].'</td>
-		  <td height="30">'.$order['unitPrice'].'</td>
+		  <td height="30">Rs.'.$order['unitPrice'].'</td>
+		  <td height="30">Rs.'.$order['unitPrice'].'</td>
 		</tr>';	
 }
-
-$html.='
-<tr>
+$html.='<tr>
 <td width="670px" height="30" align="right" colspan="4"></td>
 <td width="670px" height="70"><div><hr><br></div></td></tr>
 <tr>
 <td width="670px" height="30" style="border: 1px solid black" colspan="4">SignUpOffers</td>
-<td height="30">$0.00</td></tr>
+<td height="30">Rs. 0.00</td></tr>
 <tr>
 <tr>
 <td width="670px" height="30" colspan="4">Invoice Item Shipping and Handling</td>
-<td height="30" style="border-bottom: 2px solid #000000;">$0.00</td></tr>
+<td height="30" style="border-bottom: 2px solid #000000;">Rs. 0.00</td></tr>
 <tr>
 <td width="670px" height="30" align="right" colspan="4">Total</td>
-<td width="670px" height="70">'.$orderInformation['orderGrandTotal'].'</td></tr>';
+<td width="670px" height="70">Rs. '.number_format($orderInformation['orderGrandTotal'],2).'</td></tr>';
 $html.='</table>';
 $pdf->WriteHTML($html);
-
+$filename=$orderid.'.pdf';
 //$pdf->Cell(40,10,'Hello World!');
-$pdf->Output('example1.pdf','I');
+$pdf->Output($filename,'I');
 ?>
