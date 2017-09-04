@@ -362,14 +362,15 @@ function hastiSignIn(){
 
 /*******************Sign IN*************************/
 function signInHasti(){ 
-  var data_USERNAME = jQuery('#signInForm').find('[name=USERNAME]:first').val();
-  var data_PASSWORD = jQuery('#signInForm').find('[name=PASSWORD]:first').val();
+  var data_USERNAME = jQuery('#USERNAME').val();
+  var data_PASSWORD = jQuery('#PASSWORD').val();
+
   var remember = jQuery('#remember').val();
   var params = jQuery(location).attr('pathname');
   var checkout = params.split("/");
   var data = 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD)+'&remember='+remember;
   loading();
-  //alert(data);
+  alert(data);
   jQuery.ajax({
     type: "POST",
     url: Drupal.settings.basePath + 'drubiz/user',
@@ -678,7 +679,7 @@ function showVariants(e ,selectFeatureDiv , productId){
     var id = jQuery(e).attr("id");
     var data = "";
     data += 'productId=' + productId;
-    loading();
+    //loading();
     jQuery.ajax({
       type: 'POST',
       url: Drupal.settings.basePath + 'drubiz/plp-check-inventory',
@@ -822,7 +823,7 @@ function openForgotPassword() {
   jQuery("#emailid").val("");
 }
 function opencheckoutForgotPassword() {
-  jQuery("#signInPopup").hide();
+  jQuery("#signInPopupCheckout").hide();
   jQuery("#forgotPopupCheckout").show();
   jQuery("#emailid").val("");
 }
@@ -835,6 +836,10 @@ function openSignIn() {
 function closeForgotPassword() {
  jQuery("#forgotPopup").hide();
  jQuery("#signInPopup").show(); 
+}
+function closeForgotPasswordchkout() {
+ jQuery("#signInPopupCheckout").show();
+  jQuery("#forgotPopupCheckout").hide();
 }
 
 function openLogin() {
