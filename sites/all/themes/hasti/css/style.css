@@ -557,6 +557,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-left ul li a{font-size:15px; color:#6d6e70 !important; font-weight:500; padding:9px 0; display:block;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
+.breadcrumb>.active{color:#777 !important;}
 .checkout-right, .wishlist, .myorders{padding:0px 15px;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
@@ -689,7 +690,7 @@ a:focus{text-decoration:none !important;}
     margin-left: 0px !important;
     font-family: 'Roboto';
 }
-.alert.alert-info{top:140px !important;}
+.alert.success{top:140px !important;}
 .bootbox-close-button{right: -15px; background-color: #000 !important; border-radius: 50px; width: 22px; height: 22px; opacity: 1 !important; color: #fff !important; top: -13px;}
 .form-wrap{width:100%; float:left; margin:20px 0;}
 .required{color:#BF0000; margin-right:2px; width:auto;}
@@ -1515,7 +1516,7 @@ a:focus{text-decoration:none !important;}
 .wishlist-options ul{float:left; width:100%; position:relative;}
 .wishlist-options ul li{width:35px; height:25px;}
 .wishlist-options ul.size li{float:left; background:#fff; border:1px solid #afafaf; margin-right:7px; line-height:14px;}
-.wishlist-options ul.size li a{color:#000; font-weight:bold; padding:5px; float:left;}
+.wishlist-options ul.size li a{color:#000; font-weight:bold; padding:5px; float:left; width:100%; text-align:center;}
 .wishlist-options ul.color li, .color ul li{float:left; background:#fff; border:1px solid #afafaf; margin-right:7px; line-height:14px; margin-bottom:10px;}
 .wishlist-options ul.color li a{color:#000; font-weight:bold; float:left;}
 .ui-popup .err_msgs {
@@ -1529,3 +1530,6 @@ a:focus{text-decoration:none !important;}
 /*#eCommerceNavBarMenu li:hover>ul, #eCommerceNavBarMenu li:hover>ul li.subLevel, #eCommerceNavBar > ul > li > ul > li > ul{display:block !important;}*/
 .plp #content{padding-top:0;}
 .box .img-wrap .close{color:#afafaf; opacity:.5;}
+.success.animated{width:23% !important; padding:10px 20px !important;}
+.success{background-color:#009d7c !important; border-color:#035544 !important; color:#fff !important;}
+.success .close{color:#fff !important; opacity:.5 !important;}
