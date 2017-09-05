@@ -573,8 +573,9 @@ function drubiz_user() {
         // dsm($_SESSION['drubiz']);
         //login the user in
         if(!empty($re)) {
-            setcookie ("username",$username,time()+ (10 * 365 * 24 * 60 * 60));
-            setcookie ("password",$password,time()+ (10 * 365 * 24 * 60 * 60));      
+            setcookie ("username",$username,time() + (86400 * 30));
+            setcookie ("password",$password,time() + (86400 * 30));  
+            //$if = 'if';    
         }else{ //remember me not checked
             if(isset($_COOKIE["username"])) {
               setcookie ("username","");
@@ -582,6 +583,7 @@ function drubiz_user() {
             if(isset($_COOKIE["password"])) {
               setcookie ("password","");
             }
+            //$else = 'else'; 
         }
         if (!empty($_POST['REDIR'])) {
           drupal_goto();
@@ -599,7 +601,7 @@ function drubiz_user() {
   else {
     $return['error_messages'][] = 'Invalid username / password.';
   }
-  watchdog(__FUNCTION__, print_r(compact('response', 'data','return'), 1));
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('response', 'data','return',"re",'if','else'), 1));
   echo json_encode($return);
 }
 
