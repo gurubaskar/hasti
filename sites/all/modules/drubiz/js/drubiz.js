@@ -474,7 +474,7 @@ $(document).ready(function() {
     var product_id = $(this).data('product-id');
     $(this).closest('ul').find('a.selected').removeClass('selected');
     $(this).closest('a').addClass('selected');
-    $(this).closest('a').find('li').css("border", "red solid 1px");
+    $(this).closest('a').find('li').css("border", "#009989 solid 1px");
   });
   $('#js_addToCart, #js_addToCart_buynow, .plp-add-to-cart').click(function(e) {
     e.preventDefault();
@@ -487,7 +487,7 @@ $(document).ready(function() {
       var quantity = 1; // commented due to no quantity selectable. $('#quantity').val();
     }
     if(product_id == null || product_id == undefined){
-      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxInfo);
+      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxSuccess);
       // alert('Please select a size of your choice');
       return;
     }
@@ -1097,7 +1097,8 @@ $('.validateOTP').click(function(e) {
     e.preventDefault();
     var search_text = $('#searchText').val().replace(/[^a-z0-9\s\.'"]+/ig, '');
     if (search_text.length == 0) {
-      alert(Drupal.t('Please enter some search terms'));
+      // alert(Drupal.t('Please enter some search terms'));
+      ajaxErrorMsgDisplay('Please enter some search terms');
       $('#searchText').focus();
     }
     else {

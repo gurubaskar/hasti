@@ -1622,7 +1622,6 @@ function drubiz_hasti_comments_form_submit($form, &$form_state) {
   $params = array(
     'productId'     => $productid,
     'REVIEW_TEXT'   => $comments,
-    'productStoreId'=>'WOI_STORE',
     'REVIEW_NICK_NAME'=> $nickname,
     'CLIENT'        => 'Hasti',
     'overallRate'   => $ratings,
