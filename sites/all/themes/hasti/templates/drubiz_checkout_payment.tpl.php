@@ -49,6 +49,7 @@ if(!empty($_GET['from'])) {
             </form>          
           <div class="checkoutbtn-wrap">            
             <span class="forgot-pwd"><a href="#" onclick="opencheckoutForgotPassword()">Forgot Password?</a></span>
+            <?php $_SESSION['page_url'] = $_SERVER['HTTP_REFERER'];?>
             <span class="facebook"><a href="<?php echo url('facebook-config.php')?>" class="ui-link">SIGN IN WITH FACEBOOK</a></span>
             <span class="google"><a href="<?php echo url('google-config.php')?>" class="ui-link">SIGN IN WITH GOOGLE</a></span>
           </div>          
