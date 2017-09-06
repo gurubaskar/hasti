@@ -512,11 +512,12 @@ a:focus{text-decoration:none !important;}
 
 #cart #subtotal, .myaccount-right.reOrder .subTotal, .myaccount-right.myorders .subTotal, #cart #shipping, #order-summary #subtotal, #order-summary #shipping, .myaccount-right.myorders #shipping{float:right; width:100%; text-align:right; margin:0px 0 7px 0;}
 
-#subtotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.reOrder .subTotal span:first-child, #cart #shipping label, #order-summary #shipping label, .myaccount-right.myorders #shipping label{color:#6d6e70; font-size:20px !important; font-weight:normal; margin:0 7px 0 0 !important; display:inline-block !important; width:150px; float:left; text-align:right;}
+#subtotal label, .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.reOrder .subTotal span:first-child, #cart #shipping label, #order-summary #shipping label, .myaccount-right.myorders #shipping label, 
+.myaccount-right.reOrder .shipping span:first-child{color:#6d6e70; font-size:20px !important; font-weight:normal; margin:0 7px 0 0 !important; display:inline-block !important; width:150px; float:left; text-align:right;}
 
 .alltotal label, .myaccount-right.myorders .grandTotal span:first-child,.myaccount-right.reOrder .grandTotal span:first-child, #cart #total label, #order-summary #total label{color:#6d6e70; font-size:25px !important; font-weight:normal; margin:0 7px 0 0!important; display:inline-block !important; font-weight:600; width:150px; float:left; text-align:right;} 
 
-#subtotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.reOrder .subTotal span, #cart #shipping span, #order-summary #shipping span, .myaccount-right.myorders #shipping span{color:#0081c5; font-size:20px; font-weight:normal; width:130px; text-align:right; float:right;}
+#subtotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.reOrder .subTotal span, #cart #shipping span, #order-summary #shipping span, .myaccount-right.myorders #shipping span, .myaccount-right.reOrder .shipping span{color:#0081c5; font-size:20px; font-weight:normal; width:130px; text-align:right; float:right;}
 
  .alltotal span,.myaccount-right.myorders .grandTotal span, .myaccount-right.reOrder .grandTotal span, #cart #total span, #order-summary #total span{color:#0081c5; font-size:25px; font-weight:normal; font-weight:600; width:130px; float:left;}
 
@@ -613,7 +614,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right .payment-method #walletOption .wallet-total p, .checkout-right .payment-method #walletOption .wallet-amt p{float:left; width:auto; margin:0;}
 .checkout-right .payment-method #walletOption .wallet-amt p{padding:0 0 0 23px;}
 .checkout-right .payment-method #walletOption .wallet-total .price, .checkout-right .payment-method #walletOption .price{float:left; padding-left:8px; color:#0081c5; font-weight:normal;}
-.payment-method .btns-wrap{width:100%; float:left; margin-top:20px;}
+.payment-method .btns-wrap{width:100%; float:left; margin-top:15px;}
 .payment-method .displayOTP .btns-wrap{margin-top:0;}
 .payment-method .btns-wrap a{background:#00b04c; padding:10px 40px; width:auto;}
 .payment-method .btns-wrap a:hover{color:#fff;}
@@ -1139,6 +1140,7 @@ a:focus{text-decoration:none !important;}
     .pdp .btns-wrap span{width:300px; margin-bottom:10px;}
     .storyimg-wrap .btns-wrap span{width:185px;}
     .menu{width:300%; margin-left:-20px;}
+    .checkoutwrap-left .checkout-left{padding:25px 10px 25px 30px !important;}
 }
 
 @media (min-width:786px){
@@ -1342,7 +1344,11 @@ a:focus{text-decoration:none !important;}
     .contact-right{padding:25px 0 0 0 !important;}
     .contact-right .col-xs-12.col-sm-12.col-md-12{padding-right:0 !important;}
     .myaccount-right.returnOrderItem .cartbox{width:100%;}
+    .checkout-right #delivery-address .addressbox{margin-right:0; width:100%;}
     .plp .plp-right .text-center{padding-right:15px;}
+    .checkout-right #checkout-login #chksignInForm #signinorder, .checkout-right #checkout-login #checkoutsignUpForm #signin, .checkout-right #checkoutforgotpwdForm .ui-input-text, .checkout-right #delivery-address .addressbox{width:100% !important;}
+    .checkout-right .forgot-btn #Continue, .checkout-right .forgot-btn #back{width:49.3%;}
+    /*.mob-search1{display:block !important;}*/
 }
 
 @media (max-width:600px){
@@ -1424,8 +1430,9 @@ a:focus{text-decoration:none !important;}
     .mob-search input[type="text"]{width:86%;}
     .checkout-right #order-confirm label{font-size:17px;}
     .checkout-right .edit-address a{float:right; width:100%; margin-bottom:8px;}
-    .checkout-right .btns-wrap span{width:93%; float:left;}
-    .checkout-right .btns-wrap span.continue{margin-top:15px;}
+    .checkout-right .btns-wrap>span{width:100%; float:left;}
+    .checkout-right .btns-wrap>span.continue{margin-top:15px;}
+    .checkout-right #order-summary>.col-xs-12, .checkout-right #delivery-address>.col-xs-12{padding:0 !important;} 
      #changepwd, #homepage .row2 .col-xs-6, .pdp .pdp-right #reviewForm input[type="text"], .pdp .pdp-right #reviewForm .btn-primary{width:100% !important;}
      .ui-popup.signin{width:95% !important;}
     #homepage .row1 .col-xs-6, #homepage .row3 .col-xs-6{width:100%;}
@@ -1442,6 +1449,7 @@ a:focus{text-decoration:none !important;}
     .order-confirmation .cart-details .total div{float:left;}
     .checkpin input[type="submit"]{right:0 !important;}
     .plp .plp-right{padding:6px 0 0 0;}
+    .checkout-right .forgot-btn #Continue, .checkout-right .forgot-btn #back{width:49%;}
 
 }
 @media(max-width:439px){
@@ -1530,5 +1538,6 @@ a:focus{text-decoration:none !important;}
 /*#eCommerceNavBarMenu li:hover>ul, #eCommerceNavBarMenu li:hover>ul li.subLevel, #eCommerceNavBar > ul > li > ul > li > ul{display:block !important;}*/
 .plp #content{padding-top:0;}
 .box .img-wrap .close{color:#afafaf; opacity:.5;}
-.alert-info.animated{width:23% !important; padding:10px 20px !important;}
+.alert-info.animated{/*width:23% !important;*/ padding:10px 20px !important;}
 .pdpSelectableFeature li>a.selected{border:1px solid #009989 !important; font-size:14px;}
+.checkout-right .payment-method #paymentOption .validateOTP, .checkout-right .payment-method #paymentOption #sendOTP{margin-bottom:20px;}

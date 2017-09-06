@@ -382,7 +382,7 @@ function drubiz_add_address() {
     'CUSTOMER_COUNTRY'        => 'IND',
     'CUSTOMER_POSTAL_CODE'    => $_POST['data_zipcode'],
     'PHONE_MOBILE_CONTACT'    => $_POST['data_mobile'],
-    'productStoreId'          => 'WOI_STORE',
+    'productStoreId'          => 'HASTTI_STORE',
     'contactMechPurposeTypeId' => 'SHIPPING_LOCATION',
     'partyId'                 => get_user_party_id(),
   );
@@ -471,7 +471,7 @@ function drubiz_user_change_password() {
     $endpoint = 'validateCustomerPasswordResponse';
     $params = array(
       'partyId'         => get_user_party_id(),
-      'productStoreId'  => 'WOI_STORE',
+      'productStoreId'  => 'HASTTI_STORE',
       'USERNAME'        => $user->mail,
       'CUSTOMER_EMAIL'  => $user->mail,
       'OLD_PASSWORD'    => $current_password,
@@ -488,17 +488,6 @@ function drubiz_user_change_password() {
       'requirePasswordChange' => 'Y',
     );
   }
-  // $request = 'validateCustomerPasswordResponse?' . http_build_query(array(
-  //   'partyId'         => get_user_party_id(),
-  //   'productStoreId'  => 'WOI_STORE',
-  //   'USERNAME'        => $user->mail,
-  //   'CUSTOMER_EMAIL'  => $user->mail,
-  //   'OLD_PASSWORD'    => $current_password,
-  //   'PASSWORD'        => $new_password,
-  //   'CONFIRM_PASSWORD' => $new_password,
-  // ));
-  // $response = $client->get($request);
-  //http://localhost:8080/eCommerceLoginChangePasswordResponse;jsessionid=A0AD826F3034C511E0F4C9E4D6E6F0E1.jvm1?USERNAME=nikshithas29@gmail.com&PASSWORD=V4FkUQ&newPassword=123456&newPasswordVerify=123456&requirePasswordChange=Y
 
   $jsessionid = get_user_jsessionid();
   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
@@ -1751,7 +1740,7 @@ function myaccount_return_order_details() {
     $params = array(
       'orderId'             => $_POST['orderId'],
       'fromPartyId'         => get_user_party_id(),
-      'destinationFacilityId' => 'WOI_FAC',
+      'destinationFacilityId' => 'HASTTI_FAC',
       'codRefund'           => 'Y',
       'accountHolderName'   => $_POST['accountHolderName'],
       'bankName'            => $_POST['bankName'],
@@ -1763,7 +1752,7 @@ function myaccount_return_order_details() {
     $params = array(
       'orderId'             => $_POST['orderId'],
       'fromPartyId'         => get_user_party_id(),
-      'destinationFacilityId' => 'WOI_FAC',
+      'destinationFacilityId' => 'HASTTI_FAC',
       'codRefund'           => 'N',
       'returnOrderItem'     => $returnOrderItem,
     );
@@ -1859,7 +1848,7 @@ function wallet_store_credit(){
         $amount = $walletAmnt;
     }
      $params = array(
-      'productStoreId' => 'WOI_STORE',
+      'productStoreId' => 'HASTTI_STORE',
       'partyId'         => $partyId,
       'storeCreditAmount' => $amount//$grandTotal['orderGrandTotal']
     );
