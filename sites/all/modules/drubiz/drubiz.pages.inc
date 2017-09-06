@@ -561,18 +561,18 @@ function drubiz_user() {
         // dsm($raw_headers);
         // dsm($_SESSION['drubiz']);
         //login the user in
-        if(!empty($re)) {
-            setcookie ("username",$username,time() + (86400 * 30));
-            setcookie ("password",$password,time() + (86400 * 30));  
-            //$if = 'if';    
+       if(!empty($re)) {
+            setcookie('username', $username, time() + (86400 * 30), '/');
+            setcookie('password', $password, time() + (86400 * 30), '/');            
         }else{ //remember me not checked
             if(isset($_COOKIE["username"])) {
-              setcookie ("username","");
+              setcookie('username', '', time() - 3600, '/');
+              unset($_COOKIE['username']);
             }
             if(isset($_COOKIE["password"])) {
-              setcookie ("password","");
+              setcookie('password', '', time() - 3600, '/');
+              unset($_COOKIE['password']);
             }
-            //$else = 'else'; 
         }
         if (!empty($_POST['REDIR'])) {
           drupal_goto();
