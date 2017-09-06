@@ -642,7 +642,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right .heading-bar{margin-top:0;}
 .myaccount-right .new-address{float:right;}
 .myaccount-right .addressbox{width:47%; margin-right:15px; margin-bottom:15px; padding:10px;}
-.myaccount-right .addressbox .address span{color:#6d6e70; line-height:28px;}
+.myaccount-right .addressbox .address span{color:#6d6e70; line-height:28px; display:block;}
 .myaccount-right .addressbox label{margin:0 2px 0 0; color:#6d6e70; font-size:14px; line-height:28px; float:left;}
 .myaccount-right .addressbox .edit-address{padding:0;}
 .myaccount-right .addressbox .edit-address a{float:left; width:auto; margin:15px 5px 0 0; border:1px solid #00b04c; padding:5px 9px; font-size:14px; color:#000 !important; font-weight:400;}
@@ -705,7 +705,7 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 40px; font-size:15px; font-weight:400; border:none; line-height:16px;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 37px; font-size:15px; font-weight:400; border:none; line-height:16px;}
 .modal-footer button.btn-primary{background:#00b04c; color:#fff !important; padding:10px 20px; font-size:15px; font-weight:400; border:none; line-height:16px; border:none; border-radius:0;}
 .modal-footer .btn-default{border:1px solid #00b04c; color:#000; border-radius:0;}
 .modal-body .bootbox-close-button
@@ -921,7 +921,7 @@ a:focus{text-decoration:none !important;}
 }
 
 /************************** track order API starts *************************/
-.myaccount-right.myorders .track-container{width:100%; float:left; margin:10px 0 0 0;}
+.myaccount-right.myorders .track-container{width:100%; float:left; margin:0;}
 .myaccount-right.myorders #track-wrap{width:100%; float:left; padding:20px; border:1px solid #ddd; background-color:#eaeaea; margin:0 0 20px 0;}
 
 #track-wrap ol.progtrckr {
@@ -1174,9 +1174,15 @@ a:focus{text-decoration:none !important;}
      #eCommerceNavBarMenu li:hover>ul li.subLevel{width:18%;}
      #footer .icons-wrap ul li{margin:0 3% 0 0;}
 }
+
 @media only screen and (max-width:910px) and (min-width:768px){
     .left-wrap ul li h3{font-size:13px;}
 }
+
+@media only screen and (max-width:920px) and (min-width:768px){
+    .myaccount-right #addNewAddress .btns-wrap, .myaccount-right #editNewAddress .btns-wrap{margin-left:0;}
+}
+
 @media only screen and (max-width:860px) and (min-width:768px){
      #eCommerceNavBarMenu li:hover>ul li.subLevel{width:23%;}
      #footer .icons-wrap ul li{margin:0 1% 0 0;}
@@ -1230,9 +1236,11 @@ a:focus{text-decoration:none !important;}
 @media only screen and (max-width:639px) and (min-width:440px){
     .plp-right .col-xs-12{width:50%;}
 }
+
 @media only screen and (max-width:639px) and (min-width:481px){
     .icon-wrap .icon-container{width:60%;}
 }
+
 @media (max-width:1100px){
     #content {
         padding-top: 215px;
@@ -1413,7 +1421,7 @@ a:focus{text-decoration:none !important;}
     .myaccount-right.wishlist .details-left, .myaccount-right.wishlist .details-right{width:100%;}
     .myaccount-right.wishlist .details-left{margin-bottom:15px; padding-left:0; padding-right:0;}
     .myaccount-right.wishlist .btns-wrap span{float:left; background:#00b04c; width:auto;}
-    .myaccount-right.wishlist .btns-wrap span a{text-align:center; margin:0; padding:8px 15px;}
+    .myaccount-right.wishlist .btns-wrap span a{text-align:center; margin:0; padding:8px 30px;}
     .myaccount-right.wishlist .btns-wrap{bottom:0;}
     .myaccount-right.wishlist .cart-details{padding-left:0;}
     .icon-wrap .icon-container{width:70%;}
@@ -1528,7 +1536,7 @@ a:focus{text-decoration:none !important;}
 .wishlist-options ul.color li, .color ul li{float:left; background:#fff; border:1px solid #afafaf; margin-right:7px; line-height:14px; margin-bottom:10px;}
 .wishlist-options ul.color li a{color:#000; font-weight:bold; float:left;}
 .ui-popup .err_msgs {
-  color:#C0392B;background-color:#5b5958; padding: 7px; font-weight:normal; font-size:13px; float:left; width:100%;
+  color:#fff;background-color:#5b5958; padding: 7px; font-weight:normal; font-size:13px; float:left; width:100%;
 }
 .err_msgs {
   color:#C0392B; padding: 7px; font-weight:normal; font-size:13px; float:left; width:auto;
