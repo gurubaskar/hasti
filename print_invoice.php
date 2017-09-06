@@ -24,6 +24,7 @@ $pdf->SetDrawColor(50,60,100);
 $pdf->Cell(100,10,'Order Invoice',0,0,'C',0);
 $pdf->SetXY(10,50);
 $pdf->SetFontSize(10);
+$orderdate = $orderInformation['orderDate'];
 $html ='<table border="0" width="900px">
 <tr>
 <td height="70" colspan="5"><div>'.$orderInformation['shippingAddress'][0]['toName'].'</div></td></tr>
@@ -36,7 +37,7 @@ $html ='<table border="0" width="900px">
 <tr>
 <td height="70" colspan="5"><div>'.$orderInformation['shippingAddress'][0]['contactNumber'].'</div></td></tr>
 <tr>
-<td height="70" colspan="2"><div>Order Id:'.$orderInformation['orderId'].' </div><br/><div>Date: </div></td>
+<td height="70" colspan="2"><div>Order Id:'.$orderInformation['orderId'].' </div><br/><div>Date: '.date('d-m-Y H:i:s',strtotime($orderdate)).' </div></td>
 </tr>
 <tr>
   <td height="30">Product</td>

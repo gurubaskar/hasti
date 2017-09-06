@@ -370,7 +370,7 @@ function signInHasti(){
   var checkout = params.split("/");
   var data = 'USERNAME=' + encodeURIComponent(data_USERNAME) + '&PASSWORD=' + encodeURIComponent(data_PASSWORD)+'&remember='+remember;
   loading();
-  alert(data);
+//  alert(data);
   jQuery.ajax({
     type: "POST",
     url: Drupal.settings.basePath + 'drubiz/user',
