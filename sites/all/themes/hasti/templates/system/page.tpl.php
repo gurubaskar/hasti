@@ -322,7 +322,25 @@ require_once 'vendor/autoload.php';
         </div>
       </div>
       <div class="mob-search">
-        <input type="text" name="" id="" class="mob-input"> 
+        <form id="frmSearchForm-resp" name="frmSearchForm" method="get">
+            <!-- <fieldset class="formstyle" title="Search this site..."> -->
+              <div id="searchContainer" class="targetMobile" style="display: block;">
+                <div id="searchField">
+                  <input type="text" placeholder="<?php echo t('search website');?>" name="searchText" id="searchText-resp" class="ui-autocomplete-input" autocomplete="on">
+                  <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                  <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
+                </div>
+                <!-- <div id="searchButton">
+                  <input type="image" class="searchSubmit" value="Search" src="<?php print current_theme_path() .'/images/search.png'; ?>">
+                </div> -->
+              </div>
+              <div id="solr-suggestions-resp" class="input-group">
+              </div>
+            <!-- </fieldset> -->
+            <div class="searchErrorMsg" style="color:red"></div>
+            <div class="searchAutoComplete" id="searchAutoComplete"></div>
+          </form>
+        <!-- <input type="text" name="" id="" class="mob-input">  -->
         <input type="image" class="mobsearch-icon1" src="<?php print current_theme_path();?>/images/search.png">
       </div>
   </div>
