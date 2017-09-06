@@ -551,6 +551,7 @@ $(document).ready(function() {
       success: function(data) {
              //console.log(data);
         if (data['isError'] == 'False') {
+          jQuery.notify("Your product has been successfully added to Wishlist");
           close_loading();
         }
         else {
@@ -1334,9 +1335,9 @@ function showPlpSizeGuide1(selectFeatureDiv , productId) {
               }
             }
             var isVisible12 = jQuery("#js_selectableFeature1_li_"+selectFeatureDiv).is(":visible");
-    jQuery("#size-wrapper").html('');
-    jQuery("#size-wrapper").html(wishListContent);
-      jQuery("#js_selectableFeature1_li_"+selectFeatureDiv).slideToggle();
+            jQuery("#size-wrapper").html('');
+            jQuery("#size-wrapper").html(wishListContent);
+            jQuery("#js_selectableFeature1_li_"+selectFeatureDiv).slideToggle();
             close_loading();
           },
           error: function(jqXHR, textStatus, errorThrown){

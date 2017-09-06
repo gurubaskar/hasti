@@ -64,8 +64,8 @@ $html.='<tr>
 <td height="30">Rs. 0.00</td></tr>
 <tr>
 <tr>
-<td width="670px" height="30" colspan="4">Invoice Item Shipping and Handling</td>
-<td height="30" style="border-bottom: 2px solid #000000;">Rs. 0.00</td></tr>
+<td width="670px" height="30" colspan="4">Invoice Item Shipping Charge</td>
+<td height="30" style="border-bottom: 2px solid #000000;">Rs. '.number_format($orderInformation['orderShippingTotal'],2).'</td></tr>
 <tr>
 <td width="670px" height="30" align="right" colspan="4">Total</td>
 <td width="670px" height="70">Rs. '.number_format($orderInformation['orderGrandTotal'],2).'</td></tr>';
