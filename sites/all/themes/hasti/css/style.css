@@ -60,7 +60,7 @@ a:focus{text-decoration:none !important;}
     background: #009989;
     padding: 6px 0;
     position: fixed;
-    z-index: 999999;
+    z-index: 3;
 }
 #topnav p{color:#fff;  margin-bottom:0px; }
 #topnav .header-content, #topnav .siteHeaderLinks{padding:0 15px !important;}
@@ -75,7 +75,7 @@ a:focus{text-decoration:none !important;}
     border-bottom: 1px solid #00b04c;
     padding: 60px 0 0px 0;
     position: fixed;
-    z-index: 99999;
+    z-index: 2;
     background: #FFF;
 }
 #header .search-wrap{float:right;}
@@ -1541,3 +1541,4 @@ a:focus{text-decoration:none !important;}
 .alert-info.animated{/*width:23% !important;*/ padding:10px 20px !important;}
 .pdpSelectableFeature li>a.selected{border:1px solid #009989 !important; font-size:14px;}
 .checkout-right .payment-method #paymentOption .validateOTP, .checkout-right .payment-method #paymentOption #sendOTP{margin-bottom:20px;}
+.ui-popup-screen.in{background-color:#333; opacity:.7 !important;}
