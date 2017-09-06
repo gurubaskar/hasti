@@ -318,9 +318,8 @@ require_once 'vendor/autoload.php';
             <div class="story-wrap">
               <h3>Story of Handloom</h3>
               <p>
-                This is sleeve less Kurti with very descent look. Preferd by all girl or women to wear.<br/>
-                Get a perfect ethnic look by wearing this kurta for women from Sangria.
-                <span class="more"><a href="#">Know More ></a></span>
+                Unlike powerloom and mills, a handloom is operated by hand.<br/> 
+                The thread - warp which runs across the length is first set up - a painstaking process.<br/>then with the help of a shuttle, the weft is woven across the warp.<span class="more"><a href="https://www.hastti.com/story-details/9">Know More ></a></span>
               </p>
             </div>
           </div>
@@ -349,9 +348,8 @@ require_once 'vendor/autoload.php';
             <div class="story-wrap">
               <h3>Story of Spices</h3>
               <p>
-                This is sleeve less Kurti with very descent look. Preferd by all girl or women to wear.<br/>
-                Get a perfect ethnic look by wearing this kurta for women from Sangria.
-                <span class="more"><a href="#">Know More ></a></span>
+                Kalamkari is the earliest and more complex techniques of block-printing on cloth using vegetable dyes. This flourished at Masulipatnam in Andhra Pradesh. <br>The origin of the word kalamkari is from kalam or pen and kari or work. Traditionally kalamkari done here was a mixture of painting and hand-printing. 
+                <span class="more"><a href="https://www.hastti.com/story-details/10">Know More ></a></span>
               </p>
             </div>
           </div>
@@ -377,9 +375,7 @@ require_once 'vendor/autoload.php';
             <div class="story-wrap">
               <h3>Story of Natural Fibre</h3>
               <p>
-                This is sleeve less Kurti with very descent look. Preferd by all girl or women to wear.<br/>
-                Get a perfect ethnic look by wearing this kurta for women from Sangria.
-                <span class="more"><a href="#">Know More ></a></span>
+                The word Applique is a French term and is a craft wherein several pieces of coloured fabrics are cut in various shapes like birds, flowers, leaves etc and are then sown on a fabric to create patterns and stories. <span class="more"><a href="https://www.hastti.com/story-details/11">Know More ></a></span>
               </p>
             </div>
           </div>

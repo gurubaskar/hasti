@@ -962,6 +962,7 @@ function openPaymentMethod() {
  jQuery('#COD').prop('checked', false);
  jQuery('#Online').prop('checked', false);
  jQuery('#OTPValue').val("");
+ jQuery('#wallet').prop('checked', false);
 
 
  jQuery('li a').removeClass("active");
