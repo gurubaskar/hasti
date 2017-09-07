@@ -260,14 +260,14 @@
                 <?php if(strtolower($facet_name) == 'size') { ?>
                   <!-- <label><?php echo($facet_name) . ':'; ?></label> -->
                     <div class="pdpSelectableFeature">
-                      <div class="selectableFeatures <?php echo strtoupper($facet_name) ?>">
+                      <div class="selectableFeatures_<?php echo strtoupper($facet_name) ?>">
                         <div id="size-wrapper">
                           <div class="forgot-area">
                             <ul class="js_selectableFeature_1">
                             <?php $countFacet=0; ?>
                               <?php foreach ($this_facet_values as $this_facet_value => $this_facet_product_id): ?>
                                 <li class="<?php echo $this_facet_value ?>" id="selectableFeature_<?php echo ++$countFacet; ?>">
-                                  <a class="product-choose-facet" href="#" data-product-id="<?php echo $this_facet_product_id ?>" data-ajax="false"><?php echo $this_facet_value ?></a>
+                                  <a class="product-choose-facet-size" href="#" data-product-id="<?php echo $this_facet_product_id ?>" data-ajax="false"><?php echo $this_facet_value ?></a>
                                 </li>
                               <?php endforeach; ?>
                             </ul>
@@ -291,7 +291,7 @@
                 <!-- <li class="string selectableFeature pdpSelectableFeature"> -->
                   <!-- <label><?php echo($facet_name) . ':'; ?></label> -->
                     <div class="pdpSelectableFeature">
-                      <div class="selectableFeatures <?php echo strtoupper($facet_name) ?>">
+                      <div class="selectableFeatures_<?php echo strtoupper($facet_name) ?>">
                         <div id="size-wrapper">
                           <div class="forgot-area">
                             <ul class="js_selectableFeature_1">
@@ -300,7 +300,7 @@
                                   <?php 
                                   $product_nid = get_nid_from_variant_product_id($this_facet_product_id);
                                   ?>
-                                  <a class="product-choose-facet" href="#" data-ajax="false">
+                                  <a class="product-choose-facet-color" href="#" data-ajax="false">
                                     <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>">
                                     </li>
                                   </a>

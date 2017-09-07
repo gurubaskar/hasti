@@ -61,22 +61,6 @@
           <?php } ?>
         <tbody>
       </table>
-      <div class="subTotal">
-        <div class="price1-wrap"><?php //echo "<pre>";print_r($order);?>
-          <span>Sub Total</span><span>&#8377;. <?php echo format_money($order['cartSubTotal']);?></span>
-        </div>
-      </div>    
-      <div class="shipping">
-        <div class="price1-wrap"><?php //print_r($order);?>
-          <span>SHipping Charge</span><span>&#8377;. <?php echo format_money($order['orderShippingTotal']);?></span>
-        </div>
-      </div>
-
-      <div class="grandTotal">
-        <div class="price1-wrap">
-          <span>Grand Total</span><span>&#8377;. <?php echo format_money($order['orderGrandTotal']);?></span>
-        </div>
-      </div>
       <div class="reorderBtn">
         <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="text" class="reoderItem">Reorder Selected item</a>
       </div>
