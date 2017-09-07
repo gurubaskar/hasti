@@ -469,51 +469,47 @@ $(document).ready(function() {
     });
   });
 
-  $('.product-choose-facet').click(function(e) {
+$('.product-choose-facet-size').click(function(e) {
+    e.preventDefault();   
+    var product_id = $(this).data('product-id');    
+    $(this).closest('ul').find('a.selected').removeClass('selected');   
+    $(this).closest('a').addClass('selected');    
+    $(this).closest('a').find('li').css("border", "#009989 solid 1px");   
+  });
+
+  $('.product-choose-facet-color').click(function(e) {
     e.preventDefault();
     var product_id = $(this).data('product-id');
     $(this).closest('ul').find('a.selected').removeClass('selected');
     $(this).closest('a').addClass('selected');
     $(this).closest('a').find('li').css("border", "#009989 solid 1px");
   });
-  $('#js_addToCart, #js_addToCart_buynow, .plp-add-to-cart').click(function(e) {
+
+  $('#js_addToCart, #js_addToCart_buynow').click(function(e) {
     e.preventDefault();
-    if ($(this).hasClass('plp-add-to-cart')) {
-      var product_id = $(this).data('product-id');
-      var quantity = 1;
-    }
-    else {
-      var product_id = $('.js_selectableFeature_1 a.selected').data('product-id');
-      var quantity = 1; // commented due to no quantity selectable. $('#quantity').val();
-    }
-    if(product_id == null || product_id == undefined){
-      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxSuccess);
+    var product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
+    var product_id_color = $('.selectableFeatures_COLOR a.selected:first li').data('product-id');
+    var quantity = 1;
+    if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
+      ajaxErrorMsgDisplay('Please select size and variant',ajaxSuccess);
       // alert('Please select a size of your choice');
       return;
     }
     var action = $(this).attr('id') == 'js_addToCart_buynow' ? 'buy_now' : 'add';
-    var action1 = $(this).attr('id') == 'js_addToCart' ? 'add' : 'plp';
-    // alert(action + ' - ' + product_id + ' | ' + quantity);
     loading();
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/add-to-cart',
-      data: 'product_id=' + product_id + '&quantity=' + quantity,
+      data: 'product_id=' + product_id_size + '&quantity=' + quantity,
       success: function(data) {
-        // console.log(data);
         if (data['isError'] == 'false') {
           if (action == 'buy_now') {
             document.location = Drupal.settings.basePath + 'checkout-payment';
           }
-          else if(action == 'add' && action1 == 'add') {
+          else if(action == 'add') {
             update_mini_cart();
             document.location = Drupal.settings.basePath + 'cart';
-          } else {
-            jQuery.notify("1 Item added to the cart.");
-            product_id_split = product_id.split('-');
-            jQuery(".variant-"+product_id_split[0]).hide();
-            update_mini_cart();
-          }
+          } 
         }
         else {
           // alert(data['_ERROR_MESSAGE_']);
@@ -529,17 +525,53 @@ $(document).ready(function() {
     });
   });
   
-  $('#js_addToWishlist, .plp-add-to-wishlist').click(function(e) {
+  $('.plp-add-to-cart').click(function(e) {
     e.preventDefault();
-    var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');
-    var quantity =  1;
-    if ($(this).hasClass('plp-add-to-wishlist')) {
+    if ($(this).hasClass('plp-add-to-cart')) {
       var product_id = $(this).data('product-id');
       var quantity = 1;
     }
-    if(product_id == undefined || product_id == null){
+    if(product_id == null || product_id == undefined){
+      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxSuccess);
+      return;
+    }
+    loading();
+    $.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'drubiz/add-to-cart',
+      data: 'product_id=' + product_id + '&quantity=' + quantity,
+      success: function(data) {
+        if (data['isError'] == 'false') {
+            ajaxErrorMsgDisplay("1 Item added to the cart.");
+            product_id_split = product_id.split('-');
+            jQuery(".variant-"+product_id_split[0]).hide();
+            update_mini_cart();
+        }
+        else {
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+
+   $('#js_addToWishlist').click(function(e) {
+    e.preventDefault();
+    var product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
+    var product_id_color = $('.selectableFeatures_COLOR a.selected:first li').data('product-id');
+    var quantity =  1;
+    // if ($(this).hasClass('plp-add-to-wishlist')) {
+      // var product_id = $(this).data('product-id');
+      // var quantity = 1;
+    // }
+    if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
       // alert('Please select a variant');
-      ajaxErrorMsgDisplay('Please select a variant',ajaxInfo);
+      ajaxErrorMsgDisplay('Please select size and variant',ajaxInfo);
       return;
     }
     // alert(product_id+'--'+quantity);
@@ -547,16 +579,16 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/add-to-love-list',
-      data: 'product_id=' + product_id + '&quantity=' + quantity,
+      data: 'product_id=' + product_id_size + '&quantity=' + quantity,
       success: function(data) {
              //console.log(data);
         if (data['isError'] == 'False') {
-          jQuery.notify("Your product has been successfully added to Wishlist");
+          ajaxErrorMsgDisplay("Your product has been successfully added to Wishlist");
           close_loading();
         }
         else {
           // alert(data['_EVENT_MESSAGE_']+' Error adding item.');
-          ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');
+          ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']);
           close_loading();
         }
       },
@@ -567,6 +599,45 @@ $(document).ready(function() {
       dataType: 'json'
     });
   });
+
+
+  $('.plp-add-to-wishlist').click(function(e) {   
+      e.preventDefault();   
+      // var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');    
+      // var quantity =  1;   
+      if ($(this).hasClass('plp-add-to-wishlist')) {    
+        var product_id = $(this).data('product-id');    
+        var quantity = 1;   
+      }   
+      if(product_id == undefined || product_id == null){    
+        // alert('Please select a variant');    
+        ajaxErrorMsgDisplay('Please select a variant',ajaxInfo);    
+        return;   
+      }   
+      // alert(product_id+'--'+quantity);   
+      loading();    
+      $.ajax({    
+        type: "POST",   
+        url: Drupal.settings.basePath + 'drubiz/add-to-love-list',    
+        data: 'product_id=' + product_id + '&quantity=' + quantity,   
+        success: function(data) {   
+               //console.log(data);   
+          if (data['isError'] == 'False') {   
+            close_loading();    
+          }   
+          else {    
+            // alert(data['_EVENT_MESSAGE_']+' Error adding item.');    
+            ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');   
+            close_loading();    
+          }   
+        },    
+        error: function(jqXHR, textStatus, errorThrown) {   
+          console.log(textStatus + ': ' + errorThrown);   
+          close_loading();    
+        },    
+        dataType: 'json'    
+      });   
+    });
 
   $('.remove').click(function(e) {
     e.preventDefault();

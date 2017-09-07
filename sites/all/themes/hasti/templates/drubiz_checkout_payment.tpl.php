@@ -131,13 +131,13 @@ if(!empty($_GET['from'])) {
       <div id="shipping">
         <div class="price1-wrap">
           <label>Shipping Charge:</label>
-          <span>&#8377; <?php echo format_money($cart['orderShippingTotal']);?></span>
+          <span id="shippingPrice">&#8377; <?php echo format_money($cart['orderShippingTotal']);?></span>
         </div>
       </div>
       <div id="total">
         <div class="price1-wrap">
           <label>Grand Total:</label>
-          <span>&#8377; <?php echo format_money($cart['orderGrandTotal']);?></span>
+          <span id="shippingGrandTotal">&#8377; <?php echo format_money($cart['orderGrandTotal']);?></span>
         </div>
       </div>
       <div id="order-confirm">
