@@ -517,9 +517,9 @@ a:focus{text-decoration:none !important;}
 
 .alltotal label, .myaccount-right.myorders .grandTotal span:first-child,.myaccount-right.reOrder .grandTotal span:first-child, #cart #total label, #order-summary #total label{color:#6d6e70; font-size:25px !important; font-weight:normal; margin:0 7px 0 0!important; display:inline-block !important; font-weight:600; width:150px; float:left; text-align:right;} 
 
-#subtotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.reOrder .subTotal span, #cart #shipping span, #order-summary #shipping span, .myaccount-right.myorders #shipping span, .myaccount-right.reOrder .shipping span{color:#0081c5; font-size:20px; font-weight:normal; width:130px; text-align:right; float:right;}
+#subtotal span, .myaccount-right.myorders .subTotal span, .myaccount-right.reOrder .subTotal span, #cart #shipping span, #order-summary #shipping span, .myaccount-right.myorders #shipping span, .myaccount-right.reOrder .shipping span{color:#0081c5; font-size:20px; font-weight:normal; width:142px; text-align:right; float:right;}
 
- .alltotal span,.myaccount-right.myorders .grandTotal span, .myaccount-right.reOrder .grandTotal span, #cart #total span, #order-summary #total span{color:#0081c5; font-size:25px; font-weight:normal; font-weight:600; width:130px; float:left;}
+ .alltotal span,.myaccount-right.myorders .grandTotal span, .myaccount-right.reOrder .grandTotal span, #cart #total span, #order-summary #total span{color:#0081c5; font-size:25px; font-weight:normal; font-weight:600; width:142px; float:left;}
 
 .myaccount-right.myorders .subTotal span:first-child, .myaccount-right.myorders .grandTotal span:first-child{margin-right:3px;}
 .myaccount-right.myorders .returnOrderDetail tbody td, .myaccount-right.reOrder .returnDetail tbody tr td{vertical-align:middle !important;}
@@ -761,7 +761,7 @@ a:focus{text-decoration:none !important;}
 #addContactus #js_content{width:300px !important; height:100px !important;}
 #addContactus .textCounter{width:100%; float:left; padding:5px 0 0 168px;}
 
-.ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:auto; padding:9px 40px; float:left; margin-right:10px; margin-top:20px; background-color:#fff !important; color:#00b04c !important; font-size:16px !important; font-weight:400 !important; border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important; top:0 !important; right:0 !important; border:none !important; text-shadow:none !important; line-height:21px;}
+.ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:auto; padding:9px 40px; float:left; margin-right:10px; margin-top:20px; background-color:#fff !important; color:#00b04c !important; font-size:16px !important; font-weight:600 !important; border-radius:0 !important; -moz-border-radius:0 !important; -webkit-border-radius:0 !important; -o-border-radius:0 !important; top:0 !important; right:0 !important; border:none !important; text-shadow:none !important; line-height:21px;}
 .myaccount-right.myorders .refundTypeDisplay{float:left; width:100%;}
 .myaccount-right.myorders .refundTypeDisplay tr td{margin-right:5px; float:left;}
 .myaccount-right.myorders .refundTypeDisplay tr td:first-child{margin-top:15px;}
@@ -1357,6 +1357,13 @@ a:focus{text-decoration:none !important;}
     .checkout-right #checkout-login #chksignInForm #signinorder, .checkout-right #checkout-login #checkoutsignUpForm #signin, .checkout-right #checkoutforgotpwdForm .ui-input-text, .checkout-right #delivery-address .addressbox{width:100% !important;}
     .checkout-right .forgot-btn #Continue, .checkout-right .forgot-btn #back{width:49.3%;}
     /*.mob-search1{display:block !important;}*/
+    .mob-search .mobsearch-icon1{display:none;}
+    .mob-search #searchContainer, .mob-search #searchContainer #searchField{width:100%; float:left;}
+    .mob-search #searchContainer .ui-input-text{width:92% !important; float:left;}
+    .mob-search #searchContainer #searchField .searchSubmit{float:right; padding:5px; position:absolute; right:0;}
+    .mob-search #solr-suggestions-resp{position:absolute; width:100%; top:40px; border:1px solid #d3d2d2 !important; background:#fff;}
+    .mob-search #solr-suggestions-resp a{padding:4px 7px; margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:400; float:left; width:99.5%;}
+    .mob-search #solr-suggestions-resp a:hover{background:#00b04c; color:#fff;}
 }
 
 @media (max-width:600px){
@@ -1468,7 +1475,6 @@ a:focus{text-decoration:none !important;}
     #footer .social-wrap{position:relative; top:-10px; padding:0;}
     #footer ul li.facebook a{padding:0 !important;}
     /*.icon-wrap .icon-container{width:55%;}*/
-
 }
 
 @media (max-width:400px){
