@@ -1464,13 +1464,14 @@ function savePersonalInfo(){
       success: function(data) {
         if (data['status'] == 'pass') {
           // alert(data['_EVENT_MESSAGE_']);
-          // close_loading();
+          close_loading();
+          ajaxErrorMsgDisplay(data['_SUCCESS_MESSAGE_'],ajaxSuccess);
           document.location = Drupal.settings.basePath + 'account/orders';        
         } else {
-          //alert(data['_ERROR_MESSAGE_']);
-          var errormsgs = data['_ERROR_MESSAGE_'];
-          jQuery("#return_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
-          jQuery("#return_errormsgs").focus();
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_'],ajaxErrorMsg);
+          // var errormsgs = data['_ERROR_MESSAGE_'];
+          // jQuery("#return_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          // jQuery("#return_errormsgs").focus();
           close_loading();
         }
       },
