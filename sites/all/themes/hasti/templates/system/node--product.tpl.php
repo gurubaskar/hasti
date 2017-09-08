@@ -387,6 +387,12 @@
             <?php print render($region['social_share']); ?>
           </div>
         </div>
+        <div class="review-message"><?php
+      
+           if ($messages): print $messages; endif;
+  
+        ?>
+        </div>
         <div id="reviewForm" style="display: none">
           <?php
             $comments_form = drupal_get_form('drubiz_hasti_comments_form');

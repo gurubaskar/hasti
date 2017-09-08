@@ -392,7 +392,7 @@ function drubiz_add_address() {
     $data_update = @$_POST['data_update'];
     if(isset($data_update) == 1) {
       $params_edit = array(
-        'contactMechId'           => $_POST['data_contactMechId'],
+        'contactMechId' => $_POST['data_contactMechId'],
       );
     }
   
@@ -406,8 +406,20 @@ function drubiz_add_address() {
     $response = $client->get($endpoint . '?' . http_build_query($params));
     $raw_json = $response->getBody();
     $data = json_decode($raw_json, TRUE);
+    
+    if($data['isError'] == 'false'){
+      setcookie('successmsg', $data['_EVENT_MESSAGE_'], time() + (60 * 1), '/');
+      setcookie('flag',$data['isError'], time() + (60 * 1), '/');     
+    }else{ //remember me not checked
+      if(isset($_COOKIE["successmsg"])) {
+        setcookie('successmsg', '', time() + (60 * 1), '/');
+        unset($_COOKIE['successmsg']);
+        unset($_COOKIE['flag']);        
+      }         
+    }
+    
     toCheckSession($data);
-    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data','if','else','error'), 1) . '</pre>');
     echo json_encode($data);
   }
 }
@@ -1578,6 +1590,16 @@ function drubiz_delete_address() {
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
+  if($data['status'] == 'pass'){
+      setcookie('successmsg', $data['_SUCCESS_MESSAGE_'], time() + (60 * 1), '/');
+      setcookie('flag',$data['isError'], time() + (60 * 1), '/');     
+    }else{ //remember me not checked
+      if(isset($_COOKIE["successmsg"])) {
+        setcookie('successmsg', '', time() + (60 * 1), '/');
+        unset($_COOKIE['successmsg']);
+        unset($_COOKIE['flag']);        
+      }         
+    }
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
   echo json_encode($data);
 }

@@ -185,8 +185,8 @@
       </form>
     </div>
    <div id="storecredit" style="display: none">
-      <div id="returnSubmit" class="details-btns returnSubmit" onclick="refundReturn()">
-        <a href="">Submit</a>
+      <div class="details-btns returnSubmit">
+        <a href="" id="returnSubmit" onclick="refundReturn()">Submit</a>
       </div>
    </div>
   </div>

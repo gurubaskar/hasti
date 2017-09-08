@@ -32,21 +32,21 @@
               ?>
               <div class="form-row">
                 <label><span class="required">*</span>First Name</label>
-                <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $_SESSION['drubiz']['session']['firstName']; ?>">
+                <input type="text" maxlength="20" class="" name="firstname" id="firstname" value="<?php echo $_SESSION['drubiz']['session']['firstName']; ?>"  disabled="disabled">
               </div>          
               <div class="form-row">
                 <label><span class="required">*</span>Email Id</label>
-                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" value="<?php echo $GLOBALS['user']->mail; ?>">
+                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" value="<?php echo $GLOBALS['user']->mail; ?>" disabled="disabled">
               </div>
               <?php endif; ?>
              <?php if($GLOBALS['user']->uid == 0):?>
               <div class="form-row">
                 <label><span class="required">*</span>First Name</label>
-                <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>" data-msg-required="FirstName can't be Empty" id="" data-rule-required="true">
+                <input type="text" maxlength="20" class="" name="firstname" id="firstname" placeholder="<?php echo t('*Full Name / Name of Organization');?>" data-msg-required="FirstName can't be Empty" data-rule-required="true">
               </div>          
               <div class="form-row">
                 <label><span class="required">*</span>Email Id</label>
-                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo t('@ Email');?>" maxlength="200" data-msg-required="Please Enter your Email" id="" data-rule-required="true">
+                 <input class="form-control-user" id="returnCustomerEmail" name="emailid" type="text" placeholder="<?php echo t('@ Email');?>" maxlength="200" data-msg-required="Please Enter your Email" data-rule-required="true">
               </div>
               <?php endif; ?>
               <div class="form-row">

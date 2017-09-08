@@ -1634,7 +1634,8 @@ function drubiz_hasti_comments_form_submit($form, &$form_state) {
   $raw_json =  $response->getBody();
   $data = json_decode($raw_json, TRUE);
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('params', 'data','endpoint'), 1) . '</pre>');
-   //drupal_set_message(t('The form has been submitted.'));
+   drupal_set_message(t($data['_EVENT_MESSAGE_']));
+ // drupal_goto('node/5514');
   // echo json_encode($data);
 }
 

@@ -558,10 +558,10 @@ function addAddress(){
           document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
         } else {
           close_loading();
-          ajaxErrorMsgDisplay("added success",ajaxInfo);
-          setTimeout(function () {
+          // ajaxErrorMsgDisplay("added success",ajaxInfo);
+          // setTimeout(function () {
             document.location = Drupal.settings.basePath + 'account/address-book';
-          }, 2000);
+          //}, 2000);
           
           
         }
@@ -1395,45 +1395,7 @@ function savePersonalInfo(){
       dataType: 'json'
   });
 }
-
-jQuery(document).ready(function(){
-    jQuery('#refundType').on('change', function() {
-      var selectedReturnValue = jQuery('#refundType').val();
-      if(selectedReturnValue == 'RTN_REFUND') {
-        jQuery('.bankDetails').show();
-      } else {
-        jQuery('.bankDetails').hide();
-      }
-    });
-    jQuery(".returnProduct").click(function(){
-      var itemChecked = jQuery(".returnProduct").is(":checked");
-      if(itemChecked > 0) {
-        jQuery('.refundTypeDisplay').show();
-      } else {
-        jQuery('input:checkbox').prop('checked', false);
-        jQuery('.refundTypeDisplay').hide();
-        jQuery('.bankDetails').hide();
-      }
-    });
-    jQuery('#checkAll').click(function () {    
-       jQuery('input:checkbox').prop('checked', this.checked);
-         var itemChecked = jQuery(".returnProduct").is(":checked");
-        if(itemChecked > 0) {
-          jQuery('.refundTypeDisplay').show();
-        } else {
-          jQuery('.refundTypeDisplay').hide();
-          jQuery('.bankDetails').hide();
-        }    
-    });
-    jQuery("#refundType").on('change', function() {
-      var selectedReturnValue = jQuery('#refundType').val();
-      if(selectedReturnValue == 'RTN_CREDIT') {
-        jQuery('#storecredit').show();
-      }else{
-         jQuery('#storecredit').hide();
-      }
-    });
-      function refundReturn(){
+  function refundReturn(){
       var orderId = jQuery("#orderId").val();
       var itemChecked = jQuery(".returnProduct:checked").length;
       if(itemChecked > 0) {
@@ -1521,6 +1483,44 @@ jQuery(document).ready(function(){
         return false;
       }
   }
+jQuery(document).ready(function(){
+    jQuery('#refundType').on('change', function() {
+      var selectedReturnValue = jQuery('#refundType').val();
+      if(selectedReturnValue == 'RTN_REFUND') {
+        jQuery('.bankDetails').show();
+      } else {
+        jQuery('.bankDetails').hide();
+      }
+    });
+    jQuery(".returnProduct").click(function(){
+      var itemChecked = jQuery(".returnProduct").is(":checked");
+      if(itemChecked > 0) {
+        jQuery('.refundTypeDisplay').show();
+      } else {
+        jQuery('input:checkbox').prop('checked', false);
+        jQuery('.refundTypeDisplay').hide();
+        jQuery('.bankDetails').hide();
+      }
+    });
+    jQuery('#checkAll').click(function () {    
+       jQuery('input:checkbox').prop('checked', this.checked);
+         var itemChecked = jQuery(".returnProduct").is(":checked");
+        if(itemChecked > 0) {
+          jQuery('.refundTypeDisplay').show();
+        } else {
+          jQuery('.refundTypeDisplay').hide();
+          jQuery('.bankDetails').hide();
+        }    
+    });
+    jQuery("#refundType").on('change', function() {
+      var selectedReturnValue = jQuery('#refundType').val();
+      if(selectedReturnValue == 'RTN_CREDIT') {
+        jQuery('#storecredit').show();
+      }else{
+         jQuery('#storecredit').hide();
+      }
+    });
+    
     jQuery(".chkwallet").on('change', function() { 
       var walletmoney = jQuery('#walletmoney').val();
        var totalamount = jQuery('#totalamount').val();
@@ -1537,9 +1537,9 @@ jQuery(document).ready(function(){
               //alert(data['_EVENT_MESSAGE_']);
               close_loading(); 
               jQuery('#balance').show(); 
-              var availablebalance = (walletmoney-totalamount);
+              //var availablebalance = (walletmoney-totalamount);
               jQuery("#balance").html('<div>select an option to pay balance : ' + data['remainingCartTotal'] + '</div>');       
-              jQuery("#remainingamt").html('(Available balance is &#8377;.' + availablebalance + ')');
+              jQuery("#remainingamt").html('(Available balance is &#8377;.' + data['remainingStoreCreditBalance'] + ')');
               if(data['remainingCartTotal'] == 0){
                 jQuery('#paymentOption').hide();
                 jQuery('#placeOrderStoreCredit').show(); 
