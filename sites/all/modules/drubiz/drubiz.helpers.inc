@@ -1584,6 +1584,7 @@ function drubiz_hasti_comments_form($form, &$form_state) {
     '#type' => 'fivestar',
     '#title' => 'Ratings',
     '#required' => false,
+    //'#attributes' => array('data-msg-required' => t('The Review rating is required.'),'data-rule-required'=>'true'),
   );
 /*  $fivestar = field_view_field('node', $node, 'field_fivestar_awesomeness');
 print render($fivestar);*/
@@ -1616,7 +1617,9 @@ function drubiz_hasti_comments_form_submit($form, &$form_state) {
   $comments = $form_state['values']['comments'];
   $ratings = $form_state['values']['ratings'];
   $productid = $form_state['values']['productid_field'];
-
+  //Prasad Changed for the rating should go as 1 to 5.
+  $update_ratings = ($ratings/100)*5;  
+  $ratings = $update_ratings;
   $client = drubiz_api_client();
   $endpoint = 'eCommerceCreateProductReviewNew';
   $params = array(
