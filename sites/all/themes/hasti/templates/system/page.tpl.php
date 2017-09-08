@@ -119,7 +119,7 @@ require_once 'vendor/autoload.php';
     if($drubiz_category_names[$catalogName][trim($get_category_names[$i])])
     $breadcrumbList .= "<a href=$url>".$drubiz_category_names[$catalogName][trim($get_category_names[$i])]."</a>/";
   }*/
-
+  $breadcrumbList = '';
   for($i=0;$i<$cntCategory;$i++) {
     if($i==0) {
       $smCategory = "&f[1]=sm_field_category_id".$collon;
