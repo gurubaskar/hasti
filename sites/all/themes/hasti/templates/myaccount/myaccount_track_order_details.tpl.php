@@ -70,7 +70,7 @@
             <td data-title="Product Name">
                <a href="<?php echo url('node/'.$nid);?>"><?php echo $cart_product['productName'][0] ?></a>
             </td>
-            <td data-title="SKU">&#8377;.
+            <td data-title="SKU">
               <?php $selected_features = get_selected_features($product_variant); ?>
              <?php foreach ($selected_features as $selected_feature_name => $selected_feature_value): ?>
                <?php  echo $selected_feature_name . ': ' . $selected_feature_value.'<br />' ?>

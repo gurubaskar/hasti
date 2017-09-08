@@ -584,8 +584,8 @@ $('.product-choose-facet-size').click(function(e) {
              //console.log(data);
         if (data['isError'] == 'False') {
           ajaxErrorMsgDisplay("Your product has been successfully added to Wishlist");
-          product_id_split = product_id.split('-');
-          jQuery(".variant-"+product_id_split[0]).hide();
+          // product_id_split = product_id.split('-');
+          // jQuery(".variant-"+product_id_split[0]).hide();
           close_loading();
         }
         else {
@@ -708,7 +708,7 @@ $('.product-choose-facet-size').click(function(e) {
     e.preventDefault();
     var index = $(this).data('index');
     var class_name =  $(this).attr('class');
-    var quantity = $('.qty').html();
+    var quantity = $('#qty-'+index).html();
       if(class_name == "qty-plus"){
         quantity = Number(quantity) + 1;
       }else{

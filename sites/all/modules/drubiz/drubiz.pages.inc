@@ -863,22 +863,24 @@ function reorderItem() {
 
   $itemDetails = '';
   $products = $_POST['productIds'];
+  $split_products = split('_', $products);
   $explodeIds = explode(',', $products);
   //add_multi_product_id_0=1008-1&add_multi_product_quantity_0=1&add_multi_product_id_1=100043-1&add_multi_product_quantity_1=2
   $e = '';
   $f = '';
   if(count($explodeIds) > 1) {
     foreach ($explodeIds as $key => $value) {
+      $splitValue = explode('_', $value);
       $a = "add_multi_product_id_".$key;
-      $b = $value;
+      $b = $splitValue['0'];
       $c = "add_multi_product_quantity_".$key;
-      $d = 1;
+      $d = $splitValue['1'];
       $e .= $a.'='.$b.'&'.$c.'='.$d.'&';
     }
   } else {
     $f = http_build_query(array(
-      'add_multi_product_id_0'=>$products,
-      'add_multi_product_quantity_0'        => 1,
+      'add_multi_product_id_0'=>$split_products['0'],
+      'add_multi_product_quantity_0'        => $split_products['1'],
     ));
   }
 

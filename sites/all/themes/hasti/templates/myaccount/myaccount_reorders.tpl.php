@@ -46,7 +46,10 @@
               &#8377;. <?php echo format_money($cart_product['unitPrice']);?>
             </td>
             <td data-title="Quantity">
-              <?php echo (int)$cart_product['quantity'];?>
+              <?php 
+                $qty = (int)$cart_product['quantity'];
+                echo $qty;
+              ?>
             </td>
             <td data-title="Item Status">
               <?php echo $order['OrderHeader'][0]['statusId']; ?>
@@ -55,7 +58,7 @@
               &#8377;. <?php echo format_money($cart_product['unitPrice'] * (int)$cart_product['quantity']);?>
             </td> 
             <td data-title="Select Product">
-              <input type="checkbox" name="slectedProduct[]" id="slectedProduct[]" class="theClass" value="<?php echo $cart_product['productId'];?>">
+              <input type="checkbox" name="slectedProduct[]" id="slectedProduct[]" class="theClass" value="<?php echo $cart_product['productId'].'_'.$qty;?>">
             </td>
           </tr>
           <?php } ?>
