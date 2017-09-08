@@ -107,8 +107,6 @@
               if($isReturned == 'N') {
                 $selectedReturnProductId = $orderValue['orderItemSeqId'].'_'.$orderValue['productId'].'_'.$orderValue['quantity'];?>
                 <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="returnProduct" value="<?php echo $selectedReturnProductId;?>">
-              <?php } else { ?>
-                <input type="checkbox" name="slectedReturnProduct[]" id="slectedReturnProduct[]" class="" value="" disabled>
               <?php } ?>
             </td>
             <td data-title="Reason">
