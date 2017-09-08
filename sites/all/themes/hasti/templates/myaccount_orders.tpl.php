@@ -63,7 +63,7 @@
 			  <div>
 			  <h3>Cancel Order</h3>
 			  <div id="cancelordermsg"></div>
-			    <textarea id="cancelComments" data-msg-required="Comments is required." data-rule-required="true"></textarea>
+			    <textarea id="cancelComments" data-msg-required="Comments is required." data-rule-required="true" placeholder="Remarks"></textarea>
 			  	
 			  	<select id="cancelReason">
 			  		<?php
