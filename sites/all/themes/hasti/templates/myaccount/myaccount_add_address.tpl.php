@@ -20,11 +20,11 @@
           ?>
           <div class="form-row">
             <label><span class="required">*</span>First Name</label>
-            <input type="text" maxlength="20" class="" name="firstname" id="firstname"  data-msg-required="FirstName can't be Empty" data-rule-required="true">
+            <input type="text" maxlength="20" class="" name="firstname" id="firstname"  data-msg-required="FirstName can't be Empty" data-rule-alphabets_only="true"  data-rule-required="true">
           </div>
           <div class="form-row">
             <label><span class="required">*</span>Last Name</label>
-            <input type="text" maxlength="20" class="" name="lastname" id="lastname" data-msg-required="Lastname can't be Empty" data-rule-required="true">
+            <input type="text" maxlength="20" class="" name="lastname" id="lastname" data-msg-required="Lastname can't be Empty" data-rule-alphabets_only="true" data-rule-required="true">
           </div>
           <div class="form-row">
             <label><span class="required">*</span>Address 1</label>
