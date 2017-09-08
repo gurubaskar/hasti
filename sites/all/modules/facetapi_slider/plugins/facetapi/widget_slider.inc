@@ -147,6 +147,7 @@ class FacetapiWidgetSlider extends FacetapiWidget {
     );
     // Only add JS if we are on the actual search page.
     if (isset($build['#attributes'])) {
+      $build['#attributes']['data-ajax'] = 'false';
       $form['#attributes'] = $build['#attributes'];
       $form['slider']['#attached']['library'][] = array('system', 'ui.slider');
       $form['slider']['#attached']['js'][] = drupal_get_path('module', 'facetapi_slider') . '/facetapi_slider.js';

@@ -351,6 +351,24 @@ $(document).ready(function () {
   $(window).load(function(){
     $('.ui-link').attr('data-ajax','false');
     $('#signUpPop,#signInPop').attr('data-ajax','');
+    //$('.minus').click();
+//    $('#edit-min').unwrap();
+//    $('#edit-max').unwrap();    
+//    $('.ui-slider-handle').unwrap();
+//    $('.ui-slider-handle').removeAttr('role');
+//    $('.ui-slider').addClass('facetapi-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all');
+//    $( ".ui-slider-handle" ).after( '<a class="ui-slider-handle ui-state-default ui-corner-all handle-max" href="#" style="left: 100%;"></a>');
+//    $('.ui-slider').attr('aria-disabled', 'false');
+//    $('#edit-submit--2').removeClass('ui-btn ui-shadow ui-corner-all');
+//    $('#edit-min').addClass('facetapi-slider-min form-control form-text');
+//    $('#edit-max').addClass('facetapi-slider-max form-control form-text');
+//    $('.ui-slider-input').addClass('ui-slider-range ui-widget-header ui-corner-all');
+//    $('.ui-slider-range').addClass('ui-slider-input');
+//    $('.ui-slider-handle').removeAttr('aria-valuemin');
+//    $('.ui-slider-handle').removeAttr('aria-valuemax');
+//    $('.ui-slider-handle').removeAttr('aria-valuenow');
+//    $('.ui-slider-handle').removeAttr('aria-valuetext');
+    
   });
 })(jQuery);
 
