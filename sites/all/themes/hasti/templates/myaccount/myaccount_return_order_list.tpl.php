@@ -8,7 +8,7 @@
 	<h3>Return Orders</h3>
 	<div id="past-orders" class="tab-content">
 		<?php //echo count($orders['OrderHeader']);
-			if(count($orders['OrderHeader']) > 0) {
+			if(count($returnOrder['returnedOrders']) > 0) {
 			foreach ($returnOrder['returnedOrders'] as $key => $order): 
 				$orderDate = strtotime($order['orderDate']);
 				// $dateInterval = strtotime("-2 weeks");

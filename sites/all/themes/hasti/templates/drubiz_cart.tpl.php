@@ -38,7 +38,7 @@
               <h4><a href="<?php echo url('/node/'.$node->nid);?>"><?php echo $cart_value['internalName']; ?></a></h4>
               <div class="cartrow"><label>Qty:</label>
                 <span class="qty-minus" data-index="<?php echo $cart_key;?>"></span>
-                <span class="qty"><?php echo $cart_value['quantity']; ?></span>
+                <span class="qty" id="qty-<?php echo $cart_key;?>"><?php echo $cart_value['quantity']; ?></span>
                 <span class="qty-plus" data-index="<?php echo $cart_key;?>"></span>
               </div>
               <div class="cartrow"><label>Price:</label><span>&#8377. <?php echo format_money($cart_value['listPrice']);?></span></div>

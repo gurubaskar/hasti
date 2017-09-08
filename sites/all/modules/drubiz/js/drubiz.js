@@ -708,7 +708,7 @@ $('.product-choose-facet-size').click(function(e) {
     e.preventDefault();
     var index = $(this).data('index');
     var class_name =  $(this).attr('class');
-    var quantity = $('.qty').html();
+    var quantity = $('#qty-'+index).html();
       if(class_name == "qty-plus"){
         quantity = Number(quantity) + 1;
       }else{

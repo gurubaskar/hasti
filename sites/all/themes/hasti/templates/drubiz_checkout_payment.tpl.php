@@ -202,14 +202,14 @@ if(!empty($_GET['from'])) {
         <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
           <div id="walletOption">
           <div class="wallet-total"><p>Total amount to be paid</p> <span class="price">&#8377;. <?php $grandTotal = get_user_cart();
-          echo $grandTotal['orderGrandTotal'];?></span></div>          
+          echo format_money($grandTotal['orderGrandTotal']);?></span></div>          
           <?php if($walletAmount > 0){?>
              <div class="wallet-amt">
              <input type="checkbox" name="walletamt" id="wallet" class="chkwallet">
              <input type="hidden" name="walletmoney" id="walletmoney" value="<?php echo $walletAmount;?>">
              <input type="hidden" name="totalamount" id="totalamount" value="<?php echo $grandTotal['orderGrandTotal'];?>">
-             <p>Use wallet Amount </p><span class="price"> &#8377;.<?php echo $walletAmount;?></span></div>
-               <div id="remainingamt"><p>Available balance is</p><span> &#8377;.<?php echo $walletAmount;?></span></div>
+             <p>Use wallet Amount </p><span class="price"> &#8377;.<?php echo format_money($walletAmount);?></span></div>
+               <div id="remainingamt"><p>Available balance is</p><span> &#8377;.<?php echo format_money($walletAmount);?></span></div>
                <div id="balance" style="display: none">select an option to pay balance : </div>
            <?php } ?>
           </div>
