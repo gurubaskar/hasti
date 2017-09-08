@@ -221,9 +221,10 @@ require_once 'vendor/autoload.php';
   <div id="forgotPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
   <h3>Forgot Password</h3>
-  <div id="forgot_errormsgs" style=""></div>
+ 
   <form method="post" action="<?php echo url('forgotPassword') ?>" id="forgotpwdForm" name="forgotpwdForm">
   <p>Enter your Email Address here to receive a new password</p>
+   <div id="forgot_errormsgs" style=""></div>
   <input type="text" id="emailid" placeholder="* Email Id" data-msg-required="The Email Id is required." id="" data-rule-required="true" data-rule-email="true">
   <div class="forgot-btn">
      <input type="submit" value="Continue" id="Continue">
