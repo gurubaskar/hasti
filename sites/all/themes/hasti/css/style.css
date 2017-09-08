@@ -563,7 +563,8 @@ a:focus{text-decoration:none !important;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
 .checkout-right input[type="text"]:first-child, .checkout-right input[type="password"]:first-child{margin:0px 0 10px 0;}
-.checkout-right .remember{background:url('./../images/main-img.png') no-repeat -8px -539px; padding:11px; float:left; width:100%;}
+.checkout-right .remember{/*background:url('./../images/main-img.png') no-repeat -8px -539px;*/ padding:5px 11px 11px 0 !important; float:left; width:100%; background:none !important; margin-bottom:10px;}
+.ui-select .ui-btn>span:not(.ui-li-count){text-align:left; font-weight:normal;}
 .checkout-right .remember span{padding-left:25px; font-weight:normal; font-size:15px; color:#6d6e70;}
 .checkout-right .checkoutbtn-wrap{margin:25px 0; float:left; width:100%;}
 .checkout-right .checkoutbtn-wrap input[type="button"]{text-indent:0; opacity:1; background:#00b04c; width:75%; padding:10px; color:#fff !important; font-weight:normal; text-align:center; font-size:17px; border:0; z-index:0;}
@@ -601,7 +602,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right #delivery-address .btns-wrap .buy-now{float:left;}
 .checkout-right .address .phno span, .checkout-right .address .phno label{font-size:14px; width:auto; float:left; color:#6d6e70; font-weight:normal;}
 .checkout-right #signInForm>div.ui-input-text, .checkout-right #signUpForm>div.ui-input-text{width:100% !important; float:left;}
-.checkout-right #chksignInForm>div.ui-input-text, .checkout-right #checkoutsignUpForm>div.ui-input-text{width:100% !important; float:left;}
+.checkout-right #chksignInForm>div.ui-input-text, .checkout-right #checkoutsignUpForm>div.ui-input-text, .checkout-right #checkoutforgotpwdForm>div.ui-input-text{width:100% !important; float:left;}
 .checkout-right .checkoutbtn-wrap .ui-btn{border:none; box-shadow:none; text-align:inherit !important; cursor:default;}
 .checkout-right .payment-method #paymentOption{width:100%; float:left; padding-top:20px; border-top:1px solid #ddd;}
 .checkout-right .displayOTP .ui-input-text{width:100% !important; float:left;}
@@ -867,11 +868,11 @@ a:focus{text-decoration:none !important;}
 .ui-popup.signin, #changepwd{background-color:#00b04c; color:#fff; top:3.5%; height:auto; padding-bottom:30px; float:left; width:400px; border-radius:5px !important; -moz-border-radius:5px !important; -webkit-border-radius:5px !important; -o-border-radius:5px !important;}
 .signin h3, #changepwd h3{font-size:30px; font-weight:300;}
 .signin input[type="text"], #changepwd input[type="password"]{width:100%; border-radius:0; background:#fff; color:#6d6e70; margin:15px 0 7px 0; padding:10px;}
-.remember{background:url('./../images/main-img.png') no-repeat -4px -502px; position:relative; padding:11px; width:378px !important; float:left; margin-top:10px;}
+.remember{/*background:url('./../images/main-img.png') no-repeat -4px -502px;*/ background:none !important; position:relative; padding:11px 11px 11px 0 !important; width:378px !important; float:left; margin-top:10px;}
 .remember .ui-checkbox{margin:0 !important; width:auto;}
-.remember #remember{margin:3px 0 0 23px !important; width:16px !important; height:16px !important;}
-.remember span{margin:3px 0 0 50px !important; float:left;}
-#chksignInForm .remember span{margin:2px 0 0 25px !important; float:left;}
+.remember #remember{margin:3px 0 0 0px !important; width:20px !important; height:20px !important; left:0px;}
+.remember span{margin:3px 0 0 25px !important; float:left;}
+#chksignInForm .remember span{margin:4px 0 0 0px !important; float:left;}
 .ui-popup.signin a, .ui-popup.signin a:hover{color:#fff !important; text-decoration:none; font-weight:normal;}
 .ui-popup.signin .remember a{padding-left:0px;}
 #signin{color:#00b04c; font-size:17px; font-weight:300;}
