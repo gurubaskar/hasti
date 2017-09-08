@@ -6,6 +6,20 @@
 <div class="col-xs-12 col-sm-8 col-md-9 myaccount-right">
   <div class="col-xs-12 col-sm-12 col-md-12" id="address-book">
     <h3>Address Book</h3>
+    <?php print_r($_COOKIE);if(isset($_COOKIE['flag'])){?>
+    <div><script type="text/javascript">
+    //alert('hi');
+    var ajaxErrorMsg = '<?php echo $_COOKIE["successmsg"];?>';
+    //alert(ajaxErrorMsg);
+    ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+    //jQuery.notify(<?php //echo $_COOKIE["successmsg"];?>);</script></div>
+    <?php }
+    echo date('d/m/y H:m:s');
+    // setcookie('successmsg','', time() + (60 * 2), '/');
+    // setcookie('flag','', time() + (60 * 2), '/');
+    // unset($_COOKIE['successmsg']);
+    // unset($_COOKIE['flag']);
+    ?>
     <?php foreach($address_list as $k=>$addr) { ?>
       <div class="addressbox" id="delete_<?php echo $addr['contactMechId'] ;?>">
         <div class="col-xs-12 col-sm-12 col-md-12 pleft address">

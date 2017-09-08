@@ -25,7 +25,7 @@ $pdf->Cell(100,10,'Order Invoice',0,0,'C',0);
 $pdf->SetXY(10,50);
 $pdf->SetFontSize(10);
 $orderdate = $orderInformation['orderDate'];
-$html ='<table border="0" width="900px">
+$html ='<table border="0" width="1000px">
 <tr>
 <td height="70" colspan="5"><div>'.$orderInformation['shippingAddress'][0]['toName'].'</div></td></tr>
 <tr>
@@ -40,23 +40,30 @@ $html ='<table border="0" width="900px">
 <td height="70" colspan="2"><div>Order Id:'.$orderInformation['orderId'].' </div><br/><div>Date: '.date('d-m-Y H:i:s',strtotime($orderdate)).' </div></td>
 </tr>
 <tr>
-  <td height="30">Product</td>
-  <td height="30">Description</td>
-  <td height="30">Qty</td>
-  <td height="30">Unit Price</td>
-  <td height="30">Amount</td>
+<td colspan="5">
+<table border="0" width="1000px">
+<tr>
+  <td height="30" width="250px">Product</td>
+ 
+  <td height="30" width="200px">Qty</td>
+  <td height="30" width="200px">Unit Price</td>
+  <td height="30" width="200px">Amount</td>
 </tr>
 <hr>';
 foreach($orderInformation['OrderHeader'] as $order){
 $html.='<tr>
-		  <td height="30">'.$order['productName'][0].'</td>
-		  <td height="30">'.$order['productName'][0].'</td>
-		  <td height="30">'.round($order['quantity']).'</td>
-		  <td height="30">Rs.'.$order['unitPrice'].'</td>
-		  <td height="30">Rs.'.$order['unitPrice'].'</td>
+		  <td height="30" width="250px">'.$order['productName'][0].'</td>
+		  
+		  <td height="30" width="200px">'.round($order['quantity']).'</td>
+		  <td height="30" width="200px">Rs.'.$order['unitPrice'].'</td>
+		  <td height="30" width="200px">Rs.'.$order['unitPrice'].'</td>
 		</tr>';	
 }
-$html.='<tr>
+$html.='
+</table>
+</td>
+</tr>
+<tr>
 <td width="670px" height="30" align="right" colspan="4"></td>
 <td width="670px" height="70"><div><hr><br></div></td></tr>
 <tr>

@@ -33,7 +33,15 @@ function hasti_preprocess_node(&$variables) {
       $variables['region'][$region_key] = array();
     }
   }
+  $variables['messages'] = theme('status_messages');
 }
+function hasti_preprocess_page(&$variables) {
+  // This disables message-printing on ALL page displays
+   if(isset($variables['node'])){
+    $variables['show_messages'] = FALSE;
+  }  
+}
+
 function hasti_breadcrumb($variables) {
   global $drubiz_domain;
   if (!empty($variables['breadcrumb'])) {
