@@ -883,15 +883,18 @@ function checkEmail() {
     data: 'userEmail=' + email,
     success: function(data) {
       if (data['isError'] == 'False') {
-        alert(data['_EVENT_MESSAGE_']);
+        //alert(data['_EVENT_MESSAGE_']);
         close_loading();
-        document.location = Drupal.settings.basePath;        
+        var errormsgs = data['_EVENT_MESSAGE_'];
+          jQuery("#forgot_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#forgot_errormsgs").focus();
+        //document.location = Drupal.settings.basePath;        
       }
       else {
-        alert(data['_ERROR_MESSAGE_LIST_'][0]['message']);
+        //alert(data['_ERROR_MESSAGE_LIST_'][0]['message']);
           var errormsgs = data['_ERROR_MESSAGE_LIST_'][0]['message'];
-          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
-          jQuery("#signup_errormsgs").focus();
+          jQuery("#forgot_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#forgot_errormsgs").focus();
         close_loading();
       }
     },
