@@ -408,11 +408,11 @@ function drubiz_add_address() {
     $data = json_decode($raw_json, TRUE);
     
     if($data['isError'] == 'false'){
-      setcookie('successmsg', $data['_EVENT_MESSAGE_'], time() + (60 * 1), '/');
-      setcookie('flag',$data['isError'], time() + (60 * 1), '/');     
+      setcookie('successmsg', $data['_EVENT_MESSAGE_'], time() + 20, '/');
+      setcookie('flag',$data['isError'], time() + 15, '/');     
     }else{ //remember me not checked
       if(isset($_COOKIE["successmsg"])) {
-        setcookie('successmsg', '', time() + (60 * 1), '/');
+        setcookie('successmsg', '', time() + 15, '/');
         unset($_COOKIE['successmsg']);
         unset($_COOKIE['flag']);        
       }         
@@ -1593,11 +1593,11 @@ function drubiz_delete_address() {
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   if($data['status'] == 'pass'){
-      setcookie('successmsg', $data['_SUCCESS_MESSAGE_'], time() + (60 * 1), '/');
-      setcookie('flag',$data['isError'], time() + (60 * 1), '/');     
+      setcookie('successmsg', $data['_SUCCESS_MESSAGE_'], time() + 15, '/');
+      setcookie('flag',$data['isError'], time() + 15, '/');     
     }else{ //remember me not checked
       if(isset($_COOKIE["successmsg"])) {
-        setcookie('successmsg', '', time() + (60 * 1), '/');
+        setcookie('successmsg', '', time() + 15, '/');
         unset($_COOKIE['successmsg']);
         unset($_COOKIE['flag']);        
       }         
