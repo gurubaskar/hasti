@@ -59,10 +59,10 @@
 			  ?>
 			<div data-role="popup" id="cancelWindow_<?php echo $order['orderId'];?>" class="ui-content signin cancelOrder-wrap" style="max-width:700px">
 			  <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-			  <form method="post" action="<?php echo url('drubiz/cancelOrder') ?>" id="cancelOrderForm" name="cancelOrderForm">
+			  <form method="post" action="<?php echo url('drubiz/cancelOrder') ?>" id="cancelOrderForm" name="cancelOrderForm_<?php echo $order['orderId'];?>">
 			  <div>
 			  <h3>Cancel Order</h3>
-			  <div id="cancelordermsg"></div>
+			  <div id="cancelordermsg_<?php echo $order['orderId'];?>"></div>
 			    <textarea id="cancelComments" data-msg-required="Comments is required." data-rule-required="true" placeholder="Remarks"></textarea>
 			  	
 			  	<select id="cancelReason">

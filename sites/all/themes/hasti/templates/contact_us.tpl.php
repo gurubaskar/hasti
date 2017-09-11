@@ -4,7 +4,7 @@
     <div class="col-xs-12 col-sm-4 col-md-3 contact-left">
       <!--h2>Placing Order</h2-->
       <ul>
-        <li><a href="#faq" id="faq" class="active">Contact Us</a></li>
+        <li><a href="#faq" class="active">Contact Us</a></li>
         <li><a href="#tracking-order">Enquiries</a></li>
         <li><a href="#cancellation" id="security-li">Business Enquiries</a></li>
         <li><a href="#try-buy">Feedback</a></li>
