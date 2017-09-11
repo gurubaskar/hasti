@@ -133,7 +133,7 @@ require_once 'vendor/autoload.php';
   <div id="signInPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" id="closetag">Close</a>
   <h3>Sign in</h3>
-  <div id="signup_errormsgs" style=""></div>
+  <div id="signin_errormsgs" style=""></div>
   <form method="post" action="<?php echo url('drubiz/user') ?>" id="signInForm" name="signInForm">
     <input type="text" name="USERNAME" placeholder="<?php echo t('* User Name');?>" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>" data-msg-required="The username is required." id="USERNAME" data-rule-required="true">
     <input type="password" name="PASSWORD" placeholder="<?php echo t('* Password');?>" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>"  data-msg-required="The Password is required." id="PASSWORD" data-rule-required="true">  

@@ -662,13 +662,13 @@ function editAddress(){
 
 }
    // jQuery(".cancelord").click(function(){
-function cancelOrder(){//alert('hi');
-    var orderId = jQuery('#cancel-id').val();//jQuery(this).data('cancel-id');
-    //alert(orderId);
-    //var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
-    //var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').val();
-    var reasionId = jQuery('#cancelReason').val();
-    var reasonComments = jQuery('#cancelComments').val();
+function cancelOrder(orderId){
+    // var orderId = jQuery(this).data('cancel-id');
+    // alert(orderId);
+    var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
+    var reasonComments = jQuery('#cancelWindow_'+orderId).find('textarea').val();
+    // var reasionId = jQuery('#cancelReason').val();
+    // var reasonComments = jQuery('#cancelComments').val();
     var data = "";
     // data += 'orderId=' + orderId;
     loading();
@@ -680,27 +680,28 @@ function cancelOrder(){//alert('hi');
         if (data['isError'] == 'false') {
           //alert(data['_EVENT_MESSAGE_']);
           var errormsgs = data['_EVENT_MESSAGE_'];
-          jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
-          jQuery("#cancelordermsg").focus();
+          jQuery("#cancelordermsg_"+orderId).html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#cancelordermsg_"+orderId).focus();
           close_loading();
           document.location = Drupal.settings.basePath + 'account/orders';        
         }
         else if (data['isError'] == 'true') {
           //alert(data['_EVENT_MESSAGE_']);            
           var errormsgs = data['_EVENT_MESSAGE_'];
-          jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
-          jQuery("#cancelordermsg").focus();
+          jQuery("#cancelordermsg_"+orderId).html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#cancelordermsg_"+orderId).focus();
           close_loading();
         } else {
           //alert(data['_ERROR_MESSAGE_']);          
           var errormsgs = data['_ERROR_MESSAGE_'];
-          jQuery("#cancelordermsg").html('<span class="err_msgs">'+errormsgs+'</span>');
-          jQuery("#cancelordermsg").focus();
+          jQuery("#cancelordermsg_"+orderId).html('<span class="err_msgs">'+errormsgs+'</span>');
+          jQuery("#cancelordermsg_"+orderId).focus();
           close_loading();
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus + ': ' + errorThrown);
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        // console.log(textStatus + ': ' + errorThrown);
         close_loading();
       },
       dataType: 'json'
@@ -1334,7 +1335,7 @@ function contactus(){
   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;  
   var data_orderIdNumber = jQuery('#orderIdNumber').val();
   var data_phoneNumber = jQuery('#conactUsPhone').val();
-  var data_msg = jQuery('#js_content').val();
+  var data_msg = jQuery('.content').val();
    var choosefile = jQuery('#choose-file').val();
   /*if(data_firstName == ''){
     alert("FirstName can't be Empty");
@@ -1359,7 +1360,7 @@ function contactus(){
   var data = 'data_firstName=' + encodeURIComponent(data_firstName) + '&email=' + encodeURIComponent(email)  + '&data_phoneNumber=' + encodeURIComponent(data_phoneNumber);
   if(data_orderIdNumber != ''){
       data = data + '&data_orderIdNumber=' + encodeURIComponent(data_orderIdNumber)+ '&data_msg='+data_msg+ '&file='+choosefile;
-      //alert(data);
+      // alert(data);
   }
   jQuery.ajax({
         type: "POST",
@@ -1882,8 +1883,11 @@ $("form[name='chksignInForm']").validate({
         checkPin();
       }
     });
-$("form[name='cancelOrderForm']").validate({
-    showErrors: function(errorMap, errorList) {
+
+  jQuery(".cancelord").click(function(){
+    var orderId = jQuery(this).data('cancel-id');
+    $("form[name='cancelOrderForm_"+orderId+"']").validate({
+      showErrors: function(errorMap, errorList) {
           // Clean up any tooltips for valid elements
           $.each(this.validElements(), function (index, element) {
               var $element = $(element);
@@ -1901,9 +1905,10 @@ $("form[name='cancelOrderForm']").validate({
           });
       },
       submitHandler: function(form) {
-        cancelOrder();
+        cancelOrder(orderId);
       }
     });
+  });
 
     $("form[name='refundForm']").validate({
     showErrors: function(errorMap, errorList) {
