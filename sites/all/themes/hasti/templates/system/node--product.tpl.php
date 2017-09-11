@@ -79,6 +79,9 @@
  *
  * @ingroup themeable
  */
+  //$messages = '';
+  print $messages;
+  
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
   //krumo($product);
@@ -148,7 +151,7 @@
            <!-- </div> -->
           <script type="text/javascript">
             jQuery(document).ready(function(){
-
+              jQuery('.alert-danger').css('display', 'none');
               jQuery(window).resize(function() {
 
                width = jQuery(window).width();

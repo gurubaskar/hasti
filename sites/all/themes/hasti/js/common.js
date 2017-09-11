@@ -334,6 +334,46 @@ $(document).ready(function () {
             dataType: 'json'
           });
     });
+    $('#edit-submit--2').click(function(e) {
+      var mandate_rating = 1;
+      if($('#edit-nickname').length > 0) {
+        if($('#edit-nickname').val() != "") {}
+        else {
+          mandate_rating = 0;
+        }
+      }
+      if($('#edit-reviewtitle').length > 0) {
+        if($('#edit-reviewtitle').val() != "") {}
+        else {
+          mandate_rating = 0;
+        }
+      }
+      if(mandate_rating == 1) {
+      if($('.on').length <= 0) {
+        if(jQuery('.form-item-ratings').length > 0) {
+          if($('.rating-mandatory').length <= 0) {
+            $('.fivestar-user-stars').after('<div class="rating-mandatory" style="color:red;font-weight: bold; padding-bottom: 10px;">Ratings are required</div>');
+          }
+        }
+        e.preventDefault();
+        return false;
+      }
+      if($('.on').length > 0) {
+        if(jQuery('.form-item-ratings').length > 0) {
+          if($('.rating-mandatory').length > 0) {
+            $('.rating-mandatory').remove();
+          }
+        }
+      }
+    }
+    if($('.star').length > 0) {
+        $('.star').click(function() {
+          if($('.rating-mandatory').length > 0) {
+            $('.rating-mandatory').remove();
+          }
+        });
+      }
+    });
     $(".topLevel.topCatalogLi").mouseover(function(){
       $(this).find("ul").css("display","block");
       //$(this).find(".mainDiv").css("display","block");
