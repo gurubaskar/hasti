@@ -7,12 +7,14 @@
   <div class="col-xs-12 col-sm-12 col-md-12" id="address-book">
     <h3>Address Book</h3>
     <?php if(isset($_COOKIE['flag'])){?>
-    <div><script type="text/javascript">
+    <script type="text/javascript">
     //alert('hi');
     var ajaxErrorMsg = '<?php echo $_COOKIE["successmsg"];?>';
     //alert(ajaxErrorMsg);
-    ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
-    //jQuery.notify(<?php //echo $_COOKIE["successmsg"];?>);</script></div>
+    jQuery( document ).ready(function() {
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+    });
+    //jQuery.notify(<?php //echo $_COOKIE["successmsg"];?>);</script>
     <?php }
     // setcookie('successmsg','', time() + (60 * 2), '/');
     // setcookie('flag','', time() + (60 * 2), '/');
@@ -31,7 +33,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 edit-address">
           <a href="<?php echo url('account/edit-address/'.$addr['contactMechId']) ?>" class="standardBtn"><?php echo t('Update');?></a>
-          <a href="#"><span class="delete address-delete" data-contactMechId="<?php echo $addr['contactMechId'] ;?>">delete</span></a>
+          <a href="#"><span class="delete address-delete" data-contactMechId="<?php echo $addr['contactMechId'] ;?>">Delete</span></a>
           <?php if($addr['isDefaultShipAddr'] == false) {?>
           <a href="#"><span class="setdefault-address" data-contactMechId="<?php echo $addr['contactMechId'] ;?>">Set As Default</span></a>
           <?php } else { ?>
