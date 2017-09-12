@@ -123,6 +123,9 @@ function drubiz_view_order($order_id) {
 
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);*/
+  $params1 = array(
+  'encResp' => $_POST['encResp'],
+  );
   $endpoint1 = 'ccAvenueResponseNew';
 
   $response1 = $client->get($endpoint1 . '?' . http_build_query($params1));
