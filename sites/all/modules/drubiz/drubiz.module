@@ -507,6 +507,15 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
+
+  $items['view-orders/%'] = array(
+    'title'             => 'View Order',
+    'description'       => "View Order",
+    'page callback'     => 'drubiz_cod_view_order',
+    'page arguments'    => array(1),
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   
   $items['account/dashboard'] = array(
     'title'             => 'My Account Dashboard',
@@ -960,7 +969,13 @@ function drubiz_theme() {
       'path'            => $drubiz_path,
       'template'        => 'drubiz_checkout_payment',
     ),
-
+    'drubiz_cod_view_order' => array(
+      'variables'       => array(
+        'cart'          => NULL,
+      ),
+      'path'            => $drubiz_path,
+      'template'        => 'drubiz_cod_view_order',
+    ),
     'drubiz_search_sort' => array(
       'path'            => $drubiz_path,
       'template'        => 'drubiz_search_sort',

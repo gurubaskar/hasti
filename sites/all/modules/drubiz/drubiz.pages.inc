@@ -97,6 +97,7 @@ function drubiz_search_suggest() {
  */
 function drubiz_view_order($order_id) {
   unset($_SESSION['drubiz']['CODAvailable']);
+  $post = $_POST;
   $endpoint = 'eCommerceOrderDetailNew';
   $params = array(
     'orderId' => $order_id,
@@ -118,24 +119,31 @@ function drubiz_view_order($order_id) {
   }
 
   $client = drubiz_api_client();
-  $response = $client->get($endpoint . '?' . http_build_query($params));
+  /*$response = $client->get($endpoint . '?' . http_build_query($params));
 
   $raw_json = $response->getBody();
-  $data = json_decode($raw_json, TRUE);
+  $data = json_decode($raw_json, TRUE);*/
+  $endpoint1 = 'ccAvenueResponseNew';
 
-  watchdog(__FUNCTION__, print_r(compact('endpoint', 'params', 'data'),1));
+  $response1 = $client->get($endpoint1 . '?' . http_build_query($params1));
+
+  $raw_json1 = $response1->getBody();
+  $data1 = json_decode($raw_json1, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params1', 'data1','post'), 1) . '</pre>');
+  // watchdog(__FUNCTION__, print_r(compact('endpoint', 'params', 'data'),1));
 
   if (empty($GLOBALS['user']->uid)) {
     unset($_SESSION['drubiz']);
   }
 
-  return theme('drubiz_view_order', array('order' => $data));
+  return theme('drubiz_view_order', array('order' => $data1));
 }
 
 /**
  * Page callback for /checkout-final
  */
 function drubiz_checkout_final() {
+  $endpoint = 'singlePageSubmitOrderNew';
   $params = array(
     'paymentMethodTypeId' => 'EXT_COD', // TODO: This is hard coded for now.
   );
@@ -143,17 +151,16 @@ function drubiz_checkout_final() {
   if (!empty($jsessionid)) {
     $endpoint .= (';jsessionid=' . urlencode($jsessionid));
   }
-  if (empty($GLOBALS['user']->uid)) {
+  /*if (empty($GLOBALS['user']->uid)) {
     // Anonymous user
     // /anonMultiPageGenerateOrderNew;jsessionid=807ee961cda1fe828f6da4e92c032dd79.jvm1?paymentMethodTypeId=EXT_COD
     $endpoint = 'anonMultiPageGenerateOrderNew';
   }
-  else {
+  else {*/
     // Logged in user
     // /singlePageSubmitOrderNew?partyId=10010
-    $endpoint = 'singlePageSubmitOrderNew';
     $params['partyId'] = get_user_party_id();
-  }
+  //}
 
   $client = drubiz_api_client();
   $response = $client->get($endpoint . '?' . http_build_query($params));
@@ -161,8 +168,42 @@ function drubiz_checkout_final() {
   $data = json_decode($raw_json, TRUE);
 
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  $orderId = $data['orderId'];
+  if($data['status'] == 'pass') {
+    drupal_goto('view-orders/'.$orderId);
+  } else {
+    setcookie('codflag','true', time() + 20, '/');
+    setcookie('coderrormsg', $data['_ERROR_MESSAGE_'], time() + 20, '/');
+    drupal_goto('checkout-payment');
+  }
+  // theme('drubiz_view_order', array('order' => $data));
+  // echo json_encode($data);
+}
 
-  echo json_encode($data);
+function drubiz_cod_view_order($order_id) {
+  unset($_SESSION['drubiz']['CODAvailable']);
+
+  $endpoint = 'eCommerceOrderDetailNew';
+  $params = array(
+    'orderId' => $order_id,
+    'partyId' => get_user_party_id(),
+  );
+  $jsessionid = NULL;
+  if (empty($GLOBALS['user']->uid)) {
+    // Anonymous user
+    // /eCommerceOrderDetailNew;jsessionid=2520572C9D11330989E0C1998400BE39.jvm1?orderId=RNYCO10190&partyId=10010
+    $jsessionid = get_user_jsessionid();
+    if (!empty($jsessionid)) {
+      $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+    }
+  }
+
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+
+  return theme('drubiz_cod_view_order', array('order' => $data));
 }
 
 /**
