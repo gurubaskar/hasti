@@ -3,7 +3,16 @@ $from="";
 if(!empty($_GET['from'])) {
   $from="1";
 }
+if(isset($_COOKIE['codflag'])){
 ?>
+<script type="text/javascript">
+    var ajaxErrorMsg = '<?php echo $_COOKIE["coderrormsg"];?>';
+    //alert(ajaxErrorMsg);
+    jQuery( document ).ready(function() {
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxDanger);
+    });
+</script>
+<?php } ?>
 <input type="hidden" id="from" value="<?php echo $from;?>" />
 <div class="col-xs-12 col-sm-4 col-md-3 checkoutwrap-left">
   <div class="checkout-left">
@@ -12,11 +21,16 @@ if(!empty($_GET['from'])) {
       <?php if($GLOBALS['user']->uid != 0) {?>
         <li><a href="#" onclick="openLogin();" class="active-img">Login Details</a></li>
         <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="tickimg">Order Summary</a></li>
+        <?php if(count($cart['cartItemDetails']) > 0) {?>
         <li><a id="deliveryAddress" href="#" onclick="openDeliveryAddress();" class="tickimg">Delivery Address</a></li>
         <?php if(count($addresses['postalAddressList']) > 0) {?>
           <li><a id="paymentMethod" href="#" onclick="openPaymentMethod();" class="tickimg">Payment Method</a></li>
         <?php } else { ?>
           <li><a id="" href="#" class="disabled">Payment Method</a></li>
+        <?php } 
+            } else { ?>
+              <li><span>Delivery Address</span></li>
+              <li><span>Payment Method</span></li>
         <?php } ?>
       <?php } else { ?>
         <li><a class="active" href="#checkout-login">Sign In</a></li>
@@ -94,7 +108,9 @@ if(!empty($_GET['from'])) {
       <div class="heading-bar">
         <h2>Order Summary</h2>
       </div>
-      <?php foreach ($cart['cartItemDetails'] as $cart_key => $cart_value) { ?>
+      <?php 
+      if(count($cart['cartItemDetails']) > 0) {
+      foreach ($cart['cartItemDetails'] as $cart_key => $cart_value) { ?>
       <?php 
         $node = node_load(get_nid_from_variant_product_id($cart_key));
         if(empty($node)){
@@ -148,6 +164,11 @@ if(!empty($_GET['from'])) {
         <span><a href="#" class="buy-now" onclick="openDeliveryAddress();">Continue</a></span>
       </div>
     </div>
+    <?php } else { ?>
+    <div>
+      Add a product to cart for checkout.
+    </div>
+    <?php } ?>
   </div>
   <!--order summary end -->
 
@@ -229,6 +250,7 @@ if(!empty($_GET['from'])) {
                 <!--p>Amount payable at the time of delivery <b>&#8377;. <?php echo $grandTotal['orderGrandTotal'];?></b></p-->
                 <p>In order to confirm your order,please click on "Send OTP" button and enter One Time Password here</p>
                 <a href="#" class="validateOTP">Validate OTP</a>
+                <a href="#" class="resendOTP">Resend OTP</a>
               </div>
             </div>
           </span>
@@ -241,7 +263,7 @@ if(!empty($_GET['from'])) {
           </div>
           <div class="btns-wrap placeOrderOTP" id="placeOrderOTP" style="display:none;">
             OTP verified successfully. Please click below "Place Order" button.<br /><br />
-            <a href="#" class="placeOrderBtn">Place Order</a>
+            <a href="<?php echo url('checkout-final')?>" class="placeOrderBtn">Place Order</a>
           </div>
            <div class="btns-wrap" id="placeOrderStoreCredit" style="display:none;">           
             <a href="#" class="placeOrderBtn">Place Order</a>

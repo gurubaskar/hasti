@@ -6,7 +6,7 @@ require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
 $orderid = $_GET['orderid'];
-$partyId = $_GET['partyid'];
+$partyId = get_user_party_id();//$_GET['partyid'];
 //href="print_invoice.php?orderid=WOI10845&partyid=10201"
 $orderInformation = print_order_invoice($orderid,$partyId);
 //echo "<pre>";print_r($orderInformation);
@@ -15,8 +15,8 @@ define('INR',chr(128));
 $pdf = new PDF();
 $pdf->AddPage('P'); 
 $pdf->SetFont('Arial','B',16);
-$pdf->SetAuthor('Lana Kovacevic');
-$pdf->SetTitle('FPDF tutorial');
+// $pdf->SetAuthor('Lana Kovacevic');
+$pdf->SetTitle("Your Invoice $orderid | Hastti");
 $pdf->SetTextColor(50,60,100);
 //$pdf->SetDisplayMode(real,'default');
 $pdf->SetXY(50,20);

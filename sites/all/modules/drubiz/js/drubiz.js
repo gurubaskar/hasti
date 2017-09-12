@@ -887,7 +887,7 @@ $('.product-choose-facet-size').click(function(e) {
     $('#placeOrderOTP').hide();
   });
 
-  $('.sendOTP').click(function(e) {
+  $('.sendOTP, .resendOTP').click(function(e) {
     e.preventDefault();
     loading();
     $.ajax({
@@ -942,7 +942,7 @@ $('.validateOTP').click(function(e) {
     });
   });
 
-  $('.placeOrderBtn').click(function(e) {
+  /*$('.placeOrderBtn').click(function(e) {
     e.preventDefault();
     loading();
     $.ajax({
@@ -963,7 +963,7 @@ $('.validateOTP').click(function(e) {
       },
       dataType: 'json'
     });
-  });
+  });*/
 
 
   $('#subscribeMail').click(function(){
