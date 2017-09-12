@@ -354,9 +354,10 @@ $(document).ready(function () {
           if($('.rating-mandatory').length <= 0) {
             $('.fivestar-user-stars').after('<div class="rating-mandatory" style="color:red;font-weight: bold; padding-bottom: 10px;">Ratings are required</div>');
           }
+          e.preventDefault();
+          return false;
         }
-        e.preventDefault();
-        return false;
+        
       }
       if($('.on').length > 0) {
         if(jQuery('.form-item-ratings').length > 0) {
