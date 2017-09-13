@@ -591,8 +591,9 @@ function addAddress(){
       if(data['status'] == 'fail'){
         //alert(data['_ERROR_MESSAGE_']);
           var errormsgs = data['_ERROR_MESSAGE_'];
-          jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
-          jQuery("#signup_errormsgs").focus();
+          ajaxErrorMsgDisplay(errormsgs,ajaxDanger);
+          // jQuery("#signup_errormsgs").html('<span class="err_msgs">'+errormsgs+'</span>');
+          // jQuery("#signup_errormsgs").focus();
         close_loading();
       }else {
         if(orderAddress == 'order') {

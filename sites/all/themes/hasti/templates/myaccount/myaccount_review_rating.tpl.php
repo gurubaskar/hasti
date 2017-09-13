@@ -55,7 +55,7 @@
             <td data-title="Ratings">
               <?php 
                 $rating = $reviewValue['productRating'];
-                $ratingAverage = $rating * 20;
+                $ratingAverage = $rating;
                 $path = drupal_get_path('module', 'fivestar');      
                 drupal_add_js($path . '/js/fivestar.js');
                 drupal_add_css($path . '/css/fivestar.css');

@@ -30,15 +30,18 @@
         <h4>Order Details</h4>
         <p><label>Order Id: </label><span><?php echo $order['orderId']; ?></span></p>
         <p><label>Order Status: </label><span><?php echo $order['OrderHeader'][0]['statusId'];?></span></p>
+        <p><label>Order Date: </label><span><?php echo date('d-m-Y H:i:s',strtotime($order['orderDate'])) ;?></span></p>
         <p><label>Amount Paid: </label><span>&#8377;. <?php echo format_money($order['orderGrandTotal']); ?></span></p>
+        <?php if(!empty($track[0]['trackingNumber'])) { ?>
         <p><label>Tracking Number: </label><span><?php echo $track[0]['trackingNumber'];?></span></p>
+        <?php } ?>
       </div>
       <div class="details-wrap">
         <h4>Shipping Address</h4>
         <span><?php echo $order['shippingAddress'][0]['toName'] ?></span>
         <span><?php echo $order['shippingAddress'][0]['address1'] . ' ' . $order['shippingAddress'][0]['address2'] ?></span>
         <span><?php echo $order['shippingAddress'][0]['city'] ?>,</span>
-        <span><?php echo $order['shippingAddress'][0]['stateProvinceGeoId'] ?>,<?php echo $order['shippingAddress'][0]['postalCode'] ?></span>
+        <span><?php echo $order['shippingAddress'][0]['stateProvinceGeoId'] ?>,<?php echo $order['shippingAddress'][0]['postalCode'] ?>.</span>
         <span><?php echo $order['shippingAddress'][0]['contactNumber'] ?></span>
       </div>
     </div>
