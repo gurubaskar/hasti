@@ -1571,12 +1571,14 @@ function drubiz_hasti_comments_form($form, &$form_state) {
   $form['nickname'] = array(
     '#type' => 'textfield',
     '#title' => 'Nickname',
+    '#required' => TRUE,
     '#size' => 10,
     '#attributes' => array('data-msg-required' => t('The Nick Name is required.'),'data-rule-required'=>'true'),
   );
   $form['reviewTitle'] = array(
     '#type' => 'textfield',
     '#title' => 'Review Title',
+    '#required' => TRUE,
     '#size' => 10,
     '#attributes' => array('data-msg-required' => t('The Review title is required.'),'data-rule-required'=>'true'),
   );

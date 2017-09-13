@@ -28,7 +28,7 @@
           <span><?php echo $addr['address1'];?></span>
           <span><?php echo $addr['address2']?></span>
           <span><?php echo $addr['city'];?></span>
-          <span><?php echo $addr['stateProvinceGeoId'];?>,<?php echo $addr['postalCode'];?></span>
+          <span><?php echo $addr['stateProvinceGeoId'];?>,<?php echo $addr['postalCode'];?>.</span>
           <div class="phno"><label>Mob No:</label><span><?php echo $addr['contactNumber'];?></span></div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 edit-address">
