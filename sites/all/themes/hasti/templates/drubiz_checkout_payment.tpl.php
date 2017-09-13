@@ -3,6 +3,10 @@ $from="";
 if(!empty($_GET['from'])) {
   $from="1";
 }
+
+$profile = get_user_profile();
+toCheckSession($profile);
+
 if(isset($_COOKIE['codflag'])){
 ?>
 <script type="text/javascript">
@@ -222,7 +226,7 @@ if(isset($_COOKIE['codflag'])){
       <div class="cartbox">
         <div class="col-xs-12 col-sm-12 col-md-12 pleft payment-method">
           <div id="walletOption">
-          <div class="wallet-total"><p>Total amount to be paid</p> <span class="price">&#8377;. <?php $grandTotal = get_user_cart();
+          <div class="wallet-total"><p>Total amount to be paid</p> <span class="price" id="walletShippingGrandTotal">&#8377;. <?php $grandTotal = get_user_cart();
           echo format_money($grandTotal['orderGrandTotal']);?></span></div>          
           <?php if($walletAmount > 0){?>
              <div class="wallet-amt">

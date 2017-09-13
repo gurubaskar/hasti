@@ -275,6 +275,9 @@ $(document).ready(function () {
             url: Drupal.settings.basePath + 'checkout-address',
             data: 'contactMechId=' + conatctMechId,
             success: function(data) {
+              $('#shippingPrice').html('&#8377; '+data['deliveryCharges']+'.00');
+              $('#shippingGrandTotal').html('&#8377; '+data['orderGrandTotal']+'.00');
+              $('#walletShippingGrandTotal').html('&#8377; '+data['orderGrandTotal']+'.00');
               close_loading();
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -1571,6 +1574,7 @@ jQuery(document).ready(function(){
     jQuery(".chkwallet").on('change', function() { 
       var walletmoney = jQuery('#walletmoney').val();
        var totalamount = jQuery('#totalamount').val();
+       loading();
       if(jQuery(this).is(":checked")) {        
         var chkval = 1;
         data = 'chkval=' + chkval +'&walletmoney='+walletmoney;
@@ -1585,8 +1589,8 @@ jQuery(document).ready(function(){
               close_loading(); 
               jQuery('#balance').show(); 
               //var availablebalance = (walletmoney-totalamount);
-              jQuery("#balance").html('<div>select an option to pay balance : ' + data['remainingCartTotal'] + '</div>');       
-              jQuery("#remainingamt").html('(Available balance is &#8377;.' + data['remainingStoreCreditBalance'] + ')');
+              jQuery("#balance").html('<div>Select an option to pay balance : &#8377;.' + data['remainingCartTotal'] + '.00</div>');       
+              jQuery("#remainingamt").html('<p>Available balance is </p><span>&#8377;.' + data['remainingStoreCreditBalance'] + '</span>');
               if(data['remainingCartTotal'] == 0){
                 jQuery('#paymentOption').hide();
                 jQuery('#placeOrderStoreCredit').show(); 
@@ -1617,7 +1621,7 @@ jQuery(document).ready(function(){
               //alert(data['_EVENT_MESSAGE_']);
               close_loading(); 
               jQuery('#balance').hide(); 
-              jQuery("#remainingamt").html('(Available balance is &#8377;.' + walletmoney + ')');
+              jQuery("#remainingamt").html('<p>Available balance is </p><span>&#8377;.' + walletmoney + '.00</span>');
               if(data['remainingCartTotal'] != 0){
                 jQuery('#paymentOption').show();                 
               }
