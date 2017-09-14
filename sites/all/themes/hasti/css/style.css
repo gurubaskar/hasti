@@ -82,9 +82,9 @@ a:focus{text-decoration:none !important;}
 #header .search-wrap{float:right;}
 #header .search{float:right; padding:19px 20px 20px 20px; cursor:pointer; position:relative; width:70%; margin-right:15px;}
 #header .search .ui-input-text{width:auto !important; float:right;}
-#header .search .searchSubmit{float:right; position:absolute; right:20px;}
-#header .search input[type="text"]{border-top:0; border-right:0; border-left:1px solid #000; border-bottom:1px solid #000; padding:5px; margin-right:4px; float:right; width:250px; margin-left:5px; position:relative; color:#231f20;}
-#header .search #solr-suggestions{position:absolute; width:250px; float:right; background:#fff; top:50px; border:1px solid #d3d2d2; z-index:1; right:24px; border-top:0;}
+#header .search .searchSubmit{float:right; position:absolute; right:28px;}
+#header .search input[type="text"]{border:1px solid #000; padding:8px 5px; top:-4px; margin-right:4px; float:right; width:250px; margin-left:5px; position:relative; color:#231f20;}
+#header .search #solr-suggestions{position:absolute; width:250px; float:right; background:#fff; top:52px; border:1px solid #d3d2d2; z-index:1; right:24px; border-top:0;}
 #header .search #solr-suggestions a{padding:4px 7px;  margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:300; float:left; width:98.5%;}
 #header .search #solr-suggestions a:hover{background:#00b04c; color:#fff;}
 #header .cart{float:right; background:url('./../images/cart.png') no-repeat top left; padding:15px 0 15px 0; margin-top:20px; width:30px; position:relative;}
@@ -118,10 +118,12 @@ a:focus{text-decoration:none !important;}
     z-index: -1;
     padding-top: 0;
 }
-
+.story-imgright{padding:0 !important;}
+.story-imgleft{padding-right:30px !important;}
 #footer{width:100%; float:left; background:url('./../images/footer-bg.jpg') no-repeat top left; padding:20px 0; position:relative; text-align:center;}
 #footer ul li{display:block; padding:0 0 15px 0; text-align:left;}
 #footer ul li a{color:#fff !important; font-size:16px; font-weight:normal; line-height:18px;}
+#footer ul li a.ui-btn.ui-link{border:none; padding:0; margin:0; box-shadow:0 0 0 transparent !important;}
 #footer ul li a:hover{background-color:transparent;}
 #footer h3{margin-top:20px; color:#fff; font-family:'BPscript'; font-size:20px; text-align:left; margin-bottom:20px; width:100%;}
 #footer .social-wrap{padding:0;}
@@ -138,7 +140,7 @@ a:focus{text-decoration:none !important;}
 #footer ul li.twitter{width:30px !important; height:30px; float:left; background:url('./../images/main-img.png') no-repeat -7px -197px; position:relative; padding:15px 10px; margin:0 3% 0 0;}
 #footer ul li.in{width:30px !important; height:30px; float:left; background:url('./../images/main-img.png') no-repeat -7px -239px; position:relative; padding:15px 10px; }
 
-
+.story-detail .img-wrap img{margin:15px 0;}
 .ui-page-theme-a .ui-btn:focus, html .ui-bar-a .ui-btn:focus, html .ui-body-a .ui-btn:focus, html body .ui-group-theme-a .ui-btn:focus, html head+body .ui-btn.ui-btn-a:focus, .ui-page-theme-a .ui-focus, html .ui-bar-a .ui-focus, html .ui-body-a .ui-focus, html body .ui-group-theme-a .ui-focus, html head+body .ui-btn-a.ui-focus, html head+body .ui-body-a.ui-focus{text-shadow:none !important;}
 .tooltip .tooltip-inner{background-color:#dc5b56 !important;}
 .tooltip .tooltip-arrow{border-top-color:#dc5b56 !important;}
@@ -249,17 +251,18 @@ a:focus{text-decoration:none !important;}
         color:#0081c5;
     }
 /************************* Home page ************************/
-#homepage .story-wrap{width:100%; float:left; background:#f1f1f2; padding:20px; margin:15px 0;}
-#homepage .story-wrap:first-child{margin:0 0 15px 0;}
-#homepage .story-wrap h3{font-size:30px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-top:0; margin-bottom:15px;}
+#homepage .story-wrap{width:100%; float:left; padding-bottom:20px; margin:15px 0; border-bottom:1px solid #72d8a9; text-align:center;}
+#homepage .story-wrap:first-child{margin:0 0 45px 0; padding:0 25px;}
+#homepage .story-wrap h3{font-size:40px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-top:0; margin-bottom:15px;}
 #homepage .story-wrap p{font-size:15px; color:#929497; line-height:25px; margin:0;}
 #homepage .story-wrap p .more{font-size:16px; font-weight:bold; margin-left:20px;}
 #homepage .story-wrap p a{color:#929497;}
 #homepage .story-wrap p a:hover{color:#929497;}
-#homepage .row1, #homepage .row2{margin-bottom:15px; float:left; width:100%;}
+#homepage .row1, #homepage .row2, #homepage .row3{margin-bottom:15px; float:left; width:100%;}
 .row1 .video, .row3 .video{margin-top:15px; float:left;}
 .row2 .video{margin-top:15px; float:left;}
 .row1 .video img, .row2 .video img, .row3 .video img{width:100%;}
+
 
 /************************* PLP starts ***********************/
 #breadcrumb{float:left; width:100%; margin-bottom:20px; font-size:14px; /*padding-top:155px;*/}
@@ -1370,6 +1373,9 @@ a:focus{text-decoration:none !important;}
     .mob-search #solr-suggestions-resp{position:absolute; width:100%; top:40px; border:1px solid #d3d2d2 !important; background:#fff;}
     .mob-search #solr-suggestions-resp a{padding:4px 7px; margin:2px 2px 0 2px; color:#231f20; font-size:13px; font-weight:400; float:left; width:99.5%;}
     .mob-search #solr-suggestions-resp a:hover{background:#00b04c; color:#fff;}
+    .story-imgleft{padding-right:15px !important;}
+    .story-imgright>.col-xs-12{padding:0 !important;}
+
 }
 
 @media (max-width:600px){

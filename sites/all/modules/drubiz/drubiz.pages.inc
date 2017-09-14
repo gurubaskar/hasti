@@ -68,7 +68,7 @@ function drubiz_search_suggest() {
   $return = array();
   $term = @$_GET['term'];
   $results = array();
-  $sql = db_query("SELECT DISTINCT {node}.title FROM {node} WHERE {node}.status = 1 AND {node}.type = 'product' AND {node}.title LIKE :term LIMIT 5", array(':term' => db_like($term) . '%'));
+  $sql = db_query("SELECT DISTINCT {node}.title FROM {node} WHERE {node}.status = 1 AND {node}.type = 'product' AND {node}.title LIKE :term LIMIT 5", array(':term' => '%'. db_like($term) . '%'));
   foreach ($sql as $result) {
     $results[] = $result->title;
   }

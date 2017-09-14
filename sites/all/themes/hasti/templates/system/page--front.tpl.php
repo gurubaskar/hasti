@@ -317,15 +317,6 @@ require_once 'vendor/autoload.php';
     <!-- <div class="container-fluid"> -->
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12" id="homepage">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="story-wrap">
-              <h3>Story of Handloom</h3>
-              <p>
-                Unlike powerloom and mills, a handloom is operated by hand.<br/> 
-                The thread - warp which runs across the length is first set up - a painstaking process.<br/>then with the help of a shuttle, the weft is woven across the warp.<span class="more"><a href="https://www.hastti.com/story-details/9">Know More ></a></span>
-              </p>
-            </div>
-          </div>
           <div class="col-xs-12 col-sm-12 col-md-12 row1">
             <div class="row mright">
               <div class="col-xs-6 col-sm-3 col-md-3 pright">
@@ -346,16 +337,16 @@ require_once 'vendor/autoload.php';
               </div>
             </div>
           </div>
-
-          <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="col-xs-12 col-sm-12 col-md-12 story-container">
             <div class="story-wrap">
-              <h3>Story of Spices</h3>
+              <h3>Story of Handloom</h3>
               <p>
-                Kalamkari is the earliest and more complex techniques of block-printing on cloth using vegetable dyes. This flourished at Masulipatnam in Andhra Pradesh. <br>The origin of the word kalamkari is from kalam or pen and kari or work. Traditionally kalamkari done here was a mixture of painting and hand-printing. 
-                <span class="more"><a href="https://www.hastti.com/story-details/10">Know More ></a></span>
+                Unlike powerloom and mills, a handloom is operated by hand.<br/> 
+                The thread - warp which runs across the length is first set up - a painstaking process.<br/>then with the help of a shuttle, the weft is woven across the warp.<span class="more"><a href="https://www.hastti.com/story-details/9">Know More ></a></span>
               </p>
             </div>
           </div>
+
           <div class="col-xs-12 col-sm-12 col-md-12 row2">
             <div class="row mright">
               <div class="col-xs-12 col-sm-3 col-md-3 pright">
@@ -374,14 +365,16 @@ require_once 'vendor/autoload.php';
             </div>
           </div>
 
-          <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="col-xs-12 col-sm-12 col-md-12 story-container">
             <div class="story-wrap">
-              <h3>Story of Natural Fibre</h3>
+              <h3>Story of Spices</h3>
               <p>
-                The word Applique is a French term and is a craft wherein several pieces of coloured fabrics are cut in various shapes like birds, flowers, leaves etc and are then sown on a fabric to create patterns and stories. <span class="more"><a href="https://www.hastti.com/story-details/11">Know More ></a></span>
+                Kalamkari is the earliest and more complex techniques of block-printing on cloth using vegetable dyes.<br/> This flourished at Masulipatnam in Andhra Pradesh. <br/>The origin of the word kalamkari is from kalam or pen and kari or work.<br/> Traditionally kalamkari done here was a mixture of painting and hand-printing. 
+                <span class="more"><a href="https://www.hastti.com/story-details/10">Know More ></a></span>
               </p>
             </div>
           </div>
+
           <div class="col-xs-12 col-sm-12 col-md-12 row3">
             <div class="row mright">
               <div class="col-xs-12 col-sm-6 col-md-6 pright bigimg">
@@ -397,6 +390,15 @@ require_once 'vendor/autoload.php';
                   <img src="<?php print current_theme_path();?>/images/h-row2-img4.jpg"  class="img-responsive"/></a>
                 </span>
               </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12 story-container">
+            <div class="story-wrap">
+              <h3>Story of Natural Fibre</h3>
+              <p>
+                The word Applique is a French term and is a craft wherein several pieces of coloured fabrics are<br/> cut in various shapes like birds, flowers, leaves etc<br/> and are then sown on a fabric to create patterns and stories. <span class="more"><a href="https://www.hastti.com/story-details/11">Know More ></a></span>
+              </p>
             </div>
           </div>
 
@@ -443,7 +445,7 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('terms-of-use')?>" alt="Terms Of Use" target="_blank"><?php echo t('Terms Of Use');?></a></li>
               <li><a href="<?php echo url('privacy-policy')?>" alt="Privacy Policy" target="_blank"><?php echo t('Privacy Policy');?></a></li>
               <li><a href="#" alt="Returns Policy" target="_blank"><?php echo t('Returns Policy');?></a></li>
-              <li><a href="<?php echo url('policies')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
+              <li><a href="<?php echo url('security')?>" alt="Security" id="securitypolicy" target="_blank"><?php echo t('Security');?></a></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
