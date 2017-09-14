@@ -54,6 +54,7 @@ body{font-size:14px; line-height:20px; font-family:'Roboto';}
 p{margin-bottom:7px; line-height:22px;}
 a:focus{text-decoration:none !important;}
 .nopad{padding:0;}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{z-index:-1 !important;}
 #topnav{/*width:100%; float:left; background:#009989; padding:6px 0;*/
     width: 100%;
     float: left;
@@ -324,6 +325,7 @@ a:focus{text-decoration:none !important;}
 .disabled{background:#E8E8E8 !important; color:#bababa !important;}
 .disabled-text{color:#bababa !important;}
 /************************* PDP starts ***********************/
+.pdp #reviewForm .form-required{color:#BF0000;}
 .pdp .breadcrumb, #breadcrumb .breadcrumb{background:none !important; z-index:-1; padding:0; margin-bottom:0;}
 .pdp .breadcrumb h3{margin-bottom:0; margin-top:0; padding-top:0;}
 /*.pdp  .pdp-left{margin-bottom:20px; z-index:-1;}*/
@@ -559,6 +561,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
 .breadcrumb>.active{color:#777 !important;}
+.checkout-right .payment-method #paymentOption a.resendOTP{position:absolute; top:196px; left:180px;}
 .checkout-right, .wishlist, .myorders{padding:0px 15px;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
@@ -746,6 +749,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders .shippingDetail .details-wrap{float:left; width:45%; border-left:1px solid #ddd; padding-left:30px;}
 
 #cancelComments, #cancelReason-button, .cancelord{height:auto; border:none; margin:15px 0 7px 0; padding:10px; color:#6d6e70; background-color:#fff; line-height:24px; float:left; width:100%;}
+#cancelComments{text-align:left !important; font-weight:normal !important;}
 #cancelComments{height:42px !important; text-align:center; font-size:16px; font-weight:bold;}
 #cancelWindow_WOI10911-popup .cancelord{padding:5px 7px !important; margin:15px 0 7px 0;}
 #cancelWindow_WOI10911-popup .ui-icon-delete
@@ -1240,6 +1244,7 @@ a:focus{text-decoration:none !important;}
 
 @media only screen and (max-width:639px) and (min-width:481px){
     .icon-wrap .icon-container{width:60%;}
+    .checkout-right .payment-method span{width:100%;}
 }
 
 @media (max-width:1100px){
@@ -1457,7 +1462,7 @@ a:focus{text-decoration:none !important;}
     #homepage, #breadcrumb .container-fluid>.col-xs-12, #cart, .cartbox .img-wrap, .cartbox .cart-details, .cartbox .cart-details .details-right, .checkoutwrap-left, .checkout-right, .checkout-right #checkout-login>.col-xs-12, .leftMenuWrap{padding:0 !important;}
     /*#cart #subtotal span{font-size:28px;}*/
     .myaccount-right, .myaccount-right>div.col-xs-12, .story-detail{padding:0 !important;}
-    .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn{width:100%;}
+    .ui-popup.signin.cancelOrder-wrap .submit-btn, .ui-popup.signin.cancelOrder-wrap .cancel-btn,  .checkout-right .payment-method span, .checkout-right .payment-method #paymentOption .validateOTP, .checkout-right .payment-method #paymentOption a.resendOTP, .checkout-right .payment-method #paymentOption a.sendOTP{width:100%;}
     .ui-popup.signin.cancelOrder-wrap .cancel-btn{margin-top:5px;}
     .myaccount-right.returnOrderItem .cartbox .img-wrap{width:35%;}
     .myaccount-right.returnOrderItem .cartbox .cart-details{width:65%;}
@@ -1466,6 +1471,7 @@ a:focus{text-decoration:none !important;}
     .checkpin input[type="submit"]{right:0 !important;}
     .plp .plp-right{padding:6px 0 0 0;}
     .checkout-right .forgot-btn #Continue, .checkout-right .forgot-btn #back{width:49%;}
+    .checkout-right .payment-method #paymentOption a.resendOTP{position:relative; top:inherit; left:inherit; margin-bottom:20px;}
 
 }
 @media(max-width:439px){
