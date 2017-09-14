@@ -1605,8 +1605,9 @@ print render($fivestar);*/
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Submit',
-    '#submit' => array('drubiz_hasti_comments_form_submit'),
+    '#submit' => array('drubiz_hasti_comments_form_submit'),    
   );
+  $form['submit']['#attributes']['class'][] = 'ratings_btn_custom';
   //$form['#submit'][] = 'drubiz_hasti_comments_form_submit';
   $form['#attributes'] = array('data-ajax' => 'false', 'name' => 'hasti_comments_fn');
   // $form['#submit'] = array('drubiz_hasti_comments_form_submit'); 
