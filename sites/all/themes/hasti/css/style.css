@@ -80,7 +80,7 @@ a:focus{text-decoration:none !important;}
     background: #FFF;
 }
 #header .search-wrap{float:right;}
-#header .search{float:right; padding:19px 20px 20px 20px; cursor:pointer; position:relative; width:70%; margin-right:15px;}
+#header .search{float:right; padding:19px 20px 15px 20px; cursor:pointer; position:relative; width:70%; margin-right:15px;}
 #header .search .ui-input-text{width:auto !important; float:right;}
 #header .search .searchSubmit{float:right; position:absolute; right:28px;}
 #header .search input[type="text"]{border:1px solid #000; padding:8px 5px; top:-4px; margin-right:4px; float:right; width:250px; margin-left:5px; position:relative; color:#231f20;}
