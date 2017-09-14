@@ -337,7 +337,7 @@ $(document).ready(function () {
             dataType: 'json'
           });
     });
-    $('#edit-submit--2').click(function(e) {
+    $('.ratings_btn_custom').click(function(e) {
       var mandate_rating = 1;
       if($('#edit-nickname').length > 0) {
         if($('#edit-nickname').val() != "") {}

@@ -159,13 +159,17 @@ require_once 'vendor/autoload.php';
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
-            <li><a href="<?php echo url('account/track-order');?>"><?php echo t('Track Order');?></a></li>
-            <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>            
-             <?php if($GLOBALS['user']->uid != 0):?>
+            <?php if($GLOBALS['user']->uid == 0) { ?>
+              <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()" data-ajax="false"><?php echo t('Track Order');?></a></li>
+              <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()" data-ajax="false">Wish List</a></li>
+            <?php } else { ?>
+              <li><a href="<?php echo url('account/track-order');?>"><?php echo t('Track Order');?></a></li>
+              <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>            
+            <?php } if($GLOBALS['user']->uid != 0):?>
               <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
-             <?php endif; ?>
-             <?php if($GLOBALS['user']->uid == 0):?>
+            <?php endif; ?>
+            <?php if($GLOBALS['user']->uid == 0):?>
               <li><a href="#positionWindow" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
               <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
             <?php endif; ?>
@@ -190,7 +194,7 @@ require_once 'vendor/autoload.php';
    
     <div class="signin-btn">
 <!--      <input type="button" value="Save" id="signin" onclick="hastiSignIn();">-->
-      <input type="submit" value="Save" id="signin">
+      <input type="submit" value="Sign Up" id="signin">
     </div>
   </form>
 </div>
@@ -429,7 +433,11 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('cancellation-returns')?>" alt="Cancellation & Returns" target="_blank"><?php echo t('Cancellation & Returns');?></a></li>
               <li><a href="<?php echo url('shipping-policy')?>" alt="Shipping Policy" target="_blank"><?php echo t('Shipping Policy');?></a></li>
               <li><a href="<?php echo url('contact-us')?>" alt="Contact Us"><?php echo t('Contact Us');?></a></li>
+              <?php if($GLOBALS['user']->uid == 0) { ?>
+              <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()" alt="Track Orders" ><?php echo t('Track Orders');?></a></li>
+              <?php } else { ?>
               <li><a href="<?php echo url('account/track-order');?>" alt="Track Orders" target="_blank"><?php echo t('Track Orders');?></a></li>
+              <?php } ?>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
