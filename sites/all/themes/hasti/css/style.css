@@ -252,7 +252,7 @@ a:focus{text-decoration:none !important;}
     }
 /************************* Home page ************************/
 #homepage .story-wrap{width:100%; float:left; padding-bottom:20px; margin:15px 0; border-bottom:1px solid #72d8a9; text-align:center;}
-#homepage .story-wrap:first-child{margin:0 0 45px 0; padding:0 25px;}
+#homepage .story-wrap:first-child{margin:0 0 45px 0; padding:0 25px 15px 25px;}
 #homepage .story-wrap h3{font-size:40px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-top:0; margin-bottom:15px;}
 #homepage .story-wrap p{font-size:15px; color:#929497; line-height:25px; margin:0;}
 #homepage .story-wrap p .more{font-size:16px; font-weight:bold; margin-left:20px;}
