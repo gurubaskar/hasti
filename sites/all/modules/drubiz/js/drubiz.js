@@ -491,7 +491,7 @@ $('.product-choose-facet-size').click(function(e) {
     var product_id_color = $('.selectableFeatures_COLOR a.selected:first li').data('product-id');
     var quantity = 1;
     if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
-      ajaxErrorMsgDisplay('Please select size and variant',ajaxSuccess);
+      ajaxErrorMsgDisplay('Please select size and color',ajaxSuccess);
       // alert('Please select a size of your choice');
       return;
     }
@@ -571,7 +571,7 @@ $('.product-choose-facet-size').click(function(e) {
     // }
     if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
       // alert('Please select a variant');
-      ajaxErrorMsgDisplay('Please select size and variant',ajaxInfo);
+      ajaxErrorMsgDisplay('Please select size and color',ajaxInfo);
       return;
     }
     // alert(product_id+'--'+quantity);
