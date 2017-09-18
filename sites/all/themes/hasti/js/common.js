@@ -910,6 +910,23 @@ function onImgError(elem,type) {
   return true;
 }
 
+function onImgStoryError(elem,type) {
+  var imgPath = Drupal.settings.basePath + 'sites/all/themes/' + Drupal.settings.ajaxPageState.theme;
+  var imgUrl =  imgPath + "/osafe_theme/images/Story/";
+  var imgName= "story-notfound.jpg";
+  switch (type) {
+    case "Story-Details":
+      imgName = "story-notfound.jpg";
+      break;
+  }
+  elem.src = imgUrl + imgName;
+  elem.onmouseout="";
+  elem.onmouseover="";
+  elem.onerror = "";
+  
+  return true;
+}
+
 /*************** Forgot Password ******************/
 function checkEmail() {
   var email = jQuery("#emailid").val();

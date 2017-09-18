@@ -87,7 +87,7 @@ require_once 'vendor/autoload.php';
 <div id="topnav">
   <div class="container-fluid">
       <div class="col-xs-12 col-sm-7 col-md-6 header-content">
-        <p>Have your greatest experience with us and support the Women of India.</p>
+        <p>Have your greatest experience with us and support Hastti.</p>
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>

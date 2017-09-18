@@ -6,18 +6,18 @@
         <?php if(!empty($storyDetails['storyDetail'][0]['storyImage1']) and $storyDetails['storyDetail'][0]['storyImage1'] != null) { ?>
         <div class="col-xs-12 col-sm-8 col-md-8 story-imgleft">
           <div class="row">
-            <img src="<?php print current_theme_path() . $storyDetails['storyDetail'][0]['storyImage1'] ?>" class="img-responsive" />
+            <img src="<?php print current_theme_path() . $storyDetails['storyDetail'][0]['storyImage1'] ?>" class="img-responsive" onerror="onImgStoryError(this, 'Story-Details');" />
           </div>
         </div>
         <?php } if(!empty($storyDetails['storyDetail'][0]['storyImage2']) and $storyDetails['storyDetail'][0]['storyImage2'] != null) {?>
         <div class="col-xs-12 col-sm-4 col-md-4 story-imgright">
           <div class="col-xs-12 col-sm-12 col-md-12">
-           <img src="<?php print current_theme_path() . $storyDetails['storyDetail'][0]['storyImage2'] ?>" class="img-responsive" />
+           <img src="<?php print current_theme_path() . $storyDetails['storyDetail'][0]['storyImage2'] ?>" class="img-responsive" onerror="onImgStoryError(this, 'Story-Details');" />
           </div>
         
         <?php } if(!empty($storyDetails['storyDetail'][0]['storyImage3']) and $storyDetails['storyDetail'][0]['storyImage3'] != null) {?>
         <div class="col-xs-12 col-sm-12 col-md-12">
-          <img src="<?php print current_theme_path() .$storyDetails['storyDetail'][0]['storyImage3'] ?>" class="img-responsive" />
+          <img src="<?php print current_theme_path() .$storyDetails['storyDetail'][0]['storyImage3'] ?>" class="img-responsive" onerror="onImgStoryError(this, 'Story-Details');" />
         </div>
         <?php } ?>
       </div>
