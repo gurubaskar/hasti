@@ -539,39 +539,6 @@ function signInHasti(){
 }
 
 function addAddress(){
-  /*if(jQuery('#firstname').val() == ''){
-    alert('Enter First Name.');
-    return false;
-  }
-  if(jQuery('#lastname').val() == ''){
-    alert('Enter Last Name.');
-    return false;
-  }
-  if(jQuery('#address1').val() == ''){
-    alert('Enter Address 1.');
-    return false;
-  }
-  if(jQuery('#address2').val() == ''){
-    alert('Enter Address 2.');
-    return false;
-  }
-  if(jQuery('#city').val() == ''){
-    alert('Enter City.');
-    return false;
-  }
-  if(jQuery('#state').val() == ''){
-    alert('Select State.');
-    return false;
-  }
-  if(jQuery('#zipcode').val() == ''){
-    alert('Enter zipcode.');
-    return false;
-  }
-  if(jQuery('#mobile').val() == ''){
-    alert('Enter mobile.');
-    return false;
-  }*/
-
   var data_firstname   = jQuery('#addNewAddress').find('[name=firstname]:first').val();
   var data_lastname    = jQuery('#addNewAddress').find('[name=lastname]:first').val();
   var data_address1    = jQuery('#addNewAddress').find('[name=address1]:first').val();
@@ -628,7 +595,6 @@ jQuery(document).ready(function() {
 });
 
 function editAddress(){
-  
   var data_firstname   = jQuery('#editNewAddress').find('[name=firstname]:first').val();
   var data_lastname    = jQuery('#editNewAddress').find('[name=lastname]:first').val();
   var data_address1    = jQuery('#editNewAddress').find('[name=address1]:first').val();
@@ -640,7 +606,7 @@ function editAddress(){
   var data_addressid   = jQuery('#editNewAddress').find('[name=addressid]:first').val();
 
   var data = 'data_firstname=' + encodeURIComponent(data_firstname) + '&data_lastname=' + encodeURIComponent(data_lastname) + '&data_address1=' + encodeURIComponent(data_address1) + '&data_address2=' + encodeURIComponent(data_address2) + '&data_city=' + encodeURIComponent(data_city) + '&data_state=' + encodeURIComponent(data_state) + '&data_zipcode=' + encodeURIComponent(data_zipcode) + '&data_mobile=' + encodeURIComponent(data_mobile) + '&data_contactMechId=' + encodeURIComponent(data_addressid) + '&data_update=1';
-
+  var orderAddress = getParameterByName('back');
   loading();
   jQuery.ajax({
     type: "POST",
@@ -655,7 +621,12 @@ function editAddress(){
           jQuery("#signup_errormsgs").focus();
         close_loading();
       } else {
-        document.location = Drupal.settings.basePath + 'account/address-book';
+        if(orderAddress == 'order') {
+          document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
+        } else {
+          close_loading();
+          document.location = Drupal.settings.basePath + 'account/address-book';
+        }
       }
     },
     error: function(jqXHR, textStatus, errorThrown) {
