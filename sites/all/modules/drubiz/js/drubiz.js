@@ -504,7 +504,7 @@ $('.product-choose-facet-size').click(function(e) {
       success: function(data) {
         if (data['isError'] == 'false') {
           if (action == 'buy_now') {
-            document.location = Drupal.settings.basePath + 'checkout-payment';
+            document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
           }
           else if(action == 'add') {
             update_mini_cart();
@@ -1267,9 +1267,10 @@ function update_mini_cart() {
   $.ajax({
     type: "GET",
     url: Drupal.settings.basePath + 'drubiz/mini-cart',
+    async : true,
     success: function(data) {
       console.log(data);
-      $('.cost').html('&#8377.'+ data['cartSubTotal']);
+      // $('.cost').html('&#8377.'+ data['cartSubTotal']);
       $('#mini-cart-count').html(Object.keys(data['cartItemDetails']).length);
       close_loading();
     },

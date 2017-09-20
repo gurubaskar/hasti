@@ -252,7 +252,7 @@ require_once 'vendor/autoload.php';
           <ul id="eCommerceNavBarMenu">
             <?php foreach ($menu_tree as $menu_id => $menu): if (!is_numeric($menu_id)) continue; ?>
               <li class="topLevel">
-                <a class="topLevel" href="<?php echo url($menu['#href'], array('query' => @$menu['#localized_options']['query'])) ?>">
+                <a data-ajax="false" class="topLevel" href="<?php echo url($menu['#href'], array('query' => @$menu['#localized_options']['query'])) ?>">
                   <?php echo $menu['#title'] ?>
                 </a>
                 <?php if (!empty($menu['#below'])): ?>
@@ -260,14 +260,14 @@ require_once 'vendor/autoload.php';
                     <ul class="subCategoryNav" style="display: none;">
                       <?php foreach ($menu['#below'] as $sub_menu_id => $sub_menu): if (!is_numeric($sub_menu_id)) continue; ?>
                         <li class="subLevel">
-                          <a class="subLevel" href="<?php echo url($sub_menu['#href'], array('query' => @$sub_menu['#localized_options']['query'])) ?>">
+                          <a data-ajax="false" class="subLevel" href="<?php echo url($sub_menu['#href'], array('query' => @$sub_menu['#localized_options']['query'])) ?>">
                             <?php echo $sub_menu['#title'] ?>
                           </a>
                           <?php if (!empty($sub_menu['#below'])): ?>
                             <ul class="subCategoryNav">
                               <?php foreach ($sub_menu['#below'] as $sub_sub_menu_id => $sub_sub_menu): if (!is_numeric($sub_sub_menu_id)) continue; ?>
                                 <li class="subLevel">
-                                  <a class="subLevel" href="<?php echo url($sub_sub_menu['#href'], array('query' => @$sub_sub_menu['#localized_options']['query'])) ?>">
+                                  <a data-ajax="false" class="subLevel" href="<?php echo url($sub_sub_menu['#href'], array('query' => @$sub_sub_menu['#localized_options']['query'])) ?>">
                                     <?php echo $sub_sub_menu['#title'] ?>
                                   </a>
                                 </li>
@@ -367,7 +367,11 @@ require_once 'vendor/autoload.php';
           </div>
       </div>
       <?php endif;
-      } else { ?>
+      } 
+      if (arg(0) == 'node' && is_numeric(arg(1))) { 
+          $node = node_load(arg(1));
+        if ( $node->type == 'product' ) {        
+        ?>
       <div id="breadcrumb">
          <div class="container-fluid">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -375,7 +379,7 @@ require_once 'vendor/autoload.php';
             </div>
           </div>
       </div>
-    <?php } } ?>
+    <?php } } } ?>
     <div class="container-fluid">
       <?php if ($search_filter_sidebar): ?>
           <div class="col-xs-0 col-sm-3 col-md-3">

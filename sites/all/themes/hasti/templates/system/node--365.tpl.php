@@ -4,7 +4,7 @@
 		<div class="col-xs-12 col-sm-4 col-md-3 faq-left">
 			<!--h2>Placing Order</h2-->
 			<ul>
-				<li><a href="#faq" id="faq" class="active">Site Map</a></li>
+				<li><a href="#faq" class="active">Site Map</a></li>
 				<li><a href="#tracking-order">Shipping, Order, Tracking & Delivery</a></li>
 				<li><a href="#cancellation" id="security-li">Cancellation & Modification</a></li>
 				<li><a href="#try-buy">Try & Buy</a></li>

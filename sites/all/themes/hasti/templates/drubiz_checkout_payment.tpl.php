@@ -201,7 +201,7 @@ if(isset($_COOKIE['codflag'])){
           <div class="phno"><label>Mob No:</label><span><?php echo $postal_value['contactNumber']?></span></div>
         </div>
         <div class="col-xs-4 col-sm-6 col-md-6 edit-address pright">
-          <a href="<?php echo url('account/edit-address/'.$postal_value['contactMechId']) ?>"><span class="edit"></span></a>
+          <a href="<?php echo url('account/edit-address/'.$postal_value['contactMechId']) ?>?back=order"><span class="edit"></span></a>
           <a href="#"><span class="delete address-delete" data-contactMechId="<?php echo $postal_value['contactMechId'] ;?>"></span></a>
         </div>
       </div>
