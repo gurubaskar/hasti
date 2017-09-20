@@ -1267,7 +1267,6 @@ function update_mini_cart() {
   $.ajax({
     type: "GET",
     url: Drupal.settings.basePath + 'drubiz/mini-cart',
-    async : true,
     success: function(data) {
       console.log(data);
       // $('.cost').html('&#8377.'+ data['cartSubTotal']);
