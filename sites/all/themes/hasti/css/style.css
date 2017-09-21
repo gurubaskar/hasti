@@ -17,7 +17,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    font-family: 'Roboto';
+    font-family: 'Roboto' !important;
 }
 /* HTML5 display-role reset for older browsers */
 p{float:left; width:100%;}
@@ -383,6 +383,9 @@ a:focus{text-decoration:none !important;}
 .pdp .btns-wrap span a{font-weight:normal;}
 .pdp .btns-wrap span a, #cart .btns-wrap span a, .checkpin a, .checkout-right .btns-wrap span a, .payment-method .btns-wrap a, .story-detail span a, .story-detail span a:hover{text-align:center; color:#fff; float:left; width:100%; padding:10px 0; font-size:16px; font-weight:normal;}
 .pdp .btns-wrap span a.wish-icon{background:url('./../images/main-img.png') no-repeat 0px -330px;}
+.pdp .btns-wrap span a.ui-btn{background:url('./../images/main-img.png') no-repeat 0px -330px; border: none;
+    box-shadow: none; margin: 0; line-height: 22px;}
+.pdp .btns-wrap span a.ui-btn:active{color:#fff !important;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
 .pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}

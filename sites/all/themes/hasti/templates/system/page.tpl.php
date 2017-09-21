@@ -422,7 +422,7 @@ require_once 'vendor/autoload.php';
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 links-wrap">
           <div class="col-xs-12 col-sm-3 col-md-3 links">
-            <h3>Get to Know Hasti</h3>
+            <h3>Get to Know Hastti</h3>
             <ul>
               <li><a href="<?php echo url('about-us')?>" alt="About Us" target="_blank"><?php echo t('About Us');?></a></li>
               <li><a href="#" alt="Press Release" target="_blank"><?php echo t('Press Release');?></a></li>

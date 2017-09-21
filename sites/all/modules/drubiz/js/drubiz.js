@@ -624,12 +624,17 @@ $('.product-choose-facet-size').click(function(e) {
         data: 'product_id=' + product_id + '&quantity=' + quantity,   
         success: function(data) {   
                //console.log(data);   
-          if (data['isError'] == 'False') {   
+          if (data['isError'] == 'False') {
+            ajaxErrorMsgDisplay(data['_SUCCESS_MESSAGE']);
+            product_id_split = product_id.split('-');
+            jQuery(".wishlist-variant-"+product_id_split[0]).hide();
             close_loading();    
           }   
           else {    
             // alert(data['_EVENT_MESSAGE_']+' Error adding item.');    
-            ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');   
+            ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');
+            product_id_split = product_id.split('-');
+            jQuery(".wishlist-variant-"+product_id_split[0]).hide();
             close_loading();    
           }   
         },    
