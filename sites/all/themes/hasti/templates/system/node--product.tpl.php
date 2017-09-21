@@ -94,6 +94,7 @@
   $selected_features = get_selected_features($product);
   $facet_values = get_facet_values($system_data, false);
   $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
+  echo $node->field_product_id[LANGUAGE_NONE][0]['value'];
   $out_of_stock_info = pdp_out_of_stock_info($node->field_product_id[LANGUAGE_NONE][0]['value']);
   $out_of_stock = $out_of_stock_info->availableQuantity;
   $rating = displayPDPReviewandRating($product->product_id);
@@ -344,7 +345,11 @@
           </ul>
         </div>
         <div class="btns-wrap">
-          <span><a href="#" class="wish-icon" id="js_addToWishlist" data-ajax="false">Add to wish list</a></span>
+          <?php if($GLOBALS['user']->uid != 0) { ?>
+            <span><a href="#" class="wish-icon" id="js_addToWishlist" data-ajax="false">Add to wish list</a></span>
+          <?php } else {?>
+            <span><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()" data-ajax="false" class="wish-icon">Add to wish list</a></span>
+          <?php } ?>
           <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="<?php echo $addToCart;?>">Add to Bag</a></span>
           <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>">Buy Now</a></span>
         </div>
