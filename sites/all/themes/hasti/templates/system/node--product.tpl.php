@@ -94,7 +94,6 @@
   $selected_features = get_selected_features($product);
   $facet_values = get_facet_values($system_data, false);
   $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
-  echo $node->field_product_id[LANGUAGE_NONE][0]['value'];
   $out_of_stock_info = pdp_out_of_stock_info($node->field_product_id[LANGUAGE_NONE][0]['value']);
   $out_of_stock = $out_of_stock_info->availableQuantity;
   $rating = displayPDPReviewandRating($product->product_id);
