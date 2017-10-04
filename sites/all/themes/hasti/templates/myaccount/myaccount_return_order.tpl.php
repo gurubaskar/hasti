@@ -141,6 +141,7 @@
         <tbody>
       </table>
     </div>
+    <?php $paymentMethodType = $order['paymentMethodType'];?>
     <div id="page-wrap" class="refundTypeDisplay" style="display: none;">
       <table>
         <thead>
@@ -155,12 +156,16 @@
                 <option value="<?php echo $refundValue['returnTypeId'];?>"><?php echo $refundValue['description'];?></option>
               <?php } ?>
             </select>
+            <input type="hidden" name="paymentMethodType" value="<?php echo $paymentMethodType;?>" id="paymentMethodType">
             </td>
           </tr>
         </thead>
       </table>
     </div>
     <div class="bankDetails" style="display: none;">
+      <?php 
+        if($paymentMethodType == 'EXT_COD') {
+      ?>
       <div id="return_errormsgs" style=""></div>
       <form method="post" action="<?php echo url('drubiz/returnOrder') ?>" id="refundForm" name="refundForm"> 
       <div class="form-row">
@@ -181,6 +186,11 @@
         <input type="submit" value="Submit" class="basic-btn">
       </div>
       </form>
+      <?php } else { ?>
+        <div class="details-btns returnSubmit">
+          <a href="" id="returnSubmit" onclick="refundReturn()">Submit</a>
+        </div>
+      <?php } ?>
     </div>
    <div id="storecredit" style="display: none">
       <div class="details-btns returnSubmit">

@@ -1788,6 +1788,7 @@ function myaccount_return_order_details() {
   if (!empty($jsessionid)) {
     $endpoint .= (';jsessionid=' . urlencode($jsessionid));
   }
+  $paymentMethodType = @$_POST['paymentMethodType'];
   $productIds = explode(',', $_POST['productIds']);
   $returnTypeId = $_POST['returnTypeId'];
   $returnReasonId = explode(',',$_POST['returnReasonId']);
@@ -1810,10 +1811,11 @@ function myaccount_return_order_details() {
       'fromPartyId'         => get_user_party_id(),
       'destinationFacilityId' => 'HASTTI_FAC',
       'codRefund'           => 'Y',
-      'accountHolderName'   => $_POST['accountHolderName'],
-      'bankName'            => $_POST['bankName'],
-      'accountNumber'       => $_POST['accountNumber'],
-      'ifscCode'            => $_POST['ifscCode'],
+      'accountHolderName'   => @$_POST['accountHolderName'],
+      'bankName'            => @$_POST['bankName'],
+      'accountNumber'       => @$_POST['accountNumber'],
+      'ifscCode'            => @$_POST['ifscCode'],
+      'paymentMethodType'   => $paymentMethodType,
       'returnOrderItem'     => $returnOrderItem,
     );
   } else {
@@ -1822,6 +1824,7 @@ function myaccount_return_order_details() {
       'fromPartyId'         => get_user_party_id(),
       'destinationFacilityId' => 'HASTTI_FAC',
       'codRefund'           => 'N',
+      'paymentMethodType'   => $paymentMethodType,
       'returnOrderItem'     => $returnOrderItem,
     );
   }
@@ -1836,7 +1839,7 @@ function myaccount_return_order_details() {
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   // toCheckSession($data);
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','data','endpoint','returnOrderItem','json'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' .  print_r(compact('params','data','endpoint','returnOrderItem','json'), 1) . '</pre>');
   echo json_encode($data);
   // return theme('myaccount_return_order',array('order'=>$data)); 
 }

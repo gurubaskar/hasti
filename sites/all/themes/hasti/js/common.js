@@ -1434,6 +1434,7 @@ function savePersonalInfo(){
 }
   function refundReturn(){
       var orderId = jQuery("#orderId").val();
+      var paymentMethodType = jQuery("#paymentMethodType").val();
       var itemChecked = jQuery(".returnProduct:checked").length;
       if(itemChecked > 0) {
         var selectedReturnValue = jQuery('#refundType').val();
@@ -1479,10 +1480,11 @@ function savePersonalInfo(){
             return false;
           }
           */
-          data += 'orderId=' + orderId + '&accountHolderName=' + accountHolderName + '&bankName=' + bankName + '&accountNumber=' + accountNumber + '&ifscCode=' + ifscCode + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
+          data += 'orderId=' + orderId + '&accountHolderName=' + accountHolderName + '&bankName=' + bankName + '&accountNumber=' + accountNumber + '&ifscCode=' + ifscCode + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds + '&paymentMethodType=' +paymentMethodType;
 
+        } else {
+          data += 'orderId=' + orderId + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
         }
-        data += 'orderId=' + orderId + '&returnTypeId=' + selectedReturnValue + '&returnReasonId=' + returnReasonId + '&productIds=' +productIds;
 // alert(jQuery("#returnReason_00001_100044-1").val());
     // var orderId = jQuery(this).data('cancel-id');
     // var reasionId = jQuery('#cancelWindow_'+orderId).find('option:selected').attr('id');
