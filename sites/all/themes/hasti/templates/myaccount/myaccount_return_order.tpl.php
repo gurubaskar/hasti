@@ -166,6 +166,7 @@
       <?php 
         if($paymentMethodType == 'EXT_COD') {
       ?>
+      <div class="bankdetails-wrap">
       <div id="return_errormsgs" style=""></div>
       <form method="post" action="<?php echo url('drubiz/returnOrder') ?>" id="refundForm" name="refundForm"> 
       <div class="form-row">
@@ -182,12 +183,13 @@
       </div>
        <!--div id="returnSubmit" class="details-btns returnSubmit">
         <a href="">Submit</a-->
-      <div>
+      <div class="details-btns returnSubmit">
         <input type="submit" value="Submit" class="basic-btn">
       </div>
       </form>
+    </div>
       <?php } else { ?>
-        <div class="details-btns returnSubmit">
+        <div class="details-btns returnSubmit ">
           <a href="" id="returnSubmit" onclick="refundReturn()">Submit</a>
         </div>
       <?php } ?>
