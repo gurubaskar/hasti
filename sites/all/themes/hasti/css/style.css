@@ -634,6 +634,12 @@ a:focus{text-decoration:none !important;}
 #cart .details-right{margin-top:5px;}
 
 /***************************  myaccount section starts  ***************************/
+#block-system-main{margin-left:18px;}
+#user-login--2{margin:0 auto; width:auto;}
+#user-login--2 .form-group{width:100%; float:left;}
+#user-login--2 .form-group .control-label{width:150px; float:left;}
+#user-login--2 .form-group input[type="text"], #user-login--2 .form-group input[type="password"]{border:1px solid #ccc;}
+#edit-actions--2 button[type="submit"]{width:auto !important; padding:8px 30px; border:none; margin-left:150px;}
 .myaccount-left h3{font-weight:600; font-size:17px; color:#6d6e70; margin-bottom:9px; margin-top:7px;}
 .myaccount-left > ul{padding-top:5px; width:100%; float:left;}
 .myaccount-left > ul > li{margin-bottom:12px;}
