@@ -449,7 +449,7 @@ require_once 'vendor/autoload.php';
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
-            <h3>Folow Us</h3>
+            <h3>Follow Us</h3>
             <ul>
               <li class="facebook"><a href="https://www.facebook.com/Hastti-1385257374900900/" target="_blank"></a></li>
               <li class="flickr"><a href="#"></a></li>
