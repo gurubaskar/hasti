@@ -1018,6 +1018,7 @@ function openPaymentMethod() {
  jQuery('#Online').prop('checked', false);
  jQuery('#OTPValue').val("");
  jQuery('#wallet').prop('checked', false);
+ jQuery('#placeOrderStoreCredit').hide(); 
 
 
  jQuery('li a').removeClass("active");
@@ -1583,7 +1584,9 @@ jQuery(document).ready(function(){
               jQuery("#remainingamt").html('<p>Available balance is </p><span>&#8377;.' + data['remainingStoreCreditBalance'] + '</span>');
               if(data['remainingCartTotal'] == 0){
                 jQuery('#paymentOption').hide();
+                jQuery('#placeOrderOTP').hide();
                 jQuery('#placeOrderStoreCredit').show(); 
+                jQuery('#balance').hide();
               }
               //document.location = Drupal.settings.basePath +'checkout-payment';
             } else {
@@ -1611,6 +1614,7 @@ jQuery(document).ready(function(){
               //alert(data['_EVENT_MESSAGE_']);
               close_loading(); 
               jQuery('#balance').hide(); 
+              jQuery('#placeOrderStoreCredit').hide(); 
               jQuery("#remainingamt").html('<p>Available balance is </p><span>&#8377;.' + walletmoney + '.00</span>');
               if(data['remainingCartTotal'] != 0){
                 jQuery('#paymentOption').show();                 

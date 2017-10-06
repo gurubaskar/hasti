@@ -567,7 +567,7 @@ a:focus{text-decoration:none !important;}
 .myaccount-left ul li a.active{color:#0081c5 !important;}
 .active{color:#0081c5 !important; text-decoration:none;}
 .breadcrumb>.active{color:#777 !important;}
-.checkout-right .payment-method #paymentOption a.resendOTP{position:absolute; top:196px; left:180px;}
+.checkout-right .payment-method #paymentOption a.resendOTP{position:absolute; top:287px; left:180px;}
 .checkout-right, .wishlist, .myorders{padding:0px 15px;}
 .checkout-right h3, .wishlist h3, .myorders h3, .myaccount-right h3{font-size:25px; font-weight:300; margin-top:0; color:#6d6e70; margin-bottom:20px; float:left; width:100%;}
 .checkout-right input[type="text"], .checkout-right input[type="password"]{width:75%; padding:10px; margin:10px 0 10px 0; border:1px solid #c7c6c6;}
@@ -626,7 +626,7 @@ a:focus{text-decoration:none !important;}
 .checkout-right .payment-method #walletOption .wallet-total .price, .checkout-right .payment-method #walletOption .price{float:left; padding-left:8px; color:#0081c5; font-weight:normal;}
 .payment-method .btns-wrap{width:100%; float:left; margin-top:15px;}
 .payment-method .displayOTP .btns-wrap{margin-top:0;}
-.payment-method .btns-wrap a{background:#00b04c; padding:10px 40px; width:auto;}
+.payment-method .btns-wrap a{background:#00b04c; padding:10px 40px; width:auto; color:#fff !important;}
 .payment-method .btns-wrap a:hover{color:#fff;}
 .active-img{background:url('./../images/main-img.png') no-repeat 125px -540px; padding:13px 44px 8px 0; display:block; margin:0; width:auto;}
 .deliverybtn-wrap{margin:20px 0;}
@@ -715,7 +715,8 @@ a:focus{text-decoration:none !important;}
 .form-wrap .btns-wrap{float:left; width:auto; margin-left:170px; margin-top:5px;}
 .form-wrap .btns-wrap a{margin-right:10px; text-align:center; color:#fff; font-weight:400;}
 .form-wrap .btns-wrap a:hover{color:#fff;}
-.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary{background:#00b04c; color:#fff !important; padding:10px 37px; font-size:15px; font-weight:400; border:none; line-height:16px;}
+.basic-btn, .myaccount-right .new-address a, .myaccount-right .btns-wrap a.standardBtn, .myaccount-right #addNewAddress .btns-wrap a, .myaccount-right #editNewAddress .btns-wrap a, .details-btns.returnSubmit a, #addContactus .contact-us, #addContactus .ui-link, .pdp .pdp-right #reviewForm .btn-primary, .bankDetails .details-btns.returnSubmit input[type="submit"]{background:#00b04c; color:#fff !important; padding:10px 37px; font-size:15px; font-weight:400; border:none; line-height:16px;}
+.bankDetails .details-btns.returnSubmit input[type="submit"]{width:auto; margin-bottom:20px;}
 .modal-footer button.btn-primary{background:#00b04c; color:#fff !important; padding:10px 20px; font-size:15px; font-weight:400; border:none; line-height:16px; border:none; border-radius:0;}
 .modal-footer .btn-default{border:1px solid #00b04c; color:#000; border-radius:0;}
 .modal-body .bootbox-close-button
@@ -793,11 +794,14 @@ a:focus{text-decoration:none !important;}
 .myaccount-right.myorders .bankDetails {
     width: 100%;
     float: left;
+}
+.bankdetails-wrap{
     border: 1px solid #d3d2d2;
     padding: 20px 25px 5px 20px;
     margin-bottom: 15px;
-    margin-top: 15px;
+    margin-top: 15px; float:left; width:100%;
 }
+
 .myaccount-right.myorders .bankDetails label {
     width: 170px;
     float: left;

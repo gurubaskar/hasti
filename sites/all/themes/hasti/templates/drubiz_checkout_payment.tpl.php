@@ -270,7 +270,7 @@ if(isset($_COOKIE['codflag'])){
             <a href="<?php echo url('checkout-final')?>" class="placeOrderBtn">Place Order</a>
           </div>
            <div class="btns-wrap" id="placeOrderStoreCredit" style="display:none;">           
-            <a href="#" class="placeOrderBtn">Place Order</a>
+            <a href="<?php echo url('checkout-final')?>" class="placeOrderBtn">Place Order</a>
           </div>
         </div>
       </div>
