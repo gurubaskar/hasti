@@ -84,6 +84,7 @@ require_once 'vendor/autoload.php';
   $drubiz_subcategory_images = json_decode(variable_get('drubiz_subcategory_images'));
   //print_r($_SERVER);
 ?>
+<?php render($page['content']['metatags']); ?>
 <div id="topnav">
   <div class="container-fluid">
       <div class="col-xs-12 col-sm-7 col-md-6 header-content">
