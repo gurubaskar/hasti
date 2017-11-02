@@ -1048,6 +1048,22 @@ function get_facet_values($system_data, $eliminate_facets_without_options = TRUE
   return $facet_values;
 }
 
+function get_facet_color_values($product_variant) {
+  global $drubiz_domain;
+  $facet_values_name = '';
+    $selected_features = get_selected_features($product_variant);
+    foreach ($selected_features as $facet_name => $facet_value) {
+      $facet_values[$facet_name][$facet_value] = $product_variant->product_id;
+    }
+  foreach ($facet_values as $facet_name => $facet_value) {
+    if (strtolower($facet_name) == 'color') {
+       $facet_values_name = $facet_value;
+    }
+    
+  }
+  $facet_values_name = array_keys($facet_values_name);
+  return strtolower($facet_values_name[0]);
+}
 /**
  * Get selected features from a product.
  */

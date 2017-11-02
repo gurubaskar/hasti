@@ -133,11 +133,11 @@ if(isset($_COOKIE['codflag'])){
           <img src="<?php echo drubiz_image($product_or_product_variants_details->pdp_regular_image);?>" alt="<?php echo $node->title;?>" class="img-responsive"/>
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 cart-details pright">
-          <h4><?php echo $cart_value['internalName']; ?></h4>
+          <h4><?php echo $node->title; ?></h4>
           <div class="cartrow"><label>Qty:</label><span class="qty"><?php echo $cart_value['quantity']; ?></span></div>
           <div class="cartrow"><label>Price:</label><span>&#8377;. <?php echo format_money($cart_value['listPrice']);?></span></div>
           <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
-          <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $node->field_color[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
+          <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo str_replace('Color:', '', $product_or_product_variants_details->selectable_features_2);?></span></div><?php } ?>
           <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
         </div>
       </div>

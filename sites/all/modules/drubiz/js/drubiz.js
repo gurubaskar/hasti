@@ -474,15 +474,16 @@ $('.product-choose-facet-size').click(function(e) {
     var product_id = $(this).data('product-id');    
     $(this).closest('ul').find('a.selected').removeClass('selected');   
     $(this).closest('a').addClass('selected');    
-    $(this).closest('a').find('li').css("border", "#009989 solid 1px");   
+    $(this).closest('a').find('li').css("border", "#009989 solid 2px");   
   });
 
   $('.product-choose-facet-color').click(function(e) {
     e.preventDefault();
     var product_id = $(this).data('product-id');
     $(this).closest('ul').find('a.selected').removeClass('selected');
+    $(this).closest('ul').find('li').css("border", "none");
     $(this).closest('a').addClass('selected');
-    $(this).closest('a').find('li').css("border", "#009989 solid 1px");
+    $(this).closest('a').find('li').css("border", "#009989 solid 2px");
   });
 
   $('#js_addToCart, #js_addToCart_buynow').click(function(e) {
@@ -500,7 +501,7 @@ $('.product-choose-facet-size').click(function(e) {
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/add-to-cart',
-      data: 'product_id=' + product_id_size + '&quantity=' + quantity,
+      data: 'product_id=' + product_id_color + '&quantity=' + quantity,
       success: function(data) {
         if (data['isError'] == 'false') {
           if (action == 'buy_now') {

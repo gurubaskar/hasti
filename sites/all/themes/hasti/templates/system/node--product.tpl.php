@@ -99,8 +99,69 @@
   $rating = displayPDPReviewandRating($product->product_id);
   // krumo($out_of_stock_info);
   // krumo($out_of_stock_info->availableQuantity , $facet_values);
-  // krumo($sku);
+//echo '<pre>';print_r($system_data);
+//exit;
+ $product_variants_array = $system_data->product_variants;
+ $product_gallery = array();
+ $product_default_image = array();
+ $product_inventory = array();
+ $default_color = '';
+ $product_price = array();
+ $product_description = array();
+  foreach($product_variants_array as $product_id => $product_details) {
+        $color_name = get_facet_color_values($product_details);
+        $product_gallery_values = '';
+        foreach (range(0, 10) as $img_n) {
+          $field = 'pdp';
+          if ($img_n > 0) {
+            $field .= '_alt_' . $img_n;
+          }
+
+        
+          if (!empty($product_details->{"{$field}_regular_image"})) {
+            $regular_image = drubiz_image($product_details->{$field . '_regular_image'});
+            $large_image = drubiz_image($product_details->{$field . '_large_image'});
+            $thumb_image =drubiz_image($product_details->{$field . '_thumbnail_image'});
+            $img_param = "'{$regular_image}','{$large_image}'";
+            $product_gallery_values .= '<div id="addImage'.$img_n.'_'.$color_name.'Link_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="addImage'.$img_n.'_'.$color_name.'Link" onclick="javascript:replaceDetailImage('.$img_param.');"><img src="'.$thumb_image.'" name="addImage1" id="addImage1" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, "PDP-Alt");" data-ajax="false"></a></div>';
+          }
+          if($img_n == 0) {
+            $product_default_image[$color_name] .= '<div id="js_productDetailsImageContainer" onclick="displayDialogBox(\'largeImage_\')">
+                    <a href="'.$large_image.'" class="innerZoom" rel="undefined" title="" style="outline-style: none; text-decoration: none;" data-ajax="false">
+                      <div class="zoomPad"><img data-zoom-image="'.$regular_image.'" src="'.$regular_image.'" name="mainImage" class="js_productLargeImage" height="630" width="490" onerror="onImgError(this, \'PDP-Large\');" id="js_mainImage" title="" style="opacity: 1; display: block;"><div class="zoomPup" style="display: none; top: -1px; left: 223px; width: 266px; height: 330px; position: absolute; border-width: 1px;"></div><div class="zoomWindow" style="position: absolute; z-index: 5001; cursor: default; left: 0px; top: 0px; display: none;"><div class="zoomWrapper" style="border-width: 1px; width: 490px; cursor: crosshair;"><div class="zoomWrapperTitle" style="width: 100%; position: absolute; display: block;">undefined</div><div class="zoomWrapperImage" style="width: 100%; height: 630px;"><img src="'.$large_image.'" style="position: absolute; border: 0px; display: block; left: -411.429px; top: 0px;"></div></div></div><div class="zoomPreload" style="visibility: hidden; top: 293.5px; left: 245px; position: absolute;"></div></div>
+                    </a>
+                  </div>';
+                  $available_stock = pdp_out_of_stock_info($product_id);
+                  $stockClass = '';
+                  $addToCart = 'js_addToCart';
+                  $buyNow = 'js_addToCart_buynow';
+                  if($available_stock->inventory == 'No') :
+                    $stockClass = 'disabled';
+                    $addToCart = '';
+                    $buyNow = '';
+                  elseif($available_stock->inventory == 'Yes' && $available_stock->availableQuantity < $available_stock->bufferInventory) : 
+                    $stockClass = "lowstock";
+                  endif;
+            $product_inventory[$color_name] = $stockClass;
+            $product_price[$color_name] = '<span class="price" id="salesPrice">&#8377;. '.$product_details->sales_price.'</span>';
+            $product_description[$color_name] = $product_details->long_description;
+          }
+        }
+        $default_color = $color_name;
+        $product_gallery[$color_name] = $product_gallery_values;
+        $product_variants_ids[] = $product_id;
+        
+    }
+     // cache_set("bnc_product_{$node->nid}", json_encode($product_gallery));
 ?>
+<script>
+    var products_gallery = <?php echo json_encode($product_gallery); ?>;
+    var product_default_image = <?php echo json_encode($product_default_image);?>;
+    var product_inventory = <?php echo json_encode($product_inventory);?>;
+    var product_price = <?php echo json_encode($product_price);?>;
+    var product_description = <?php echo json_encode($product_description);?>;
+</script>
+
 <div id="eCommerceProductDetailContainer" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 <div id="content" class="pdp">
   <!-- <div class="container-fluid"> -->
@@ -124,11 +185,10 @@
 
                        <div id="js_altImageThumbnails" class="bxslider mCustomScrollbar _mCS_1" style="height:630px"><div id="mCSB_1" class="mCustomScrollBox mCS-dark-3 mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
 
-                        <div id="addImageLink_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="mainAddImageLink" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->pdp_regular_image) ?>','<?php echo drubiz_image($product->pdp_large_image) ?>');"><img src="<?php echo drubiz_image($product->pdp_thumbnail_image) ?>" id="mainAddImage" name="mainAddImage" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
-
-                        <?php foreach (range(1, 10) as $img_n): $img_prefix = "pdp_alt_{$img_n}"; if (empty($product->{$img_prefix . '_regular_image'})) continue; ?>
-                          <div id="addImage<?php echo $img_n ?>Link_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="addImage<?php echo $img_n ?>Link" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->{$img_prefix . '_regular_image'}) ?>','<?php echo drubiz_image($product->{$img_prefix . '_large_image'}) ?>');"><img src="<?php echo drubiz_image($product->{$img_prefix . '_thumbnail_image'}) ?>" name="addImage1" id="addImage1" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
-                        <?php endforeach; ?>
+                        <!--<div id="addImageLink_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="mainAddImageLink" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->pdp_regular_image) ?>','<?php echo drubiz_image($product->pdp_large_image) ?>');"><img src="<?php echo drubiz_image($product->pdp_thumbnail_image) ?>" id="mainAddImage" name="mainAddImage" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>-->
+                        <div id="change_gallery">
+                          <?php echo $product_gallery[$default_color] ; ?>
+                        </div>
 
                        </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 580px; max-height: 620px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
                     </div>
@@ -138,11 +198,7 @@
             <div class="col-xs-10 col-sm-10 col-md-10 pleft pright zoom-img">
               <li class="image mainImage pdpMainImage">
                 <div class="pdpMainImage">
-                  <div id="js_productDetailsImageContainer" onclick="displayDialogBox('largeImage_')">
-                    <a href="<?php echo drubiz_image($product->pdp_large_image) ?>" class="innerZoom" rel="undefined" title="" style="outline-style: none; text-decoration: none;" data-ajax="false">
-                      <div class="zoomPad"><img data-zoom-image="<?php echo drubiz_image($product->pdp_regular_image); ?>" src="<?php echo drubiz_image($product->pdp_regular_image) ?>" name="mainImage" class="js_productLargeImage" height="630" width="490" onerror="onImgError(this, 'PDP-Large');" id="js_mainImage" title="" style="opacity: 1; display: block;"><div class="zoomPup" style="display: none; top: -1px; left: 223px; width: 266px; height: 330px; position: absolute; border-width: 1px;"></div><div class="zoomWindow" style="position: absolute; z-index: 5001; cursor: default; left: 0px; top: 0px; display: none;"><div class="zoomWrapper" style="border-width: 1px; width: 490px; cursor: crosshair;"><div class="zoomWrapperTitle" style="width: 100%; position: absolute; display: block;">undefined</div><div class="zoomWrapperImage" style="width: 100%; height: 630px;"><img src="<?php echo drubiz_image($product->pdp_alt_1_large_image) ?>" style="position: absolute; border: 0px; display: block; left: -411.429px; top: 0px;"></div></div></div><div class="zoomPreload" style="visibility: hidden; top: 293.5px; left: 245px; position: absolute;"></div></div>
-                    </a>
-                  </div>
+                  <?php echo $product_default_image[$default_color];?>
                 </div>
               </li>
             </div>
@@ -241,7 +297,7 @@
       <div class="col-xs-12 col-sm-6 col-md-7 pdp-right">
         <div class="title">
           <h2><?php echo $node->title ?></h2>
-          <span class="price">&#8377;. <?php echo $product->sales_price; ?></span>
+          <?php echo $product_price[$color_name]; ?>
           <span><?php
             $overallRating = $rating['overallRating'];
             if($overallRating > 0) {
@@ -304,7 +360,7 @@
                                   $product_nid = get_nid_from_variant_product_id($this_facet_product_id);
                                   ?>
                                   <a class="product-choose-facet-color" href="#" data-ajax="false">
-                                    <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>">
+                                    <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>" data-color-id="<?php echo strtolower($this_facet_value); ?>">
                                     </li>
                                   </a>
                               <?php endforeach; ?>
@@ -318,18 +374,7 @@
             <?php endforeach; ?>
           </ul>
         </div>
-        <?php
-          $stockClass = '';
-          $addToCart = 'js_addToCart';
-          $buyNow = 'js_addToCart_buynow';
-          if($out_of_stock_info->inventory == 'No') :
-            $stockClass = 'disabled';
-            $addToCart = '';
-            $buyNow = '';
-          elseif($out_of_stock_info->inventory == 'Yes' && $out_of_stock < $out_of_stock_info->bufferInventory) : 
-            $stockClass = "lowstock";
-          endif;
-        ?>
+       
         <div class="stock">
           <ul>
             <li>
@@ -349,10 +394,13 @@
           <?php } else {?>
             <span><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()" data-ajax="false" class="wish-icon">Add to wish list</a></span>
           <?php } ?>
-          <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="<?php echo $addToCart;?>">Add to Bag</a></span>
-          <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>">Buy Now</a></span>
+          <!-- <div id="product_inventory">
+            <?php echo $product_inventory[$color_name];?>
+          </div> -->
+          <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="js_addToCart">Add to Bag</a></span>
+          <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="js_addToCart_buynow">Buy Now</a></span>
         </div>
-        <p><?php echo $body[0]['safe_value'] ?></p>
+        <p id="product_description"><?php echo $product_description[$color_name]; ?></p>
         <div class="story-wrap">
           <?php $storyInfo = pdp_story_info($product->product_id); 
             if($storyInfo->isError == 'false') :

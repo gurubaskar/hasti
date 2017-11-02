@@ -14,9 +14,13 @@
         <div class="heading-bar">
           <h2 class="">Bag (<span><?php echo count($cart['cartItemDetails']);?></span>)</h2>
         </div>
-        <?php foreach ($cart['cartItemDetails'] as $cart_key => $cart_value) { ?>
+        <?php 
+        $i = 0;
+        foreach ($cart['cartItemDetails'] as $cart_key => $cart_value) { ?>
         <?php 
           $node = node_load(get_nid_from_variant_product_id($cart_key));
+          // echo "<pre>";print_r($node);
+          // krumo($cart_value);
           if(empty($node)){
             $node = node_load(get_nid_from_product_id($cart_key));
           }
@@ -35,7 +39,7 @@
           </div>
           <div class="col-xs-12 col-sm-9 col-md-10 cart-details pright">
             <div class="col-xs-6 col-sm-6 col-md-5 details-left">
-              <h4><a href="<?php echo url('/node/'.$node->nid);?>"><?php echo $cart_value['internalName']; ?></a></h4>
+              <h4><a href="<?php echo url('/node/'.$node->nid);?>"><?php echo $node->title; ?></a></h4>
               <div class="cartrow"><label>Qty:</label>
                 <span class="qty-minus" data-index="<?php echo $cart_key;?>"></span>
                 <span class="qty" id="qty-<?php echo $cart_key;?>"><?php echo $cart_value['quantity']; ?></span>
@@ -43,7 +47,7 @@
               </div>
               <div class="cartrow"><label>Price:</label><span>&#8377. <?php echo format_money($cart_value['listPrice']);?></span></div>
               <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
-              <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $node->field_color[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
+              <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo str_replace('Color:', '', $product_or_product_variants_details->selectable_features_2);?></span></div><?php } ?>
               <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-7 details-right">
@@ -61,7 +65,7 @@
             </div>
           </div>
         </div>
-        <?php }?>
+        <?php $i++; }?>
         
         <div id="subtotal">
           <div class="price1-wrap">

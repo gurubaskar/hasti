@@ -828,6 +828,23 @@ function hideVariants(e){
 
 }
 
+function changeImage() {
+  jQuery("#existingPDP").html(jQuery("#newPDP").html());
+}
+
+jQuery(document).ready(function() {
+  jQuery('.product-choose-facet-color li').click(function(){
+      var color = jQuery(this).data('color-id');
+      jQuery('#change_gallery').html(products_gallery[color]);
+      jQuery('#js_productDetailsImageContainer').html(product_default_image[color]);
+      jQuery('#salesPrice').html(product_price[color]);
+      jQuery('#product_description').html(product_description[color]);
+      jQuery('#js_addToCart').removeAttr("class");
+      jQuery('#js_addToCart').addClass("add-bag ui-link "+product_inventory[color]);
+      jQuery('#js_addToCart_buynow').removeAttr("class");
+      jQuery('#js_addToCart_buynow').addClass("buy-now ui-link "+product_inventory[color]);
+  });
+});
 /************** plp left panel code **************/
 function hidefacet(e){
   jQuery('filterToggle').hide();
