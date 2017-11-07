@@ -289,7 +289,7 @@
           <p>The mode (height 5'8". chest 33" and wast 28")</p>
         </div>
         <div style="display: none;">
-        <div id="id-of-content"><?php if(isset($size_chart['Size Chart'])) { echo $size_chart['Size Chart']; } else { echo $size_chart['message'];}?></div>
+        <div id="id-of-content"><?php if(isset($product->pdp_size_guide)) { echo $product->pdp_size_guide; } else { echo "Product size not available to this product";}?></div>
         </div>
         <!-- Colors -->
         <div class="color">
