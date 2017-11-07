@@ -53,6 +53,27 @@ function get_user_jsessionid() {
   }
   return NULL;
 }
+
+function size_chart($masterProductId) {
+  // http://bg4ws0386:8080/getProductSizeChart
+  $endpoint = 'http://bg4ws0386:8080/getProductSizeChart';
+  // $jsessionid = get_user_jsessionid();
+  // if (!empty($jsessionid)) {
+  //   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  // }
+  $params = array(
+    'productId'=>$masterProductId
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+  // toCheckSession($data);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data'), 1) . '</pre>');
+  // echo json_encode($data);
+  return $data;
+}
+
 /**
 * call back for print invoice
 **/
