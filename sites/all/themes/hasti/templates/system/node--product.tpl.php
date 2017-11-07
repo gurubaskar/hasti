@@ -282,8 +282,14 @@
               <!-- </li> -->
             <?php endforeach; ?>
           </ul>
-          <div class="sizechart"><p>Not Sure? <span><a href="#">See Size Chart</a></span></p></div>
+          <?php 
+            $size_chart = size_chart($product->product_id);
+          ?>
+          <div class="sizechart"><p>Not Sure? <span><a class="colorbox-inline" href="?inline=true#id-of-content">See Size Chart</a></span></p></div>
           <p>The mode (height 5'8". chest 33" and wast 28")</p>
+        </div>
+        <div style="display: none;">
+        <div id="id-of-content"><?php if(isset($size_chart['Size Chart'])) { echo $size_chart['Size Chart']; } else { echo $size_chart['message'];}?></div>
         </div>
         <!-- Colors -->
         <div class="color">
