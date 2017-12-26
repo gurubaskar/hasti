@@ -1991,3 +1991,26 @@ function drubiz_story_details($storyid){
   watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','endpoint', 'data'), 1) .'</pre>');
   return theme('story_details', array('storyDetails' => $data));
 }
+
+function drubiz_signup_for_contactlist(){
+  $endpoint = 'hastiSignUpForContactList';
+   $params = array(
+    'email' =>  $_POST['emailId'],
+    'contactListId' => $_POST['contactListId'],
+  );
+
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $data = json_decode($raw_json, TRUE);
+
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  //toCheckSession($data);
+  // if($data['isNewSession'] == 'false' or $data['isNewSession'] == 0) {
+  echo json_encode($data);
+}

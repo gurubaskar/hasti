@@ -1266,6 +1266,43 @@ $('.validateOTP').click(function(e) {
     $('div#'+id).modal(); 
   });
 
+  $('#js_submitSubscribeBtn').click(function(){
+      var emailId = $('#emailId').val();
+      var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if (emailId == "") {
+          ajaxErrorMsgDisplay("Please Enter your Email",ajaxInfo);
+          return false;
+      }
+      if (!filter.test(emailId)) {
+          ajaxErrorMsgDisplay("Please enter a valid email address");
+          return false;
+      }
+      /*var contactListId = $('#contactListId option:selected').val();*/
+      var contactListId = "9010";
+      loading();
+      $.ajax({
+        type: "POST",
+        url: Drupal.settings.basePath + 'hasti-SignUpForContactList',
+        data: 'emailId=' + emailId +'&contactListId=' + contactListId,
+        success: function(data) {
+         console.log(data);
+          if(data['isError'] == 'false' && data['status'] == 'pass'){
+            ajaxErrorMsgDisplay(data['successMessage']);
+            close_loading();
+          }else{
+            // alert(data['_ERROR_MESSAGE_']);
+            ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+            close_loading();
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          close_loading();
+          ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        },
+        dataType: 'json'
+      });
+    });
+
 });
 
 function update_mini_cart() {

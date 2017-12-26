@@ -32,11 +32,14 @@
           <?php echo theme('drubiz_search_sort') ?>
         </div>
       </div>
-
+      <div class="col-xs-12 col-sm-12 col-md-12 searchresult">
       <?php print $search_results; ?>
-      <?php print $pager; ?>
+    </div>
+      <div class="paging-result">
+      </div>
     </div>
   </div>
+  <?php print $pager; ?>
 <?php else : ?>
   <h2><?php print t('Your search yielded no results');?></h2>
   <?php print search_help('search#noresults', drupal_help_arg()); ?>

@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Installation hooks for the module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function apachesolr_infinite_scroll_requirements($phase) {
+  $t = get_t();
+
+  // Define the default response.
+  $requirements = array(
+    'apachesolr_infinite_scroll_autopager' => array(
+      'title' => $t('Autopager Library Present'),
+      'value' => $t('OK'),
+      'severity' => REQUIREMENT_OK,
+    ),
+  );
+
+  switch ($phase) {
+    case 'runtime':
+      $libraries = libraries_get_libraries();
+      if (!array_key_exists('autopager', $libraries) || empty($libraries['autopager'])) {
+        $requirements['apachesolr_infinite_scroll_autopager']['value'] = $t('Missing');
+        $requirements['apachesolr_infinite_scroll_autopager']['severity'] = REQUIREMENT_ERROR;
+      }
+      break;
+  }
+
+  return $requirements;
+}
