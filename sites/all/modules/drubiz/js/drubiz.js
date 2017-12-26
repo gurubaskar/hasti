@@ -1282,7 +1282,7 @@ $('.validateOTP').click(function(e) {
       loading();
       $.ajax({
         type: "POST",
-        url: Drupal.settings.basePath + 'hasti-SignUpForContactList',
+        url: Drupal.settings.basePath + 'subscribe',
         data: 'emailId=' + emailId +'&contactListId=' + contactListId,
         success: function(data) {
          console.log(data);

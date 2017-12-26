@@ -919,10 +919,10 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-  $items['hasti-SignUpForContactList'] = array(
+  $items['subscribe'] = array(
     'title'             => 'My Account Track order',
     'description'       => "My Account Track order",
-    'page callback'     => 'drubiz_signup_for_contactlist',
+    'page callback'     => 'signup_for_subscribe',
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
