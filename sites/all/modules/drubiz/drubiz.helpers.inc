@@ -56,7 +56,7 @@ function get_user_jsessionid() {
 
 function size_chart($masterProductId) {
   // http://bg4ws0386:8080/getProductSizeChart
-  $endpoint = 'http://bg4ws0386:8080/getProductSizeChart';
+  $endpoint = 'http://localhost:8080/getProductSizeChart';
   // $jsessionid = get_user_jsessionid();
   // if (!empty($jsessionid)) {
   //   $endpoint .= (';jsessionid=' . urlencode($jsessionid));

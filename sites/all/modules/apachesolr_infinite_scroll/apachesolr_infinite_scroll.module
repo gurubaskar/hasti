@@ -1,0 +1,113 @@
+<?php
+/**
+ * @file
+ * Main module file for the apachesolr infinite scroll module.
+ */
+
+/**
+ * Implements hook_apachesolr_search_page_alter().
+ */
+function apachesolr_infinite_scroll_apachesolr_search_page_alter(array &$build, array $search_page) {
+  $infinite_scroll_enabled = $search_page['settings']['apachesolr_infinite_scroll']['enabled'];
+
+  // Add the infinite scroll libraries to the page.
+  if ($infinite_scroll_enabled && file_exists(libraries_get_path('autopager') .'/jquery.autopager-1.0.0.js')) {
+    // Make sure the autopager library is included in the page.
+    drupal_add_js(libraries_get_path('autopager') .'/jquery.autopager-1.0.0.js');
+    $module_path = drupal_get_path('module', 'apachesolr_infinite_scroll');
+
+    // Include this module's script to handle the binding.
+    $js_path = $module_path . '/js/apachesolr_infinite_scroll.js';
+    drupal_add_js($js_path);
+
+    // Store the settings for the autopager.
+    $settings = array(
+      'apachesolr_infinite_scroll' => array(
+        'enabled' => $infinite_scroll_enabled,
+        'ajax_loading_image_path' => $search_page['settings']['apachesolr_infinite_scroll']['loading_image'],
+        'content_selector' => $search_page['settings']['apachesolr_infinite_scroll']['content_selector'],
+        'next_selector' => $search_page['settings']['apachesolr_infinite_scroll']['next_selector'],
+        'pager_selector' => $search_page['settings']['apachesolr_infinite_scroll']['pager_selector'],
+        'insert_mode' => $search_page['settings']['apachesolr_infinite_scroll']['insert_mode'],
+        'insert_selector' => $search_page['settings']['apachesolr_infinite_scroll']['insert_selector'],
+      ),
+    );
+    drupal_add_js($settings, 'setting');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Adds custom settings to the solr search pages configuration screen.
+ */
+function apachesolr_infinite_scroll_form_apachesolr_search_page_settings_form_alter(&$form, &$form_state) {
+  $module_path = drupal_get_path('module', 'apachesolr_infinite_scroll');
+  $infinite_scroll_settings = isset($form_state['build_info']['args'][0]['settings']['apachesolr_infinite_scroll']) ? $form_state['build_info']['args'][0]['settings']['apachesolr_infinite_scroll'] : FALSE;
+
+  $infinite_scroll_enabled = isset($infinite_scroll_settings['enabled']) ? $infinite_scroll_settings['enabled'] : FALSE;
+  $content_selector = isset($infinite_scroll_settings['content_selector']) ? $infinite_scroll_settings['content_selector'] : 'ol.search-results';
+  $next_selector = isset($infinite_scroll_settings['next_selector']) ? $infinite_scroll_settings['next_selector'] : 'li.pager-next a';
+  $pager_selector = isset($infinite_scroll_settings['pager_selector']) ? $infinite_scroll_settings['pager_selector'] : 'ul.pager';
+  $insert_mode = isset($infinite_scroll_settings['insert_mode']) ? $infinite_scroll_settings['insert_mode'] : '';
+  $insert_selector = isset($infinite_scroll_settings['insert_selector']) ? $infinite_scroll_settings['insert_selector'] : '';
+  $loading_image = isset($infinite_scroll_settings['loading_image']) ? $infinite_scroll_settings['loading_image'] : base_path() . $module_path . '/images/ajax-loader.gif';
+
+
+  $form['advanced']['apachesolr_infinite_scroll'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Infinite Scroll Settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Replace pager with infinite scroll'),
+    '#description' => t('When checked, the paging control will be removed from
+      the page and the next page of results will automatically load as the
+      user scrolls via an AJAX call.'),
+    '#weight' => 0,
+    '#default_value' => $infinite_scroll_enabled,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['content_selector'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content Selector'),
+    '#description' => t('Enter the jQuery selector for extracting the search results from the page HTML.'),
+    '#default_value' => $content_selector,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['next_selector'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Next Selector'),
+    '#description' => t('Enter the jQuery selector for the link to the next page of results.'),
+    '#default_value' => $next_selector,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['pager_selector'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Pager Selector'),
+    '#description' => t('Enter the jQuery selector for the element containing the paging controls.  Used to hide the pager when infinite scrolling is enabled.'),
+    '#default_value' => $pager_selector,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['insert_mode'] = array(
+    '#type' => 'select',
+    '#title' => t('Insert Mode'),
+    '#description' => t('Select how the next page of results is inserted into the page.'),
+    '#options' => array(
+      '' => t('Library default'),
+      'appendTo' => t('appendTo'),
+      'insertBefore' => t('insertBefore'),
+    ),
+    '#default_value' => $insert_mode,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['insert_selector'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Insert Selector'),
+    '#description' => t('Enter the jQuery selector for the container to insert the next page of results into or before.'),
+    '#default_value' => $insert_selector,
+  );
+  $form['advanced']['apachesolr_infinite_scroll']['loading_image'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Loading Image'),
+    '#description' => t('Enter the full root relative path to the loading image to display while retrieving the next page of results.'),
+    '#default_value' => $loading_image,
+  );
+}

@@ -450,6 +450,20 @@ require_once 'vendor/autoload.php';
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 social-wrap icons-wrap">
+            <h3>Subscribe</h3>
+            <!-- <select name="contactListId" id="contactListId">
+                <option value="9000">
+                  Announcement- New Product Announcements
+                </option>
+                <option value="9010">
+                  Newsletter- Product Tips Newsletter
+                </option>
+            </select> -->
+              <input type="text" name ="emailId" id="emailId" placeholder="<?php echo t('* Email Id');?>" 
+            data-msg-required="The Email Id is required." id="" data-rule-required="true">
+            <span>
+              <input type="submit" value="Submit" id="js_submitSubscribeBtn"></span>
+            </div>
             <h3>Follow Us</h3>
             <ul>
               <li class="facebook"><a href="https://www.facebook.com/Hastti-1385257374900900/" target="_blank"></a></li>

@@ -1,0 +1,14 @@
+name = Apache Solr Infinite Scroll
+description = Provides an Infinite Scrolling pager for Apache Solr search result pages.
+package = Search Toolkit
+core = 7.x
+dependencies[] = apachesolr_search
+dependencies[] = libraries
+configure = admin/config/search/apachesolr/search-pages
+
+; Information added by Drupal.org packaging script on 2017-06-01
+version = "7.x-1.0-alpha1+1-dev"
+core = "7.x"
+project = "apachesolr_infinite_scroll"
+datestamp = "1496299145"
+
