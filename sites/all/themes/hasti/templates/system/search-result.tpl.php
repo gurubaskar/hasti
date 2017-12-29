@@ -79,12 +79,12 @@
 <div class="col-xs-12 col-sm-4 col-md-3">
   <div class="box">
     <div class="img-wrap">
-      <a class="pdpUrl" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
+      <a class="pdpUrl" data-ajax="false" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
         <img alt="<?php echo drubiz_image($product->plp_image_alt); ?>" title="<?php echo htmlentities($node->title) ?>" src="<?php echo drubiz_image($product->plp_image); ?>" onmouseover="src='<?php echo drubiz_image($product->plp_image_alt); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product->plp_image); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP- Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
     </a>
       <div class="select-wrap">
-        <a href="#" alt="cart"><span onclick="showVariants(this,'PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
-        <a href="#" alt="wishlist"><span onclick="showWishlistVariants(this);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
+        <a href="#" alt="cart" data-ajax="false"><span onclick="showVariants(this,'PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
+        <a href="#" alt="wishlist" data-ajax="false"><span onclick="showWishlistVariants(this);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
       </div>
       <div class="cart-options variant-<?php echo $product->product_id; ?>" style="display:none">
         <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />
@@ -99,7 +99,7 @@
         <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
             <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
               <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
-                <a href="#" class="plp-add-to-cart"  data-product-id="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-cart" data-ajax="false" data-product-id="<?php echo $variant_product_id ?>" onclick="plpAddtoCart(this);">
                   <?php echo $size ?>
                 </a>
               </li>
@@ -119,7 +119,7 @@
         <ul class="size plp_selectableFeature js_selectableFeature_1" id="LiFTSIZE_PLP_<?php echo $product->product_id ?>" name="LiFTSIZE_PLP_<?php echo $product->product_id ?>">
             <?php if (!empty($facet_values['Size'])) foreach ($facet_values['Size'] as $size => $variant_product_id): ?>
               <li class="<?php echo $size ?>" value="<?php echo $variant_product_id ?>">
-                <a href="#" class="plp-add-to-wishlist"  data-product-id="<?php echo $variant_product_id ?>">
+                <a href="#" class="plp-add-to-wishlist" data-ajax="false" data-product-id="<?php echo $variant_product_id ?>" onclick="plpAddToWishList(this);">
                   <?php echo $size ?>
                 </a>
               </li>

@@ -525,40 +525,7 @@ $('.product-choose-facet-size').click(function(e) {
     });
   });
   
-  $('.plp-add-to-cart').click(function(e) {
-    e.preventDefault();
-    if ($(this).hasClass('plp-add-to-cart')) {
-      var product_id = $(this).data('product-id');
-      var quantity = 1;
-    }
-    if(product_id == null || product_id == undefined){
-      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxSuccess);
-      return;
-    }
-    loading();
-    $.ajax({
-      type: "POST",
-      url: Drupal.settings.basePath + 'drubiz/add-to-cart',
-      data: 'product_id=' + product_id + '&quantity=' + quantity,
-      success: function(data) {
-        if (data['isError'] == 'false') {
-            ajaxErrorMsgDisplay("1 Item added to the cart.");
-            product_id_split = product_id.split('-');
-            jQuery(".variant-"+product_id_split[0]).hide();
-            update_mini_cart();
-        }
-        else {
-          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
-          close_loading();
-        }
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
-        close_loading();
-      },
-      dataType: 'json'
-    });
-  });
+
 
    $('#js_addToWishlist').click(function(e) {
     e.preventDefault();
@@ -601,50 +568,6 @@ $('.product-choose-facet-size').click(function(e) {
       dataType: 'json'
     });
   });
-
-
-  $('.plp-add-to-wishlist').click(function(e) {   
-      e.preventDefault();   
-      // var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');    
-      // var quantity =  1;   
-      if ($(this).hasClass('plp-add-to-wishlist')) {    
-        var product_id = $(this).data('product-id');    
-        var quantity = 1;   
-      }   
-      if(product_id == undefined || product_id == null){    
-        // alert('Please select a variant');    
-        ajaxErrorMsgDisplay('Please select a variant',ajaxInfo);    
-        return;   
-      }   
-      // alert(product_id+'--'+quantity);   
-      loading();    
-      $.ajax({    
-        type: "POST",   
-        url: Drupal.settings.basePath + 'drubiz/add-to-love-list',    
-        data: 'product_id=' + product_id + '&quantity=' + quantity,   
-        success: function(data) {   
-               //console.log(data);   
-          if (data['isError'] == 'False') {
-            ajaxErrorMsgDisplay(data['_SUCCESS_MESSAGE']);
-            product_id_split = product_id.split('-');
-            jQuery(".wishlist-variant-"+product_id_split[0]).hide();
-            close_loading();    
-          }   
-          else {    
-            // alert(data['_EVENT_MESSAGE_']+' Error adding item.');    
-            ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');
-            product_id_split = product_id.split('-');
-            jQuery(".wishlist-variant-"+product_id_split[0]).hide();
-            close_loading();    
-          }   
-        },    
-        error: function(jqXHR, textStatus, errorThrown) {   
-          console.log(textStatus + ': ' + errorThrown);   
-          close_loading();    
-        },    
-        dataType: 'json'    
-      });   
-    });
 
   $('.remove').click(function(e) {
     e.preventDefault();
@@ -1305,22 +1228,6 @@ $('.validateOTP').click(function(e) {
 
 });
 
-function update_mini_cart() {
-  $.ajax({
-    type: "GET",
-    url: Drupal.settings.basePath + 'drubiz/mini-cart',
-    success: function(data) {
-      console.log(data);
-      // $('.cost').html('&#8377.'+ data['cartSubTotal']);
-      $('#mini-cart-count').html(Object.keys(data['cartItemDetails']).length);
-      close_loading();
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log(textStatus + ': ' + errorThrown);
-    },
-    dataType: 'json'
-  });
-}
 
 })(jQuery);
 
@@ -1497,3 +1404,100 @@ function showPlpSizeGuide1(selectFeatureDiv , productId) {
     dataType: 'json'
   });
 } 
+
+function plpAddtoCart(e) {
+    //e.preventDefault();
+    if (jQuery(e).hasClass('plp-add-to-cart')) {
+      var product_id = jQuery(e).attr('data-product-id');
+      var quantity = 1;
+    }
+    if(product_id == null || product_id == undefined){
+      ajaxErrorMsgDisplay('Please select a size of your choice',ajaxSuccess);
+      return;
+    }
+    loading();
+    jQuery.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'drubiz/add-to-cart',
+      data: 'product_id=' + product_id + '&quantity=' + quantity,
+      success: function(data) {
+        if (data['isError'] == 'false') {
+            ajaxErrorMsgDisplay("1 Item added to the cart.");
+            product_id_split = product_id.split('-');
+            jQuery(".variant-"+product_id_split[0]).hide();
+            update_mini_cart();
+        }
+        else {
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  }
+  
+function update_mini_cart() {
+  jQuery.ajax({
+    type: "GET",
+    url: Drupal.settings.basePath + 'drubiz/mini-cart',
+    success: function(data) {
+      console.log(data);
+      // $('.cost').html('&#8377.'+ data['cartSubTotal']);
+      if(data['shoppingCartSize'] > 0){
+        jQuery('#mini-cart-count').html(Object.keys(data['cartItemDetails']).length);
+      }
+      close_loading();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus + ': ' + errorThrown);
+    },
+    dataType: 'json'
+  });
+}
+
+function plpAddToWishList(e) {   
+      //e.preventDefault();   
+      // var product_id = $('.pdpSelectableFeature a.selected:first li').data('product-id');    
+      // var quantity =  1;   
+      if (jQuery(e).hasClass('plp-add-to-wishlist')) {    
+        var product_id = jQuery(e).attr('data-product-id');    
+        var quantity = 1;   
+      }   
+      if(product_id == undefined || product_id == null){    
+        // alert('Please select a variant');    
+        ajaxErrorMsgDisplay('Please select a variant',ajaxInfo);    
+        return;   
+      }   
+      // alert(product_id+'--'+quantity);   
+      loading();    
+      jQuery.ajax({    
+        type: "POST",   
+        url: Drupal.settings.basePath + 'drubiz/add-to-love-list',    
+        data: 'product_id=' + product_id + '&quantity=' + quantity,   
+        success: function(data) {   
+               //console.log(data);   
+          if (data['isError'] == 'False') {
+            ajaxErrorMsgDisplay(data['_SUCCESS_MESSAGE']);
+            product_id_split = product_id.split('-');
+            jQuery(".wishlist-variant-"+product_id_split[0]).hide();
+            close_loading();    
+          }   
+          else {    
+            // alert(data['_EVENT_MESSAGE_']+' Error adding item.');    
+            ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');
+            product_id_split = product_id.split('-');
+            jQuery(".wishlist-variant-"+product_id_split[0]).hide();
+            close_loading();    
+          }   
+        },    
+        error: function(jqXHR, textStatus, errorThrown) {   
+          console.log(textStatus + ': ' + errorThrown);   
+          close_loading();    
+        },    
+        dataType: 'json'    
+      });   
+    }
