@@ -84,7 +84,8 @@
   
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
-  //krumo($product);
+  $product_associations = $system_data->product_associations;
+ // krumo($product);
   $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
   $category_names_from_catalog = $drubiz_category_names['globus'];
   $get_category_names = explode(',', $product->product_category_id);
@@ -150,6 +151,9 @@
           </ul>
            <!-- </div> -->
           <script type="text/javascript">
+            /*jQuery( function() {
+               jQuery( "#product-tabs" ).tabs();
+            } );*/
             jQuery(document).ready(function(){
               jQuery('.alert-danger').css('display', 'none');
               jQuery(window).resize(function() {
@@ -193,13 +197,57 @@
                 maxSlides = 1;
               }
             }
-            jQuery('.slider1').bxSlider({
-              slideWidth: 200,
-              minSlides: 2,
-              moveSlides: 1,
-              maxSlides: maxSlides,
-              slideMargin:10
-            });
+        var slider=jQuery('.slider1').bxSlider({
+        slideWidth: 200,
+        responsive : true,
+        minSlides: 2,
+        useCSS: true,
+        moveSlides: 1,
+        maxSlides: maxSlides,
+        slideMargin:10,
+        adaptiveHeight: true
+      });
+  
+    jQuery(window).resize(function () {
+      if (jQuery(window).width() < 480) {
+         slider.reloadSlider({
+          mode: 'vertical',
+          slideWidth: 200,
+          responsive : true,
+          minSlides: 1,
+          moveSlides: 1,
+          maxSlides: maxSlides,
+          slideMargin:10,
+          adaptiveHeight: true
+        });
+      }
+      else if(jQuery(window).width() < 768) {
+         slider.reloadSlider({
+            mode: 'vertical',
+            slideWidth: 200,
+            responsive : true,
+            minSlides: 2,
+            moveSlides: 1,
+            maxSlides: maxSlides,
+            slideMargin:10,
+            adaptiveHeight: true
+          });
+        
+      }else{
+         slider.reloadSlider({
+            mode: 'horizontal',
+            slideWidth: 200,
+            responsive : true,
+            minSlides: 1,
+            moveSlides: 1,
+            maxSlides: maxSlides,
+            slideMargin:10,
+            adaptiveHeight: true
+          });
+        
+      }     
+    });
+
 
             if(false)
             {
@@ -233,10 +281,10 @@
           </script>
 
         </div>
-        <div class="price-wrap">
+       <!--  <div class="price-wrap">
           <h2>Transparent Price</h2>
           <p>We believe customers have the right to know what their products costs to make</p>
-        </div>
+        </div> -->
       </div>
       <div class="col-xs-12 col-sm-6 col-md-7 pdp-right">
         <div class="title">
@@ -396,6 +444,7 @@
             <span><a href="#" class="shareStory">Share this Product</a></span>
             <span><a href="#" id="review-btn" onclick="reviewAction();">Write a review</a></span>
           </div>
+  
           <div style="clear: both; display: none;" id="socialIcons">
             <?php print render($region['social_share']); ?>
           </div>
@@ -450,4 +499,52 @@
     </div>
     <?php drupal_add_js(drupal_get_path('theme', 'hasti') . '/js/jquery.elevatezoom.js'); ?>
 <!--   </div> -->
+  
+  </div>
+
+
+</div>
+<!-- <div id="product-tabs">
+  <ul>
+    <li><a href="#Artisan-1">Artisan</a></li>
+    <li><a href="#Designers-2">Designers</a></li>
+    <li><a href="#Process-3">Process</a></li>
+    <li><a href="#Raw-Material-3">Raw Material</a></li>
+  </ul>
+  <div id="Artisan-1">
+    Artisan
+  </div>
+  <div id="Designers-2">
+    Designers
+  </div>
+  <div id="Process-3">
+    Process
+  </div>
+  <div id="Raw-Material-3">
+    Raw-Material
+  </div>
+</div>  -->
+<div id="review-wrap">
+  <h2>You May Also Like</h2>
+  <div class="slider1">
+      <?php foreach ($product_associations as $product) {?>
+      <div class="slide like-carousel">
+         <?php $product_id_to = $product->product_id_to;
+         //print_r($product_id_to);
+          $nid = get_nid_from_product_id($product_id_to);
+          $node = node_load($nid);         
+          $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);        
+          $product_variant = $system_data->product_raw;
+          //print_r($product_variant);
+      ?>
+      <div>
+        <a href="<?php echo url('node/'.$nid);?>" data-ajax="false" id="image_500194">
+        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
+      </div>
+      <div>
+        <a href="<?php echo url('node/'.$nid);?>" data-ajax="false"><?php echo $product_variant->product_name ?></a> 
+      </div>
+      </div>
+    <?php } ?>
+  </div>
 </div>
