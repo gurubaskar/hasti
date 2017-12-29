@@ -1992,7 +1992,7 @@ function drubiz_story_details($storyid){
   return theme('story_details', array('storyDetails' => $data));
 }
 
-function drubiz_signup_for_contactlist(){
+function signup_for_subscribe(){
   $endpoint = 'hastiSignUpForContactList';
    $params = array(
     'email' =>  $_POST['emailId'],
