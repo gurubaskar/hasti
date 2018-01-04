@@ -45,6 +45,15 @@ $drubiz_demo_theme_options = array(
 /**
  * Implements hook_boot().
  */
+
+function drubiz_element_info_alter(&$type) {
+  
+  // Increase the default size of textfields.
+  if (isset($type['textfield']['#size'])) {
+    $type['textfield']['#maxlength'] = 255;
+  }
+}
+
 function drubiz_boot() {
   drubiz_setup_domain_context();
   drubiz_setup_demo_context();

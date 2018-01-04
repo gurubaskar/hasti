@@ -211,7 +211,7 @@
         adaptiveHeight: true
       });
   
-    jQuery(window).resize(function () {
+ /*   jQuery(window).resize(function () {
       if (jQuery(window).width() < 480) {
          slider.reloadSlider({
           mode: 'vertical',
@@ -249,7 +249,7 @@
           });
         
       }     
-    });
+    });*/
 
 
             if(false)
@@ -340,7 +340,13 @@
           <p>The mode (height 5'8". chest 33" and wast 28")</p>
         </div>
         <div style="display: none;">
-        <div id="id-of-content"><?php if(isset($product->pdp_size_guide)) { echo $product->pdp_size_guide; } else { echo "Product size not available to this product";}?></div>
+        <div id="id-of-content">
+          <?php if (array_key_exists("Size Chart",$size_chart)){
+              echo $size_chart["Size Chart"];
+            }else{
+             echo $size_chart["message"];
+            }?>
+          <!-- <?php //if(isset($product->pdp_size_guide)) { echo $product->pdp_size_guide; } else { echo "Product size not available to this product";}?> --></div>
         </div>
         <!-- Colors -->
         <div class="color">
@@ -632,9 +638,9 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
 
 <div id="review-wrap">
   <h2>You May Also Like</h2>
-  <div class="slider1">
+ <div class="container">
+    <div id="owl-demo" class="owl-carousel column-5 owl-theme">
       <?php foreach ($product_associations as $product) {?>
-      <div class="slide like-carousel">
          <?php $product_id_to = $product->product_id_to;
          //print_r($product_id_to);
           $nid = get_nid_from_product_id($product_id_to);
@@ -643,14 +649,12 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
           $product_variant = $system_data->product_raw;
           //print_r($product_variant);
       ?>
-      <div>
+     <div class="item">
         <a href="<?php echo url('node/'.$nid);?>" data-ajax="false" id="image_500194">
-        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
-      </div>
-      <div>
+        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->pdp_thumbnail_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
         <a href="<?php echo url('node/'.$nid);?>" data-ajax="false"><?php echo $product_variant->product_name ?></a> 
       </div>
-      </div>
     <?php } ?>
+  </div>
   </div>
 </div>
