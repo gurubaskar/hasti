@@ -531,6 +531,7 @@ if($count == 3){
 <?php 
 $ofbiz_url = variable_get("drubiz_ofbiz_url");
 ?>
+
  <div id="tabs">
   <ul>
   <?php if(sizeof($pdpList['pdpList']['artisan'])) {?>
@@ -627,8 +628,9 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
   </div>
   <?php }?>
 
-</div> 
-<div id="review-wrap" style="padding-top: 200px;">
+</div>
+
+<div id="review-wrap">
   <h2>You May Also Like</h2>
   <div class="slider1">
       <?php foreach ($product_associations as $product) {?>
