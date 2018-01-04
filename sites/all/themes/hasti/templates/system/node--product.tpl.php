@@ -291,19 +291,25 @@
       </div>
       <div class="col-xs-12 col-sm-6 col-md-7 pdp-right">
         <div class="title">
-          <h2><?php echo $node->title ?></h2>
-          <span class="price">&#8377;. <?php echo $product->sales_price; ?></span>
-          <span><?php
-            $overallRating = $rating['overallRating'];
-            if($overallRating > 0) {
-              $overallAverage = $overallRating * 20;
-              $path = drupal_get_path('module', 'fivestar');      
-              drupal_add_js($path . '/js/fivestar.js');
-              drupal_add_css($path . '/css/fivestar.css');
-              echo theme('fivestar_static', array('rating' => $overallAverage, 'stars' => 5, 'tag' => 'vote'));
-            }
-            ?>
-          </span>
+          <div class="title-wrap">
+            <h4>Ektha </h4>
+            <h2><?php echo $node->title ?></h2>
+            <span class="price">&#8377;. <?php echo $product->sales_price; ?></span>
+            <span><?php
+              $overallRating = $rating['overallRating'];
+              if($overallRating > 0) {
+                $overallAverage = $overallRating * 20;
+                $path = drupal_get_path('module', 'fivestar');      
+                drupal_add_js($path . '/js/fivestar.js');
+                drupal_add_css($path . '/css/fivestar.css');
+                echo theme('fivestar_static', array('rating' => $overallAverage, 'stars' => 5, 'tag' => 'vote'));
+              }
+              ?>
+            </span>
+          </div>
+          <div class="manufacturer">
+            <img src="<?php echo drubiz_image('manufacturer/ektha-logo.png');?>" >
+          </div>
         </div>
         <div class="size">
           <span class="available">Available Sizes</span>
@@ -474,25 +480,28 @@
         </div>
         <?php if(count($rating['review']) > 0) { ?>
         <div id="review-wrap">
-          <h2>Product Reviews</h2>
+          <h2>Feedback and Reviews</h2>
           <div class="PDPReview">
             <?php 
                 // $rating = displayPDPReviewandRating($product->product_id);
                   foreach ($rating['review'] as $key => $ratingValue) {
               ?>
-                <div class="review-row"><label>Review Title: </label><span><?php echo $ratingValue['reviewTitle'];?></span></div>
-                <div class="review-row"><label>Review: </label><span><?php echo $ratingValue['productReview'];?></span></div>
-                <div class="review-row"><label>Nickname: </label><span><?php echo $ratingValue['reviewNickName'];?></span></div>
-                <div class="review-row"><label>Review Date: </label><span><?php echo date("d/m/Y H:s",strtotime($ratingValue['postedDateTime']));?></span></div>
-                <div class="review-row"><label>Overall Rating: </label><span><?php
-                  $rating = $ratingValue['productRating'];
-                  $ratingAverage = $rating * 20;
-                  $path = drupal_get_path('module', 'fivestar');      
-                  drupal_add_js($path . '/js/fivestar.js');
-                  drupal_add_css($path . '/css/fivestar.css');
-                  echo theme('fivestar_static', array('rating' => $ratingAverage, 'stars' => 5, 'tag' => 'vote'));?>
-                </span>
+              <div class="review-wrap">
+                <div class="review-row rating"><span><?php
+                    $rating = $ratingValue['productRating'];
+                    $ratingAverage = $rating * 20;
+                    $path = drupal_get_path('module', 'fivestar');      
+                    drupal_add_js($path . '/js/fivestar.js');
+                    drupal_add_css($path . '/css/fivestar.css');
+                    echo theme('fivestar_static', array('rating' => $ratingAverage, 'stars' => 5, 'tag' => 'vote'));?>
+                  </span>
+                </div>
+                  <div class="review-row review-title"><span><?php echo $ratingValue['reviewTitle'];?></span></div>
+                  <div class="review-row"><span><?php echo $ratingValue['productReview'];?></span></div>
+                  <div class="review-row nickname"><span><?php echo $ratingValue['reviewNickName'];?></span></div>
+                  <div class="review-row date"><span><?php echo date("d/m/Y H:s",strtotime($ratingValue['postedDateTime']));?></span></div>
               </div>
+                
               <?php }
             ?>
           </div>
