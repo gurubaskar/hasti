@@ -15,13 +15,13 @@ foreach ($getRawMaterials['productionProcesses'] as $keyRawMaterials => $valueRa
 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pr-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage1'];?>" alt="Khadi"></div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage2'];?>" alt="Khadi"></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pr-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage1'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage2'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
               </div>
               <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pr-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage3'];?>" alt="Khadi"></div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pr-5 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage4'];?>" alt="Khadi"></div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage5'];?>" alt="Khadi"></div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pr-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage3'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pr-5 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage4'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage5'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
               </div>
             </div>
 	
