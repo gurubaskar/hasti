@@ -2014,3 +2014,69 @@ function signup_for_subscribe(){
   // if($data['isNewSession'] == 'false' or $data['isNewSession'] == 0) {
   echo json_encode($data);
 }
+function hasti_pdp_rawMaterials($productId){
+    $endpoint = 'hasti/catalog/getRawMaterials';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'productId'=>$productId
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $getRawMaterials = json_decode($raw_json, TRUE);
+  return theme('pdp_raw_materials',compact('getRawMaterials'));
+}
+
+function hasti_pdp_process($productId){
+    $endpoint = 'hasti/catalog/getProductionProcesses';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'productId'=>$productId
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $getRawMaterials = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'getRawMaterials'), 1) . '</pre>');
+  return theme('pdp_raw_process',compact('getRawMaterials'));
+}
+
+function hasti_pdp_designer($productId){
+    $endpoint = 'hasti/catalog/getDesigners';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'productId'=>$productId
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $getRawMaterials = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  return theme('pdp_raw_designers',compact('getRawMaterials'));
+}
+
+function hasti_pdp_artisan($productId){
+    $endpoint = 'hasti/catalog/getArtisans';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
+  $params = array(
+    'productId'=>$productId
+  );
+  $client = drubiz_api_client();
+  $response = $client->get($endpoint . '?' . http_build_query($params));
+  $raw_json = $response->getBody();
+  $getRawMaterials = json_decode($raw_json, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  return theme('pdp_raw_artisans',compact('getRawMaterials'));
+}

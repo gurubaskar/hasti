@@ -85,7 +85,7 @@
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
   $product_associations = $system_data->product_associations;
- // krumo($product);
+  
   $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
   $category_names_from_catalog = $drubiz_category_names['globus'];
   $get_category_names = explode(',', $product->product_category_id);
@@ -98,11 +98,14 @@
   $out_of_stock_info = pdp_out_of_stock_info($node->field_product_id[LANGUAGE_NONE][0]['value']);
   $out_of_stock = $out_of_stock_info->availableQuantity;
   $rating = displayPDPReviewandRating($product->product_id);
+  //krumo($product);
+  $pdpList = displayPDPList($product->product_id);
   // krumo($out_of_stock_info);
   // krumo($out_of_stock_info->availableQuantity , $facet_values);
   // krumo($sku);
 ?>
 <div id="eCommerceProductDetailContainer" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+
 <div id="content" class="pdp">
   <!-- <div class="container-fluid"> -->
     <!-- <div class="row"> -->
@@ -151,9 +154,9 @@
           </ul>
            <!-- </div> -->
           <script type="text/javascript">
-            /*jQuery( function() {
-               jQuery( "#product-tabs" ).tabs();
-            } );*/
+            jQuery( function() {
+               jQuery("#tabs").tabs();
+            } );
             jQuery(document).ready(function(){
               jQuery('.alert-danger').css('display', 'none');
               jQuery(window).resize(function() {
@@ -504,27 +507,128 @@
 
 
 </div>
-<!-- <div id="product-tabs">
+<?php 
+$count=0;
+if(sizeof($pdpList['pdpList']['artisan']['description']))
+  $count ++;
+if(sizeof($pdpList['pdpList']['designer']['description']))
+  $count ++;
+if(sizeof($pdpList['pdpList']['process']['description']))
+  $count ++;
+if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription']))
+  $count ++;
+
+if($count == 3){
+    $class = "col-xs-4 col-sm-4 col-md-4";
+}elseif ($count == 2) {
+  $class = "col-xs-6 col-sm-6 col-md-6";
+}elseif ($count == 1) {
+  $class = "col-xs-12 col-sm-12 col-md-12";
+}else{
+    $class = "col-xs-3 col-sm-3 col-md-3";
+}
+;?>
+<?php 
+$ofbiz_url = variable_get("drubiz_ofbiz_url");
+?>
+ <div id="tabs">
   <ul>
-    <li><a href="#Artisan-1">Artisan</a></li>
-    <li><a href="#Designers-2">Designers</a></li>
-    <li><a href="#Process-3">Process</a></li>
-    <li><a href="#Raw-Material-3">Raw Material</a></li>
+  <?php if(sizeof($pdpList['pdpList']['artisan'])) {?>
+    <li class="<?php echo $class;?>"><a href="#tabs-1">Artisan</a></li>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['designer'])) {?>
+    <li class="<?php echo $class;?>"><a href="#tabs-2">Designers</a></li>
+     <?php }?>
+     <?php if(sizeof($pdpList['pdpList']['process'])) {?>
+    <li class="<?php echo $class;?>"><a href="#tabs-3">Process</a></li>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['rawMaterial'])) {?>
+    <li class="<?php echo $class;?>"><a href="#tabs-4">Raw Material</a></li>
+    <?php }?>
   </ul>
-  <div id="Artisan-1">
-    Artisan
+  <?php if(sizeof($pdpList['pdpList']['artisan']['description'])) {?>
+  <div id="tabs-1">
+  <div class="col-xs-12 col-sm-4 col-md-2">
+  <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
   </div>
-  <div id="Designers-2">
-    Designers
+  <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div><div class="col-xs-12 col-sm-6 col-md-3">
+   <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2">
+   <p>
+    <?php echo $pdpList['pdpList']['artisan']['description'];?>
+    </p>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+    <a href="<?php echo url("pdp/artisan/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+    </div>
   </div>
-  <div id="Process-3">
-    Process
+  <?php }?>
+  <?php if(sizeof($pdpList['pdpList']['designer']['description'])) {?>
+  <div id="tabs-2">
+  <div class="col-xs-12 col-sm-4 col-md-2">
+  <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
   </div>
-  <div id="Raw-Material-3">
-    Raw-Material
+  <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2">
+   <p>
+    <?php echo $pdpList['pdpList']['designer']['description'];?>
+    </p>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+    <a href="<?php echo url("pdp/designer/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+    </div>
+  </div><p>
+  <?php }?>
+  <?php if(sizeof($pdpList['pdpList']['process']['description'])) {?>
+  <div id="tabs-3">
+  <div class="col-xs-12 col-sm-4 col-md-2">
+  <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
   </div>
-</div>  -->
-<div id="review-wrap">
+  <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2"><p>
+    <?php echo $pdpList['pdpList']['process']['description'];?></p>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+    <a href="<?php echo url("pdp/process/");?><?php echo $product->product_id ?>"></p>Know more</p></a>
+    </div>
+  </div>
+  <?php }?>
+  <?php if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription'])) {?>
+  <div id="tabs-4">
+  <div class="col-xs-12 col-sm-4 col-md-2">
+  <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2">
+   <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+   </div>
+   <div class="col-xs-12 col-sm-4 col-md-2"><p>
+  <?php echo $pdpList['pdpList']['rawMaterial']['longDescription'];?>
+  </p>
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-2">
+    <a href="<?php echo url("pdp/rawMaterials/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+    </div>
+  </div>
+  <?php }?>
+
+</div> 
+<div id="review-wrap" style="padding-top: 200px;">
   <h2>You May Also Like</h2>
   <div class="slider1">
       <?php foreach ($product_associations as $product) {?>
