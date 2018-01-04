@@ -1,11 +1,17 @@
 <?php 
 $ofbiz_url = variable_get("drubiz_ofbiz_url");
 foreach ($getRawMaterials['productionProcesses'] as $keyRawMaterials => $valueRawMaterials) :?>
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 raw-heading">
+<div id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="container-fluid rawmaterial">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3>PROCESS</h3>
+        </div>
+        <div class="content-wrap"> <!-- content-wrap -->
+
+          <div id="khadi-info">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 raw-heading">
               <h3><?php echo $valueRawMaterials['taskName']; ?></h3>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
-            <?php echo $valueRawMaterials['description']; ?>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 raw-right">
               <div class="btns-wrap">
@@ -13,6 +19,9 @@ foreach ($getRawMaterials['productionProcesses'] as $keyRawMaterials => $valueRa
               </div>
             </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <p><?php echo $valueRawMaterials['description']; ?></p>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pr-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage1'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
@@ -24,5 +33,11 @@ foreach ($getRawMaterials['productionProcesses'] as $keyRawMaterials => $valueRa
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pl-5"><img class="img-responsive" src="<?php echo $ofbiz_url.$valueRawMaterials['productionProcImage5'];?>" alt="Khadi" onerror="onImgError(this, 'PLP-Thumb');"></div>
               </div>
             </div>
-	
+          </div>
+
+        </div> <!-- content-wrap end -->
+    </div>
+  </div>
+</div>
+  
 <?php endforeach; ?>
