@@ -926,7 +926,39 @@ function drubiz_menu() {
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
-  
+
+   $items['pdp/rawMaterials/%'] = array(
+    'title'             => 'PDP raw materials',
+    'description'       => "PDP raw materials",
+    'page arguments'    => array(2),
+    'page callback'     => 'hasti_pdp_rawMaterials',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+   $items['pdp/process/%'] = array(
+    'title'             => 'PDP process',
+    'description'       => "PDP process",
+    'page arguments'    => array(2),
+    'page callback'     => 'hasti_pdp_process',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+   $items['pdp/designer/%'] = array(
+    'title'             => 'PDP designer',
+    'description'       => "PDP designer",
+    'page arguments'    => array(2),
+    'page callback'     => 'hasti_pdp_designer',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
+   $items['pdp/artisan/%'] = array(
+    'title'             => 'PDP artisan',
+    'description'       => "PDP artisan",
+    'page arguments'    => array(2),
+    'page callback'     => 'hasti_pdp_artisan',
+    'access arguments'  => array('access content'),
+    'file'              => 'drubiz.pages.inc',
+  );
   return $items;
 }
 
@@ -1155,6 +1187,22 @@ function drubiz_theme() {
     'sonata_privacy_policy_template' => array(
       'path'            => $drubiz_path,
       'template'        => 'sonata_privacy_policy_template',
+    ),
+     'pdp_raw_materials' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'pdp_raw_materials',
+    ),
+     'pdp_raw_process' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'pdp_raw_process',
+    ),
+     'pdp_raw_designers' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'pdp_raw_designers',
+    ),
+     'pdp_raw_artisans' => array(
+      'path'            => $drubiz_path,
+      'template'        => 'pdp_raw_artisans',
     ),
   );
 }
