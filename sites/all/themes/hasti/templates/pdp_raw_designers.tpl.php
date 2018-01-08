@@ -33,10 +33,10 @@ foreach ($getRawMaterials['designers'] as $keyRawMaterials => $valueRawMaterials
                   </div>
                 </div>
               </div>
-              <div class="btns-wrap">
+              <!-- <div class="btns-wrap">
                 <span><a class="ui-link" href="#" data-ajax="false">Find my Collections</a></span>
               </div>
-            </div>
+            </div> -->
           </div> <!-- content-wrap end -->
       </div>
     </div>

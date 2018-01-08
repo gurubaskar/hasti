@@ -21,11 +21,11 @@ foreach ($getRawMaterials['rawMaterials'] as $keyRawMaterials => $valueRawMateri
                   <h3><?php echo $valueRawMaterials['internalName']; ?></h3>
                 </div>
               </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 raw-right">
+              <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 raw-right">
                 <div class="btns-wrap">
                   <span><a class="ui-link" href="#" data-ajax="false">Find Collections</a></span>
                 </div>
-              </div>
+              </div> -->
 
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pl0">
                 <p><?php echo $valueRawMaterials['longDescription']; ?></p>
