@@ -478,7 +478,181 @@
               print drupal_render($comments_form);
           ?>
         </div>
-        <?php if(count($rating['review']) > 0) { ?>
+       
+      </div>
+    <!-- </div> -->
+
+    <div id="js_mainImageDiv" style="display:none">
+      <a href="">
+        <img src="" name="mainImage" data-zoom-image="" class="js_productLargeImage" width="100%" onerror="onImgError(this, 'PDP-Large');">
+      </a>
+    </div>
+    <?php drupal_add_js(drupal_get_path('theme', 'hasti') . '/js/jquery.elevatezoom.js'); ?>
+<!--   </div> -->
+  
+ 
+
+  <?php 
+$count=0;
+if(sizeof($pdpList['pdpList']['artisan']['description']))
+  $count ++;
+if(sizeof($pdpList['pdpList']['designer']['description']))
+  $count ++;
+if(sizeof($pdpList['pdpList']['process']['description']))
+  $count ++;
+if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription']))
+  $count ++;
+
+if($count == 3){
+    $class = "col-xs-4 col-sm-4 col-md-4";
+}elseif ($count == 2) {
+  $class = "col-xs-6 col-sm-6 col-md-6";
+}elseif ($count == 1) {
+  $class = "col-xs-12 col-sm-12 col-md-12";
+}else{
+    $class = "col-xs-3 col-sm-3 col-md-3";
+}
+;?>
+<?php 
+$ofbiz_url = variable_get("drubiz_ofbiz_url");
+?>
+
+<div class="panel with-nav-tabs panel-default">
+  <?php if(sizeof($pdpList['pdpList']['artisan']) || sizeof($pdpList['pdpList']['designer']) || sizeof($pdpList['pdpList']['process']) || sizeof($pdpList['pdpList']['rawMaterial'])) { ?>
+  <div class="panel-heading">
+    <ul class="nav nav-tabs">
+    <?php if(sizeof($pdpList['pdpList']['artisan'])) {?>
+    <li class="<?php //echo $class;?> active"><a href="#tab1default" data-toggle="tab">Artisan</a></li>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['designer'])) {?>
+    <li class="<?php //echo $class;?>"><a href="#tab2default" data-toggle="tab">Designers</a></li>
+     <?php }?>
+     <?php if(sizeof($pdpList['pdpList']['process'])) {?>
+    <li class="<?php //echo $class;?>"><a href="#tab3default"  data-toggle="tab">Process</a></li>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['rawMaterial'])) {?>
+    <li class="<?php //echo $class;?>"><a href="#tab4default" data-toggle="tab">Raw Material</a></li>
+    <?php }?>
+    </ul>
+  </div>
+  <?php } ?>
+
+  <?php if(sizeof($pdpList['pdpList']['artisan']) || sizeof($pdpList['pdpList']['designer']) || sizeof($pdpList['pdpList']['process']) || sizeof($pdpList['pdpList']['rawMaterial'])) { ?>
+  <div class="panel-body">
+    <div class="tab-content">
+    <?php if(sizeof($pdpList['pdpList']['artisan']['description'])) {?>
+    <div class="tab-pane fade in active" id="tab1default">
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <p>
+          <?php echo $pdpList['pdpList']['artisan']['description'];?>
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <a href="<?php echo url("pdp/artisan/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+      </div>
+    </div>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['designer']['description'])) {?>
+    <div class="tab-pane fade" id="tab2default">
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <p>
+          <?php echo $pdpList['pdpList']['designer']['description'];?>
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <a href="<?php echo url("pdp/designer/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+      </div>
+    </div>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['process']['description'])) {?>
+    <div class="tab-pane fade" id="tab3default">
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2"><p>
+        <?php echo $pdpList['pdpList']['process']['description'];?></p>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <a href="<?php echo url("pdp/process/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+      </div>
+    </div>
+    <?php }?>
+    <?php if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription'])) {?>
+    <div class="tab-pane fade" id="tab4default">
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <p>
+          <?php echo $pdpList['pdpList']['rawMaterial']['longDescription'];?>
+        </p>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <a href="<?php echo url("pdp/rawMaterials/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+      </div>
+    </div>
+    <?php }?>
+    </div>
+  </div>
+  <?php } ?>
+</div>
+
+<!--You MAy Also Like -->
+<div id="review-wrap" class="col-xs-12 col-sm-12 col-md-12 umayalso">
+  <h2>You May Also Like</h2>
+ <div class="container">
+    <div id="owl-demo" class="owl-carousel column-5 owl-theme">
+      <?php foreach ($product_associations as $product) {?>
+         <?php $product_id_to = $product->product_id_to;
+         //print_r($product_id_to);
+          $nid = get_nid_from_product_id($product_id_to);
+          $node = node_load($nid);         
+          $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);        
+          $product_variant = $system_data->product_raw;
+          //print_r($product_variant);
+      ?>
+     <div class="item">
+        <a href="<?php echo url('node/'.$nid);?>" data-ajax="false" id="image_500194">
+        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->pdp_thumbnail_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
+        <a href="<?php echo url('node/'.$nid);?>" data-ajax="false"><?php echo $product_variant->product_name ?></a> 
+      </div>
+    <?php } ?>
+  </div>
+  </div>
+</div>
+
+<!--Review Display-->
+ <?php if(count($rating['review']) > 0) { ?>
         <div id="review-wrap">
           <h2>Feedback and Reviews</h2>
           <div class="PDPReview">
@@ -507,163 +681,5 @@
           </div>
         </div>
         <?php } ?>
-      </div>
-    <!-- </div> -->
-
-    <div id="js_mainImageDiv" style="display:none">
-      <a href="">
-        <img src="" name="mainImage" data-zoom-image="" class="js_productLargeImage" width="100%" onerror="onImgError(this, 'PDP-Large');">
-      </a>
-    </div>
-    <?php drupal_add_js(drupal_get_path('theme', 'hasti') . '/js/jquery.elevatezoom.js'); ?>
-<!--   </div> -->
-  
-  </div>
-
-
-</div>
-<?php 
-$count=0;
-if(sizeof($pdpList['pdpList']['artisan']['description']))
-  $count ++;
-if(sizeof($pdpList['pdpList']['designer']['description']))
-  $count ++;
-if(sizeof($pdpList['pdpList']['process']['description']))
-  $count ++;
-if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription']))
-  $count ++;
-
-if($count == 3){
-    $class = "col-xs-4 col-sm-4 col-md-4";
-}elseif ($count == 2) {
-  $class = "col-xs-6 col-sm-6 col-md-6";
-}elseif ($count == 1) {
-  $class = "col-xs-12 col-sm-12 col-md-12";
-}else{
-    $class = "col-xs-3 col-sm-3 col-md-3";
-}
-;?>
-<?php 
-$ofbiz_url = variable_get("drubiz_ofbiz_url");
-?>
-
- <div id="tabs">
-  <ul>
-  <?php if(sizeof($pdpList['pdpList']['artisan'])) {?>
-    <li class="<?php echo $class;?>"><a href="#tabs-1">Artisan</a></li>
-    <?php }?>
-    <?php if(sizeof($pdpList['pdpList']['designer'])) {?>
-    <li class="<?php echo $class;?>"><a href="#tabs-2">Designers</a></li>
-     <?php }?>
-     <?php if(sizeof($pdpList['pdpList']['process'])) {?>
-    <li class="<?php echo $class;?>"><a href="#tabs-3">Process</a></li>
-    <?php }?>
-    <?php if(sizeof($pdpList['pdpList']['rawMaterial'])) {?>
-    <li class="<?php echo $class;?>"><a href="#tabs-4">Raw Material</a></li>
-    <?php }?>
-  </ul>
-  <?php if(sizeof($pdpList['pdpList']['artisan']['description'])) {?>
-  <div id="tabs-1">
-  <div class="col-xs-12 col-sm-4 col-md-2">
-  <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-  </div>
-  <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div><div class="col-xs-12 col-sm-6 col-md-3">
-   <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
    </div>
-   <div class="col-xs-12 col-sm-4 col-md-2">
-   <p>
-    <?php echo $pdpList['pdpList']['artisan']['description'];?>
-    </p>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-2">
-    <a href="<?php echo url("pdp/artisan/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
-    </div>
-  </div>
-  <?php }?>
-  <?php if(sizeof($pdpList['pdpList']['designer']['description'])) {?>
-  <div id="tabs-2">
-  <div class="col-xs-12 col-sm-4 col-md-2">
-  <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-  </div>
-  <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div>
-   <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div>
-   <div class="col-xs-12 col-sm-4 col-md-2">
-   <p>
-    <?php echo $pdpList['pdpList']['designer']['description'];?>
-    </p>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-2">
-    <a href="<?php echo url("pdp/designer/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
-    </div>
-  </div><p>
-  <?php }?>
-  <?php if(sizeof($pdpList['pdpList']['process']['description'])) {?>
-  <div id="tabs-3">
-  <div class="col-xs-12 col-sm-4 col-md-2">
-  <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-  </div>
-  <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div>
-   <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div>
-   <div class="col-xs-12 col-sm-4 col-md-2"><p>
-    <?php echo $pdpList['pdpList']['process']['description'];?></p>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-2">
-    <a href="<?php echo url("pdp/process/");?><?php echo $product->product_id ?>"></p>Know more</p></a>
-    </div>
-  </div>
-  <?php }?>
-  <?php if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription'])) {?>
-  <div id="tabs-4">
-  <div class="col-xs-12 col-sm-4 col-md-2">
-  <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-  </div>
-  <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div>
-   <div class="col-xs-12 col-sm-4 col-md-2">
-   <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
-   </div>
-   <div class="col-xs-12 col-sm-4 col-md-2"><p>
-  <?php echo $pdpList['pdpList']['rawMaterial']['longDescription'];?>
-  </p>
-  </div>
-  <div class="col-xs-12 col-sm-4 col-md-2">
-    <a href="<?php echo url("pdp/rawMaterials/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
-    </div>
-  </div>
-  <?php }?>
-
-</div>
-
-<div id="review-wrap" class="col-xs-12 col-sm-12 col-md-12 umayalso">
-  <h2>You May Also Like</h2>
- <div class="container">
-    <div id="owl-demo" class="owl-carousel column-5 owl-theme">
-      <?php foreach ($product_associations as $product) {?>
-         <?php $product_id_to = $product->product_id_to;
-         //print_r($product_id_to);
-          $nid = get_nid_from_product_id($product_id_to);
-          $node = node_load($nid);         
-          $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);        
-          $product_variant = $system_data->product_raw;
-          //print_r($product_variant);
-      ?>
-     <div class="item">
-        <a href="<?php echo url('node/'.$nid);?>" data-ajax="false" id="image_500194">
-        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->pdp_thumbnail_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
-        <a href="<?php echo url('node/'.$nid);?>" data-ajax="false"><?php echo $product_variant->product_name ?></a> 
-      </div>
-    <?php } ?>
-  </div>
-  </div>
 </div>
