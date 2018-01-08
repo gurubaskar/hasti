@@ -1,5 +1,8 @@
 <?php 
 $ofbiz_url = variable_get("drubiz_ofbiz_url");
+if(count($getRawMaterials['productionProcesses']) == 0){?>
+<p> No data Found.</p>
+<?php }else{
 foreach ($getRawMaterials['productionProcesses'] as $keyRawMaterials => $valueRawMaterials) :?>
 <div id="content" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="container-fluid rawmaterial">
@@ -40,4 +43,4 @@ foreach ($getRawMaterials['productionProcesses'] as $keyRawMaterials => $valueRa
   </div>
 </div>
   
-<?php endforeach; ?>
+<?php endforeach; }?>

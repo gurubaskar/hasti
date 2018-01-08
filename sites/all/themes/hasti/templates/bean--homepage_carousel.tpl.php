@@ -41,9 +41,9 @@
       <div class="caption img-bootstrap" data-animate="slideAppearDownToUp" data-delay="200" style="opacity: 1; margin-top: 0px; margin-bottom: 0px;">
       <!--<img src="images/banner-slider/bootstrap.png">-->
       <?php print $field_caption_body ?>
-      <!-- <?php if (!$title_is_link): ?>
+      <?php if (!$title_is_link): ?>
           <button class="shopnow" onClick="location.href = '<?php print $field_carousel_link ?>'"><a style="color:#fff" href="<?php print $field_carousel_link ?>"><?php print $field_carousel_link_text ?></a></button>
-      <?php endif; ?> -->
+      <?php endif; ?>
       <div class="caption img-twitter" data-animate="slideAppearUpToDown" style="opacity: 1; margin-top: 0px; margin-bottom: 0px;">
       <!--<img src="images/banner-slider/twitter.png">-->
       </div>
@@ -59,8 +59,6 @@
     <a class="page" href="#" data-jump-to="1">1</a>
     <a class="page" href="#" data-jump-to="2">2</a>
     <a class="page" href="#" data-jump-to="3">3</a>
-	<a class="page" href="#" data-jump-to="4">4</a>
-    <a class="page" href="#" data-jump-to="5">5</a>
   </div>
 </div>
 <?php

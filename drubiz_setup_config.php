@@ -17,7 +17,7 @@ $domain_configs = array(
       'dev'       => TRUE,
       'catalog'   => 'hasti',
       'theme'     => 'hasti',
-      'homepage'  => 4244, // Node ID of the homepage
+      'homepage'  => 7248, // Node ID of the homepage
     ),
   ),
 );
