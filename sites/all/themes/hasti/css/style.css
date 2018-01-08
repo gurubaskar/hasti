@@ -253,8 +253,8 @@ a:focus{text-decoration:none !important;}
 /************************* Home page ************************/
 #homepage .story-wrap{width:100%; float:left; padding-bottom:20px; margin:15px 0; border-bottom:1px solid #72d8a9; text-align:center;}
 #homepage .story-wrap:first-child{margin:0 0 45px 0; padding:0 25px 15px 25px;}
-#homepage .story-wrap h3{font-size:40px; font-weight:normal; color:#0081c5; font-family:'BPscript'; margin-top:0; margin-bottom:15px;}
-#homepage .story-wrap p{font-size:15px; color:#929497; line-height:25px; margin:0;}
+#homepage .story-wrap h3, #homepage h3, .rawmaterial h3{font-size:40px; font-weight:normal; color:#0081c5; /*font-family:'BPscript';*/ margin-top:0; margin-bottom:15px;}
+#homepage .story-wrap p, #homepage .right p, .rawmaterial p{font-size:15px; color:#929497; line-height:25px; margin:0; text-align:justify;}
 #homepage .story-wrap p .more{font-size:16px; font-weight:bold; margin-left:20px;}
 #homepage .story-wrap p a{color:#929497;}
 #homepage .story-wrap p a:hover{color:#929497;}
@@ -388,7 +388,7 @@ a:focus{text-decoration:none !important;}
 .pdp .btns-wrap span a.ui-btn:active{color:#fff !important;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
-.pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
+.pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2, .umayalso h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
 .pdp .pdp-right .fivestar-default{width:100%; float:left; margin:15px 0 0 0;}
 .pdp .pdp-right .PDPReview .fivestar-default{width:auto; float:left; margin:2px 0 0 0;}
 .storyimg-wrap{float:left; width:100%; margin-top:15px;}
@@ -1399,6 +1399,11 @@ a:focus{text-decoration:none !important;}
     .story-imgright>.col-xs-12{padding:0 !important;}
     .pdp .title h2{line-height:37px;}
     #footer ul{min-height:175px;}
+    .artisans .right{padding-left:0; margin-top:15px;}
+    .artisans .right .img-wrap{margin-bottom:15px;}
+    .artisans .left img{width:97%;}
+    .remove-pad .pr-9, .remove-pad .pr-8{padding-right:15px !important;}
+    
 }
 
 @media (max-width:660px){
@@ -1430,7 +1435,7 @@ a:focus{text-decoration:none !important;}
     .myaccount-right.myorders .shippingDetail .trackOrderDetails{border-bottom:1px solid #ddd; padding-bottom:10px;}
     .myaccount-right.myorders .shippingDetail .details-wrap{ border-left:none; padding-left:0px;}
     .track-container{display:none;}
-
+    .umayalso .owl-item img{height:100% !important;}
 }
 
 @media (max-width:550px){
@@ -1634,3 +1639,29 @@ body{
 ::-webkit-scrollbar-thumb {
     background: #0680c4; 
 }
+.umayalso{margin:10px 0;}
+.umayalso .owl-item img{height:100% !important;}
+.owl-carousel.owl-drag .owl-item .item a{margin:10px 0; float:left;}
+#homepage .content-wrap{margin-bottom: 40px; float: left; width: 100%;}
+.pdp .btns-wrap, #homepage .btns-wrap, .raw-right .btns-wrap{float: left; width: 100%; margin: 30px 0 15px 0;}
+.pdp .btns-wrap span, .story-detail span, #homepage .right span, #homepage .raw-right .btns-wrap span, .rawmaterial .btns-wrap span{background: #00b04c; width: 179px; float: left; margin-right: 10px;
+}
+.pdp .btns-wrap span a, #cart .btns-wrap span a, .checkpin a, .checkout-right .btns-wrap span a, .payment-method .btns-wrap a, .story-detail span a, .story-detail span a:hover, #homepage .btns-wrap span a, .rawmaterial .btns-wrap span a{text-align: center; color: #fff; float: left; width: 100%; padding: 10px 0; font-size: 16px; font-weight: normal;}
+.artisans .right p{margin-bottom:15px !important;}
+.artisans h3{font-size:35px !important; font-weight:bold;}
+.artisans .right h3{font-size:30px !important; color:#00b04c !important;}
+.pr0{padding-right:0 !important;}
+.pl0{padding-left:0 !important;}
+.raw-right .btns-wrap span{float: right !important; margin-right: 0 !important;}
+.raw-heading h3{color: #00b04c !important; margin-top: 10px !important; font-size:30px !important;}
+.raw-right .btns-wrap{margin-top:4px !important;}
+.rawmaterial img{margin-top: 10px; width: 100%;}
+.rawmaterial h3{font-size:35px; margin-top:10px;}
+.pl-5{padding-left:5px !important;}
+.pr-9{padding-right:9px !important;}
+.pr-8{padding-right:8px !important;}
+.pr-13{padding-right:13px !important;}
+.pr-14{padding-right:14px !important;}
+.pr-2{padding-right:2px !important;}
+.pl-7{padding-left:7px !important;}
+#khadi-info p{margin-bottom:5px;}

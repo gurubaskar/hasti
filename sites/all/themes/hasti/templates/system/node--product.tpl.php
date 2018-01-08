@@ -645,7 +645,7 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
 
 </div>
 
-<div id="review-wrap">
+<div id="review-wrap" class="col-xs-12 col-sm-12 col-md-12 umayalso">
   <h2>You May Also Like</h2>
  <div class="container">
     <div id="owl-demo" class="owl-carousel column-5 owl-theme">
