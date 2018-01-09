@@ -99,18 +99,19 @@
   <?php endif; ?>
 
   <div class="static-content"<?php print $content_attributes; ?>>
-  <div class="col-xs-12 col-sm-12 col-md-12">
-	  <h1><?php print render($title); ?></h1>
-		<?php
-		  // We hide the comments and links now so that we can render them later.
-		  hide($content['comments']);
-		  hide($content['links']);
-		  print render($content);
-		?>
-	  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 homepage-new">
+    <div class="row content-section" >
+  	  <h1><?php print render($title); ?></h1>
+  		<?php
+  		  // We hide the comments and links now so that we can render them later.
+  		  hide($content['comments']);
+  		  hide($content['links']);
+  		  print render($content);
+  		?>
+      
+  	  <?php print render($content['links']); ?>
 
-	  <?php print render($content['links']); ?>
-
-	  <?php print render($content['comments']); ?>
+  	  <?php print render($content['comments']); ?>
+    </div>
 	</div>
 </div>
