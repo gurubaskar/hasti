@@ -1,5 +1,5 @@
 <!-- Builder wrapper -->
-<div class="builder-wrapper buider-wrapper-<?php print $builder->bid; ?>">
+<div class="builder-wrapper buider-wrapper-<?php print $builder->bid; ?> main-content">
   <?php if (!empty($rows)): ?>
     <?php
     $i_row = 1;
@@ -67,7 +67,7 @@
                 <div<?php print builder_column_attributes($column_id, $column, $i_column) ?>>
                   <?php if (!empty($column['settings']['title'])): ?>
                     <div class="builder-column-title">
-                      <h3><?php print filter_xss_admin($column['settings']['title']); ?></h3>
+                      <h3><span><?php print filter_xss_admin($column['settings']['title']); ?></span></h3>
                     </div>
                   <?php endif; ?>
 

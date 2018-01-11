@@ -56,11 +56,11 @@
   <a class="slider-control left" href="#" data-jump="prev"><</a>
   <a class="slider-control right" href="#" data-jump="next">></a>
   <div class="pages">
-    <a class="page" href="#" data-jump-to="1">1</a>
-    <a class="page" href="#" data-jump-to="2">2</a>
-    <a class="page" href="#" data-jump-to="3">3</a>
-	<a class="page" href="#" data-jump-to="4">4</a>
-    <a class="page" href="#" data-jump-to="5">5</a>
+    <a class="page" href="#" data-jump-to="1"></a>
+    <a class="page" href="#" data-jump-to="2"></a>
+    <a class="page" href="#" data-jump-to="3"></a>
+	<a class="page" href="#" data-jump-to="4"></a>
+    <a class="page" href="#" data-jump-to="5"></a>
   </div>
 </div>
 <?php

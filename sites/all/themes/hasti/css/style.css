@@ -351,11 +351,11 @@ a:focus{text-decoration:none !important;}
 .pdp .pdp-right #reviewForm .form-group .fivestar-widget{margin-bottom:15px;}
 .pdp .pdp-right #reviewForm textarea.ui-input-text{height:100px !important;}
 .pdp .pdp-right #reviewForm .btn-primary{border:none; float:right; width:auto;}
-.pdp .pdp-right #review-wrap, .pdp .pdp-right #review-wrap .PDPReview{float:left; width:100%;}
-.pdp .pdp-right #review-wrap .PDPReview{border:1px solid #d3d2d2; padding:10px 20px; margin-bottom:20px; overflow-y:scroll; height:205px;}
-.pdp .pdp-right #review-wrap .PDPReview .review-row{float:left; width:100%; margin:2px 0 7px 0;}
-.pdp .pdp-right #review-wrap .PDPReview .review-row label{width:auto; float:left; padding-right:2px; font-size:15px;}
-
+.pdp #review-wrap, .pdp #review-wrap .PDPReview{float:left; width:100%;}
+.pdp #review-wrap .PDPReview{/*border:1px solid #d3d2d2; padding:10px 20px;*/ margin-bottom:20px; overflow-y:scroll; height:205px;}
+.pdp #review-wrap .PDPReview .review-row{float:left; width:100%; margin:2px 0 7px 0;}
+.pdp #review-wrap .PDPReview .review-row label{width:auto; float:left; padding-right:2px; font-size:15px;}
+.pdp #review-wrap{margin-top:15px;}
 
 .pdp .title, .pdp .size{border-bottom:1px solid #adafb2; margin-bottom:15px; padding-bottom:20px; float:left; width:100%;}
 .pdp .title{margin-top:0; position:relative;}
@@ -388,7 +388,7 @@ a:focus{text-decoration:none !important;}
 .pdp .btns-wrap span a.ui-btn:active{color:#fff !important;}
 .pdp .btns-wrap span a.add-bag{background:url('./../images/main-img.png') no-repeat 4px -287px;}
 .story-wrap{margin:35px 0 0 0; width:100%; float:left;}
-.pdp .story-wrap h2, .pdp .price-wrap h2, .pdp .pdp-right #review-wrap h2, .umayalso h2{color:#0081c5; font-size:35px; margin-top:0; font-weight:bold; margin-bottom:15px; font-family:'BPscript';}
+.pdp .story-wrap h2, .pdp .price-wrap h2, .pdp #review-wrap h2, .umayalso h2{color:#0081c5; font-size:25px; margin-top:0; font-weight:bold; margin-bottom:15px; text-transform:uppercase;}
 .pdp .pdp-right .fivestar-default{width:100%; float:left; margin:15px 0 0 0;}
 .pdp .pdp-right .PDPReview .fivestar-default{width:auto; float:left; margin:2px 0 0 0;}
 .storyimg-wrap{float:left; width:100%; margin-top:15px;}
@@ -1613,10 +1613,10 @@ a:focus{text-decoration:none !important;}
 .ui-widget-header{background:#00b04c !important;}
 
 /* 03-01-18 */
-.pdp .pdp-right #review-wrap .PDPReview .rating, .pdp .pdp-right #review-wrap .PDPReview .review-title, .pdp .pdp-right #review-wrap .PDPReview .nickname, .pdp .pdp-right #review-wrap .PDPReview .date{float:left; width:auto !important; margin-right:40px;}
-.pdp .pdp-right #review-wrap .PDPReview .nickname, .pdp .pdp-right #review-wrap .PDPReview .date{margin-right:15px !important; color:#09b252; font-size:13px; font-weight:bold;}
-.pdp .pdp-right #review-wrap .PDPReview .review-title{font-weight:bold; color:#000;}
-.pdp .pdp-right #review-wrap .PDPReview .review-wrap{float:left; width:100%; border-bottom:1px solid #d3d2d2; margin-bottom:10px; padding-bottom:5px;}
+.pdp #review-wrap .PDPReview .rating, .pdp #review-wrap .PDPReview .review-title, .pdp #review-wrap .PDPReview .nickname, .pdp #review-wrap .PDPReview .date{float:left; width:auto !important; margin-right:40px;}
+.pdp #review-wrap .PDPReview .nickname, .pdp #review-wrap .PDPReview .date{margin-right:15px !important; color:#09b252; font-size:13px; font-weight:bold;}
+.pdp #review-wrap .PDPReview .review-title{font-weight:bold; color:#000;}
+.pdp #review-wrap .PDPReview .review-wrap{float:left; width:100%; border-bottom:1px solid #d3d2d2; margin-bottom:10px; padding-bottom:5px;}
 .pdp .title .title-wrap{float:left;}
 .pdp .title .manufacturer{float:right;/*position:absolute; right:5px; top:20px;*/}
 .pdp .title .title-wrap h4{color:#333; font-size:18px; font-weight:bold;}
@@ -1666,3 +1666,52 @@ body{
 .pl-7{padding-left:7px !important;}
 #khadi-info p{margin-bottom:5px;}
 
+/* For pdp Tabbing */
+    .panel.with-nav-tabs .panel-heading{
+    padding: 0;
+}
+.panel.with-nav-tabs .nav-tabs{
+    border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+    margin-bottom: -1px;
+}
+.with-nav-tabs.panel-default .nav-tabs > li > a,
+.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+    color: #777;
+}
+.with-nav-tabs.panel-default .nav-tabs > .open > a,
+.with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a:focus {
+    color: #777;
+    background-color: #ddd;
+    border-color: transparent;
+}
+.with-nav-tabs.panel-default .nav-tabs > li.active > a,
+/*.with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,*/
+.with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {
+    color: #555;
+    background-color: #fff;
+    border-color: #ddd;
+    border-bottom-color: transparent;
+}
+.content-section{margin-left:-35px !important;}
+.content-section .builder-content-title h2{display:none;}
+.homepage-new .content-section .content-wrap {margin: 0 auto; width: 80%;}
+.homepage-new .content-section .heading-wrap { border-bottom: 1px solid #79d5a0; position: relative; margin: 0 0 45px 0;}
+.homepage-new .content-section .heading-wrap h3 { text-transform: uppercase; width: 100%; color: #9898a0; text-align: center; font-size: 27px;}
+.homepage-new .content-section .heading-wrap h3 span { background-color: #fff; padding: 0 10px; position: relative; top: 24px;}
+.homepage-new .rowbox .builder-content-column-group{border-bottom: 1px solid #79d5a0; padding-bottom: 15px; margin-bottom: 35px; float:left; width:100%;}
+.homepage-new .rowbox .builder-content-column-group p {line-height: 18px; text-align: justify; padding:14px 0 5px 0; font-size:13px; line-height:19px; color:#333;}
+.homepage-new .rowbox .builder-content-column-group a {padding-top: 10px; text-transform: uppercase; float:left; width:100%; cursor:pointer;}
+.homepage-new .content-section h1{display:none;}
+.panel.with-nav-tabs{border:0;}
+.with-nav-tabs .panel-body{background-color:#e6e7e8; width:100%; float:left;}
+.with-nav-tabs.panel-default .nav-tabs > li a{text-align:center;}
+.with-nav-tabs.panel-default .nav-tabs > li.active{background-color:#e6e7e8;}
+.with-nav-tabs.panel-default .nav-tabs > li.active > a{background-color:transparent !important; border-top:0; border-right:0; border-left:0;}
+.with-nav-tabs.panel-default .nav-tabs>li{width:25%;}
+.panel-default > .panel-heading{border-color:#e6e7e8 !important;}
