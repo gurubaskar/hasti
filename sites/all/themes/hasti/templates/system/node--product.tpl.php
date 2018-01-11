@@ -525,13 +525,13 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
       <li class="<?php //echo $class;?> active"><a href="#tab1default" data-toggle="tab"><span><img src="<?php echo drubiz_image('pdptabs/artisan.png');?>" />Artisan</span></a></li>
       <?php }?>
       <?php if(sizeof($pdpList['pdpList']['designer'])) {?>
-      <li class="<?php //echo $class;?>"><a href="#tab2default" data-toggle="tab">Designers</a></li>
+      <li class="<?php //echo $class;?>"><a href="#tab2default" data-toggle="tab"><span><img src="<?php echo drubiz_image('pdptabs/designer.png');?>" />Designers</span></a></li>
        <?php }?>
        <?php if(sizeof($pdpList['pdpList']['process'])) {?>
-      <li class="<?php //echo $class;?>"><a href="#tab3default"  data-toggle="tab">Process</a></li>
+      <li class="<?php //echo $class;?>"><a href="#tab3default"  data-toggle="tab"><span><img src="<?php echo drubiz_image('pdptabs/process.png');?>" />Process</span></a></li>
       <?php }?>
       <?php if(sizeof($pdpList['pdpList']['rawMaterial'])) {?>
-      <li class="<?php //echo $class;?>"><a href="#tab4default" data-toggle="tab">Raw Material</a></li>
+      <li class="<?php //echo $class;?>"><a href="#tab4default" data-toggle="tab"><span><img src="<?php echo drubiz_image('pdptabs/rawmaterial.png');?>" />Raw Material</span></a></li>
       <?php }?>
       </ul>
     </div>
@@ -551,13 +551,13 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
         <div class="col-xs-12 col-sm-6 col-md-2">
           <img class="order-img" alt="artisan" src="<?php echo $ofbiz_url.$pdpList['pdpList']['artisan']['artisianImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="col-xs-12 col-sm-4 col-md-4 tab-text">
           <p>
             <?php echo $pdpList['pdpList']['artisan']['description'];?>
           </p>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-          <a href="<?php echo url("pdp/artisan/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+        <div class="col-xs-12 col-sm-4 col-md-2 know-more">
+          <a href="<?php echo url("pdp/artisan/");?><?php echo $product->product_id ?>"><img src="<?php echo drubiz_image('pdptabs/tabs-more.png');?>" /><p>Know more</p></a>
         </div>
       </div>
       <?php }?>
@@ -572,13 +572,13 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
         <div class="col-xs-12 col-sm-4 col-md-2">
           <img class="order-img" alt="designer" src="<?php echo $ofbiz_url.$pdpList['pdpList']['designer']['designerImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="col-xs-12 col-sm-4 col-md-4 tab-text">
           <p>
             <?php echo $pdpList['pdpList']['designer']['description'];?>
           </p>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-          <a href="<?php echo url("pdp/designer/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+        <div class="col-xs-12 col-sm-4 col-md-2 know-more">
+          <a href="<?php echo url("pdp/designer/");?><?php echo $product->product_id ?>"><img src="<?php echo drubiz_image('pdptabs/tabs-more.png');?>" /><p>Know more</p></a>
         </div>
       </div>
       <?php }?>
@@ -593,32 +593,32 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
         <div class="col-xs-12 col-sm-4 col-md-2">
           <img class="order-img" alt="process" src="<?php echo $ofbiz_url.$pdpList['pdpList']['process']['productionProcImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4"><p>
+        <div class="col-xs-12 col-sm-4 col-md-4 tab-text"><p>
           <?php echo $pdpList['pdpList']['process']['description'];?></p>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-          <a href="<?php echo url("pdp/process/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+        <div class="col-xs-12 col-sm-4 col-md-2 know-more">
+          <a href="<?php echo url("pdp/process/");?><?php echo $product->product_id ?>"><img src="<?php echo drubiz_image('pdptabs/tabs-more.png');?>" /><p>Know more</p></a>
         </div>
       </div>
       <?php }?>
       <?php if(sizeof($pdpList['pdpList']['rawMaterial']['longDescription'])) {?>
       <div class="tab-pane fade" id="tab4default">
-        <div class="col-xs-12 col-sm-4 col-md-2">
+        <div class="col-xs-12 col-sm-2 col-md-2">
           <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage1'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
+        <div class="col-xs-12 col-sm-2 col-md-2">
           <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage2'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
+        <div class="col-xs-12 col-sm-2 col-md-2">
           <img class="order-img" alt="rawMaterial" src="<?php echo $ofbiz_url.$pdpList['pdpList']['rawMaterial']['rawMaterialImage3'] ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');">
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4">
+        <div class="col-xs-12 col-sm-4 col-md-4 tab-text">
           <p>
             <?php echo $pdpList['pdpList']['rawMaterial']['longDescription'];?>
           </p>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-          <a href="<?php echo url("pdp/rawMaterials/");?><?php echo $product->product_id ?>"><p>Know more</p></a>
+        <div class="col-xs-12 col-sm-2 col-md-2 know-more">
+          <a href="<?php echo url("pdp/rawMaterials/");?><?php echo $product->product_id ?>"><img src="<?php echo drubiz_image('pdptabs/tabs-more.png');?>" /><p>Know more</p></a>
         </div>
       </div>
       <?php }?>
