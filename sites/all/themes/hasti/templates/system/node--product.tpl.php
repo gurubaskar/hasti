@@ -628,6 +628,7 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
 </div>
 
 <!--You MAy Also Like -->
+<?php if(!empty($product_associations)){?>
 <div id="review-wrap" class="col-xs-12 col-sm-12 col-md-12 umayalso">
   <h2>You May Also Like</h2>
  <div class="container">
@@ -650,7 +651,7 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
   </div>
   </div>
 </div>
-
+<?php }?>
 <!--Review Display-->
  <?php if(count($rating['review']) > 0) { ?>
         <div id="review-wrap">
