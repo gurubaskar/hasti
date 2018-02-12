@@ -1737,3 +1737,4 @@ body{
 #checkout-login #signin_errormsgs{width:100%; float:left;}
 #checkout-login #signin_errormsgs .err_msgs{padding-left:0;}
 .homepage-new .builder-grid-full-width{padding-left:0 !important;}
+.review-message .close{position:relative; top:0;}
