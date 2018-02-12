@@ -351,10 +351,20 @@ require_once 'vendor/autoload.php';
   </div>
 </div>
 <!-- content -->
+<?php
+  $homePageTitle = 'homepage';
+  if(arg(0) == strtolower($homePageTitle)) {
+    ?>
+    <style type="text/css">
+      .static-content h1 {display: none;}
+    </style>
+    <?php
+  }
+?>
 <div id="eCommercePageBody"></div>
   <?php //print_r($drubiz_domain);?>
   <div id="content" class="plp">
-    <?php 
+    <?php
       if(arg(0) == "node" || arg(0) == "search") {
       if(arg(0) != "node") {
         if ($breadcrumb):
