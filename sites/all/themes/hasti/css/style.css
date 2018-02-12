@@ -1739,3 +1739,4 @@ body{
 #checkout-login #signin_errormsgs .err_msgs{padding-left:0;}
 .homepage-new .builder-grid-full-width{padding-left:0 !important;}
 #placeOrderOTP .placeOrderBtn{width:185px;}
+.review-message .close{position:relative; top:0;}
