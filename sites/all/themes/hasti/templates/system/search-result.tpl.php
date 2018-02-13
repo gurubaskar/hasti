@@ -76,7 +76,7 @@
   $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
  //krumo($node);
 ?>
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-xs-12 col-sm-4 col-md-4">
   <div class="box">
     <div class="img-wrap">
       <a class="pdpUrl" data-ajax="false" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
