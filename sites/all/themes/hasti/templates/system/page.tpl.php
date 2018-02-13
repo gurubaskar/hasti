@@ -353,7 +353,8 @@ require_once 'vendor/autoload.php';
 <!-- content -->
 <?php
   $homePageTitle = 'homepage';
-  if(arg(0) == strtolower($homePageTitle)) {
+  $nl = node_load(arg(1));
+  if($nl->title == strtolower($homePageTitle)) {
     ?>
     <style type="text/css">
       .static-content h1 {display: none;}
