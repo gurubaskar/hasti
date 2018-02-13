@@ -74,7 +74,14 @@
   //krumo($system_data);
   //krumo($facet_values);
   $share_url = url('node/' . $node->nid, array('absolute' => TRUE));
- //krumo($node);
+  $variantsData = $system_data->product_variants;
+  $product_id = $product->product_id;
+  $isMasterProduct = false;
+  if(array_key_exists($product_id, get_object_vars($variantsData))) {
+    $isMasterProduct = true;
+  }
+  $out_of_stock_info = pdp_out_of_stock_info($node->field_product_id[LANGUAGE_NONE][0]['value']);
+ // krumo($out_of_stock_info);
 ?>
 <div class="col-xs-12 col-sm-4 col-md-4">
   <div class="box">
@@ -83,8 +90,18 @@
         <img alt="<?php echo drubiz_image($product->plp_image_alt); ?>" title="<?php echo htmlentities($node->title) ?>" src="<?php echo drubiz_image($product->plp_image); ?>" onmouseover="src='<?php echo drubiz_image($product->plp_image_alt); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP-Thumb');});" onmouseout="src='<?php echo drubiz_image($product->plp_image); ?>'; jQuery(this).error(function(){onImgError(this, 'PLP- Thumb');});" onerror="onImgError(this, 'PLP-Thumb');">
     </a>
       <div class="select-wrap">
-        <a href="#" alt="cart" data-ajax="false"><span onclick="showVariants(this,'PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
-        <a href="#" alt="wishlist" data-ajax="false"><span onclick="showWishlistVariants(this);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
+        <?php if($isMasterProduct) { 
+          if($out_of_stock_info->inventory == 'No') {
+          ?>
+            <a href="#" alt="cart" data-ajax="false"><span onclick="ajaxErrorMsgDisplay('Product out of stock');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
+          <?php } else {?>
+            <a href="#" alt="cart" data-ajax="false"><span onclick="plpAddtoCartWithoutVariants(this, '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
+          <?php } ?>
+          <a href="#" alt="wishlist" data-ajax="false"><span onclick="plpAddToWishListWithoutVariants(<?php echo $product->product_id; ?>);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
+        <?php } else { ?>
+          <a href="#" alt="cart" data-ajax="false"><span onclick="showVariants(this,'PLP_<?php echo $product->product_id ?>', '<?php echo $product->product_id ?>');" id="<?php echo $product->product_id; ?>" class="addcart"></span></a>
+          <a href="#" alt="wishlist" data-ajax="false"><span onclick="showWishlistVariants(this);" id="<?php echo $product->product_id; ?>" class="wishlist"></span></a>
+        <?php } ?>
       </div>
       <div class="cart-options variant-<?php echo $product->product_id; ?>" style="display:none">
         <img class="close" onclick="hideVariants(this);" src="<?php echo current_theme_path();?>/images/close.png" alt="close" />

@@ -488,7 +488,7 @@ $('.product-choose-facet-size').click(function(e) {
   $('#js_addToCart, #js_addToCart_buynow').click(function(e) {
     e.preventDefault();
     var product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
-    var product_id_color = $('.selectableFeatures_COLOR a.selected:first li').data('product-id');
+    var product_id_color = $('.selectableFeatures_COLOUR a.selected:first li').data('product-id');
     var quantity = 1;
     if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
       ajaxErrorMsgDisplay('Please select size and color',ajaxSuccess);
@@ -525,23 +525,57 @@ $('.product-choose-facet-size').click(function(e) {
     });
   });
   
-
-
-   $('#js_addToWishlist').click(function(e) {
+  $('#js_addToCartMaster, #js_addToCartBuyNowMaster').click(function(e) {
     e.preventDefault();
-    var product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
-    var product_id_color = $('.selectableFeatures_COLOR a.selected:first li').data('product-id');
+    var quantity = 1;
+    var product_id_new = $('.buy-now-master').data('master-product-id');
+    var action = $(this).attr('id') == 'js_addToCartBuyNowMaster' ? 'buy_now' : 'add';
+    loading();
+    $.ajax({
+      type: "POST",
+      url: Drupal.settings.basePath + 'drubiz/add-to-cart',
+      data: 'product_id=' + product_id_new + '&quantity=' + quantity,
+      success: function(data) {
+        if (data['isError'] == 'false') {
+          if (action == 'buy_now') {
+            document.location = Drupal.settings.basePath + 'checkout-payment?from=address';
+          }
+          else if(action == 'add') {
+            update_mini_cart();
+            document.location = Drupal.settings.basePath + 'cart';
+          } 
+        }
+        else {
+          // alert(data['_ERROR_MESSAGE_']);
+          ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+          close_loading();
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+        close_loading();
+      },
+      dataType: 'json'
+    });
+  });
+
+   $('#js_addToWishlist, #js_addToWishlistMaster').click(function(e) {
+    e.preventDefault();
+    var action = $(this).attr('id') == 'js_addToWishlistMaster' ? 'master' : 'notmaster';
     var quantity =  1;
-    // if ($(this).hasClass('plp-add-to-wishlist')) {
-      // var product_id = $(this).data('product-id');
-      // var quantity = 1;
-    // }
-    if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
-      // alert('Please select a variant');
-      ajaxErrorMsgDisplay('Please select size and color',ajaxInfo);
-      return;
+    var product_id_size = '';
+    if(action == 'master') {
+      product_id_size = $('#js_addToWishlistMaster').data('master-wish-product-id');
+    } else {
+      product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
+      var product_id_color = $('.selectableFeatures_COLOUR a.selected:first li').data('product-id');
+      if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
+        // alert('Please select a variant');
+        ajaxErrorMsgDisplay('Please select size and color',ajaxInfo);
+        return;
+      }
     }
-    // alert(product_id+'--'+quantity);
+    // alert(product_id_size+'--'+quantity);
     loading();
     $.ajax({
       type: "POST",
@@ -1201,7 +1235,7 @@ $('.validateOTP').click(function(e) {
           return false;
       }
       /*var contactListId = $('#contactListId option:selected').val();*/
-      var contactListId = "9010";
+      var contactListId = "10000";
       loading();
       $.ajax({
         type: "POST",
@@ -1439,7 +1473,61 @@ function plpAddtoCart(e) {
       dataType: 'json'
     });
   }
-  
+
+function plpAddtoCartWithoutVariants(e, product_id) {
+  //e.preventDefault();
+  var quantity = 1;
+  loading();
+  jQuery.ajax({
+    type: "POST",
+    url: Drupal.settings.basePath + 'drubiz/add-to-cart',
+    data: 'product_id=' + product_id + '&quantity=' + quantity,
+    success: function(data) {
+      if (data['isError'] == 'false') {
+          ajaxErrorMsgDisplay("1 Item added to the cart.");
+          product_id_split = product_id.split('-');
+          jQuery(".variant-"+product_id_split[0]).hide();
+          update_mini_cart();
+      }
+      else {
+        ajaxErrorMsgDisplay(data['_ERROR_MESSAGE_']);
+        close_loading();
+      }
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      ajaxErrorMsgDisplay(ajaxErrorMsg,ajaxInfo);
+      close_loading();
+    },
+    dataType: 'json'
+  });
+}
+
+function plpAddToWishListWithoutVariants(product_id) {   
+  var quantity = 1;   
+  loading();    
+  jQuery.ajax({    
+    type: "POST",   
+    url: Drupal.settings.basePath + 'drubiz/add-to-love-list',    
+    data: 'product_id=' + product_id + '&quantity=' + quantity,   
+    success: function(data) {   
+           //console.log(data);   
+      if (data['isError'] == 'False') {
+        ajaxErrorMsgDisplay(data['_SUCCESS_MESSAGE']);
+        close_loading();    
+      }   
+      else {    
+        ajaxErrorMsgDisplay(data['_EVENT_MESSAGE_']+' Error adding item.');
+        close_loading();    
+      }   
+    },    
+    error: function(jqXHR, textStatus, errorThrown) {   
+      console.log(textStatus + ': ' + errorThrown);   
+      close_loading();    
+    },    
+    dataType: 'json'    
+  });   
+}
+
 function update_mini_cart() {
   jQuery.ajax({
     type: "GET",
