@@ -487,20 +487,43 @@ $('.product-choose-facet-size').click(function(e) {
 
   $('#js_addToCart, #js_addToCart_buynow').click(function(e) {
     e.preventDefault();
+    var availableVariant = $(this).data('variant');
     var product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
     var product_id_color = $('.selectableFeatures_COLOUR a.selected:first li').data('product-id');
+    var product_id = '';
     var quantity = 1;
-    if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
-      ajaxErrorMsgDisplay('Please select size and color',ajaxSuccess);
-      // alert('Please select a size of your choice');
-      return;
+    if(availableVariant == undefined || availableVariant == '') {
+      product_id = product_id_size;
+      if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
+        ajaxErrorMsgDisplay('Please select size and color',ajaxInfo);
+        return;
+      } 
+    } else {
+      if(availableVariant == 'Size') {
+        product_id = product_id_size;
+        if(product_id_size == undefined || product_id_size == null) {
+          ajaxErrorMsgDisplay('Please select size',ajaxInfo);
+          return;
+        }
+      }
+      if(availableVariant == 'Colour') {
+        product_id = product_id_color;
+        if(product_id_color == undefined || product_id_color == null) {
+          ajaxErrorMsgDisplay('Please select colour',ajaxInfo);
+          return;
+        }
+      }
+    }
+    if(product_id == '') {
+       ajaxErrorMsgDisplay('Please select variant',ajaxInfo);
+       return;
     }
     var action = $(this).attr('id') == 'js_addToCart_buynow' ? 'buy_now' : 'add';
     loading();
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/add-to-cart',
-      data: 'product_id=' + product_id_size + '&quantity=' + quantity,
+      data: 'product_id=' + product_id + '&quantity=' + quantity,
       success: function(data) {
         if (data['isError'] == 'false') {
           if (action == 'buy_now') {
@@ -564,25 +587,43 @@ $('.product-choose-facet-size').click(function(e) {
     var action = $(this).attr('id') == 'js_addToWishlistMaster' ? 'master' : 'notmaster';
     var quantity =  1;
     var product_id_size = '';
+    var product_id = '';
+    var availableVariant = $(this).data('wish-variant');
     if(action == 'master') {
       product_id_size = $('#js_addToWishlistMaster').data('master-wish-product-id');
+      product_id = product_id_size;
     } else {
       product_id_size = $('.js_selectableFeature_1 a.selected').data('product-id');
       var product_id_color = $('.selectableFeatures_COLOUR a.selected:first li').data('product-id');
-      if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
-        // alert('Please select a variant');
-        ajaxErrorMsgDisplay('Please select size and color',ajaxInfo);
-        return;
+      if(availableVariant == undefined || availableVariant == '') {
+        product_id = product_id_size;
+        if(product_id_size == undefined || product_id_size == null || product_id_color == undefined || product_id_color == null){
+          ajaxErrorMsgDisplay('Please select size and color',ajaxInfo);
+          return;
+        } 
+      } else {
+        if(availableVariant == 'Size') {
+          product_id = product_id_size;
+          if(product_id_size == undefined || product_id_size == null) {
+            ajaxErrorMsgDisplay('Please select size',ajaxInfo);
+            return;
+          }
+        }
+        if(availableVariant == 'Colour') {
+          product_id = product_id_color;
+          if(product_id_color == undefined || product_id_color == null) {
+            ajaxErrorMsgDisplay('Please select colour',ajaxInfo);
+            return;
+          }
+        }
       }
     }
-    // alert(product_id_size+'--'+quantity);
     loading();
     $.ajax({
       type: "POST",
       url: Drupal.settings.basePath + 'drubiz/add-to-love-list',
-      data: 'product_id=' + product_id_size + '&quantity=' + quantity,
+      data: 'product_id=' + product_id + '&quantity=' + quantity,
       success: function(data) {
-             //console.log(data);
         if (data['isError'] == 'False') {
           ajaxErrorMsgDisplay("Your product has been successfully added to Wishlist");
           // product_id_split = product_id.split('-');
