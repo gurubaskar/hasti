@@ -120,14 +120,14 @@ $(document).ready(function () {
   $(document).ready(function(){
 
     /************** plp box hover code **************/
-    $('.box').mouseover(function(){
-      if($(".select-wrap", this).css("display")=="none"){
-            $(".select-wrap", this).show();
-        }
-    });
-    $('.box').mouseout(function(){
-           $(".select-wrap", this).hide();
-    });
+    // $('.box').mouseover(function(){
+    //   if($(".select-wrap", this).css("display")=="none"){
+    //         $(".select-wrap", this).show();
+    //     }
+    // });
+    // $('.box').mouseout(function(){
+    //        $(".select-wrap", this).hide();
+    // });
    
   $('#searchText').keyup(function(e) {
   // $('#searchText').live('keyup',function(e) {
