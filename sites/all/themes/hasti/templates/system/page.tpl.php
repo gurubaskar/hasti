@@ -493,8 +493,8 @@ require_once 'vendor/autoload.php';
               <li class="facebook"><a href="https://www.facebook.com/Hastti-1385257374900900/" target="_blank"></a></li>
               <li class="google"><a href="https://plus.google.com/u/4/111641175858782258793" target="_blank"></a></li>
               <li class="printrest"><a href="https://in.pinterest.com/hastti1/" target="_blank"></a></li>
-              <li class="twitter"><a href="https://twitter.com/Hastti1" target="_blank"></a></li>
-              <li class="in"><a href="https://www.instagram.com/hastti2/" target="_blank"></a></li>
+              <li class="twitter"><a href="https://twitter.com/hastti_official" target="_blank"></a></li>
+              <li class="in"><a href="https://www.instagram.com/hastti_official/" target="_blank"></a></li>
             </ul>
           </div>
         </div>
