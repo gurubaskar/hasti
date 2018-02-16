@@ -92,7 +92,7 @@ a:focus{text-decoration:none !important;}
 #header .cart p{padding-left:33px;}
 #header .cart span{font-weight:normal; color:#fff; width:100%; float:left; text-align:center; font-size:11px; line-height:20px;}
 .mob-nav{background:url('./../images/main-img.png') no-repeat -8px -635px; position:relative; float:left; width:50px; height:50px; border-right:1px solid #09b352; margin-right:30px;}
-.shadow-active{box-shadow:0 1px 4px #ccc; -moz-box-shadow:0 1px 4px #ccc; -webkit-box-shadow:0 1px 4px #ccc; -o-box-shadow:0 1px 4px #ccc; border:1px solid red;}
+#header.active{box-shadow:0 1px 4px #ccc; -moz-box-shadow:0 1px 4px #ccc; -webkit-box-shadow:0 1px 4px #ccc; -o-box-shadow:0 1px 4px #ccc; border:1px solid red;}
 #navbar{margin-bottom:0px; padding-right:0;}
 #navbar a.logo{margin:5px 0 0 0;}
 #navbar img{float:left;}
@@ -103,6 +103,7 @@ a:focus{text-decoration:none !important;}
 .menu ul li a{padding:10px 20px; color:#000; text-decoration:none; font-size:14px;}
 .menu ul li a:hover{text-decoration:none;}
 .menu .topLevel{width:auto; float:left; /*padding:10px 20px;*/}
+#eCommerceNavBarMenu li:hover>ul li.subLevel:hover>ul{box-shadow:none !important;}
 
 
 #content{/*float:left; width:100%; margin-bottom:20px; z-index:-1;*/
