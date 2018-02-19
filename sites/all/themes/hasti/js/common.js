@@ -29,6 +29,8 @@ function ajaxErrorMsgDisplay(msg,type='info') {
     $(".mob-search").hide();
     $("#forgotPopup").hide();
     $("#forgotPopupCheckout").hide();
+    $("#signInPopup").hide();
+    $("#positionWindow").hide();
   });
 
  $(document).ready(function(){
