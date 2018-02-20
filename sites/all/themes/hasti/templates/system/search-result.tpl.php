@@ -78,7 +78,7 @@
   }
   $out_of_stock_info = pdp_out_of_stock_info($node->field_product_id[LANGUAGE_NONE][0]['value']);
 ?>
-<div class="col-xs-12 col-sm-4 col-md-4">
+<div class="col-xs-12 col-sm-4 col-md-4 searchResults">
   <div class="box">
     <div class="img-wrap">
       <a class="pdpUrl" data-ajax="false" title="<?php echo htmlentities($node->title) ?>" href="<?php echo url('node/' . $node->nid) ?>" id="<?php echo $product->product_id ?>">
