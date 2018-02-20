@@ -482,7 +482,7 @@ $('.product-choose-facet-size').click(function(e) {
     var product_id = $(this).data('product-id');
     $(this).closest('ul').find('a.selected').removeClass('selected');
     $(this).closest('a').addClass('selected');
-    $(this).closest('a').find('li').css("border", "#009989 solid 1px");
+    $(this).closest('li').find('a').addClass('tick');
   });
 
   $('#js_addToCart, #js_addToCart_buynow').click(function(e) {
