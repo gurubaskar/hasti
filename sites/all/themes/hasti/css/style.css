@@ -1635,7 +1635,7 @@ a:focus{text-decoration:none !important;}
 .plp #content{padding-top:0;}
 .box .img-wrap .close{color:#afafaf; opacity:.5;}
 .alert-info.animated{/*width:23% !important;*/ padding:10px 20px !important;}
-.pdpSelectableFeature li>a.selected{/*border:1px solid #009989 !important;*/ font-size:14px;}
+.pdpSelectableFeature li>a.selected{border:1px solid #009989 !important; font-size:14px;}
 .checkout-right .payment-method #paymentOption .validateOTP, .checkout-right .payment-method #paymentOption #sendOTP{margin-bottom:20px;}
 .ui-popup-screen.in{background-color:#333; opacity:.7 !important;}
 .plp-left .filterToggle div.ui-slider{height:11px; background:#d6d6d6; background:-moz-linear-gradient(#d6d6d6, #e6e7e8); background:-webkit-linear-gradient(#d6d6d6, #e6e7e8); background:linear-gradient(#d6d6d6, #e6e7e8); border:none;}
@@ -1761,9 +1761,5 @@ body{
 .static-content h1{display:none;}
 .pdp .color{float:left; width:100%;}
 .pdp .color ul{margin-bottom:0;}
-.pdp .color ul a.product-choose-facet-color{position:absolute; width:20px; height:15px; top:-16px;}
-.tick{background:url('./../images/tick.png') no-repeat 1px 3px; position:absolute;}
-.pdp .size .pdpSelectableFeature li>a.selected{border:1px solid #00b04c !important; }
-.pdp .size .pdpSelectableFeature li>a{border:1px solid #58595b !important; padding:0px 8px !important;}
 .plp .plp-right .searchresult .searchResults{padding-right:0 !important;}
 .plp .plp-right .searchresult .searchResults .title{overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
