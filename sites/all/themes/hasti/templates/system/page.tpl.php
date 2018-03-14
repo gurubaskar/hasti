@@ -166,7 +166,7 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('account/track-order');?>"><?php echo t('Track Order');?></a></li>
               <li><a href="<?php echo url('account/love-list')?>" data-ajax="false">Wish List</a></li>            
             <?php } if($GLOBALS['user']->uid != 0):?>
-              <li><a href="<?php echo url('account/profile');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
+              <li><a href="<?php echo url('account/orders');?>"><?php echo t('Hi ');?><?php echo $_SESSION['drubiz']['session']['firstName']; ?></a></li>
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid == 0):?>

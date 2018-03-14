@@ -738,7 +738,7 @@ $('.product-choose-facet-size').click(function(e) {
           document.location = Drupal.settings.basePath + 'cart';
         }
         else {
-          ajaxErrorMsgDisplay('Error modifying item.',ajaxInfo);
+          ajaxErrorMsgDisplay('Error modifying item. '+data['_ERROR_MESSAGE_'],ajaxInfo);
           // alert('Error modifying item.');
           close_loading();
         }

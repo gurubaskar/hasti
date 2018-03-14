@@ -27,6 +27,7 @@
           }else{
             $product_or_product_variants_details = $system_data->product_variants->$cart_key;
           }
+          $selected_features = get_selected_features($product_or_product_variants_details);
         ?>
         <div class="cartbox">
           <!--<h3>Order Id: <span>123456789</span></h3>-->
@@ -42,8 +43,8 @@
                 <span class="qty-plus" data-index="<?php echo $cart_key;?>"></span>
               </div>
               <div class="cartrow"><label>Price:</label><span>&#8377. <?php echo format_money($cart_value['listPrice']);?></span></div>
-              <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
-              <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $node->field_color[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
+              <?php if(!empty($selected_features['Size'])){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $selected_features['Size'];?></span></div><?php } ?>
+              <?php if(!empty($selected_features['Colour'])){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $selected_features['Colour'];?></span></div><?php } ?>
               <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-7 details-right">
