@@ -80,14 +80,14 @@
  * @ingroup themeable
  */
   //$messages = '';
-  print $messages;
+  //print $messages;
   
   $system_data = json_decode($node->field_system_data[LANGUAGE_NONE][0]['value']);
   $product = $system_data->product_raw;
   $product_associations = $system_data->product_associations;
   
   $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
-  $category_names_from_catalog = $drubiz_category_names['globus'];
+  $category_names_from_catalog = $drubiz_category_names['hasti'];
   $get_category_names = explode(',', $product->product_category_id);
   $category_names = $category_names_from_catalog[$get_category_names[2]];
   $category = strtolower($category_names);
@@ -100,13 +100,35 @@
   $rating = displayPDPReviewandRating($product->product_id);
   //krumo($product);
   $pdpList = displayPDPList($product->product_id);
+  $ofbiz_url = variable_get("drubiz_ofbiz_url");
   // krumo($out_of_stock_info);
   // krumo($out_of_stock_info->availableQuantity , $facet_values);
-  // krumo($sku);
+  $variantsData = $system_data->product_variants;
+  $product_id = $product->product_id;
+  $isMasterProduct = false;
+  if(array_key_exists($product_id, get_object_vars($variantsData))) {
+    $isMasterProduct = true;
+  }
+  $availableVariant = '';
+  if(!$isMasterProduct) {
+     $key = array('Colour','Size');
+     $availableKey = array_intersect_key(array_flip($key), $facet_values);
+     if(count($availableKey) == 1) {
+       $variantKey = array_keys($availableKey);
+       $availableVariant = $variantKey[0];
+     }
+    $size_exist = array_key_exists('Size', $facet_values);
+    $colour_exist = array_key_exists('Colour', $facet_values);
+  }
 ?>
 <div id="eCommerceProductDetailContainer" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
 <div id="content" class="pdp">
+  <div class="review-message"><?php
+      
+           if ($messages): print $messages; endif;
+  
+        ?>
   <!-- <div class="container-fluid"> -->
     <!-- <div class="row"> -->
       <!-- <div class="col-xs-12 col-sm-12 col-md-12 breadcrumb"><h3>Women / Clothing / Women Long Kurti</h3></div> -->
@@ -130,8 +152,8 @@
 
                         <div id="addImageLink_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="mainAddImageLink" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->pdp_regular_image) ?>','<?php echo drubiz_image($product->pdp_large_image) ?>');"><img src="<?php echo drubiz_image($product->pdp_thumbnail_image) ?>" id="mainAddImage" name="mainAddImage" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
 
-                        <?php foreach (range(1, 10) as $img_n): $img_prefix = "pdp_alt_{$img_n}"; if (empty($product->{$img_prefix . '_regular_image'})) continue; ?>
-                          <div id="addImage<?php echo $img_n ?>Link_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="addImage<?php echo $img_n ?>Link" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->{$img_prefix . '_regular_image'}) ?>','<?php echo drubiz_image($product->{$img_prefix . '_large_image'}) ?>');"><img src="<?php echo drubiz_image($product->{$img_prefix . '_thumbnail_image'}) ?>" name="addImage1" id="addImage1" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
+                        <?php foreach (range(1, 10) as $img_n): $img_prefix = "pdp_alt_{$img_n}"; if (empty($product->{$img_prefix . '_large_image'})) continue; ?>
+                          <div id="addImage<?php echo $img_n ?>Link_li"><a href="javascript:void(0);" style="border:1px solid #eee;" id="addImage<?php echo $img_n ?>Link" onclick="javascript:replaceDetailImage('<?php echo drubiz_image($product->{$img_prefix . '_large_image'}) ?>','<?php echo drubiz_image($product->{$img_prefix . '_large_image'}) ?>');"><img src="<?php echo drubiz_image($product->{$img_prefix . '_thumbnail_image'}) ?>" name="addImage1" id="addImage1" vspace="5" hspace="5" alt="" class="productAdditionalImage mCS_img_loaded" height="102" width="88" onerror="onImgError(this, 'PDP-Alt');" data-ajax="false"></a></div>
                         <?php endforeach; ?>
 
                        </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-3 mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 580px; max-height: 620px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
@@ -292,7 +314,8 @@
       <div class="col-xs-12 col-sm-6 col-md-7 pdp-right">
         <div class="title">
           <div class="title-wrap">
-            <h4>Ektha </h4>
+            <?php $manufacturerLogo = getManufacturerLogo($product->product_id);?>
+            <h4><?php echo $manufacturerLogo['manufacturerName'];?> </h4>
             <h2><?php echo $node->title ?></h2>
             <span class="price">&#8377;. <?php echo $product->sales_price; ?></span>
             <span><?php
@@ -308,9 +331,24 @@
             </span>
           </div>
           <div class="manufacturer">
-            <img src="<?php echo drubiz_image('manufacturer/ektha-logo.png');?>" >
+            <img src="<?php echo $ofbiz_url.$manufacturerLogo['manufacturerImage'] ?>" width="105" onerror="onImgError(this, 'PLP-Thumb');">
           </div>
         </div>
+        <?php 
+          if(!$isMasterProduct) {
+            $var_size=false;
+            $var_color=false;
+            if($availableVariant == 'Size') {
+                $var_size = true;
+            }
+            if($availableVariant == 'Colour') {
+                $var_color = true;
+            }
+            if($availableVariant == '') {
+                $var_size = true;
+                $var_color = true;
+            }
+            if($var_size) { ?>
         <div class="size">
           <span class="available">Available Sizes</span>
           <!-- varients -->
@@ -343,8 +381,9 @@
             $size_chart = size_chart($product->product_id);
           ?>
           <div class="sizechart"><p>Not Sure? <span><a class="colorbox-inline" href="?inline=true#id-of-content">See Size Chart</a></span></p></div>
-          <p>The mode (height 5'8". chest 33" and wast 28")</p>
+          <!-- <p>The mode (height 5'8". chest 33" and wast 28")</p> -->
         </div>
+        <?php } ?>
         <div style="display: none;">
         <div id="id-of-content">
           <?php if (array_key_exists("Size Chart",$size_chart)){
@@ -355,11 +394,12 @@
           <!-- <?php //if(isset($product->pdp_size_guide)) { echo $product->pdp_size_guide; } else { echo "Product size not available to this product";}?> --></div>
         </div>
         <!-- Colors -->
+        <?php if($var_color) { ?>
         <div class="color">
           <span class="available">Available Colors</span>
           <ul>
             <?php foreach ($facet_values as $facet_name => $this_facet_values): ?>
-              <?php if(strtolower($facet_name) == 'color') { ?>
+              <?php if(strtolower($facet_name) == 'colour') { ?>
                 <!-- <li class="string selectableFeature pdpSelectableFeature"> -->
                   <!-- <label><?php echo($facet_name) . ':'; ?></label> -->
                     <div class="pdpSelectableFeature">
@@ -372,9 +412,16 @@
                                   <?php 
                                   $product_nid = get_nid_from_variant_product_id($this_facet_product_id);
                                   ?>
-                                  <a class="product-choose-facet-color" href="#" data-ajax="false">
-                                    <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo $this_facet_value;?>" id="selectableFeature_<?php echo ++$countFacet1; ?>">
+                                    <a class="product-choose-facet-color" href="#" data-ajax="false">
+                                      <?php if(strtolower($this_facet_value) == strtolower('MultiColour')) {
+                                        $MultiColourImg = 'multi-color.jpg';
+                                        ?>
+                                    <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background-image: url('<?php echo drubiz_image($MultiColourImg);?>');" data-facet-color=<?php echo $this_facet_value;?> id="selectableFeature_<?php echo ++$countFacet1; ?>">
                                     </li>
+                                    <?php } else { ?>
+                                    <li class="<?php echo $this_facet_value ?>" data-nid="<?php echo $nid?>" data-product-id="<?php echo $this_facet_product_id ?>" style="background: <?php echo getColourCode($this_facet_value);?> ;" data-facet-color=<?php echo $this_facet_value;?> id="selectableFeature_<?php echo ++$countFacet1; ?>">
+                                    </li>
+                                    <?php } ?>
                                   </a>
                               <?php endforeach; ?>
                             </ul>
@@ -387,6 +434,8 @@
             <?php endforeach; ?>
           </ul>
         </div>
+        <?php } 
+        } ?>
         <?php
           $stockClass = '';
           $addToCart = 'js_addToCart';
@@ -414,12 +463,21 @@
         </div>
         <div class="btns-wrap">
           <?php if($GLOBALS['user']->uid != 0) { ?>
-            <span><a href="#" class="wish-icon" id="js_addToWishlist" data-ajax="false">Add to wish list</a></span>
-          <?php } else {?>
+            <?php if($isMasterProduct) {?>
+              <span><a href="#" class="wish-icon" data-master-wish-product-id="<?php echo $product->product_id; ?>" id="js_addToWishlistMaster" data-ajax="false">Add to wish list</a></span>
+            <?php } else { ?>
+            <span><a href="#" class="wish-icon" id="js_addToWishlist" data-ajax="false" data-wish-variant = <?php echo $availableVariant; ?>>Add to wish list</a></span>
+          <?php }
+          } else {?>
             <span><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()" data-ajax="false" class="wish-icon">Add to wish list</a></span>
           <?php } ?>
-          <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="<?php echo $addToCart;?>">Add to Bag</a></span>
-          <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>">Buy Now</a></span>
+          <?php if($isMasterProduct) {?>
+            <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="js_addToCartMaster" data-master-product-id="<?php echo $product->product_id; ?>">Add to Bag</a></span>
+            <span><a href="#" class="buy-now-master <?php echo $stockClass;?>" id="js_addToCartBuyNowMaster" data-master-product-id="<?php echo $product->product_id; ?>">Buy Now</a></span>
+          <?php } else { ?>
+            <span><a href="#" class="add-bag <?php echo $stockClass;?>" id="<?php echo $addToCart;?>" data-variant = <?php echo $availableVariant; ?>>Add to Bag</a></span>
+            <span><a href="#" class="buy-now <?php echo $stockClass;?>" id="<?php echo $buyNow;?>" data-variant = <?php echo $availableVariant; ?>>Buy Now</a></span>
+          <?php } ?>
         </div>
         <p><?php echo $body[0]['safe_value'] ?></p>
         <div class="story-wrap">
@@ -464,12 +522,6 @@
             <?php print render($region['social_share']); ?>
           </div>
         </div>
-        <div class="review-message"><?php
-      
-           if ($messages): print $messages; endif;
-  
-        ?>
-        </div>
         <div id="reviewForm" style="display: none">
           <?php
             $comments_form = drupal_get_form('drubiz_hasti_comments_form');
@@ -513,9 +565,6 @@ if($count == 3){
     $class = "col-xs-3 col-sm-3 col-md-3";
 }
 ;?>
-<?php 
-$ofbiz_url = variable_get("drubiz_ofbiz_url");
-?>
 
 <div class="panel with-nav-tabs panel-default col-xs-12 col-sm-12 col-md-12 pl0">
     <?php if(sizeof($pdpList['pdpList']['artisan']) || sizeof($pdpList['pdpList']['designer']) || sizeof($pdpList['pdpList']['process']) || sizeof($pdpList['pdpList']['rawMaterial'])) { ?>
@@ -644,7 +693,7 @@ $ofbiz_url = variable_get("drubiz_ofbiz_url");
       ?>
      <div class="item">
         <a href="<?php echo url('node/'.$nid);?>" data-ajax="false" id="image_500194">
-        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->pdp_thumbnail_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
+        <img class="order-img" alt="Globus Womens Blue Jackets -500194" src="<?php echo drubiz_image($product_variant->plp_image) ?>" height="140" width="105" onerror="onImgError(this, 'PLP-Thumb');"></a>
         <a href="<?php echo url('node/'.$nid);?>" data-ajax="false"><?php echo $product_variant->product_name ?></a> 
       </div>
     <?php } ?>
