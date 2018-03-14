@@ -24,7 +24,7 @@ if(isset($_COOKIE['codflag'])){
     <ul>
       <?php if($GLOBALS['user']->uid != 0) {?>
         <li><a href="#" onclick="openLogin();" class="active-img">Login Details</a></li>
-        <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="tickimg">Order Summary</a></li>
+        <li><a id="orderSummary" href="#" onclick="openOrderSummary();" class="active">Order Summary</a></li>
         <?php if(count($cart['cartItemDetails']) > 0) {?>
         <li><a id="deliveryAddress" href="#" onclick="openDeliveryAddress();" class="tickimg">Delivery Address</a></li>
         <?php if(count($addresses['postalAddressList']) > 0) {?>
@@ -49,11 +49,13 @@ if(isset($_COOKIE['codflag'])){
   <div id="checkout-login" class="">
     <div class="col-xs-12 col-sm-12 col-md-8">
       <?php if($GLOBALS['user']->uid){?>
+      <div id="userDetails" style="display: none">
         <span class="logged-user" id="logged-user"><?php echo t('Username') ?>:</span>
         <span class=""><?php echo $GLOBALS['user']->mail ?></span>
         <div class="checkoutbtn-wrap">
           <a href="<?php echo url('user/logout'); ?>"><input type="button" value="Logout" id="logout"></a>
         </div>
+      </div>
       <?php }else{ ?>
         <div id="signInPopupCheckout">
           <h3>Sign In</h3>
@@ -106,8 +108,8 @@ if(isset($_COOKIE['codflag'])){
     <div class="col-xs-12 col-sm-12 col-md-4"></div>
   </div>
   <!--login end -->
-
-  <div id="order-summary" class="" style="display: none;">
+ <?php if($GLOBALS['user']->uid){?> 
+  <div id="order-summary" class="" style="display: block;">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <div class="heading-bar">
         <h2>Order Summary</h2>
@@ -127,6 +129,7 @@ if(isset($_COOKIE['codflag'])){
         }else{
           $product_or_product_variants_details = $system_data->product_variants->$cart_key;
         }
+        $selected_features = get_selected_features($product_or_product_variants_details);
       ?>
       <div class="cartbox">
         <div class="col-xs-4 col-sm-4 col-md-4 img-wrap">
@@ -136,8 +139,8 @@ if(isset($_COOKIE['codflag'])){
           <h4><?php echo $cart_value['internalName']; ?></h4>
           <div class="cartrow"><label>Qty:</label><span class="qty"><?php echo $cart_value['quantity']; ?></span></div>
           <div class="cartrow"><label>Price:</label><span>&#8377;. <?php echo format_money($cart_value['listPrice']);?></span></div>
-          <?php if(!empty($node->field_size)){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $node->field_size[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
-          <?php if(!empty($node->field_color)){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $node->field_color[LANGUAGE_NONE][0]['value'];?></span></div><?php } ?>
+          <?php if(!empty($selected_features['Size'])){?><div class="cartrow"><label>Size:</label><span class="size"><?php echo $selected_features['Size'];?></span></div><?php } ?>
+          <?php if(!empty($selected_features['Colour'])){?><div class="cartrow"><label>Color:</label><span class="color"><?php echo $selected_features['Colour'];?></span></div><?php } ?>
           <div class="cartrow"><label>Seller:</label><span>Mother Earth</span></div>
         </div>
       </div>
@@ -174,6 +177,7 @@ if(isset($_COOKIE['codflag'])){
     </div>
     <?php } ?>
   </div>
+  <?php }?>
   <!--order summary end -->
 
 

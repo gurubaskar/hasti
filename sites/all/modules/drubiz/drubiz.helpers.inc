@@ -845,7 +845,14 @@ function get_nid_from_product_id($product_id) {
  * Gets the Node ID from *variant* Product ID, if it exists.
  */
 function get_nid_from_variant_product_id($variant_product_id) {
-  return db_query("SELECT {field_data_field_system_data}.entity_id FROM {field_data_field_system_data} WHERE field_system_data_value LIKE :variant_product_id", array(':variant_product_id' => '%product_variants%"' . $variant_product_id . '"%'))->fetchField();
+  // return db_query("SELECT {field_data_field_system_data}.entity_id FROM {field_data_field_system_data} WHERE field_system_data_value LIKE :variant_product_id", array(':variant_product_id' => '%product_variants%"' . $variant_product_id . '"%'))->fetchField();
+  $result = db_select('field_data_field_system_data', 'c')
+              ->fields('c', array('entity_id'))
+              ->where("c.field_system_data_value LIKE :variant_product_id", array(':variant_product_id' => '%product_variants%"' . $variant_product_id . '"%'))
+          //->condition('c.field_system_data_value', '%product_variants%' . db_like($variant_product_id) . '%', 'LIKE')
+       ->execute()
+       ->fetchField();
+   return $result;
 }
 
 /**
@@ -1716,8 +1723,8 @@ function displayPDPList($productId){
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__,"<pre>".json_encode($productId)."</pre>");
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params'), 1) . '</pre>');
+  //watchdog(__FUNCTION__,"<pre>".json_encode($productId)."</pre>");
+  //watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params','raw_json'), 1) . '</pre>');
   return $data;
 }
 
@@ -1734,6 +1741,26 @@ function displayPDPList($productId){
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params'), 1) . '</pre>');
+  //watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'data','params'), 1) . '</pre>');
   return $data;
+}
+
+function getColourCode($colorcode) {
+  $code = $colorcode;
+  if(strtolower($colorcode) == strtolower('Metallic Gold')) {
+    $code = '#D4AF37';
+  } else if(strtolower($colorcode) == strtolower('Peach')) {
+    $code = '#FFDAB9';
+  } else if(strtolower($colorcode) == strtolower('Wine')) {
+    $code = '#722f37';
+  } 
+  else if(strtolower($colorcode) == strtolower('Off White')) {
+    $code = '#FEFEFA';
+  } 
+  else if(strtolower($colorcode) == strtolower('Indigo')) {
+    $code = '#4b0082';
+  } else if(strtolower($colorcode) == strtolower('Lime Green')) {
+    $code = '#32CD32';
+  } 
+  return $code;
 }
