@@ -155,7 +155,7 @@ require_once 'vendor/autoload.php';
 <div id="topnav">
   <div class="container-fluid">
       <div class="col-xs-12 col-sm-7 col-md-6 header-content">
-        <p>Have your greatest experience with us and support Hastti.</p>
+        <p>Every purchase made on Hastti is a step towards a better lifestyle and sustainable livelihoods</p>
       </div>
       <div class="col-xs-12 col-sm-5 col-md-6 siteHeaderLinks">
           <ul>
