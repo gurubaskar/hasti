@@ -48,6 +48,16 @@ table {border-collapse: collapse;border-spacing: 0;}
     font-weight: 300;
     font-style: normal;
 }
+@font-face {
+    font-family:'Recorda_Regular';
+    src: url('../fonts/Recorda_Regular.eot');
+    src: url('../fonts/Recorda_Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Recorda_Regular.woff') format('woff'),
+         url('../fonts/Recorda_Regular.ttf') format('truetype'),
+         url('../fonts/Recorda_Regular.svg#Recorda_Regular') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
 
 h1,h2,h3,h4,h5,h6{font-family:'Roboto';}
 body{font-size:14px; line-height:20px; font-family:'Roboto';}
@@ -127,7 +137,7 @@ a:focus{text-decoration:none !important;}
 #footer ul li a{color:#fff !important; font-size:16px; font-weight:normal; line-height:18px;}
 #footer ul li a.ui-btn.ui-link{border:none; padding:0; margin:0; box-shadow:0 0 0 transparent !important;}
 #footer ul li a:hover{background-color:transparent;}
-#footer h3{margin-top:20px; color:#fff; font-family:'BPscript'; font-size:20px; text-align:left; margin-bottom:20px; width:100%;}
+#footer h3{margin-top:20px; color:#fff; font-family:'Recorda_Regular'; font-size:20px; text-align:left; margin-bottom:20px; width:100%;}
 #footer .social-wrap{padding:0;}
 #footer .social-wrap input[type="text"]{float:left; width:100%; padding:9px; border:0;}
 #footer .social-wrap input[type="submit"]{float:left; margin:10px 0 0 0; background-color:#000; color:#fff; font-weight:normal; font-size:14px; padding:7px 30px; border:none;}
@@ -1814,9 +1824,9 @@ body{
 .homepage-new #sub-content{margin:0 auto; width:86%; float:none;}
 .homepage-new #sub-content .designed, .homepage-new #sub-content .authentic, .homepage-new #sub-content .traceable{font-weight:normal; text-transform:uppercase; line-height:40px; padding:30px;}
 .homepage-new #sub-content .designed img, .homepage-new #sub-content .authentic img, .homepage-new #sub-content .traceable img{margin:0 auto;}
-.homepage-new #sub-content .designed p{color:#0081c3; font-weight:bold;}
-.homepage-new #sub-content .authentic p{color:#009f7b; font-weight:bold;}
-.homepage-new #sub-content .traceable p{color:#01af4d; font-weight:bold;}
+.homepage-new #sub-content .designed p{color:#0081c3; font-weight:bold; font-family:Recorda_Regular;}
+.homepage-new #sub-content .authentic p{color:#009f7b; font-weight:bold; font-family:Recorda_Regular;}
+.homepage-new #sub-content .traceable p{color:#01af4d; font-weight:bold; font-family:Recorda_Regular;}
 .rowwrap .rowwrap-right h2{color:#019c7d; font-size:50px; text-transform:uppercase; line-height:50px; font-weight:normal; margin-top:15px;}
 .rowwrap .rowwrap-right h3{color:#000; font-size:45px;  line-height:45px; font-weight:normal; margin-top:0; margin-bottom:35px;}
 .rowwrap .rowwrap-right p{color:#000; font-size:22px; line-height:25px; font-weight:normal;}
