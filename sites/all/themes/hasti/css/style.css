@@ -1831,3 +1831,6 @@ body{
 .pdp .story-wrap .btns-wrap{margin:0px 0 15px 0 !important;}
 #sub-content .builder-content-builder-image img{width:20%;}
 .responsive-slider .pages .page{border:3px solid #626365 !important;}
+
+#eCommerceNavBarMenu li:hover>ul li.subLevel>ul>li a{float:left;}
+#eCommerceNavBarMenu li:hover>ul li.subLevel:hover>ul{width:auto !important;}
