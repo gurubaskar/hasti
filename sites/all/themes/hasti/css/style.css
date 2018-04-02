@@ -29,6 +29,17 @@ blockquote:before, blockquote:after, q:before, q:after {content: '';content: non
 table {border-collapse: collapse;border-spacing: 0;}
 
 @font-face {
+    font-family:'FontAwesome';
+    src: url('../fonts/fontawesome-webfont.eot?v=4.5.0');
+    src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),
+         url('../fonts/fontawesome-webfont.woff') format('woff'),
+         url('../fonts/fontawesome-webfont.ttf') format('truetype'),
+         url('../fonts/fontawesome-webfont') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
     font-family:'Roboto';
     src: url('../fonts/Roboto-Light-webfont.eot');
     src: url('../fonts/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -298,7 +309,22 @@ a:focus{text-decoration:none !important;}
 .left-wrap ul li ul li{float:left; width:100%; color:#000;}
 .left-wrap ul li ul li.leaf{margin-left:20px; width:90%;}
 .left-wrap ul li ul li.leaf a{color:#000; font-weight:normal;}
-.left-wrap ul li ul li input[type="checkbox"]{margin-right:2px; width:14px; height:14px; left:-20px; margin-top:3px;}
+.left-wrap ul li ul li input[type="checkbox"]{margin-right:2px; width:14px; height:14px; left:-20px; margin-top:1px; background-color:#fff !important; -moz-background-color:#fff !important;}
+.left-wrap ul li ul li.leaf input[type="checkbox"]:before{
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #363636;
+    margin: 0 6px 0 0;
+    background: #fff;
+}
+.left-wrap ul li ul li.leaf input[type="checkbox"]:checked:before{
+    border: 1px solid #000;
+    color: #5a5a5a;
+    content: "\f00c";
+    font-size: 12px; font-family:fontawesome;
+}
 .left-wrap #price-wrap .jslider{margin-bottom:38px;}
 #size-wrap li{float:left; width:auto; margin-right:15px;}
 
@@ -1650,7 +1676,7 @@ a:focus{text-decoration:none !important;}
 .pdpSelectableFeature li>a.selected{border:1px solid #009989 !important; font-size:14px;}
 .checkout-right .payment-method #paymentOption .validateOTP, .checkout-right .payment-method #paymentOption #sendOTP{margin-bottom:20px;}
 .ui-popup-screen.in{background-color:#333; opacity:.7 !important;}
-.plp-left .filterToggle div.ui-slider{height:11px; background:#d6d6d6; background:-moz-linear-gradient(#d6d6d6, #e6e7e8); background:-webkit-linear-gradient(#d6d6d6, #e6e7e8); background:linear-gradient(#d6d6d6, #e6e7e8); border:none;}
+.plp-left .filterToggle div.ui-slider{height:7px; background:#d6d6d6; background:-moz-linear-gradient(#d6d6d6, #e6e7e8); background:-webkit-linear-gradient(#d6d6d6, #e6e7e8); background:linear-gradient(#d6d6d6, #e6e7e8); border:none;}
 .plp-left .ui-slider .ui-slider-handle{border-radius:50px !important; -moz-border-radius:50px !important; -webkit-border-radius:50px !important; -o-border-radius:50px !important; background:#0081c5; z-index:1; border:none;}
 .ui-widget-header{background:#00b04c !important;}
 

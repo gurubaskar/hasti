@@ -3,6 +3,16 @@ var mini_cart_timer = setTimeout('', 0);
 (function ($) {
 
 $(document).ready(function() {
+   $('input[type=checkbox]').each(function () {
+        if($(this).attr('class') == 'facetapi-checkbox') {
+            if($(this).attr('checked')) {
+               $(this).addClass('fas fa-check');
+            }
+            else {
+                $(this).removeClass('fas fa-check');
+            }
+        }
+  }); 
   $('#size_guide_fancybox').click(function(event) {
       event.preventDefault();
       var id=$(this).attr('href');
