@@ -419,9 +419,9 @@ a:focus{text-decoration:none !important;}
 .pdp .stock{float:left; width:100%; margin-top:15px;}
 .pdp .stock ul li{float:left; margin-right:20px;}
 .pdp .stock ul li .instock{background:#00b04c; width:20px; height:15px; float:left; margin-right:5px;}
-.pdp .stock ul li .lowstock{background:#afd89e; width:20px; height:15px; float:left; margin-right:5px;}
+.pdp .stock ul li .lowstock{background:#FEEFB3; width:20px; height:15px; float:left; margin-right:5px;}
 .pdp .stock ul li .outstock{background:#E8E8E8; width:20px; height:15px; float:left; margin-right:5px;}
-.pdp .btns-wrap a.lowstock{background:#afd89e !important; color:#fff !important}
+.pdp .btns-wrap a.lowstock{background:#FEEFB3 !important; color:#9F6000 !important}
 
 .pdp .btns-wrap{float:left; width:100%; margin:30px 0 15px 0;}
 #cart .btns-wrap span{background:#00b04c; width:184px; float:left; margin-right:10px;}
