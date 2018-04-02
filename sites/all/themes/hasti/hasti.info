@@ -44,11 +44,13 @@ regions[social_share] = 'Social Share'
 stylesheets[all][] = css/jquery.bxslider.css
 stylesheets[all][] = css/jquery.mCustomScrollbar.min.css
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/font-awesome.min.css
 stylesheets[all][] = css/jquery.mobile-1.4.5.min.css
 stylesheets[all][] = css/bootstrap.min.css
 stylesheets[all][] = css/owl.carousel.min.css
 stylesheets[all][] = css/owl.theme.default.min.css
 stylesheets[all][] = css/responsive-slider.css
+
 
 scripts[] = js/jquery.validate.js
 scripts[] = js/jquery.bxslider.min.js
