@@ -1278,3 +1278,18 @@ function drubiz_apachesolr_index_document_build(ApacheSolrDocument $document, $e
     $document->setField('content', $entity->title);
   }
 }
+
+function drubiz_social_networks($reset = FALSE){
+  $networks = &drupal_static(__FUNCTION__, array());
+  if (empty($networks) || $reset) {
+    $result = db_select('social_share_networks', 's')
+        ->fields('s')
+        ->orderBy('weight', 'ASC')
+        ->execute();
+
+    while ($network = $result->fetchAssoc()) {
+      $networks[$network['machine_name']] = $network;
+    }
+    return $networks;
+  }
+}
