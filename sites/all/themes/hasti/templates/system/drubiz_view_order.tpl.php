@@ -1,4 +1,7 @@
-<?php //krumo($order) ?>
+<?php //krumo($order) 
+  $profile = get_user_profile();
+  toCheckSession($profile);
+?>
 <div id="content">
     <div class="container-fluid order-confirmation">
       <div class="col-xs-12 col-sm-12 col-md-12" id="cart">
