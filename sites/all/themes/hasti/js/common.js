@@ -971,6 +971,7 @@ function closeForgotPasswordchkout() {
 function openLogin() {
   jQuery("#order-summary").hide();
   jQuery("#checkout-login").show();
+  jQuery('#userDetails').show();
   jQuery("#delivery-address").hide();
   jQuery("#payment-method").hide();
   jQuery("#orderSummary").removeClass("active-img");
