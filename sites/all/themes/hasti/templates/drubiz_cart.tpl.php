@@ -1,6 +1,10 @@
 <?php //krumo($_SESSION['drubiz']['promoCodeFlag']) ;?>
 <?php //krumo($cart['cartItemDetails']) ;?>
 <?php //krumo($cart) ;?>
+<?php
+  $profile = get_user_profile();
+  toCheckSession($profile);
+?>
 <?php $cartItems = $cart['cartItemDetails']; ?>
 
 <?php if (empty($cart['cartItemDetails'])) { ?>
