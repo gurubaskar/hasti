@@ -1,7 +1,4 @@
-<?php //krumo($order) 
-  $profile = get_user_profile();
-  toCheckSession($profile);
-?>
+
 <div id="content">
     <div class="container-fluid order-confirmation">
       <div class="col-xs-12 col-sm-12 col-md-12" id="cart">
@@ -11,6 +8,10 @@
                 <h2 class="">Order Confirmation -  <span><?php echo t('Order No:'); ?> <?php echo $order['orderId'] ?></span></h2>
               </div>
               <div class="cartbox">
+                <?php 
+                  if($order['status'] == 'fail') { ?>
+                    <p class="alert alert-danger"><?php echo $order['_ERROR_MESSAGE_'];?></p>
+                <?php } ?>
                 <p>Thank you for shopping with us. We would like to let you know that Hasti has received your order and is preparing for its shipment. Your order delivery details are stated below.</p>
                 <p>If you would like to view the status of your order or make any changes to it, please visit '<a href="<?php echo url('account/trackOrder/')?><?php echo $order['orderId'] ?>">Track order</a>'</p>
                 <div class="col-xs-12 col-sm-6 col-md-6 pleft delivery-wrap">
