@@ -95,12 +95,41 @@ function drubiz_search_suggest() {
 /**
  * Page callback for /view-order/%
  */
-function drubiz_view_order($order_id) {
+function drubiz_view_order($order_id,$jsessid) {
   unset($_SESSION['drubiz']['CODAvailable']);
   $post = $_POST;
+  
+  $client1 = drubiz_api_client();
+  $params1 = array(
+  'encResp' => $_POST['encResp'],
+  );
+  $endpoint1 = 'ccAvenueResponseNew';
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+    $endpoint1 .= (';jsessionid=' . urlencode($jsessionid));
+  } else {
+    $endpoint1 .= (';jsessionid=' . urlencode($jsessid));
+  }
+  watchdog("jsession id for online","<pre>".json_encode($jsessionid)."</pre>");
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint1'), 1) . '</pre>');
+//watchdog(__FUNCTION__, '<pre>' . print_r(compact('params1'), 1) . '</pre>');
+ 
+  $response1 = $client1->get($endpoint1 . '?' . http_build_query($params1));
+//watchdog(__FUNCTION__, '<pre>' . print_r(compact('response1'), 1) . '</pre>');
+
+  $raw_json1 = $response1->getBody();
+//watchdog(__FUNCTION__, '<pre>' . print_r(compact('raw_json1'), 1) . '</pre>');
+
+  $data1 = json_decode($raw_json1, TRUE);
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint1','data1','params1','response1'), 1) . '</pre>');
+
+  if($data1['status'] == 'pass') {
+
+  $ordid = $data1['orderId'];
+
   $endpoint = 'eCommerceOrderDetailNew';
   $params = array(
-    'orderId' => $order_id,
+    'orderId' => $ordid,
     'partyId' => get_user_party_id(),
   );
   $jsessionid = NULL;
@@ -119,27 +148,26 @@ function drubiz_view_order($order_id) {
   }
 
   $client = drubiz_api_client();
-  /*$response = $client->get($endpoint . '?' . http_build_query($params));
-
+  $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
-  $data = json_decode($raw_json, TRUE);*/
-  $params1 = array(
-  'encResp' => $_POST['encResp'],
-  );
-  $endpoint1 = 'ccAvenueResponseNew';
-
-  $response1 = $client->get($endpoint1 . '?' . http_build_query($params1));
-
-  $raw_json1 = $response1->getBody();
-  $data1 = json_decode($raw_json1, TRUE);
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params1', 'data1','post'), 1) . '</pre>');
-  // watchdog(__FUNCTION__, print_r(compact('endpoint', 'params', 'data'),1));
+  $data = json_decode($raw_json, TRUE);
+  //watchdog("view order request","<pre>".$params."</pre>");
+  //watchdog("view order response","<pre>".json_encode($data1)."</pre>"); 
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('endpoint', 'params', 'data'), 1) . '</pre>');
+  //watchdog(__FUNCTION__, print_r(compact('endpoint', 'params', 'data'),1));
 
   if (empty($GLOBALS['user']->uid)) {
+  $b = $GLOBALS['user']->uid;
+    watchdog(__FUNCTION__, '<pre>' . print_r(compact('b'), 1) . '</pre>');
     unset($_SESSION['drubiz']);
   }
 
-  return theme('drubiz_view_order', array('order' => $data1));
+  return theme('drubiz_view_order', array('order' => $data));
+} else {
+   //drupal_goto('checkout-payment');
+ return theme('drubiz_view_order', array('order' => $data1));
+
+}
 }
 
 /**
@@ -725,8 +753,8 @@ function drubiz_demo_user_register() {
       $account->roles[$demo_administrator_role] = TRUE;
       $account->timezone = variable_get('date_default_timezone', '');
       $account->field_party_id[LANGUAGE_NONE][0]['value'] = $data['partyId'];
-	  
-	  $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+    
+    $GLOBALS['drubiz_skip_user_integration'] = TRUE;
       user_save($account);
 
       if (!empty($account->uid)) {
@@ -803,8 +831,8 @@ function drubiz_user_register() {
       $account->roles = array(DRUPAL_AUTHENTICATED_RID => TRUE);
       $account->timezone = variable_get('date_default_timezone', '');
       $account->field_party_id[LANGUAGE_NONE][0]['value'] = $data['partyId'];
-	  
-	  $GLOBALS['drubiz_skip_user_integration'] = TRUE;
+    
+    $GLOBALS['drubiz_skip_user_integration'] = TRUE;
       user_save($account);
 
       if (!empty($account->uid)) {
@@ -1425,7 +1453,7 @@ function myaccount_love_list(){
   $raw_json = $response->getBody();
   $wishlist = json_decode($raw_json, TRUE);
   toCheckSession($wishlist);
-  // watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','endpoint'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('wishlist','endpoint'), 1) . '</pre>');
   return theme('myaccount_love_list',array('wishlist' => $wishlist));
 }
 
@@ -1885,15 +1913,15 @@ function get_wallet_amount(){
   $params = array(
     'partyId'         => get_user_party_id(),
   );
-  //$jsessionid = get_user_jsessionid();
-  //if (!empty($jsessionid)) {
-   //   $endpoint .= (';jsessionid=' . urlencode($jsessionid));
-  //}
+  $jsessionid = get_user_jsessionid();
+  if (!empty($jsessionid)) {
+     $endpoint .= (';jsessionid=' . urlencode($jsessionid));
+  }
   $response = $client->get($endpoint . '?' . http_build_query($params));
   $raw_json = $response->getBody();
   $data = json_decode($raw_json, TRUE);
   //toCheckSession($data);
-  watchdog(__FUNCTION__, '<pre>' . print_r(compact('data','endpoint'), 1) . '</pre>');
+  watchdog(__FUNCTION__, '<pre>' . print_r(compact('params','data','endpoint'), 1) . '</pre>');
   return $data['partyStoreCreditBalance'];
 }
 function myaccount_my_wallet(){   
