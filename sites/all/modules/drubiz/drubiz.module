@@ -512,7 +512,7 @@ function drubiz_menu() {
     'title'             => 'View Order',
     'description'       => "View Order",
     'page callback'     => 'drubiz_view_order',
-    'page arguments'    => array(1),
+    'page arguments'    => array(2),
     'access arguments'  => array('access content'),
     'file'              => 'drubiz.pages.inc',
   );
@@ -1279,6 +1279,10 @@ function drubiz_apachesolr_index_document_build(ApacheSolrDocument $document, $e
   }
 }
 
+function drubiz_apachesolr_process_results(array &$results, DrupalSolrQueryInterface $query) {
+  drupal_set_title('Results');
+}
+
 function drubiz_social_networks($reset = FALSE){
   $networks = &drupal_static(__FUNCTION__, array());
   if (empty($networks) || $reset) {
@@ -1290,6 +1294,6 @@ function drubiz_social_networks($reset = FALSE){
     while ($network = $result->fetchAssoc()) {
       $networks[$network['machine_name']] = $network;
     }
-    return $networks;
+      return $networks;
   }
 }
