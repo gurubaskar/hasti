@@ -214,4 +214,10 @@
       #cboxClose:hover {
         background-position: -25px -25px;
       }
-#cboxLoadedContent table td{padding-right:15px; padding-bottom:5px;}
+
+#cboxLoadedContent table td{padding: 5px 12px;padding-bottom:5px;}
+.sizeChart h3{margin-top:0; }
+.sizeChart table thead{background: none repeat scroll 0 0 #DEDEDE; color: #2B2B2B !important;}
+.sizeChart table td{border: 1px solid #ADADAD; color: #8D8D8D; font-size: 12px; padding: 2px;text-align: center;}
+.sizeChart table td.infoColumn{color: #2B2B2B !important;text-align: left; width: 100px !important;}
+.sizeChart table thead td{color:#2B2B2B !important;}

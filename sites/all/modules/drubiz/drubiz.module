@@ -1280,7 +1280,28 @@ function drubiz_apachesolr_index_document_build(ApacheSolrDocument $document, $e
 }
 
 function drubiz_apachesolr_process_results(array &$results, DrupalSolrQueryInterface $query) {
-  drupal_set_title('Results');
+  $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
+  $category_names_from_catalog = $drubiz_category_names['hasti'];
+  if(isset($_GET['f'][1])){
+    $get_category_names = explode(':',$_GET['f'][1]);
+    $category_names = $category_names_from_catalog[$get_category_names[1]];
+    drupal_set_title($category_names);
+  }
+  if(isset($_GET['f'][2])){
+    $get_category_names = explode(':',$_GET['f'][2]);
+    $category_names = $category_names_from_catalog[$get_category_names[1]];
+    drupal_set_title($category_names);
+  }
+  if(isset($_GET['f'][3])){
+    $get_category_names = explode(':',$_GET['f'][3]);
+    $category_names = $category_names_from_catalog[$get_category_names[1]];
+    drupal_set_title($category_names);
+  }
+  if( strpos( $_GET['q'], 'search/site/' ) !== false ) {  
+    $text = explode('search/site/', $_GET['q']);   
+    $text_serached = $text[1];
+    drupal_set_title($text_serached);
+  }
 }
 
 function drubiz_social_networks($reset = FALSE){
