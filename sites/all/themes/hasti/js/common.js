@@ -30,7 +30,7 @@ function ajaxErrorMsgDisplay(msg,type='info') {
     $("#forgotPopup").hide();
     $("#forgotPopupCheckout").hide();
     $("#signInPopup").hide();
-    $("#positionWindow1").hide();
+    $("#signUpPopup").hide();
   });
 
  $(document).ready(function(){
@@ -958,7 +958,9 @@ function openSignIn() {
  jQuery("#forgotPopup").hide(); 
  jQuery("#emailid").val("");
 }
-
+function openSignUp(){
+ jQuery("#signUpPopup").show(); 
+}
 function closeForgotPassword() {
  jQuery("#forgotPopup").hide();
  jQuery("#signInPopup").show(); 

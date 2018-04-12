@@ -170,14 +170,15 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('user/logout');?>" data-ajax="false">LOGOUT</a></li>
             <?php endif; ?>
             <?php if($GLOBALS['user']->uid == 0):?>
-              <li><a href="#positionWindow1" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true">Sign Up</a></li>
+              <li><a href="#positionWindow" id="signUpPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignUp()">Sign Up</a></li>
               <li><a href="#signInWindow" id="signInPop" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" onclick="openSignIn()">Sign In</a></li>
             <?php endif; ?>
           </ul>
       </div>
   </div>
 </div>
-<div data-role="popup" id="positionWindow1" class="ui-content signin" style="max-width:700px">
+<div data-role="popup" id="positionWindow" class="ui-content signin" style="max-width:700px">
+<div id="signUpPopup">
   <a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right" id="closetag">Close</a>
   <h3>Sign up</h3>
   <div id="signup_errormsgs" style=""></div>
@@ -197,6 +198,7 @@ require_once 'vendor/autoload.php';
       <input type="submit" value="Sign Up" id="signin">
     </div>
   </form>
+</div>
 </div>
 
 <div data-role="popup" id="signInWindow" class="ui-content signin" style="max-width:700px">
