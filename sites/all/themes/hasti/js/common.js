@@ -30,7 +30,7 @@ function ajaxErrorMsgDisplay(msg,type='info') {
     $("#forgotPopup").hide();
     $("#forgotPopupCheckout").hide();
     $("#signInPopup").hide();
-    $("#positionWindow").hide();
+    $("#positionWindow1").hide();
   });
 
  $(document).ready(function(){
