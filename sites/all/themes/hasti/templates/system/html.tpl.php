@@ -60,6 +60,31 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php 
+    $drubiz_category_names = json_decode(variable_get('drubiz_category_names', '[]'), TRUE);
+    $category_names_from_catalog = $drubiz_category_names['hasti'];
+    $categoryUrl ='';
+    if(isset($_GET['f'][1])){
+      $get_category_names = explode(':',$_GET['f'][1]);
+      $category_names = $category_names_from_catalog[$get_category_names[1]];
+      $categoryUrl = $category_names;
+    }
+    if(isset($_GET['f'][2])){
+      $get_category_names = explode(':',$_GET['f'][2]);
+      $category_names = $category_names_from_catalog[$get_category_names[1]];
+      $categoryUrl = $categoryUrl.'/'.$category_names;
+    }
+    if(isset($_GET['f'][3])){
+      $get_category_names = explode(':',$_GET['f'][3]);
+      $category_names = $category_names_from_catalog[$get_category_names[1]];
+      $categoryUrl = $categoryUrl.'/'.$category_names;
+    }
+    if( strpos( $_GET['q'], 'search/site/' ) !== false ) {  
+      $text = explode('search/site/', $_GET['q']);   
+      $text_serached = $text[1];
+    }
+  ?>
+  <meta property='category' content='<?php echo $categoryUrl?>' /> 
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
