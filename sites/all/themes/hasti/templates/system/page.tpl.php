@@ -441,8 +441,8 @@ require_once 'vendor/autoload.php';
               <li><a href="<?php echo url('about-us')?>" alt="About Us" target="_blank"><?php echo t('About Us');?></a></li>
               <li><a href="#" alt="Press Release" target="_blank"><?php echo t('Press Release');?></a></li>
               <li><a href="#" alt="News & Events" target="_blank"><?php echo t('News & Events');?></a></li>
-              <li><a href="<?php echo url('faq')?>" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li> 
-              <li><a href="<?php echo url('story-list')?>" alt="Story List" target="_blank"><?php echo t('Story List');?></a></li>            
+              <!--<li><a href="<?php echo url('faq')?>" alt="Site Map" target="_blank"><?php echo t('Site Map');?></a></li> 
+              <li><a href="<?php echo url('story-list')?>" alt="Story List" target="_blank"><?php echo t('Story List');?></a></li>-->           
             </ul>
           </div>
           <div class="col-xs-12 col-sm-3 col-md-3 links">
