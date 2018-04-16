@@ -86,7 +86,7 @@ if (isset($authUrl)){
     header('Location:'.$url);
   } else{
     $url = "index.php"; // default page for 
-    header('Location:http://www.hastti.com/index.php');
+    header('Location:https://www.hastti.com/index.php');
   }    
 	//header('Location:http://www.hasti.dev/drubiz_hasti/index.php');
 	
