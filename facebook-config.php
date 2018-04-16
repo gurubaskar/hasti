@@ -24,7 +24,7 @@ FacebookSession::setDefaultApplication( '270991780046160','ace3b2e5daa6b4e91b828
 
 // login helper with redirect_uri
  //$helper = new FacebookRedirectLoginHelper('http://www.hasti.dev/drubiz_hasti/facebook-config.php' );
-$helper = new FacebookRedirectLoginHelper('http://www.hastti.com/facebook-config.php');
+$helper = new FacebookRedirectLoginHelper('https://www.hastti.com/facebook-config.php');
 
 try {
   $session = $helper->getSessionFromRedirect();
@@ -62,7 +62,7 @@ if ( isset( $session ) ) {
     header('Location:'.$url);
   } else{
     $url = "/index.php"; // default page for 
-    header('Location:http://www.hastti.com/index.php');
+    header('Location:https://www.hastti.com/index.php');
   } 
   //header("Location: http://www.hasti.dev/drubiz_hasti".$url);
   // header("Location: http://www.hastti.com".$url);
